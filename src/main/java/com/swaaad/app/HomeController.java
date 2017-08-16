@@ -1,4 +1,4 @@
-package com.swaaad.proyectoapp;
+package com.swaaad.app;
 
 import java.text.DateFormat;
 import java.util.Date;
