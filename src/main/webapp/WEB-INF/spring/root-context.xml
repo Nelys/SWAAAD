@@ -67,4 +67,10 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 
 	</bean>
+	
+	<bean id="DocenteDao" class="com.swaaad.dao.impl.DocenteDaoImpl">
+
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+
+	</bean>
 </beans>
