@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class AppController {
 
-	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/home"}, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		return "home";
 	}
@@ -21,7 +21,7 @@ public class AppController {
 		return "perfil";
 	}
 
-	@RequestMapping(value = { "/cursos"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String cursosPage(ModelMap model) {
 		return "cursos";
 	}

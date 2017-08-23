@@ -26,7 +26,7 @@ public class HomeController {
 
 	// AlumnosService objAlumnoService;
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/homeprueba", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Se ejecuta el metodo home ");
 

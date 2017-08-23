@@ -58,7 +58,7 @@
    <!-- Pagina Aula Dinamica -->
    <definition name="aula-dinamica" extends="base-definition">  
        <put-attribute name="title" value="Aula Dinamica" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/asistencias.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/aula-dinamica.jsp" />  
    </definition> 
    
    <!-- Pagina Participacion -->
