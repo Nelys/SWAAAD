@@ -26,7 +26,7 @@ public class HomeController {
 
 	// AlumnosService objAlumnoService;
 
-	@RequestMapping(value = "/homeprueba", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Se ejecuta el metodo home ");
 
@@ -58,22 +58,7 @@ public class HomeController {
 
 		// ----Docente--
 
-		try {
-			Docente docente = new Docente();
-			docente.setNombre("Carlos");
-			docente.setApellidos("Supo Mollocondo");
-			docente.setGenero("M");
-			docente.setEmail("Carlos@gmail.com");
-			docente.setContrasena("123456");
-			docente.setFoto("f");
-
-			objDocenteService.addDocente(docente);
-
-			System.out.println(docente.getApellidos());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
 
 		return "home";
 	}
