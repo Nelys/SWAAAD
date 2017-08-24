@@ -18,4 +18,16 @@ public class DocenteServiceImpl implements DocenteService {
 		objDocente.addDocente(docente);
 
 	}
+
+	@Override
+	public Docente getDocenteById(int idDocente) throws Exception {
+		
+		return objDocente.getDocenteById(idDocente);
+	}
+
+	@Override
+	public void updateDocente(Docente docente) throws Exception {
+		objDocente.updateDocente(docente);
+		
+	}
 }

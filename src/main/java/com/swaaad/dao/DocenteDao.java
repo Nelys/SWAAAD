@@ -25,10 +25,10 @@ public interface DocenteDao {
 	
 /**
  * Recupera un docente de la base de datos
- * @param idAlumno
+ * @param idDocente
  * @throws Exception
  */
-	public void getDocenteById(int idAlumno) throws Exception;
+	Docente getDocenteById(int idDocente) throws Exception;
 	
 
 }
