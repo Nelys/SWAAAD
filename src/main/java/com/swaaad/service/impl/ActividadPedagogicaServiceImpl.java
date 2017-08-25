@@ -1,5 +1,7 @@
 package com.swaaad.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,28 @@ public class ActividadPedagogicaServiceImpl implements ActividadPedagogicaServic
 	@Override
 	public void addActividad(ActividadPedagogica actividad) throws Exception {
 		objActividadDao.addActividad(actividad);
+	}
+
+	@Override
+	public ActividadPedagogica getActividadById(int idActividad) throws Exception {
+		return objActividadDao.getActividadById(idActividad);
+	}
+
+	@Override
+	public void updateActividad(ActividadPedagogica actividad) throws Exception {
+		objActividadDao.updateActividad(actividad);
+		
+	}
+
+	@Override
+	public void deleteActividad(int idActividad) throws Exception {
+		objActividadDao.deleteActividad(idActividad);
+	}
+
+	@Override
+	public List<ActividadPedagogica> getAllActividad() throws Exception {
+		// TODO Auto-generated method stub
+		return objActividadDao.getAllActividad();
 	}
 
 }
