@@ -2,6 +2,7 @@ package com.swaaad.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,26 +26,79 @@ public class ActividadPedagogicaDaoImpl implements ActividadPedagogicaDao {
 
 	@Override
 	public ActividadPedagogica getActividadById(int idActividad) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		sSesion = sessionFactory.openSession();
+		ActividadPedagogica actividad = null;
+
+		try {
+
+			String queryActividad = "From Docente where ID_ACTIVIDAD=:idActividad ";
+			Query query = sSesion.createQuery(queryActividad);
+			query.setInteger("idDocente", idActividad);
+			actividad = (ActividadPedagogica) query.uniqueResult();
+
+			// ActividadPedagogica actividad = (ActividadPedagogica) sSesion
+			// .createQuery("Select a FROM ActividadPedagogica a WHERE
+			// ID_ACTIVIDAD=idActividad").uniqueResult();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSesion.flush();
+			sSesion.close();
+		}
+		return actividad;
 	}
 
 	@Override
 	public void updateActividad(ActividadPedagogica actividad) throws Exception {
-		// TODO Auto-generated method stub
-
+		sSesion = sessionFactory.openSession();
+		try {
+			tTransaction = sSesion.beginTransaction();
+			sSesion.update(actividad);
+			tTransaction.commit();
+			System.out.println("se actualizo docente");
+		} catch (Exception e) {
+			if (tTransaction != null) {
+				tTransaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			sSesion.flush();
+			sSesion.close();
+		}
 	}
 
 	@Override
 	public void deleteActividad(int idActividad) throws Exception {
-		// TODO Auto-generated method stub
+		sSesion = sessionFactory.openSession();
+		try {
+			tTransaction = sSesion.beginTransaction();
+			ActividadPedagogica actividad = (ActividadPedagogica) sSesion.load(ActividadPedagogica.class,
+					new Integer(idActividad));
+
+			sSesion.delete(actividad);
+			tTransaction.commit();
+
+		} catch (Exception e) {
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
+				tTransaction.rollback();// desase e
+			}
+			e.printStackTrace();
+		} finally {
+			sSesion.flush();
+			sSesion.close();
+		}
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ActividadPedagogica> getAllActividad() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		sSesion = sessionFactory.openSession();
+
+		List<ActividadPedagogica> listaActividades = sSesion.createCriteria(ActividadPedagogica.class).list();
+		sSesion.close();
+		return listaActividades;
 	}
 
 }
