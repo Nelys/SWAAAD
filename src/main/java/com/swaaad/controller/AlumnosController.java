@@ -27,12 +27,12 @@ public class AlumnosController {
 	AlumnosService objAlumnoService;
 
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public List<Alumno> home(Locale locale, Model model) {
 		logger.info("Se ejecuta el metodo home ");
 		
-
+		List<Alumno> ListarAlumno =null;
 		try {
-			List<Alumno> ListarAlumno = objAlumnoService.getAllAlumnos();
+			ListarAlumno = objAlumnoService.getAllAlumnos();
 			for (Alumno alumno : ListarAlumno) {
 				logger.info("[NOMBRES: " + alumno.getNombres() + ",APELLIDOS:" + alumno.getApellidos() + "]");
 			}
@@ -53,7 +53,7 @@ public class AlumnosController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return ListarAlumno;
 
 	}
 

@@ -34,13 +34,13 @@ public class HomeController {
 		logger.info("Se ejecuta el metodo home ");
 		try {
 			ActividadPedagogica actividad = new ActividadPedagogica();
-			actividad.setCursoAlumno(null);
-			actividad.setDescripcion("revisar tarea");
-
-			Date date = new Date();
-			DateFormat dateFormat=DateFormat.getTimeInstance(DateFormat.LONG, locale);
-			String formattedDate = dateFormat.format(date);
-			
+//			actividad.setCursoAlumno(null);
+//			actividad.setDescripcion("revisar tarea");
+//
+//			Date date = new Date();
+//			DateFormat dateFormat=DateFormat.getTimeInstance(DateFormat.LONG, locale);
+//			String formattedDate = dateFormat.format(date);
+//			
 
 			objActividadService.addActividad(actividad);
 

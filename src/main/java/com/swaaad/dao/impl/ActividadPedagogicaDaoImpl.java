@@ -11,9 +11,14 @@ import com.swaaad.dao.ActividadPedagogicaDao;
 import com.swaaad.model.ActividadPedagogica;
 
 public class ActividadPedagogicaDaoImpl implements ActividadPedagogicaDao {
+	
 	private SessionFactory sessionFactory;
 	Session sSesion = null;
 	Transaction tTransaction = null;
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	@Override
 	public void addActividad(ActividadPedagogica pedagogica) throws Exception {
