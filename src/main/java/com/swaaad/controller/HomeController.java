@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.swaaad.model.ActividadPedagogica;
+import com.swaaad.model.CursoAlumno;
 import com.swaaad.model.Docente;
 import com.swaaad.service.ActividadPedagogicaService;
 import com.swaaad.service.DocenteService;
@@ -34,15 +35,20 @@ public class HomeController {
 		logger.info("Se ejecuta el metodo home ");
 		try {
 			ActividadPedagogica actividad = new ActividadPedagogica();
-//			actividad.setCursoAlumno(null);
-//			actividad.setDescripcion("revisar tarea");
-//
-//			Date date = new Date();
-//			DateFormat dateFormat=DateFormat.getTimeInstance(DateFormat.LONG, locale);
-//			String formattedDate = dateFormat.format(date);
-//			
 
-			objActividadService.addActividad(actividad);
+			CursoAlumno cursoAlumno = new CursoAlumno();
+
+			Date date = new Date();
+			
+			actividad.setCursoAlumno(cursoAlumno);
+			actividad.setFecha(date);
+			actividad.setDescripcion("revisar tarea");
+			actividad.setRecordar(new Byte("0"));
+			
+
+			
+
+			objActividadService.addActividad(actividad);;
 
 		} catch (Exception e) {
 			// TODO: handle exception
