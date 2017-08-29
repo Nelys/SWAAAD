@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 		<!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,7 +51,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesion</a>
+                            <a href="<c:url value="/logout" />"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                 </li>

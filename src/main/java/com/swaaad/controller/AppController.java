@@ -36,7 +36,7 @@ public class AppController {
 		return "perfil";
 	}
 
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/cursos" }, method = RequestMethod.GET)
 	public String cursosPage(ModelMap model) {
 		return "cursos";
 	}
