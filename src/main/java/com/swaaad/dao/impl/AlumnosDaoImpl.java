@@ -10,17 +10,39 @@ import org.hibernate.Transaction;
 import com.swaaad.dao.AlumnosDao;
 import com.swaaad.model.Alumno;
 
+/**
+ * 
+ * @author Nelys
+ * @version 1.0.0, 20/08/2017
+ * @see AlumnosDao
+ * 
+ */
 public class AlumnosDaoImpl implements AlumnosDao {
 
+	/* implementa la interface AlumnoDAO */
+
+	/**
+	 * se encarga de crear la session con la base de datos
+	 */
 	private SessionFactory sessionFactory;
 
+	/**
+	 * almacenara la session con la base de datos
+	 */
 	Session session = null;
+
+	/**
+	 * Permite la transacciones con la base de datos
+	 */
 	Transaction transaction = null;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
+	/**
+	 * @see AlumnosDao#addAlumno(Alumno)
+	 */
 	@Override
 	public void addAlumno(Alumno alumno) throws Exception {
 
@@ -32,6 +54,9 @@ public class AlumnosDaoImpl implements AlumnosDao {
 
 	}
 
+	/**
+	 * @see AlumnosDao#getAllAlumnos()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Alumno> getAllAlumnos() throws Exception {
@@ -42,6 +67,9 @@ public class AlumnosDaoImpl implements AlumnosDao {
 
 	}
 
+	/**
+	 * @see AlumnosDao#getAlumnoById(int)
+	 */
 	@Override
 	public Alumno getAlumnoById(int idAlumno) throws Exception {
 		session = sessionFactory.openSession();
@@ -64,6 +92,9 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		return alumno;
 	}
 
+	/**
+	 * @see AlumnosDao#updateAlumno(Alumno)
+	 */
 	@Override
 	public void updateAlumno(Alumno alumno) throws Exception {
 		// TODO Auto-generated method stub
@@ -87,6 +118,9 @@ public class AlumnosDaoImpl implements AlumnosDao {
 
 	}
 
+	/**
+	 * @see AlumnosDao#deleteAlumno(int)
+	 */
 	@Override
 	public void deleteAlumno(int idAlumno) throws Exception {
 		session = sessionFactory.openSession();// crea sesion con la base de

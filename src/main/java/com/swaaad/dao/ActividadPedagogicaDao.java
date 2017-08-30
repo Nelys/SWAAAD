@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.swaaad.model.ActividadPedagogica;
 
-
+/**
+ * @author Nelys
+ * @version 1.0.0 ,29/08/2017
+ *
+ */
 public interface ActividadPedagogicaDao {
 	/**
 	 * Crea una Actividad Pedagogica en base de datos, recibe como parametro una actividad Pedagogica
@@ -18,7 +22,7 @@ public interface ActividadPedagogicaDao {
 	 * @param idActividad
 	 *            : id que identifica a la actividad pedagogica
 	 * @return : Una Actividad Pedagogica
-	 * @throws Exception
+	 * @throws Exception 
 	 */
 	ActividadPedagogica getActividadById(int idActividad) throws Exception;
 

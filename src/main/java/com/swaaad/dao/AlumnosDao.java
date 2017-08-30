@@ -4,11 +4,15 @@ import java.util.List;
 
 import com.swaaad.model.Alumno;
 
+/**
+ * @author Nelys
+ * @version 1.0.0 ,29/08/2017
+ *
+ */
 public interface AlumnosDao {
 
 	/**
-	 * Crea un alumno en base de datos, recibe como parametro un
-	 * alumno
+	 * Crea un alumno en base de datos, recibe como parametro un alumno
 	 * 
 	 * @throws Exception
 	 */
