@@ -28,53 +28,53 @@
    <!-- Pagina Cursos -->
    <definition name="cursos" extends="base-definition">  
        <put-attribute name="title" value="Cursos" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/cursos.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/curso/cursos.jsp" />  
    </definition> 
    
    <!-- Pagina Alumnos -->
    <definition name="alumnos" extends="base-definition">  
        <put-attribute name="title" value="Alumnos" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/alumnos.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumnos.jsp" />  
    </definition>
    
    <!-- Pagina Evaluaciones -->
    <definition name="evaluaciones" extends="base-definition">  
        <put-attribute name="title" value="Evaluaciones" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/evaluaciones.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/evaluaciones.jsp" />  
    </definition> 
    
    <!-- Pagina Asistencias -->
    <definition name="asistencias" extends="base-definition">  
        <put-attribute name="title" value="Asistencias" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/asistencias.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/asistencia/asistencias.jsp" />  
    </definition> 
    
    <!-- Pagina Actividades Pedagogicas -->
    <definition name="actividades-pedagogicas" extends="base-definition">  
        <put-attribute name="title" value="Actividades Pedagogicas" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/actividades-pedagogicas.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/actividad-pedagogica/actividades-pedagogicas.jsp" />  
    </definition> 
    
    <!-- Pagina Aula Dinamica -->
    <definition name="aula-dinamica" extends="base-definition">  
        <put-attribute name="title" value="Aula Dinamicas" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/aula-dinamica.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/aula-dinamica/aula-dinamica.jsp" />  
    </definition> 
    
    <!-- Pagina Participacion -->
    <definition name="participacion" extends="base-definition">  
        <put-attribute name="title" value="Participacion" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/participacion.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/participacion/participacion.jsp" />  
    </definition> 
    
    <!-- Pagina Grupos -->
    <definition name="grupos" extends="base-definition">  
        <put-attribute name="title" value="Grupos" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/grupos.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/grupo/grupos.jsp" />  
    </definition> 
    <!-- Alumno Formulario -->
    <definition name="form-alumno" extends="base-definition">  
        <put-attribute name="title" value="Alumno Formulario" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/alumno-formulario.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumno-formulario.jsp" />  
    </definition> 
 </tiles-definitions>

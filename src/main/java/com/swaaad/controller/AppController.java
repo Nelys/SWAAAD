@@ -42,7 +42,7 @@ public class AppController {
 	}
 
 	/////// nelys
-	@RequestMapping(value = { "/alumnos" }, method = RequestMethod.GET)
+	/*@RequestMapping(value = { "/alumnos" }, method = RequestMethod.GET)
 	public ModelAndView alumnosPage(ModelAndView model) throws Exception {
 
 		logger.info("alumnosPage");
@@ -117,7 +117,7 @@ public class AppController {
 		 }
 		//
 		return new ModelAndView("redirect:/alumnos");
-	}
+	}*/
 
 	// fin nelys
 	@RequestMapping(value = { "/evaluaciones" }, method = RequestMethod.GET)
