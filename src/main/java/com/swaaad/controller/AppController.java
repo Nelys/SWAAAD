@@ -22,7 +22,7 @@ import com.swaaad.service.AlumnosService;
 @Controller
 @RequestMapping("/")
 public class AppController {
-	private static final Logger logger = LoggerFactory.getLogger(AlumnosController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
 	AlumnosService objAlumnoService;
 

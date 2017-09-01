@@ -18,7 +18,7 @@ import com.swaaad.service.AlumnosService;
 
 @Controller
 public class AlumnoController {
-	private static final Logger logger = LoggerFactory.getLogger(AlumnosController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
 	AlumnosService objAlumnoService;
 

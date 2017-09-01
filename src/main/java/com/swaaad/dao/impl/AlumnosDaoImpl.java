@@ -46,11 +46,11 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	@Override
 	public void addAlumno(Alumno alumno) throws Exception {
 
-		Session sesion = this.sessionFactory.openSession();
-		Transaction trans = sesion.beginTransaction();
-		sesion.persist(alumno);
-		trans.commit();
-		sesion.close();
+		session = this.sessionFactory.openSession();
+		transaction = session.beginTransaction();
+		session.persist(alumno);
+		transaction.commit();
+		session.close();
 
 	}
 
