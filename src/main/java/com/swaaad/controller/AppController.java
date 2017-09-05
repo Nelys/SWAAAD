@@ -130,10 +130,10 @@ public class AppController {
 		return "asistencias";
 	}
 
-	@RequestMapping(value = { "/actividades-pedagogicas" }, method = RequestMethod.GET)
-	public String actividadesPedagogicasPage(ModelMap model) {
-		return "actividades-pedagogicas";
-	}
+//	@RequestMapping(value = { "/actividades-pedagogicas" }, method = RequestMethod.GET)
+//	public String actividadesPedagogicasPage(ModelMap model) {
+//		return "actividades-pedagogicas";
+//	}
 
 	@RequestMapping(value = { "/aula-dinamica" }, method = RequestMethod.GET)
 	public String aulaDinamicaPage(ModelMap model) {
