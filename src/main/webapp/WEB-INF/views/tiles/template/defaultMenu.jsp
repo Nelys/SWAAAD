@@ -63,7 +63,7 @@
                         <a href="${pageContext.request.contextPath}/perfil"><i class="fa fa-user"></i> Perfil</a>
                     </li>
                     <li class="active">
-                        <a href="${pageContext.request.contextPath}/" data-target="#demo"><i class="fa fa-fw fa-table"></i> Cursos</i></a>
+                        <a href="${pageContext.request.contextPath}/cursos" data-target="#demo"><i class="fa fa-fw fa-table"></i> Cursos</i></a>
                         <ul id="demo">
                         	
                             <li>
