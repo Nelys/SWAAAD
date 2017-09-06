@@ -4,21 +4,20 @@
 		<class>com.swaaad.model.ActividadPedagogica</class>
 		<class>com.swaaad.model.Alumno</class>
 		<class>com.swaaad.model.Asistencia</class>
-		<class>com.swaaad.model.Aula</class>
+		<class>com.swaaad.model.AulaDinamica</class>
 		<class>com.swaaad.model.Capacidad</class>
 		<class>com.swaaad.model.Competencia</class>
 		<class>com.swaaad.model.Curso</class>
 		<class>com.swaaad.model.CursoAlumno</class>
 		<class>com.swaaad.model.Docente</class>
-		<class>com.swaaad.model.Evaluacion</class>
 		<class>com.swaaad.model.Formula</class>
 		<class>com.swaaad.model.FormulaDetalle</class>
 		<class>com.swaaad.model.Horario</class>
+		<class>com.swaaad.model.Nota</class>
 		<class>com.swaaad.model.Parte</class>
 		<class>com.swaaad.model.Periodo</class>
 		<class>com.swaaad.model.Pregunta</class>
 		<class>com.swaaad.model.Unidad</class>
 		<class>com.swaaad.model.Usuario</class>
-		<class>com.swaaad.model.UsuarioRol</class>
 	</persistence-unit>
 </persistence>

@@ -27,25 +27,26 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- <value>com.swaad.modelo.Carrera</value> -->
-				<value>com.swaaad.model.ActividadPedagogica</value>
+<!-- 				<value>com.swaaad.model.ActividadPedagogica</value> -->
 				<value>com.swaaad.model.Alumno</value>
 				<value>com.swaaad.model.Asistencia</value>
-				<value>com.swaaad.model.Aula</value>
+				<value>com.swaaad.model.AulaDinamica</value>
 				<value>com.swaaad.model.Capacidad</value>
 				<value>com.swaaad.model.Competencia</value>
 				<value>com.swaaad.model.Curso</value>
 				<value>com.swaaad.model.CursoAlumno</value>
 				<value>com.swaaad.model.Docente</value>
-				<value>com.swaaad.model.Evaluacion</value>
 				<value>com.swaaad.model.Formula</value>
 				<value>com.swaaad.model.FormulaDetalle</value>
 				<value>com.swaaad.model.Horario</value>
+				<value>com.swaaad.model.Nota</value>
 				<value>com.swaaad.model.Parte</value>
 				<value>com.swaaad.model.Periodo</value>
 				<value>com.swaaad.model.Pregunta</value>
 				<value>com.swaaad.model.Unidad</value>
 				<value>com.swaaad.model.Usuario</value>
-				<value>com.swaaad.model.UsuarioRol</value>
+
+				<!-- <value>com.swaaad.model.UsuarioRol</value> -->
 
 			</list>
 		</property>
@@ -79,10 +80,27 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 
 	</bean>
-	
-		<bean id="AsistenciaDao" class="com.swaaad.dao.impl.AsistenciaDaoImpl">
+
+	<bean id="AsistenciaDao" class="com.swaaad.dao.impl.AsistenciaDaoImpl">
 
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 
 	</bean>
+	<bean id="CursoDao" class="com.swaaad.dao.impl.CursoDaoImpl">
+
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+
+	</bean>
+		<bean id="HorarioDao" class="com.swaaad.dao.impl.HorarioDaoImpl">
+
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+
+
+	</bean>
+		<bean id="PeriodoDao" class="com.swaaad.dao.impl.PeriodoDaoImpl">
+
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+
+	</bean>
+	
 </beans>
