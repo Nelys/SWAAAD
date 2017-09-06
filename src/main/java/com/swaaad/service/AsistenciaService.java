@@ -1,7 +1,9 @@
 package com.swaaad.service;
 
-import com.swaaad.model.Asistencia;
+import org.springframework.stereotype.Service;
 
+import com.swaaad.model.Asistencia;
+@Service
 public interface AsistenciaService {
 	void addAsistencia(Asistencia asistencia) throws Exception;
 
