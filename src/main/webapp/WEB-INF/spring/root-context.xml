@@ -98,5 +98,9 @@
 	<bean id="CompetenciaDao" class="com.swaaad.dao.impl.CompetenciaDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	
+	<bean id="CapacidadDao" class="com.swaaad.dao.impl.CapacidadDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
 
 </beans>
