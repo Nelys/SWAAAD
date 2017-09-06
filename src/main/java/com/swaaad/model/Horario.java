@@ -29,10 +29,10 @@ public class Horario implements Serializable {
 	@Column(name="HORA_INICIO")
 	private Time horaInicio;
 
-	//uni-directional many-to-one association to CursoAlumno
+	//uni-directional many-to-one association to Curso
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_CURSO_ALUMNO")
-	private CursoAlumno cursoAlumno;
+	@JoinColumn(name="ID_CURSO")
+	private Curso curso;
 
 	public Horario() {
 	}
@@ -69,12 +69,12 @@ public class Horario implements Serializable {
 		this.horaInicio = horaInicio;
 	}
 
-	public CursoAlumno getCursoAlumno() {
-		return this.cursoAlumno;
+	public Curso getCurso() {
+		return this.curso;
 	}
 
-	public void setCursoAlumno(CursoAlumno cursoAlumno) {
-		this.cursoAlumno = cursoAlumno;
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 }

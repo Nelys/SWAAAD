@@ -19,8 +19,7 @@ public class FormulaDetalle implements Serializable {
 	@Column(name="ID_FORMULA_DETALLE")
 	private int idFormulaDetalle;
 
-	@Column(name="ID_EVALUACION")
-	private int idEvaluacion;
+	private int idevaluacion;
 
 	private int item;
 
@@ -45,12 +44,12 @@ public class FormulaDetalle implements Serializable {
 		this.idFormulaDetalle = idFormulaDetalle;
 	}
 
-	public int getIdEvaluacion() {
-		return this.idEvaluacion;
+	public int getIdevaluacion() {
+		return this.idevaluacion;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setIdevaluacion(int idevaluacion) {
+		this.idevaluacion = idevaluacion;
 	}
 
 	public int getItem() {

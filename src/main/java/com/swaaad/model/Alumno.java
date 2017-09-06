@@ -32,6 +32,8 @@ public class Alumno implements Serializable {
 
 	private String genero;
 
+	private String imagen;
+
 	private String nombres;
 
 	@Column(name="NOMBRES_APODERADO")
@@ -97,6 +99,14 @@ public class Alumno implements Serializable {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+
+	public String getImagen() {
+		return this.imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public String getNombres() {

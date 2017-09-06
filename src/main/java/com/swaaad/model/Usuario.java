@@ -15,29 +15,29 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_USUARIO")
-	private int idUsuario;
+	private String usuario;
+
+	private String contrasena;
 
 	private byte estado;
-
-	private String nombre;
-
-	private String password;
-
-	//uni-directional many-to-one association to UsuarioRol
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_USUARIO_ROL")
-	private UsuarioRol usuarioRol;
 
 	public Usuario() {
 	}
 
-	public int getIdUsuario() {
-		return this.idUsuario;
+	public String getUsuario() {
+		return this.usuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrasena() {
+		return this.contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public byte getEstado() {
@@ -46,30 +46,6 @@ public class Usuario implements Serializable {
 
 	public void setEstado(byte estado) {
 		this.estado = estado;
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public UsuarioRol getUsuarioRol() {
-		return this.usuarioRol;
-	}
-
-	public void setUsuarioRol(UsuarioRol usuarioRol) {
-		this.usuarioRol = usuarioRol;
 	}
 
 }

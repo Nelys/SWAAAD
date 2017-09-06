@@ -18,6 +18,8 @@ public class Curso implements Serializable {
 	@Column(name="ID_CURSO")
 	private int idCurso;
 
+	private int anio;
+
 	private int grado;
 
 	private String institucion;
@@ -41,6 +43,14 @@ public class Curso implements Serializable {
 
 	public void setIdCurso(int idCurso) {
 		this.idCurso = idCurso;
+	}
+
+	public int getAnio() {
+		return this.anio;
+	}
+
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
 
 	public int getGrado() {

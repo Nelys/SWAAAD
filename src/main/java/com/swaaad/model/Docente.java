@@ -30,6 +30,8 @@ public class Docente implements Serializable {
 
 	private String nombre;
 
+	private String usuario;
+
 	public Docente() {
 	}
 
@@ -87,6 +89,14 @@ public class Docente implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 }
