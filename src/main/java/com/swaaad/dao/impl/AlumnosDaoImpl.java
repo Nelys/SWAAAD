@@ -29,12 +29,12 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	/**
 	 * almacenara la session con la base de datos
 	 */
-	Session session = null;
+	Session sSession = null;
 
 	/**
 	 * Permite la transacciones con la base de datos
 	 */
-	Transaction transaction = null;
+	Transaction tTransaction = null;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -46,11 +46,11 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	@Override
 	public void addAlumno(Alumno alumno) throws Exception {
 
-		session = this.sessionFactory.openSession();
-		transaction = session.beginTransaction();
-		session.persist(alumno);
-		transaction.commit();
-		session.close();
+		sSession = this.sessionFactory.openSession();
+		tTransaction = sSession.beginTransaction();
+		sSession.persist(alumno);
+		tTransaction.commit();
+		sSession.close();
 
 	}
 
@@ -60,9 +60,9 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Alumno> getAllAlumnos() throws Exception {
-		session = sessionFactory.openSession();
-		List<Alumno> listarAlumnos = session.createCriteria(Alumno.class).list();
-		session.close();
+		sSession = sessionFactory.openSession();
+		List<Alumno> listarAlumnos = sSession.createCriteria(Alumno.class).list();
+		sSession.close();
 		return listarAlumnos;
 
 	}
@@ -72,11 +72,11 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	 */
 	@Override
 	public Alumno getAlumnoById(int idAlumno) throws Exception {
-		session = sessionFactory.openSession();
+		sSession = sessionFactory.openSession();
 		Alumno alumno = null;
 		try {
 			String queryAlumno = "From Alumno Where ID_ALUMNO= :idAlumno";
-			Query query = session.createQuery(queryAlumno);
+			Query query = sSession.createQuery(queryAlumno);
 			query.setInteger("idAlumno", idAlumno);
 			alumno = (Alumno) query.uniqueResult();
 
@@ -84,8 +84,8 @@ public class AlumnosDaoImpl implements AlumnosDao {
 			e.printStackTrace();
 			// TODO: handle exception
 		} finally {
-			session.flush();
-			session.close();
+			sSession.flush();
+			sSession.close();
 
 		}
 
@@ -98,22 +98,22 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	@Override
 	public void updateAlumno(Alumno alumno) throws Exception {
 		// TODO Auto-generated method stub
-		session = sessionFactory.openSession();
+		sSession = sessionFactory.openSession();
 		try {
-			transaction = session.beginTransaction();
-			session.update(alumno);
-			transaction.commit();
+			tTransaction = sSession.beginTransaction();
+			sSession.update(alumno);
+			tTransaction.commit();
 			System.out.println("se actualizo");
 		} catch (RuntimeException e) {
 
-			if (transaction != null) {// verifica hubosi un cambio en caso
-				transaction.rollback();// desase e
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
+				tTransaction.rollback();// desase e
 
 			}
 			e.printStackTrace();
 		} finally {
-			session.flush();
-			session.close();
+			sSession.flush();
+			sSession.close();
 		}
 
 	}
@@ -123,29 +123,29 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	 */
 	@Override
 	public void deleteAlumno(int idAlumno) throws Exception {
-		session = sessionFactory.openSession();// crea sesion con la base de
+		sSession = sessionFactory.openSession();// crea sesion con la base de
 												// datos
 
 		try {
-			transaction = session.beginTransaction();// habilita a la session
+			tTransaction = sSession.beginTransaction();// habilita a la session
 														// para hacer
 			// una transaccion en este
 			// casoeliminar
-			Alumno alumno = (Alumno) session.load(Alumno.class, new Integer(idAlumno));// obtiene
+			Alumno alumno = (Alumno) sSession.load(Alumno.class, new Integer(idAlumno));// obtiene
 																						// al
 																						// alumno
-			session.delete(alumno);// elimina al alumno
-			transaction.commit();// confirma la transacion
+			sSession.delete(alumno);// elimina al alumno
+			tTransaction.commit();// confirma la transacionc
 
 		} catch (RuntimeException e) {
 			// si ocurrio un problema
-			if (transaction != null) {// verifica hubosi un cambio en caso
-				transaction.rollback();// desase e
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
+				tTransaction.rollback();// desase e
 			}
 			e.printStackTrace();
 		} finally {
-			session.flush();
-			session.close();// ciera la sesion
+			sSession.flush();
+			sSession.close();// ciera la sesion
 		}
 
 	}
