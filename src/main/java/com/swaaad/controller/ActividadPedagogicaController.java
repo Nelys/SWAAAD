@@ -36,7 +36,7 @@ public class ActividadPedagogicaController {
 
 		model.addObject("actividadPedagogica", actividadPedagogica);
 		model.addObject("listActividadPedagogica", ListarActividadPedagogica);
-
+		
 		model.setViewName("actividades-pedagogicas");
 
 		return model;
