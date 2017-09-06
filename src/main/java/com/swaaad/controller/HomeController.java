@@ -26,33 +26,33 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@Autowired
-	ActividadPedagogicaService objActividadService;
+//	@Autowired
+//	ActividadPedagogicaService objActividadService;
 	// AlumnosService objAlumnoService;
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Se ejecuta el metodo home ");
-		try {
-			ActividadPedagogica actividad = new ActividadPedagogica();
+//		try {
+//			ActividadPedagogica actividad = new ActividadPedagogica();
+//
+//			CursoAlumno cursoAlumno = new CursoAlumno();
+//
+//			Date date = new Date();
+//			
+//		//	actividad.setCursoAlumno(cursoAlumno);
+//			actividad.setFecha(date);
+//			actividad.setDescripcion("revisar tarea");
+//			actividad.setRecordar(new Byte("0"));
+//			
 
-			CursoAlumno cursoAlumno = new CursoAlumno();
-
-			Date date = new Date();
 			
-			actividad.setCursoAlumno(cursoAlumno);
-			actividad.setFecha(date);
-			actividad.setDescripcion("revisar tarea");
-			actividad.setRecordar(new Byte("0"));
-			
 
-			
+	//		objActividadService.addActividad(actividad);;
 
-			objActividadService.addActividad(actividad);;
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 
 		//
 		// try {
