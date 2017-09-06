@@ -2,7 +2,7 @@ package com.swaaad.dao;
 
 import java.util.List;
 
-import com.swaaad.model.Aula;
+import com.swaaad.model.AulaDinamica;
 
 /**
  * @author Nelys
@@ -18,7 +18,7 @@ public interface AulaDao {
 	 * 
 	 * @throws Exception
 	 */
-	void addAula(Aula aula) throws Exception;
+	void addAula(AulaDinamica aula) throws Exception;
 
 	/**
 	 * Recupera un Aula de la base de datos
@@ -28,7 +28,7 @@ public interface AulaDao {
 	 * @return : Un Aula
 	 * @throws Exception
 	 */
-	Aula getAulaById(int idAula) throws Exception;
+	AulaDinamica getAulaById(int idAula) throws Exception;
 	/**
 	 * Actualiza los datos de un aula
 	 * 
@@ -36,7 +36,7 @@ public interface AulaDao {
 	 *            : aula a actualizar con nuevos valores
 	 * @throws Exception
 	 */
-	void updateAula(Aula aula) throws Exception;
+	void updateAula(AulaDinamica aula) throws Exception;
 
 	/**
 	 * Elimina Aula
@@ -52,5 +52,5 @@ public interface AulaDao {
 	 * @return : Lista de Aulas
 	 * @throws Exception
 	 */
-	List<Aula> getAllAulas() throws Exception;
+	List<AulaDinamica> getAllAulas() throws Exception;
 }
