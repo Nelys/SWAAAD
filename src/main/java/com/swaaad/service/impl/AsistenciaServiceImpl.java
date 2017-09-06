@@ -1,5 +1,7 @@
 package com.swaaad.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +13,23 @@ import com.swaaad.service.AsistenciaService;
 public class AsistenciaServiceImpl implements AsistenciaService {
 
 	@Autowired
-	AsistenciaDao objAsistencia;
+	AsistenciaDao objAsistenciaDao;
 
 	@Override
 	public void addAsistencia(Asistencia asistencia) throws Exception {
-		objAsistencia.addAsistencia(asistencia);
+		objAsistenciaDao.addAsistencia(asistencia);
 	}
 
 	@Override
 	public void updateAsistencia(Asistencia asistencia) throws Exception {
-		objAsistencia.upddateAsistencia(asistencia);
+		objAsistenciaDao.upddateAsistencia(asistencia);
 
+	}
+
+	@Override
+	public List<Asistencia> getAllAsistencia() throws Exception {
+		
+		return objAsistenciaDao.getAllAsistencia();
 	}
 
 }

@@ -1,10 +1,13 @@
 package com.swaaad.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.swaaad.dao.AsistenciaDao;
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
 
 public class AsistenciaDaoImpl implements AsistenciaDao {
@@ -47,6 +50,16 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 			sSession.flush();
 			sSession.close();
 		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Asistencia> getAllAsistencia() throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Asistencia> listarAsistencia = sSession.createCriteria(Asistencia.class).list();
+		sSession.close();
+		return listarAsistencia;
 
 	}
 

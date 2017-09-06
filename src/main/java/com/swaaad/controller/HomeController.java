@@ -18,9 +18,6 @@ import com.swaaad.model.Docente;
 import com.swaaad.service.ActividadPedagogicaService;
 import com.swaaad.service.DocenteService;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 
@@ -53,7 +50,7 @@ public class HomeController {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
-
+//
 		//
 		// try {
 		// List<Alumno> ListarAlumno = objAlumnoService.getAllAlumnos();
@@ -81,7 +78,7 @@ public class HomeController {
 		// }
 
 		// ----Docente--
-
+		System.out.println("hola como estas");
 		return "home";
 	}
 

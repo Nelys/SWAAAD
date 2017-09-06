@@ -1,5 +1,7 @@
 package com.swaaad.dao;
 
+import java.util.List;
+
 import com.swaaad.model.Asistencia;
 
 /**
@@ -23,4 +25,6 @@ public interface AsistenciaDao {
 	 * @throws Exception
 	 */
 	void upddateAsistencia(Asistencia asistencia) throws Exception;
+
+	List<Asistencia> getAllAsistencia() throws Exception;
 }
