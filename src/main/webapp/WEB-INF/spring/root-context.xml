@@ -27,7 +27,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- <value>com.swaad.modelo.Carrera</value> -->
-<!-- 				<value>com.swaaad.model.ActividadPedagogica</value> -->
+				<!-- <value>com.swaaad.model.ActividadPedagogica</value> -->
 				<value>com.swaaad.model.Alumno</value>
 				<value>com.swaaad.model.Asistencia</value>
 				<value>com.swaaad.model.AulaDinamica</value>
@@ -64,43 +64,39 @@
 
 
 	<bean id="AlumnosDao" class="com.swaaad.dao.impl.AlumnosDaoImpl">
-
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
 	</bean>
 
 	<bean id="DocenteDao" class="com.swaaad.dao.impl.DocenteDaoImpl">
-
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
 	</bean>
 
 	<bean id="ActividadPedagogicaDao" class="com.swaaad.dao.impl.ActividadPedagogicaDaoImpl">
-
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
 	</bean>
 
 	<bean id="AsistenciaDao" class="com.swaaad.dao.impl.AsistenciaDaoImpl">
-
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
 	</bean>
+
 	<bean id="CursoDao" class="com.swaaad.dao.impl.CursoDaoImpl">
-
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
 	</bean>
-		<bean id="HorarioDao" class="com.swaaad.dao.impl.HorarioDaoImpl">
 
+	<bean id="HorarioDao" class="com.swaaad.dao.impl.HorarioDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
-
 	</bean>
-		<bean id="PeriodoDao" class="com.swaaad.dao.impl.PeriodoDaoImpl">
 
+	<bean id="PeriodoDao" class="com.swaaad.dao.impl.PeriodoDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-
 	</bean>
-	
+
+	<bean id="UnidadDao" class="com.swaaad.dao.impl.UnidadDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
+	<bean id="CompetenciaDao" class="com.swaaad.dao.impl.CompetenciaDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+
 </beans>

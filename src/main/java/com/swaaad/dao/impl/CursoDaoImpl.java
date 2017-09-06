@@ -51,6 +51,7 @@ public class CursoDaoImpl implements CursoDao {
 		sSession.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Curso> getAllCurso() throws Exception {
 		sSession = sessionFactory.openSession();
