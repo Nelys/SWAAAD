@@ -34,10 +34,10 @@ public class AppController {
 //		return "evaluaciones";
 //	}
 
-	@RequestMapping(value = { "/asistencias" }, method = RequestMethod.GET)
-	public String asistenciasPage(ModelMap model) {
-		return "asistencias";
-	}
+//	@RequestMapping(value = { "/asistencias" }, method = RequestMethod.GET)
+//	public String asistenciasPage(ModelMap model) {
+//		return "asistencias";
+//	}
 
 //	@RequestMapping(value = { "/actividades-pedagogicas" }, method = RequestMethod.GET)
 //	public String actividadesPedagogicasPage(ModelMap model) {
@@ -46,6 +46,7 @@ public class AppController {
 
 	@RequestMapping(value = { "/aula-dinamica" }, method = RequestMethod.GET)
 	public String aulaDinamicaPage(ModelMap model) {
+		System.out.println("hola ");
 		return "aula-dinamica";
 	}
 
