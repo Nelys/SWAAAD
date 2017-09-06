@@ -16,11 +16,11 @@
 		<p>
 		<div class='row'>
 			<div class="col-md-1">
-				<a class="btn btn-success" href="newAlumno"><i class="fa fa-plus"></i> Nuevo</a>
+				<a class="btn btn-success" href="newActividadPedagogica"><i class="fa fa-plus"></i> Nuevo</a>
 			</div>
 
 			<div class="col-md-4">
-				<a class="btn btn-default" href="newAlumno"><i class="fa fa-upload"></i> Importar</a>
+				<a class="btn btn-default" href="newActividadPedagogica"><i class="fa fa-upload"></i> Importar</a>
 			</div>
 
 			<div class="col-lg-4 text-right" >
@@ -42,11 +42,11 @@
 			<div class="col-lg-12">
 				
 				<div class="table-responsive">
-					<c:if test="${!empty listAlumnos}">
+					<c:if test="${!empty listActividadPedagogica}">
 						<table class="table table-bordered table-hover table-striped">
 							<tr>
 								<th>ID</th>
-								<th>Curso</th>
+<!-- 								<th>Curso</th> -->
 								<th>Fecha</th>
 								<th>Descripción</th>
 								<th>Recordar</th>
@@ -55,13 +55,13 @@
 							<c:forEach var="lista" items="${listActividadPedagogica}">
 								<tr>
 									<td>${lista.idActividad}</td>
-									<td>${lista.idCurso}</td>
+<%-- 									<td>${lista.curso}</td> --%>
 									<td>${lista.fecha}</td>
 									<td>${lista.descripcion}</td>
-									<td>${lista.Recordar}</td>
+									<td>${lista.recordar}</td>
 									<td style="text-align:center" width="100px">
-									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idAlumno}"><i class="fa fa-pencil-square-o"></i></a>
-									<a class="btn btn-sm btn-danger btn-sm" href="deleteAlumno?id=${lista.idAlumno}"><i class="fa fa-trash-o"></i></a>
+									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idActividad}"><i class="fa fa-pencil-square-o"></i></a>
+									<a class="btn btn-sm btn-danger btn-sm" href="deleteAlumno?id=${lista.idActividad}"><i class="fa fa-trash-o"></i></a>
 									</td>
 								</tr>
 							</c:forEach>
