@@ -7,21 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.swaaad.dao.AlumnosDao;
-import com.swaaad.dao.CursoDao;
+import com.swaaad.dao.CompetenciaDao;
 import com.swaaad.model.Alumno;
-import com.swaaad.model.Curso;
+import com.swaaad.model.Competencia;
 
-/**
- * 
- * @author Nelys
- * @version 1.0.0, 06/09/2017
- * @see AlumnosDao
- * 
- */
-
-public class CursoDaoImpl implements CursoDao {
-	/* implementa la interface CursoDao */
+public class CompetenciaDaoImpl implements CompetenciaDao {
+	/* implementa la interface AlumnoDAO */
 
 	/**
 	 * se encarga de crear la session con la base de datos
@@ -43,51 +34,54 @@ public class CursoDaoImpl implements CursoDao {
 	}
 
 	@Override
-	public void addCurso(Curso curso) throws Exception {
+	public void addCompetencia(Competencia competencia) throws Exception {
 		sSession = this.sessionFactory.openSession();
 		tTransaction = sSession.beginTransaction();
-		sSession.persist(curso);
+		sSession.persist(competencia);
 		tTransaction.commit();
 		sSession.close();
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Curso> getAllCurso() throws Exception {
+	public List<Competencia> getAllCompetencia() throws Exception {
 		sSession = sessionFactory.openSession();
-		List<Curso> listarCursos = sSession.createCriteria(Curso.class).list();
+		List<Competencia> listarCompetencia = sSession.createCriteria(Competencia.class).list();
 		sSession.close();
-		return listarCursos;
+		return listarCompetencia;
 	}
 
 	@Override
-	public Curso getCursoById(int idCurso) throws Exception {
+	public Competencia getCompetenciaById(int idCompetencia) throws Exception {
 		sSession = sessionFactory.openSession();
-		Curso curso = null;
+		Competencia competencia = null;
 		try {
-			String queryCurso = "From Curso Where ID_CURSO= :idCurso";
-			Query query = sSession.createQuery(queryCurso);
-			query.setInteger("idCurso", idCurso);
-			curso = (Curso) query.uniqueResult();
+			String queryCompetencia = "From Competencia Where ID_COMPETENCIA= :idCompetencia";
+			Query query = sSession.createQuery(queryCompetencia);
+			query.setInteger("idCompetencia", idCompetencia);
+			competencia = (Competencia) query.uniqueResult();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			// TODO: handle exception
 		} finally {
 			sSession.flush();
 			sSession.close();
 
 		}
 
-		return curso;
+		return competencia;
 	}
 
 	@Override
-	public void updateCurso(Curso curso) throws Exception {
+	public void updateCompetencia(Competencia competencia) throws Exception {
 		sSession = sessionFactory.openSession();
 		try {
 			tTransaction = sSession.beginTransaction();
-			sSession.update(curso);
+			sSession.update(competencia);
 			tTransaction.commit();
+
 		} catch (RuntimeException e) {
 
 			if (tTransaction != null) {// verifica hubosi un cambio en caso
@@ -103,7 +97,7 @@ public class CursoDaoImpl implements CursoDao {
 	}
 
 	@Override
-	public void deleteCurso(int idCurso) throws Exception {
+	public void deleteCompetencia(int idCompetencia) throws Exception {
 		sSession = sessionFactory.openSession();// crea sesion con la base de
 		// datos
 
@@ -112,16 +106,15 @@ public class CursoDaoImpl implements CursoDao {
 			// para hacer
 			// una transaccion en este
 			// casoeliminar
-			Curso curso = (Curso) sSession.load(Curso.class, new Integer(idCurso));// obtiene
+			Competencia competencia = (Competencia) sSession.load(Competencia.class, new Integer(idCompetencia));// obtiene
 			// al
 			// alumno
-			sSession.delete(curso);// elimina al alumno
-			tTransaction.commit();// confirma la transacion
+			sSession.delete(competencia);// elimina al competencia
+			tTransaction.commit();// confirma la transacionc
 
 		} catch (RuntimeException e) {
 			// si ocurrio un problema
-			if (tTransaction != null) {
-				// verifica hubosi un cambio en caso
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
 				tTransaction.rollback();
 			}
 			e.printStackTrace();
@@ -129,6 +122,7 @@ public class CursoDaoImpl implements CursoDao {
 			sSession.flush();
 			sSession.close();// ciera la sesion
 		}
+
 	}
 
 }

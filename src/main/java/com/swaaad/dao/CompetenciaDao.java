@@ -9,7 +9,7 @@ import com.swaaad.model.Competencia;
  * @version 1.0.0 ,29/08/2017
  *
  */
-interface CompetenciaDao {
+public interface CompetenciaDao {
 	/**
 	 * Crea una competencia en base de datos, recibe como parametro una
 	 * competencia
