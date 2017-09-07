@@ -20,10 +20,10 @@ public class Asistencia implements Serializable {
 
 	private String estado;
 
-	//uni-directional many-to-one association to Curso
+	//uni-directional many-to-one association to CursoAlumno
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_CURSO")
-	private Curso curso;
+	@JoinColumn(name="ID_CURSO_ALUMNO")
+	private CursoAlumno cursoAlumno;
 
 	public Asistencia() {
 	}
@@ -44,12 +44,12 @@ public class Asistencia implements Serializable {
 		this.estado = estado;
 	}
 
-	public Curso getCurso() {
-		return this.curso;
+	public CursoAlumno getCursoAlumno() {
+		return this.cursoAlumno;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCursoAlumno(CursoAlumno cursoAlumno) {
+		this.cursoAlumno = cursoAlumno;
 	}
 
 }

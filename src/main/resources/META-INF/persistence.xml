@@ -18,6 +18,8 @@
 		<class>com.swaaad.model.Periodo</class>
 		<class>com.swaaad.model.Pregunta</class>
 		<class>com.swaaad.model.Unidad</class>
+		<class>com.swaaad.model.UserRole</class>
+		<class>com.swaaad.model.User</class>
 		<class>com.swaaad.model.Usuario</class>
 	</persistence-unit>
 </persistence>

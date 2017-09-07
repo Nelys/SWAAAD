@@ -21,9 +21,9 @@ public class AulaDinamica implements Serializable {
 
 	private String color;
 
-	private int columna;
+	private int x;
 
-	private int fila;
+	private int y;
 
 	//uni-directional many-to-one association to Curso
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -49,20 +49,20 @@ public class AulaDinamica implements Serializable {
 		this.color = color;
 	}
 
-	public int getColumna() {
-		return this.columna;
+	public int getX() {
+		return this.x;
 	}
 
-	public void setColumna(int columna) {
-		this.columna = columna;
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public int getFila() {
-		return this.fila;
+	public int getY() {
+		return this.y;
 	}
 
-	public void setFila(int fila) {
-		this.fila = fila;
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public Curso getCurso() {
