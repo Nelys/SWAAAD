@@ -5,12 +5,12 @@ import java.util.List;
 import com.swaaad.model.AulaDinamica;
 
 /**
- * @author Nelys
- * @version 1.0.0 ,29/08/2017
+ * @author Christian
+ * @version 1.0.0 ,06/09/2017
  *
  */
 
-public interface AulaDao {
+public interface AulaDinamicaDao {
 
 	/**
 	 * Crea un aula en base de datos, recibe como parametro un
@@ -18,7 +18,7 @@ public interface AulaDao {
 	 * 
 	 * @throws Exception
 	 */
-	void addAula(AulaDinamica aula) throws Exception;
+	void addAulaDinamica(AulaDinamica aulaDinamica) throws Exception;
 
 	/**
 	 * Recupera un Aula de la base de datos
@@ -28,7 +28,7 @@ public interface AulaDao {
 	 * @return : Un Aula
 	 * @throws Exception
 	 */
-	AulaDinamica getAulaById(int idAula) throws Exception;
+	AulaDinamica getAulaDinamicaById(int idAulaDinamica) throws Exception;
 	/**
 	 * Actualiza los datos de un aula
 	 * 
@@ -36,7 +36,7 @@ public interface AulaDao {
 	 *            : aula a actualizar con nuevos valores
 	 * @throws Exception
 	 */
-	void updateAula(AulaDinamica aula) throws Exception;
+	void updateAulaDinamica(AulaDinamica aulaDinamica) throws Exception;
 
 	/**
 	 * Elimina Aula
@@ -45,12 +45,12 @@ public interface AulaDao {
 	 *            : int id aula
 	 * @throws Exception
 	 */
-	void deleteAula(int idAula) throws Exception;
+	void deleteAulaDinamica(int idAulaDinamica) throws Exception;
 	/**
 	 * Recupera una lista de aulas de la base de datos
 	 * 
 	 * @return : Lista de Aulas
 	 * @throws Exception
 	 */
-	List<AulaDinamica> getAllAulas() throws Exception;
+	List<AulaDinamica> getAllAulasDinamicas() throws Exception;
 }
