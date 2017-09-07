@@ -6,10 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
 import com.swaaad.service.AsistenciaService;
 
@@ -43,5 +45,26 @@ public class AsistenciaController {
 		model.setViewName("Asistencia");
 
 		return model;
+		
 	}
+	@RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
+	public ModelAndView saveAlumno(@ModelAttribute Asistencia asistencia) throws Exception {
+
+		logger.info("saveAsistencia");
+
+		try {
+			if (asistencia.getIdAsistencia() == 0) {
+				objAsistenciaService.addAsistencia(asistencia);
+			} else {
+				objAsistenciaService.updateAsistencia(asistencia);
+			}
+
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return new ModelAndView("redirect:/asistencias");
+	}
+	
+	
+	
 }
