@@ -43,5 +43,4 @@ public interface CursoAlumnoDao {
 	 *            : int id CursoAlumno
 	 * @throws Exception
 	 */
-	void deleteCursoAlumno(int idCursoAlumno) throws Exception;
 }
