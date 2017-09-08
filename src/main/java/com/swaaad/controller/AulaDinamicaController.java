@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +44,7 @@ public class AulaDinamicaController {
 	}
 
 	@RequestMapping(value = "/saveAulaDinamica", method = RequestMethod.POST)
-	public ModelAndView saveAulaDinamica(@ModelAttribute AulaDinamica aulaDinamica) throws Exception {
+	public ModelAndView saveAulaDinamica(@ModelAttribute("aulaDinamica") AulaDinamica aulaDinamica, BindingResult result) throws Exception {
 
 		logger.info("saveAulaDinamica");
 
@@ -57,7 +58,7 @@ public class AulaDinamicaController {
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		return new ModelAndView("redirect:/aulaDinamicas");
+		return new ModelAndView("redirect:/aula-dinamica");
 	}
 
 	@RequestMapping(value = "/newAulaDinamica", method = RequestMethod.GET)

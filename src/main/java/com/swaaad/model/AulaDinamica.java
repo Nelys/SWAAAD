@@ -26,9 +26,9 @@ public class AulaDinamica implements Serializable {
 	private int y;
 
 	//uni-directional many-to-one association to Curso
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_CURSO")
-	private Curso curso;
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	@JoinColumn(name="ID_CURSO")
+//	private Curso curso;
 
 	public AulaDinamica() {
 	}
@@ -65,12 +65,12 @@ public class AulaDinamica implements Serializable {
 		this.y = y;
 	}
 
-	public Curso getCurso() {
-		return this.curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
+//	public Curso getCurso() {
+//		return this.curso;
+//	}
+//
+//	public void setCurso(Curso curso) {
+//		this.curso = curso;
+//	}
 
 }
