@@ -82,4 +82,14 @@
        <put-attribute name="title" value="Actividad Pedagogica Formulario" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/actividad-pedagogica/actividad-pedagogica-formulario.jsp" />  
    </definition> 
+   <!-- Curso Formulario -->
+   <definition name="form-curso" extends="base-definition">  
+       <put-attribute name="title" value="Curso Formulario" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-formulario.jsp" />  
+   </definition>
+   <!-- Horario Formulario -->
+   <definition name="form-horario" extends="base-definition">  
+       <put-attribute name="title" value="Horario del Curso" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-horario.jsp" />  
+   </definition> 
 </tiles-definitions>
