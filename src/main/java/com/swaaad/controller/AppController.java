@@ -23,10 +23,10 @@ public class AppController {
 		return "perfil";
 	}
 
-	@RequestMapping(value = { "/cursos" }, method = RequestMethod.GET)
-	public String cursosPage(ModelMap model) {
-		return "cursos";
-	}
+//	@RequestMapping(value = { "/cursos" }, method = RequestMethod.GET)
+//	public String cursosPage(ModelMap model) {
+//		return "cursos";
+//	}
 
 	
 //	@RequestMapping(value = { "/evaluaciones" }, method = RequestMethod.GET)
