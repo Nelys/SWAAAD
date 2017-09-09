@@ -1,5 +1,7 @@
 package com.swaaad.service;
 
+import java.util.List;
+
 import com.swaaad.model.Nota;
 
 public interface NotaService {
@@ -11,4 +13,5 @@ public interface NotaService {
 
 	void deleteNota(int idNota) throws Exception;
 
+	List<Nota> getAllNotas() throws Exception;
 }

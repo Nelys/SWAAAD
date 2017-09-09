@@ -1,12 +1,13 @@
 package com.swaaad.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.swaaad.dao.NotaDao;
-import com.swaaad.model.Alumno;
 import com.swaaad.model.Nota;
 
 public class NotaDaoImpl implements NotaDao {
@@ -110,6 +111,15 @@ public class NotaDaoImpl implements NotaDao {
 			sSession.close();// ciera la sesion
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Nota> getAllNotas() throws Exception {
+		@SuppressWarnings("unchecked")
+		List<Nota> listarNota = sSession.createCriteria(Nota.class).list();
+		sSession.close();
+		return listarNota;
 	}
 
 }
