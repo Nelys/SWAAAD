@@ -77,4 +77,9 @@
        <put-attribute name="title" value="Alumno Formulario" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumno-formulario.jsp" />  
    </definition> 
+   <!-- Actividad Pedagogica Formulario -->
+   <definition name="form-actividadPedagogica" extends="base-definition">  
+       <put-attribute name="title" value="Actividad Pedagogica Formulario" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/actividad-pedagogica/actividad-pedagogica-formulario.jsp" />  
+   </definition> 
 </tiles-definitions>
