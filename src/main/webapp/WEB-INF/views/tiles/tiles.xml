@@ -40,7 +40,7 @@
    <!-- Pagina Evaluaciones -->
    <definition name="evaluaciones" extends="base-definition">  
        <put-attribute name="title" value="Evaluaciones" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/evaluaciones.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/nota/nota-lista.jsp" />  
    </definition> 
    
    <!-- Pagina Asistencias -->

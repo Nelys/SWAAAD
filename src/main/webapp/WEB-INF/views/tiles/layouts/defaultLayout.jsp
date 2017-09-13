@@ -32,7 +32,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <script src="<c:url value='/resources/js/jquery-1.12.4.js' />"></script>
+<%--     <script src="<c:url value='/resources/js/jquery-1.12.4.js' />"></script> --%>
+    <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script>
     <script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
 </head>
  
@@ -57,5 +58,7 @@
     <script src="<c:url value='/resources/js/bootstrap-datepicker.js' />"></script>
 
 	<script src="<c:url value='/resources/js/bootstrap-timepicker.min.js' />"></script>
+	
+	<script src="<c:url value='/resources/js/jquery.fixedTblHdrLftCol.js' />"></script>
 </body>
 </html>

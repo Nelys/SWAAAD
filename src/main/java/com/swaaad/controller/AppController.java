@@ -29,10 +29,10 @@ public class AppController {
 //	}
 
 	
-//	@RequestMapping(value = { "/evaluaciones" }, method = RequestMethod.GET)
-//	public String evaluacionesPage(ModelMap model) {
-//		return "evaluaciones";
-//	}
+	@RequestMapping(value = { "/evaluaciones" }, method = RequestMethod.GET)
+	public String evaluacionesPage(ModelMap model) {
+		return "evaluaciones";
+	}
 
 //	@RequestMapping(value = { "/asistencias" }, method = RequestMethod.GET)
 //	public String asistenciasPage(ModelMap model) {
