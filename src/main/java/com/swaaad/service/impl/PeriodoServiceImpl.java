@@ -1,11 +1,13 @@
 package com.swaaad.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.swaaad.dao.PeriodoDao;
 import com.swaaad.model.Periodo;
 import com.swaaad.service.PeriodoService;
 
+@Service
 public class PeriodoServiceImpl implements PeriodoService {
 	@Autowired
 	PeriodoDao objPeriodoDao;
