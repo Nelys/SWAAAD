@@ -1,7 +1,6 @@
 package com.swaaad.controller;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
 import com.swaaad.service.AsistenciaService;
 
@@ -42,13 +40,13 @@ public class AsistenciaController {
 		model.addObject("asistencia", asistencia);
 		model.addObject("ListarAsistencia", ListarAsistencia);
 
-		model.setViewName("Asistencia");
+		
 
 		return model;
 		
 	}
 	@RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
-	public ModelAndView saveAlumno(@ModelAttribute Asistencia asistencia) throws Exception {
+	public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia) throws Exception {
 
 		logger.info("saveAsistencia");
 
@@ -65,6 +63,32 @@ public class AsistenciaController {
 		return new ModelAndView("redirect:/asistencias");
 	}
 	
-	
+
+	@RequestMapping(value = "/newAsistencia", method = RequestMethod.GET)
+	public ModelAndView newAsistencia(ModelAndView model) throws Exception {
+		logger.info("newAsistencia");
+		Asistencia asistencia = new Asistencia();
+		model.addObject("asistencia", asistencia);
+		model.setViewName("form-asistencia");
+		return model;
+	}
+
+//	@RequestMapping(value = "/editAsistencia", method = RequestMethod.GET)
+//	public ModelAndView editContact(HttpServletRequest request) throws Exception {
+//		
+//		int asistenciaId = Integer.parseInt(request.getParameter("id"));
+//		logger.info("editAsistencia "+asistenciaId);
+//		Alumno alumno = null;
+//		try {
+//			asistencia = objAsistenciaService.getgetAlumnoById(asistenciaId);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		ModelAndView model = new ModelAndView("form-alumno");
+//		model.addObject("alumno", alumno);
+//
+//		return model;
+//	}
+
 	
 }
