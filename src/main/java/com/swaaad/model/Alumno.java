@@ -1,8 +1,13 @@
 package com.swaaad.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
+import com.swaaad.model.CursoAlumno;
 
 /**
  * The persistent class for the alumno database table.
@@ -43,6 +48,39 @@ public class Alumno implements Serializable {
 	private int nroOrden;
 
 	public Alumno() {
+	}
+	
+	//private Set<CursoAlumno> alumnoCursos;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+	@JoinTable(name = "curso_alumno",
+				joinColumns = { @JoinColumn(name = "ID_ALUMNO") },
+				inverseJoinColumns = { @JoinColumn(name = "ID_CURSO") }
+			)
+	private Set<Curso> cursos;
+	//private List<Curso> cursos = new ArrayList<Curso>();
+
+	public Alumno(int idAlumno, String apellidos, String apellidosApoderado, String contrasena, String email,
+			String emailApoderado, String genero, String nombres, String nombresApoderado, int nroOrden) {
+		super();
+		this.idAlumno = idAlumno;
+		this.apellidos = apellidos;
+		this.apellidosApoderado = apellidosApoderado;
+		this.contrasena = contrasena;
+		this.email = email;
+		this.emailApoderado = emailApoderado;
+		this.genero = genero;
+		this.nombres = nombres;
+		this.nombresApoderado = nombresApoderado;
+		this.nroOrden = nroOrden;
+	}
+
+	@Override
+	public String toString() {
+		return "Alumno [idAlumno=" + idAlumno + ", apellidos=" + apellidos + ", apellidosApoderado="
+				+ apellidosApoderado + ", contrasena=" + contrasena + ", email=" + email + ", emailApoderado="
+				+ emailApoderado + ", genero=" + genero + ", nombres=" + nombres + ", nombresApoderado="
+				+ nombresApoderado + ", nroOrden=" + nroOrden + "]";
 	}
 
 	public int getIdAlumno() {

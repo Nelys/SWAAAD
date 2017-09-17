@@ -39,11 +39,11 @@
                         <label class="control-label col-sm-2" for="pwd">Recordar</label>
                         <div class="col-sm-10">
 	                        <label class="radio-inline">
-	                        	<form:radiobutton path="recordar" value="Si"/>Si
+<%-- 	                        	<form:radiobutton path="recordar" value="Si"/>Si --%>
 	                        </label>
 	                        
 	                        <label class="radio-inline">
-	                        	<form:radiobutton path="recordar" value="No" />No
+<%-- 	                        	<form:radiobutton path="recordar" value="No" />No --%>
 	                        </label>
                         </div>
                     </div>

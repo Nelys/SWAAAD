@@ -49,7 +49,7 @@
 <!-- 								<th>Curso</th> -->
 								<th>Fecha</th>
 								<th>Descripción</th>
-								<th>Recordar</th>
+<!-- 								<th>Recordar</th> -->
 								<th>ACCION</th>
 							</tr>
 							<c:forEach var="lista" items="${listActividadPedagogica}">
@@ -58,7 +58,7 @@
 <%-- 									<td>${lista.curso}</td> --%>
 									<td>${lista.fecha}</td>
 									<td>${lista.descripcion}</td>
-									<td>${lista.recordar}</td>
+<%-- 									<td>${lista.recordar}</td> --%>
 									<td style="text-align:center" width="100px">
 									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idActividad}"><i class="fa fa-pencil-square-o"></i></a>
 									<a class="btn btn-sm btn-danger btn-sm" href="deleteAlumno?id=${lista.idActividad}"><i class="fa fa-trash-o"></i></a>
