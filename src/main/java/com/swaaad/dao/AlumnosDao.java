@@ -25,6 +25,14 @@ public interface AlumnosDao {
 	 * @throws Exception
 	 */
 	List<Alumno> getAllAlumnos() throws Exception;
+	
+	/**
+	 * Recupera una lista de alumnos de la base de datos
+	 * 
+	 * @return : Lista de Alumnos
+	 * @throws Exception
+	 */
+	List<Alumno> getAllAlumnosByIdCurso(int idCurso) throws Exception;
 
 	/**
 	 * Recupera un Alumno de la base de datos

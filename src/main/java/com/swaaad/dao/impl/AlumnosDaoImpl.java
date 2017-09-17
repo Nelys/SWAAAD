@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.swaaad.dao.AlumnosDao;
 import com.swaaad.model.Alumno;
 
+
 /**
  * 
  * @author Nelys
@@ -64,9 +65,44 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		List<Alumno> listarAlumnos = sSession.createCriteria(Alumno.class).list();
 		sSession.close();
 		return listarAlumnos;
-
+		
 	}
 
+	/**
+	 * @see AlumnosDao#getAllAlumnosByIdCurso()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Alumno> getAllAlumnosByIdCurso(int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+		Transaction transaction = null;
+		transaction = sSession.beginTransaction();
+
+		sSession = sessionFactory.openSession();
+		List<Alumno> listarAlumnos =null;
+		try {
+
+			String queryAlumno = "select b from Alumno b join b.cursos a where a.idCurso = :id";
+			Query query = sSession.createQuery(queryAlumno);
+			query.setInteger("id", idCurso);
+			
+			listarAlumnos = (List<Alumno>) query.list();
+			
+//			System.out.println(idCurso);
+//			for (Alumno alumno : listarAlumnos) {
+//				System.out.println(alumno.getApellidos());
+//			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+		
+		return listarAlumnos;
+	}
 	/**
 	 * @see AlumnosDao#getAlumnoById(int)
 	 */

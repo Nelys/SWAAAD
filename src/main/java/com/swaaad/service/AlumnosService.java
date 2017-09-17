@@ -1,6 +1,10 @@
 package com.swaaad.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -33,6 +37,13 @@ public interface AlumnosService {
 	 */
 	List<Alumno> getAllAlumnos() throws Exception;
 
+	/**
+	 * Utiliza el metodo getAllAlumnosByIdCurso() de la AlumnosDao
+	 * 
+	 * @return : Lista de Alumnos por curso
+	 * @throws IOException, ServletException,Exception
+	 */
+	List<Alumno> getAllAlumnosByIdCurso(ServletRequest request) throws IOException, ServletException, Exception;
 	/**
 	 * Utiliza el metodo getAlumnoById(int idAlumno) de la clase AlumnosDao
 	 * 
