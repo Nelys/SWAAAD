@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +25,16 @@ public class ActividadPedagogicaController {
 	ActividadPedagogicaService objActividadPedagogicaService;
 
 	@RequestMapping(value = { "actividades-pedagogicas" }, method = RequestMethod.GET)
-	public ModelAndView listActividadPedagogica(ModelAndView model) throws Exception {
+	public ModelAndView listActividadPedagogica(ModelAndView model, HttpSession sess, HttpServletRequest request) throws Exception {
 
 		logger.info("actividadPedagogicaPage");
+		
+		sess = request.getSession(false);
+		
+		int a = (Integer) sess.getAttribute("idCurso");
+		
+		System.out.println(a + " desde actividad academica");
+		
 		
 		List<ActividadPedagogica> ListarActividadPedagogica = null;
 
