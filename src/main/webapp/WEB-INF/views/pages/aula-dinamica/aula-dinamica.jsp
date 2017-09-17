@@ -47,15 +47,15 @@
 		<form:form action="saveAulaDinamica" method="post" modelAttribute="aulaDinamica">
 			<form:input path="idAulaDinamica" />
 <%-- 			<form:input path="idCurso" value="1"/> --%>
-			<form:input path="fila" />
-			<form:input path="columna" />
+			<form:input path="x" />
+			<form:input path="y" />
 			<form:input path="color" />
 			<button type="submit" >Guardar</button>
 		</form:form>
 		<div class="row">
 			<div id="aula" class="col-lg-12" style="border: 1px black solid; height:400px; position: relative;">
 			<c:forEach var="lista" items="${listAulaDinamica}">
-				<div id="alumno_${lista.idAulaDinamica}" class="principal"  style="left:${lista.fila}px; top:${lista.columna}px; width:60px; height:80px; background:#${lista.color}; position: absolute; border-radius: 4px 4px 4px 4px">
+				<div id="alumno_${lista.idAulaDinamica}" class="principal"  style="left:${lista.x}px; top:${lista.y}px; width:60px; height:80px; background:#${lista.color}; position: absolute; border-radius: 4px 4px 4px 4px">
 					<div style="color: white; text-align: center; font-size: 100%;">Id: ${lista.idAulaDinamica}</div>
 					
 				</div>
@@ -99,8 +99,8 @@
 					if(id != null){
 						var p = $('#' + id);
 						var position = p.position();
-						$( '#fila' ).val(position.left);
-						$( '#columna' ).val(position.top);
+						$( '#x' ).val(position.left);
+						$( '#y' ).val(position.top);
 						
 						$( '#coordenadas' ).text( "left: " + position.left + ", top: " + position.top );
 					}
@@ -134,8 +134,8 @@
 								<tr>
 									<td>${lista.idAulaDinamica}</td>
 <%-- 									<td>${lista.curso}</td> --%>
-									<td>${lista.fila}</td>
-									<td>${lista.columna}</td>
+									<td>${lista.x}</td>
+									<td>${lista.y}</td>
 									<td>${lista.color}</td>
 									<td style="text-align:center" width="100px">
 									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idAulaDinamica}"><i class="fa fa-pencil-square-o"></i></a>
