@@ -70,7 +70,7 @@
                                 <a href="${pageContext.request.contextPath}/alumnos">Alumnos</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/evaluaciones">Evaluaciones</a>
+                                <a href="${pageContext.request.contextPath}/listNota">Notas</a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/asistencias">Asistencias</a>
