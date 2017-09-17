@@ -3,6 +3,7 @@ package com.swaaad.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,33 +12,58 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Nota;
+import com.swaaad.service.AlumnosService;
+import com.swaaad.service.CompetenciaService;
 import com.swaaad.service.NotaService;
+import com.swaaad.service.PeriodoService;
 
-//@Controller
+@Controller
+//@SessionAttributes("sessionCurso")
 public class NotaController {
 	private static final Logger logger = LoggerFactory.getLogger(NotaController.class);
+	private int sessionCurso;
 //	@Autowired
 //	NotaService objNotaService;
+	
+	@Autowired
+	AlumnosService objAlumnoService;
+	
+	@Autowired
+	PeriodoService objPeriodoService;
 
 	@RequestMapping(value = { "listNota" }, method = RequestMethod.GET)
-	public ModelAndView notasPage(ModelAndView model) throws Exception {
+	public ModelAndView notasPage(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception {
 
 		logger.info("notasPage");
 		//
 		List<Nota> ListarNota = null;
-
+		
+		session = request.getSession(false);
+		int a = (Integer) session.getAttribute("idCurso");
+		System.out.println(a + " desde notas");		
+		System.out.println(sessionCurso);
+		
+		//System.out.println(objPeriodoService.get);
 //		ListarNota = objNotaService.getAllNota();
 
 		Nota nota = new Nota();
 
-		model.addObject("nota", nota);
-		model.addObject("listNota", ListarNota);
+//		model.addObject("nota", nota);
+//		model.addObject("listNota", ListarNota);
+		
+		model.addObject("listPeriodos", objPeriodoService.getAllPeriodos());
+		
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
+		
 
 //		model.setViewName("pages/notas/notas");
-		model.setViewName("nota-lista");
+//		model.setViewName("nota-lista");
+		model.setViewName("listNota");
 
 		return model;
 	}
@@ -93,7 +119,6 @@ public class NotaController {
 		 try {
 //		objNotaService.deleteNota(notaId);
 		 } catch (Exception e) {
-		// // TODO Auto-generated catch block
 		 e.printStackTrace();
 		 }
 		//

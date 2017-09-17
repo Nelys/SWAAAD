@@ -45,7 +45,7 @@
 		}
 		
 		thead th:first-child {
-		  width: 200px;
+		  width: 300px;
 		}
 		
 		tbody td {
@@ -57,7 +57,7 @@
 		}
 		
 		tbody td:first-child {
-		  width: 200px;
+		  width: 300px;
 		}
 		
 		div.fTHLC-outer-wrapper {
@@ -144,150 +144,59 @@
 			<div class="col-lg-12">
 				
 				<div id="parent" class="table-responsive">
-<%-- 					<c:if test="${!empty listAlumnos}"> --%>
-						<table  id="fixTable" class="table table-bordered table-hover table-striped">
+					<c:if test="${!empty listAlumnos}">
+						<table  id="fixTable" class="table table-bordered table-hover table-striped" >
 <!-- 							<table id="fixTable" class="table" cellpadding="0" cellspacing="0" align="center"> -->
 <!-- 							<thead> -->
 	                            <tr>
 	                                <td><div class="contenedor"><span class='alignvertical'>Alumno</span></div></td>
-	                                <td><div class='rotate'>Tarea 1</div></td>
-	                                <td><div class='rotate'>Tarea 2</div></td>
-	                                <td><div class='rotate'>Tarea 3</div></td>
-	                                <td><div class='rotate'>Exposicion1</div></td>
-	                                <td><div class='rotate'>Exposicion2</div></td>
-	                                <td><div class='rotate'>Exposicion3</div></td>
-	                                <td><div class='rotate'>Promedio</div></td>
+	                                <c:forEach var="lista" items="${listPeriodos}">
+	                                <td><div class='rotate'>${lista.descripcion}</div></td>
+	                                </c:forEach>
+	                                
 	                            </tr>
 <!-- 	                        </thead> -->
 <!-- 	                        <tbody> -->
+								<c:forEach var="lista" items="${listAlumnos}">
 	                            <tr>
-	                                <td>/index.html</td>
-	                                <td class="asd" onclick="window.location='http://www.google.com'">1265</td>
+	                                <td style="text-align: left;">${lista.nombres}, ${lista.apellidos}</td>
 	                                <td class="asd" data-toggle="modal" data-target=".bs-example-modal-sm">1265</td>
-	                                <td class="warning" onclick="window.location='http://www.google.com'">1265</td>
-	                                <td class="danger" onclick="window.location='http://www.google.com'">1265</td>
-	                                <td class="default" onclick="window.location='http://www.google.com'">1265</td>
-	                                <td class="success" onclick="window.location='http://www.google.com'">1265</td>
-	                                <td>$321.33</td>
+	                                <td class="default" data-toggle="modal" data-target=".bs-example-modal-sm">1265</td>
+	                                <td class="primary" data-toggle="modal" data-target=".bs-example-modal-sm">1265</td>
+	                                <td class="success" data-toggle="modal" data-target=".bs-example-modal-sm">1265</td>
+	                                <td class="info" data-toggle="modal" data-target=".bs-example-modal-sm">1265</td>
+<!-- 	                                <td class="success" onclick="window.location='http://www.google.com'">1265</td> -->
 	                            </tr>
-	                            <tr>
-	                                <td>/about.html</td>
-	                                <td>dfsd</td>
-	                                <td>1265</td>
-	                                <td>aa</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>33.3%</td>
-	                                <td>$234.12</td>
-	                            </tr>
-	                            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-								  <div class="modal-dialog modal-sm" role="document">
-								    <div class="modal-content">
-								      	<div class="modal-header">
-								          <button type="button" class="close" data-dismiss="modal">&times;</button>
-								          <h4 class="modal-title">Nota</h4>
-								        </div>
-								        <div class="modal-body">
-											<form name="ejemplo2" action="11-html5-number-input.php" method="POST">
-												<div align="center">
-												    <p>Alumno: Aaaaaaa</p>
-												    <p>Tarea 1</p>
-												    <input type="number" name="edad" min="0" max="20" step="1"  required="required">
-											    </div>
-											</form> 
-								        </div>
-								        <div class="modal-footer">
-								          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-								          <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
-								        </div>
-								    </div>
-								  </div>
-								</div>
-	                            <tr>
-	                                <td>/sales.html</td>
-	                                <td>665</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>21.3%</td>
-	                                <td>$16.34</td>
-	                            </tr>
-	                            <tr>
-	                                <td>/blog.html</td>
-	                                <td>9516</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>89.3%</td>
-	                                <td>$1644.43</td>
-	                            </tr>
-	                            <tr>
-	                                <td>/404.html</td>
-	                                <td>23</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>34.3%</td>
-	                                <td>$23.52</td>
-	                            </tr>
-	                            <tr>
-	                                <td>/services.html</td>
-	                                <td>421</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>60.3%</td>
-	                                <td>$724.32</td>
-	                            </tr>
-	                            <tr>
-	                                <td>/blog/post.html</td>
-	                                <td>1233</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>1265</td>
-	                                <td>93.2%</td>
-	                                <td>$126.34</td>
-	                            </tr>
-<!-- 	                        </tbody> -->
-						
-						
-<!-- 							<tr> -->
-<!-- 								<th>ID</th> -->
-<!-- 								<th>Alumno</th> -->
-<!-- 								<th>G</th> -->
-<!-- 								<th>Email</th> -->
-<!-- 								<th>No </th> -->
-<!-- 								<th>Nombres Apoderado</th> -->
-<!-- 								<th>Apellidos Apoderado</th> -->
-<!-- 								<th>Email Apoderado</th> -->
-<!-- 								<th>ACCION</th> -->
-<!-- 							</tr> -->
-<%-- 							<c:forEach var="lista" items="${listAlumnos}"> --%>
-<!-- 								<tr> -->
-<%-- 									<td>${lista.idAlumno}</td> --%>
-<%-- 									<td>${lista.nombres}, ${lista.apellidos}</td> --%>
-<%-- 									<td>${lista.genero}</td> --%>
-<%-- 									<td>${lista.email}</td> --%>
-<%-- 									<td>${lista.nroOrden}</td> --%>
-<%-- 									<td>${lista.nombresApoderado}</td> --%>
-<%-- 									<td>${lista.apellidosApoderado}</td> --%>
-<%-- 									<td>${lista.emailApoderado}</td> --%>
-<!-- 									<td style="text-align:center" width="100px"> -->
-<%-- 									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idAlumno}"><i class="fa fa-pencil-square-o"></i></a> --%>
-<%-- 									<a class="btn btn-sm btn-danger btn-sm" href="deleteAlumno?id=${lista.idAlumno}"><i class="fa fa-trash-o"></i></a> --%>
-<!-- 									</td> -->
-<!-- 								</tr> -->
-<%-- 							</c:forEach> --%>
+	                            </c:forEach>
 						</table>
-<%-- 					</c:if> --%>
+					</c:if>
 					
 				</div>
-				
+				<!-- Contenido nota Modal -->
+				<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				  <div class="modal-dialog modal-sm" role="document">
+				    <div class="modal-content">
+				      	<div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">Nota</h4>
+				        </div>
+				        <div class="modal-body">
+							<form name="ejemplo2" action="11-html5-number-input.php" method="POST">
+								<div align="center">
+								    <p>Alumno: Aaaaaaa</p>
+								    <p>Tarea 1</p>
+								    <input type="number" name="edad" min="0" max="20" step="1"  required="required">
+							    </div>
+							</form> 
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+				          <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+				        </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- / Contenido Modal -->
 			</div>
 		</div>
 		<!-- /.row -->
