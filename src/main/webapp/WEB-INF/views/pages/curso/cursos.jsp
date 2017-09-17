@@ -51,6 +51,8 @@
 								<th>Grado</th>
 								<th>Seccion</th>
 								<th>Año</th>
+								
+								<th>Seleccion</th>
 
 								<th>ACCION</th>
 							</tr>
@@ -62,10 +64,13 @@
 									<td>${lista.grado}</td>
 									<td>${lista.seccion}</td>
 									<td>${lista.anio}</td>
+									<td style="text-align:center" width="100px">
+										<a class="btn btn-sm btn-primary btn-sm" href="selectCurso?id=${lista.idCurso}"><i class="fa fa-eye"></i> Seleccionar</a>
+									</td>
 
 									<td style="text-align:center" width="100px">
-									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idCurso}"><i class="fa fa-pencil-square-o"></i></a>
-									<a class="btn btn-sm btn-danger btn-sm" href="deleteAlumno?id=${lista.idCurso}"><i class="fa fa-trash-o"></i></a>
+									<a class="btn btn-sm btn-warning btn-sm" href="editCurso?id=${lista.idCurso}"><i class="fa fa-pencil-square-o"></i></a>
+									<a class="btn btn-sm btn-danger btn-sm" href="deleteCurso?id=${lista.idCurso}"><i class="fa fa-trash-o"></i></a>
 									</td>
 								</tr>
 							</c:forEach>

@@ -3,6 +3,7 @@ package com.swaaad.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,5 +108,18 @@ public class CursoController {
 		 }
 		//
 		return new ModelAndView("redirect:/cursos");
+	}
+	
+	@RequestMapping(value = "/selectCurso", method = RequestMethod.GET)
+	public ModelAndView selectCurso(ModelAndView model, HttpServletRequest request, HttpSession session ) throws Exception {
+		
+		logger.info("alumnosPage");
+		
+		int idCurso = Integer.parseInt(request.getParameter("id"));
+		session = request.getSession();
+		session.setAttribute("idDocente", 1);
+		session.setAttribute("idCurso", idCurso);
+		
+		return new ModelAndView("redirect:/alumnos");
 	}
 }

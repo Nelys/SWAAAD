@@ -78,7 +78,7 @@
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<a class="btn btn-default" href="alumnos">Cancelar</a>
+							<a class="btn btn-default" href="cursos">Cancelar</a>
 							<button class="btn btn-success" type="submit" >Guardar</button>
 						</div>
 					</div>
