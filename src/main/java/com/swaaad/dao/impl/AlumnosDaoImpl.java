@@ -75,23 +75,15 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	@Override
 	public List<Alumno> getAllAlumnosByIdCurso(int idCurso) throws Exception {
 		sSession = sessionFactory.openSession();
-		Transaction transaction = null;
-		transaction = sSession.beginTransaction();
-
-		sSession = sessionFactory.openSession();
 		List<Alumno> listarAlumnos =null;
 		try {
-
-			String queryAlumno = "select b from Alumno b join b.cursos a where a.idCurso = :id";
+		    
+		    String queryAlumno = "SELECT ca.alumno FROM CursoAlumno ca JOIN ca.curso c WHERE c.idCurso = :id";
 			Query query = sSession.createQuery(queryAlumno);
 			query.setInteger("id", idCurso);
 			
 			listarAlumnos = (List<Alumno>) query.list();
 			
-//			System.out.println(idCurso);
-//			for (Alumno alumno : listarAlumnos) {
-//				System.out.println(alumno.getApellidos());
-//			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

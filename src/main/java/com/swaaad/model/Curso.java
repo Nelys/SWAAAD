@@ -1,6 +1,11 @@
 package com.swaaad.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
 
@@ -33,8 +38,11 @@ public class Curso implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_DOCENTE")
 	private Docente docente;
+	
+	@OneToMany(mappedBy = "curso")
+    private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
 
-	public Curso() {
+	public void Curso() {
 	}
 
 	public int getIdCurso() {

@@ -2,6 +2,7 @@ package com.swaaad.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -50,18 +51,12 @@ public class Alumno implements Serializable {
 	public Alumno() {
 	}
 	
-	//private Set<CursoAlumno> alumnoCursos;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-	@JoinTable(name = "curso_alumno",
-				joinColumns = { @JoinColumn(name = "ID_ALUMNO") },
-				inverseJoinColumns = { @JoinColumn(name = "ID_CURSO") }
-			)
-	private Set<Curso> cursos;
-	//private List<Curso> cursos = new ArrayList<Curso>();
+	@OneToMany(mappedBy = "alumno")
+    private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
 
-	public Alumno(int idAlumno, String apellidos, String apellidosApoderado, String contrasena, String email,
-			String emailApoderado, String genero, String nombres, String nombresApoderado, int nroOrden) {
+	public Alumno(int idAlumno, String apellidos, String apellidosApoderado, String contrasena, 
+	        String email, String emailApoderado, String genero, String nombres, 
+	        String nombresApoderado, int nroOrden) {
 		super();
 		this.idAlumno = idAlumno;
 		this.apellidos = apellidos;
