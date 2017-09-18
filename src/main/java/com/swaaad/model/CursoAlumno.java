@@ -29,7 +29,8 @@ public class CursoAlumno implements Serializable {
 	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 
-	public void CursoAlumno() {
+	public CursoAlumno() {
+	    // Constructor vacio
 	}
 
 	public int getIdCursoAlumno() {

@@ -1,9 +1,7 @@
 package com.swaaad.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -42,7 +40,8 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy = "curso")
     private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
 
-	public void Curso() {
+	public Curso() {
+	    // Constructor vacio
 	}
 
 	public int getIdCurso() {
