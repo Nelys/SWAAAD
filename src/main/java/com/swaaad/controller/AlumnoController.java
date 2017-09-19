@@ -1,7 +1,5 @@
 package com.swaaad.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -23,20 +21,12 @@ public class AlumnoController {
 	AlumnosService objAlumnoService;
 
 	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
-	public ModelAndView alumnosPage(ModelAndView model) throws Exception {
+	public ModelAndView alumnosPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("alumnosPage");
-		//
-		List<Alumno> ListarAlumno = null;
+		
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
 
-		ListarAlumno = objAlumnoService.getAllAlumnos();
-
-		Alumno alumno = new Alumno();
-
-		model.addObject("alumno", alumno);
-		model.addObject("listAlumnos", ListarAlumno);
-
-//		model.setViewName("pages/alumnos/alumnos");
 		model.setViewName("alumnos");
 
 		return model;
@@ -55,7 +45,7 @@ public class AlumnoController {
 			}
 
 		} catch (Exception e) {
-			e.getStackTrace();
+		    logger.info("Excepcion: ", e);
 		}
 		return new ModelAndView("redirect:/alumnos");
 	}
@@ -73,12 +63,12 @@ public class AlumnoController {
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
 		
 		int alumnoId = Integer.parseInt(request.getParameter("id"));
-		logger.info("editAlumno "+alumnoId);
+		logger.info("editAlumno ", alumnoId);
 		Alumno alumno = null;
 		try {
 			alumno = objAlumnoService.getAlumnoById(alumnoId);
 		} catch (Exception e) {
-			e.printStackTrace();
+		    logger.info("Excepcion en edicion: ", e);
 		}
 		ModelAndView model = new ModelAndView("form-alumno");
 		model.addObject("alumno", alumno);
@@ -89,12 +79,11 @@ public class AlumnoController {
 	@RequestMapping(value = "/deleteAlumno", method = RequestMethod.GET)
 	public ModelAndView deleteAlumno(HttpServletRequest request) throws Exception {
 		int alumnoId = Integer.parseInt(request.getParameter("id"));
-		logger.info("deleteAlumno " + alumnoId);
+		logger.info("deleteAlumno ", alumnoId);
 		 try {
-		objAlumnoService.deleteAlumno(alumnoId);
+		     objAlumnoService.deleteAlumno(alumnoId);
 		 } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		 e.printStackTrace();
+		     logger.info("Excepcion en Eliminacion: ", e);
 		 }
 		//
 		return new ModelAndView("redirect:/alumnos");
