@@ -14,92 +14,92 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Alumno;
+import com.swaaad.model.Competencia;
 import com.swaaad.service.AlumnosService;
+import com.swaaad.service.CompetenciaService;
 
 @Controller
 public class CompetenciaController {
-	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CompetenciaController.class);
+	
 	@Autowired
-	AlumnosService objAlumnoService;
+	CompetenciaService objCompetenciaService;
 
-	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
-	public ModelAndView alumnosPage(ModelAndView model) throws Exception {
+	@RequestMapping(value = { "competencia" }, method = RequestMethod.GET)
+	public ModelAndView competenciaPage(ModelAndView model) throws Exception {
 
-		logger.info("alumnosPage");
+		logger.info("competenciaPage");
 		//
-		List<Alumno> ListarAlumno = null;
+		List<Competencia> ListarCompetencia = null;
 
-		ListarAlumno = objAlumnoService.getAllAlumnos();
+		ListarCompetencia = objCompetenciaService.getAllCompetencia();
 
-		Alumno alumno = new Alumno();
+		Competencia competencia = new Competencia();
 
-		model.addObject("alumno", alumno);
-		model.addObject("listAlumnos", ListarAlumno);
+		model.addObject("competencia", competencia);
+		model.addObject("listCompetencia", ListarCompetencia);
 
-//		model.setViewName("pages/alumnos/alumnos");
-		model.setViewName("alumnos");
-		
+		model.setViewName("notas");
 
 		return model;
 	}
 
-	@RequestMapping(value = "/saveAlumno", method = RequestMethod.POST)
-	public ModelAndView saveAlumno(@ModelAttribute Alumno alumno) throws Exception {
+	@RequestMapping(value = "/saveCompetencia", method = RequestMethod.POST)
+	public ModelAndView saveCompetencia(@ModelAttribute Competencia competencia) throws Exception {
 
-		logger.info("saveAlumno");
+		logger.info("saveCompetencia");
 
 		try {
-			if (alumno.getIdAlumno() == 0) {
-				objAlumnoService.addAlumno(alumno);
+			if (competencia.getIdCompetencia() == 0) {
+				objCompetenciaService.addCompetencia(competencia);
 			} else {
-				objAlumnoService.updateAlumno(alumno);
+				objCompetenciaService.updateCompetencia(competencia);
 			}
 
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		return new ModelAndView("redirect:/alumnos");
+		return new ModelAndView("redirect:/notas");
 	}
 
-	@RequestMapping(value = "/newAlumno", method = RequestMethod.GET)
-	public ModelAndView newAlumno(ModelAndView model) throws Exception {
-		logger.info("newAlumno");
-		Alumno alumno = new Alumno();
-		model.addObject("alumno", alumno);
-		model.setViewName("form-alumno");
+	@RequestMapping(value = "/newCompetencia", method = RequestMethod.GET)
+	public ModelAndView newCompetencia(ModelAndView model) throws Exception {
+		logger.info("newCompetencia");
+		Competencia competencia = new Competencia();
+		model.addObject("competencia", competencia);
+		model.setViewName("form-competencia");
 		return model;
 	}
 
-	@RequestMapping(value = "/editAlumno", method = RequestMethod.GET)
+	@RequestMapping(value = "/editCompetencia", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
-		
-		int alumnoId = Integer.parseInt(request.getParameter("id"));
-		logger.info("editAlumno "+alumnoId);
-		Alumno alumno = null;
+
+		int competenciaId = Integer.parseInt(request.getParameter("id"));
+		logger.info("editCompetencia " + competenciaId);
+		Competencia competencia= null;
 		try {
-			alumno = objAlumnoService.getAlumnoById(alumnoId);
+			competencia = objCompetenciaService.getCompetenciaById(competenciaId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ModelAndView model = new ModelAndView("form-alumno");
-		model.addObject("alumno", alumno);
+		ModelAndView model = new ModelAndView("form-competencia");
+		model.addObject("competencia", competencia);
 
 		return model;
 	}
 
-	@RequestMapping(value = "/deleteAlumno", method = RequestMethod.GET)
-	public ModelAndView deleteAlumno(HttpServletRequest request) throws Exception {
-		int alumnoId = Integer.parseInt(request.getParameter("id"));
-		logger.info("deleteAlumno " + alumnoId);
-		 try {
-		objAlumnoService.deleteAlumno(alumnoId);
-		 } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
+	@RequestMapping(value = "/deleteCompetencia", method = RequestMethod.GET)
+	public ModelAndView deleteCompetencia(HttpServletRequest request) throws Exception {
+		int competenciaId = Integer.parseInt(request.getParameter("id"));
+		logger.info("deleteAlumno " + competenciaId);
+		try {
+			objCompetenciaService.deleteCompetencia(competenciaId);
+		} catch (Exception e) {
+			// // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//
-		return new ModelAndView("redirect:/alumnos");
+		return new ModelAndView("redirect:/competencia");
 	}
-	
 
 }

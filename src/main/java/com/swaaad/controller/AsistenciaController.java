@@ -1,6 +1,9 @@
 package com.swaaad.controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
+import com.swaaad.model.CursoAlumno;
 import com.swaaad.service.AsistenciaService;
+import com.swaaad.service.CursoAlumnoService;
 
 @Controller
 public class AsistenciaController {
@@ -20,19 +26,20 @@ public class AsistenciaController {
 	@Autowired
 	AsistenciaService objAsistenciaService;
 
+
 	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
 	public ModelAndView asistenciaPage(ModelAndView model) throws Exception {
 
 		logger.info("asistenciaPage");
-		System.out.println("hola como estas");
+	//	System.out.println("hola como estas");
 		List<Asistencia> ListarAsistencia = objAsistenciaService.getAllAsistencia();
 
 		//ListarAsistencia = objAsistenciaService.getAllAsistencia();
-
-		for (Asistencia asistenci : ListarAsistencia) {
-
-			logger.info("s:" + asistenci.getEstado());
-		}
+//
+//		for (Asistencia asistenci : ListarAsistencia) {
+//
+//			logger.info("s:" + asistenci.getEstado());
+//		}
 		// logger.info("[NOMBRES: "+alumno.getNombres()+",
 		// APELLIDOS:"+alumno.getApellidos()+"]");
 		Asistencia asistencia = new Asistencia();
@@ -72,23 +79,6 @@ public class AsistenciaController {
 		model.setViewName("form-asistencia");
 		return model;
 	}
-
-//	@RequestMapping(value = "/editAsistencia", method = RequestMethod.GET)
-//	public ModelAndView editContact(HttpServletRequest request) throws Exception {
-//		
-//		int asistenciaId = Integer.parseInt(request.getParameter("id"));
-//		logger.info("editAsistencia "+asistenciaId);
-//		Alumno alumno = null;
-//		try {
-//			asistencia = objAsistenciaService.getgetAlumnoById(asistenciaId);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		ModelAndView model = new ModelAndView("form-alumno");
-//		model.addObject("alumno", alumno);
-//
-//		return model;
-//	}
 
 	
 }
