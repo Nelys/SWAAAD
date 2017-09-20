@@ -1,5 +1,7 @@
 package com.swaaad.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,12 @@ public class PeriodoServiceImpl implements PeriodoService {
 	public void deletePeriodo(int idPeriodo) throws Exception {
 		objPeriodoDao.deletePeriodo(idPeriodo);
 
+	}
+
+	@Override
+	public List<Periodo> getAllPeriodos() throws Exception {
+		// TODO Auto-generated method stub
+		return objPeriodoDao.getAllPeriodos();
 	}
 
 }

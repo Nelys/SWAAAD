@@ -1,5 +1,7 @@
 package com.swaaad.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,6 +9,7 @@ import org.hibernate.Transaction;
 
 import com.swaaad.dao.DocenteDao;
 import com.swaaad.dao.PeriodoDao;
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Periodo;
 
 public class PeriodoDaoImpl implements PeriodoDao {
@@ -104,6 +107,14 @@ public class PeriodoDaoImpl implements PeriodoDao {
 			sSession.flush();
 			sSession.close();
 		}
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Periodo> getAllPeriodos() throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Periodo> listarPeriodo = sSession.createCriteria(Periodo.class).list();
+		sSession.close();
+		return listarPeriodo;
 	}
 
 }

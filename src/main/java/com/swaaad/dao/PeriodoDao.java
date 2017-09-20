@@ -1,5 +1,8 @@
 package com.swaaad.dao;
 
+import java.util.List;
+
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Periodo;
 
 /**
@@ -23,6 +26,8 @@ public interface PeriodoDao {
 	 * @return
 	 * @throws Exception
 	 */
+	List<Periodo> getAllPeriodos() throws Exception;
+	
 	Periodo getPeriodoById(int idPeriodo) throws Exception;
 
 	/**

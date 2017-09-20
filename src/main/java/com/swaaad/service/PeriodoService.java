@@ -1,5 +1,7 @@
 package com.swaaad.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.swaaad.model.Periodo;
@@ -51,4 +53,5 @@ public interface PeriodoService {
 	 */
 	void deletePeriodo(int idPeriodo) throws Exception;
 
+	List<Periodo> getAllPeriodos() throws Exception;
 }
