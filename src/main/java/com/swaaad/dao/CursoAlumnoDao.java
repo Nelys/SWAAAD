@@ -36,6 +36,8 @@ public interface CursoAlumnoDao {
 	 */
 	void updateCursoAlumno(CursoAlumno cursoAlumno) throws Exception;
 
+	CursoAlumno getAllAlumnosByCurso(int idCurso) throws Exception;
+
 	/**
 	 * Elimina CursoAlumno
 	 * 
