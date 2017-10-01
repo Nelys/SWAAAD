@@ -39,12 +39,24 @@ public class Curso implements Serializable {
 	
 	@OneToMany(mappedBy = "curso")
     private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
+	
+//	@OneToMany(mappedBy = "curso")
+//    private Set<Evaluacion> evaluaciones = new HashSet<Evaluacion>();
 
 	public Curso() {
 	    // Constructor vacio
 	}
 
-	public int getIdCurso() {
+	
+	
+	public Curso(int idCurso) {
+        super();
+        this.idCurso = idCurso;
+    }
+
+
+
+    public int getIdCurso() {
 		return this.idCurso;
 	}
 
