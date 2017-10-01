@@ -49,7 +49,7 @@
         <p>Sistema Web para el Apoyo de la Actividades Academicas de un Docente.</p>
         <p>Pagina gratuita destinada a los docentes.</p>
         <p align="center">
-          <a class="btn btn-lg btn-primary" href="${pageContext.request.contextPath}/cursos" role="button">Ingresar</a>
+          <a class="btn btn-lg btn-primary" href="${pageContext.request.contextPath}/login" role="button">Ingresar</a>
           <a class="btn btn-lg btn-success" href="#" role="button">Crear Cuenta</a>
         </p>
       </div>

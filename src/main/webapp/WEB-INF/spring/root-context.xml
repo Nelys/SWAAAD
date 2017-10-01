@@ -16,7 +16,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/swaaad" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="root" />
 	</bean>
 
 
@@ -45,6 +45,8 @@
 				<value>com.swaaad.model.Pregunta</value>
 				<value>com.swaaad.model.Unidad</value>
 				<value>com.swaaad.model.Usuario</value>
+				<value>com.swaaad.model.Evaluacion</value>
+				<value>com.swaaad.model.Nota</value>
 
 				<!-- <value>com.swaaad.model.UsuarioRol</value> -->
 
@@ -114,5 +116,10 @@
 	<bean id="NotaDao" class="com.swaaad.dao.impl.NotaDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	
+	<bean id="EvaluacionDao" class="com.swaaad.dao.impl.EvaluacionDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
 
 </beans>
