@@ -5,10 +5,11 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the nota database table.
+ * The persistent class for the nota_1 database table.
  * 
  */
 @Entity
+@Table(name="nota_1")
 @NamedQuery(name="Nota.findAll", query="SELECT n FROM Nota n")
 public class Nota implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,21 +19,35 @@ public class Nota implements Serializable {
 	@Column(name="ID_NOTA")
 	private int idNota;
 
-	private int nota;
+	
 
-	//uni-directional many-to-one association to Capacidad
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_CAPACIDAD")
-	private Capacidad capacidad;
+    @Column(name="ID_ALUMNO")
+	private int idAlumno;
 
-	//uni-directional many-to-one association to CursoAlumno
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_CURSO_ALUMNO")
-	private CursoAlumno cursoAlumno;
+	@Column(name="NOTA_EVALUATIVA")
+	private int notaEvaluativa;
+	
+	//private int idEvaluacion;
+
+	//uni-directional many-to-one association to Evaluacion1
+	@ManyToOne
+	@JoinColumn(name="ID_EVALUACION")
+	private Evaluacion evaluacion;
 
 	public Nota() {
+	    // Constructor vacio
 	}
-
+	
+	public Nota(int idNota, int idAlumno, int notaEvaluativa) {
+        super();
+        this.idNota = idNota;
+        this.idAlumno = idAlumno;
+        //this.set
+        this.notaEvaluativa = notaEvaluativa;
+        
+//        this.evaluacion = evaluacion;
+    }
+	
 	public int getIdNota() {
 		return this.idNota;
 	}
@@ -41,28 +56,45 @@ public class Nota implements Serializable {
 		this.idNota = idNota;
 	}
 
-	public int getNota() {
-		return this.nota;
+	public int getIdAlumno() {
+		return this.idAlumno;
 	}
 
-	public void setNota(int nota) {
-		this.nota = nota;
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
 	}
 
-	public Capacidad getCapacidad() {
-		return this.capacidad;
+	public int getNotaEvaluativa() {
+		return this.notaEvaluativa;
 	}
 
-	public void setCapacidad(Capacidad capacidad) {
-		this.capacidad = capacidad;
+	public void setNotaEvaluativa(int notaEvaluativa) {
+		this.notaEvaluativa = notaEvaluativa;
 	}
 
-	public CursoAlumno getCursoAlumno() {
-		return this.cursoAlumno;
+	public Evaluacion getEvaluacion() {
+		return this.evaluacion;
 	}
 
-	public void setCursoAlumno(CursoAlumno cursoAlumno) {
-		this.cursoAlumno = cursoAlumno;
+	public void setEvaluacion(Evaluacion evaluacion) {
+		this.evaluacion = evaluacion;
 	}
+	
+	public int getIdEvaluacion1() {
+        return this.evaluacion.getIdEvaluacion();
+    }
+
+    public void setIdEvaluacion1(Evaluacion evaluacion) {
+        this.evaluacion.setIdEvaluacion(evaluacion.getIdEvaluacion());
+        //1this.idEvaluacion = evaluacion.setIdEvaluacion(idEvaluacion);
+    }
+	/*
+	public int getIdEvaluacion() {
+        return this.idEvaluacion;
+    }
+
+    public void setIdEvaluacion(int idEvaluacion) {
+        this.idEvaluacion = idEvaluacion;
+    }*/
 
 }
