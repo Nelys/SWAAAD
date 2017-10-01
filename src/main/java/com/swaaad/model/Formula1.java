@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="formula_1")
+@Table(name="formula")
 @NamedQuery(name="Formula1.findAll", query="SELECT f FROM Formula1 f")
 public class Formula1 implements Serializable {
 	private static final long serialVersionUID = 1L;
