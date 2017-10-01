@@ -81,12 +81,12 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/aula-dinamica">Aula Dinamica</a>
                             </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/participacion">Participacion</a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/grupos">Grupos</a>
-                            </li>
+<!--                             <li> -->
+<%--                                 <a href="${pageContext.request.contextPath}/participacion">Participacion</a> --%>
+<!--                             </li> -->
+<!--                             <li> -->
+<%--                                 <a href="${pageContext.request.contextPath}/grupos">Grupos</a> --%>
+<!--                             </li> -->
                         </ul>
                     </li>
                 </ul>

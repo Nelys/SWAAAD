@@ -24,6 +24,8 @@
     <link href="<c:url value='/resources/css/build.css' />" rel="stylesheet" type="text/css">
     
     <link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" type="text/css">
+    
+    <link href="<c:url value='/resources/css/bootstrap-colorpicker.min.css' />" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +35,8 @@
     <![endif]-->
     
 <%--     <script src="<c:url value='/resources/js/jquery-1.12.4.js' />"></script> --%>
-    <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script>
+<%--     <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script> --%>
+    <script src="<c:url value='/resources/js/jquery-3.2.1.js' />"></script>
     <script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
 </head>
  
@@ -60,5 +63,8 @@
 	<script src="<c:url value='/resources/js/bootstrap-timepicker.min.js' />"></script>
 	
 	<script src="<c:url value='/resources/js/jquery.fixedTblHdrLftCol.js' />"></script>
+	
+	<script src="<c:url value='/resources/js/bootstrap-colorpicker.min.js' />"></script>
+	
 </body>
 </html>
