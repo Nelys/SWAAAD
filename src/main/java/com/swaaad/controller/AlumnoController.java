@@ -33,13 +33,13 @@ public class AlumnoController {
 	}
 
 	@RequestMapping(value = "/saveAlumno", method = RequestMethod.POST)
-	public ModelAndView saveAlumno(@ModelAttribute Alumno alumno) throws Exception {
+	public ModelAndView saveAlumno(@ModelAttribute Alumno alumno, HttpServletRequest request) throws Exception {
 
 		logger.info("saveAlumno");
 
 		try {
 			if (alumno.getIdAlumno() == 0) {
-				objAlumnoService.addAlumno(alumno);
+				objAlumnoService.addAlumno(alumno, request);
 			} else {
 				objAlumnoService.updateAlumno(alumno);
 			}

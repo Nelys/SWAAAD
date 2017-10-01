@@ -6,6 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.swaaad.dao.AlumnosDao;
 import com.swaaad.model.Alumno;
@@ -16,9 +18,16 @@ import com.swaaad.model.Alumno;
  * @author Nelys
  * @version 1.0.0, 20/08/2017
  * @see AlumnosDao
- * 
+ * @Creacion
+ * *********************************
+ * @author Christian Vilca
+ * @version 2.0.0, 20/08/2017
+ * @see AlumnosDao
+ * @Modificacion: Se añadieron metodos de consulta
  */
 public class AlumnosDaoImpl implements AlumnosDao {
+    
+    private static final Logger logger = LoggerFactory.getLogger(Alumno.class);
 
 	/* implementa la interface AlumnoDAO */
 
@@ -86,7 +95,7 @@ public class AlumnosDaoImpl implements AlumnosDao {
 			
 
 		} catch (Exception e) {
-			e.printStackTrace();
+		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);
 		} finally {
 			sSession.flush();
 			sSession.close();
@@ -109,8 +118,7 @@ public class AlumnosDaoImpl implements AlumnosDao {
 			alumno = (Alumno) query.uniqueResult();
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
+		    logger.info("AlumnosDaoimpl getAlumnoById: ", e);
 		} finally {
 			sSession.flush();
 			sSession.close();
@@ -125,20 +133,20 @@ public class AlumnosDaoImpl implements AlumnosDao {
 	 */
 	@Override
 	public void updateAlumno(Alumno alumno) throws Exception {
-		// TODO Auto-generated method stub
+
 		sSession = sessionFactory.openSession();
 		try {
 			tTransaction = sSession.beginTransaction();
 			sSession.update(alumno);
 			tTransaction.commit();
-			System.out.println("se actualizo");
+			logger.info("se actualizo");
 		} catch (RuntimeException e) {
 
 			if (tTransaction != null) {// verifica hubosi un cambio en caso
 				tTransaction.rollback();// desase e
 
 			}
-			e.printStackTrace();
+			logger.info("AlumnosDaoimpl updateAlumno: ", e);
 		} finally {
 			sSession.flush();
 			sSession.close();
@@ -159,7 +167,7 @@ public class AlumnosDaoImpl implements AlumnosDao {
 														// para hacer
 			// una transaccion en este
 			// casoeliminar
-			Alumno alumno = (Alumno) sSession.load(Alumno.class, new Integer(idAlumno));// obtiene
+			Alumno alumno = (Alumno) sSession.load(Alumno.class, Integer.valueOf(idAlumno));// obtiene
 																						// al
 																						// alumno
 			sSession.delete(alumno);// elimina al alumno
@@ -170,7 +178,7 @@ public class AlumnosDaoImpl implements AlumnosDao {
 			if (tTransaction != null) {// verifica hubosi un cambio en caso
 				tTransaction.rollback();// desase e
 			}
-			e.printStackTrace();
+			logger.info("AlumnosDaoimpl deleteAlumno: ", e);
 		} finally {
 			sSession.flush();
 			sSession.close();// ciera la sesion

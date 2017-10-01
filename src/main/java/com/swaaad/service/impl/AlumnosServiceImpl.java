@@ -12,19 +12,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swaaad.dao.AlumnosDao;
+import com.swaaad.dao.CursoAlumnoDao;
 import com.swaaad.model.Alumno;
+import com.swaaad.model.Curso;
+import com.swaaad.model.CursoAlumno;
 import com.swaaad.service.AlumnosService;
+import com.swaaad.service.CursoAlumnoService;
 
 @Service
 public class AlumnosServiceImpl implements AlumnosService {
 
 	@Autowired
 	AlumnosDao objAlumnoDao;
+	
+	@Autowired
+	CursoAlumnoDao objCursoAlumnoDao;
 
 	@Override
-	public void addAlumno(Alumno alumno) throws Exception {
+	public void addAlumno(Alumno alumno, ServletRequest request) throws IOException, ServletException, Exception {
 
+	    HttpServletRequest request1 = (HttpServletRequest)request;
+        HttpSession session = request1.getSession(false);
+        
+        int iIdCurso = (Integer) session.getAttribute("idCurso");
+	    
 		objAlumnoDao.addAlumno(alumno);
+		objCursoAlumnoDao.addCursoAlumno(new CursoAlumno(alumno, new Curso(iIdCurso)));
 
 	}
 
@@ -41,9 +54,6 @@ public class AlumnosServiceImpl implements AlumnosService {
 		
 		int iIdCurso = (Integer) session.getAttribute("idCurso");
 		
-		System.out.println(iIdCurso + " desde servicio de alumnos");
-
-		//return objAlumnoDao.getAllAlumnos();
 		return objAlumnoDao.getAllAlumnosByIdCurso(iIdCurso);
 	}
 

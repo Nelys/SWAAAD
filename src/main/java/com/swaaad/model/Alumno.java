@@ -50,7 +50,14 @@ public class Alumno implements Serializable {
 	    // Constructor Vacio
 	}
 	
-	@OneToMany(mappedBy = "alumno")
+	public Alumno(int idAlumno, String apellidos, String nombres) {
+        super();
+        this.idAlumno = idAlumno;
+        this.apellidos = apellidos;
+        this.nombres = nombres;
+    }
+
+    @OneToMany(mappedBy = "alumno")
     private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
 
 	@Override

@@ -27,7 +27,7 @@ public interface AlumnosService {
 	 * 
 	 * @throws Exception
 	 */
-	void addAlumno(Alumno alumno) throws Exception;
+	void addAlumno(Alumno alumno, ServletRequest request) throws IOException, ServletException, Exception;
 
 	/**
 	 * Utiliza el metodo getAllAlumnos() de la AlumnosDao
