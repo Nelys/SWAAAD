@@ -33,7 +33,13 @@ public class CursoAlumno implements Serializable {
 	    // Constructor vacio
 	}
 
-	public int getIdCursoAlumno() {
+	public CursoAlumno(Alumno alumno, Curso curso) {
+        super();
+        this.alumno = alumno;
+        this.curso = curso;
+    }
+
+    public int getIdCursoAlumno() {
 		return this.idCursoAlumno;
 	}
 
