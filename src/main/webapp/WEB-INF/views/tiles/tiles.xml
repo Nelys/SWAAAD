@@ -91,5 +91,11 @@
    <definition name="form-horario" extends="base-definition">  
        <put-attribute name="title" value="Horario del Curso" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-horario.jsp" />  
+   </definition>
+    <!-- Evaluacion Formulario -->
+   <definition name="form-evaluacion" extends="base-definition">  
+       <put-attribute name="title" value="Nota del Curso por Alumno" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/nota/nota-formulario.jsp" />  
    </definition> 
+   
 </tiles-definitions>
