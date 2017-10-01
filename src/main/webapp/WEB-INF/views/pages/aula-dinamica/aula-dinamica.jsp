@@ -41,16 +41,16 @@
 <!-- 		</p> -->
 		
 		<!-- Resgistros de la tabla -->
-		<div id="identificador">hola</div>
-		<div id="coordenadas">hola</div>
+		<div id="identificador" style="display: none;">hola</div>
+		<div id="coordenadas" style="display: none;">hola</div>
 		
 		<form:form action="saveAulaDinamica" method="post" modelAttribute="aulaDinamica">
-			<form:input path="idAulaDinamica" />
+			<form:hidden path="idAulaDinamica" />
 <%-- 			<form:input path="idCurso" value="1"/> --%>
-			<form:input path="x" />
-			<form:input path="y" />
-			<form:input path="color" />
-			<button type="submit" >Guardar</button>
+			<form:hidden path="x" />
+			<form:hidden path="y" />
+			<form:hidden path="color" />
+			<button type="submit" style="display: none;">Guardar</button>
 		</form:form>
 		<div class="row">
 			<div id="aula" class="col-lg-12" style="border: 1px black solid; height:400px; position: relative;">
@@ -116,7 +116,7 @@
 		</script>
 		<p></p>
 		<!-- Resgistros de la tabla -->
-		<div class="row">
+		<div class="row" style="display: none;">
 			<div class="col-lg-12">
 				
 				<div class="table-responsive">
