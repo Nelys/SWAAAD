@@ -32,12 +32,9 @@
 				<value>com.swaaad.model.CursoAlumno</value>
 				<value>com.swaaad.model.Docente</value>
 				<value>com.swaaad.model.Formula</value>
-				<value>com.swaaad.model.FormulaDetalle</value>
 				<value>com.swaaad.model.Horario</value>
 				<value>com.swaaad.model.Nota</value>
-				<value>com.swaaad.model.Parte</value>
 				<value>com.swaaad.model.Pregunta</value>
-				<value>com.swaaad.model.Usuario</value>
 				<value>com.swaaad.model.Evaluacion</value>
 
 				<!-- <value>com.swaaad.model.UsuarioRol</value> -->

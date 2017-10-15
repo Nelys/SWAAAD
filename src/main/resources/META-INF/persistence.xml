@@ -10,12 +10,8 @@
 		<class>com.swaaad.model.Docente</class>
 		<class>com.swaaad.model.Evaluacion</class>
 		<class>com.swaaad.model.Formula</class>
-		<class>com.swaaad.model.Formula1</class>
-		<class>com.swaaad.model.FormulaDetalle</class>
 		<class>com.swaaad.model.Horario</class>
 		<class>com.swaaad.model.Nota</class>
-		<class>com.swaaad.model.Parte</class>
 		<class>com.swaaad.model.Pregunta</class>
-		<class>com.swaaad.model.Usuario</class>
 	</persistence-unit>
 </persistence>
