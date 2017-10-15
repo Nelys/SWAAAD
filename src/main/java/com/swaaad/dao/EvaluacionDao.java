@@ -35,6 +35,14 @@ public interface EvaluacionDao {
      * @throws Exception
      */
     List<Evaluacion> getAllEvaluacionesByIdCurso(int idCurso) throws Exception;
+
+    /**
+     * Recupera una lista de evaluaciones de la base de datos
+     * 
+     * @return : Lista de Evaluaciones
+     * @throws Exception
+     */
+    List<Evaluacion> getAllEvaluacionesByIdEvaluacionDependencia(int idEvaluacion) throws Exception;
     
     /**
      * Recupera una evaluacion de la base de datos

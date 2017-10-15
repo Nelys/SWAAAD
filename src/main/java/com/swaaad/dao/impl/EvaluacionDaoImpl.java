@@ -100,6 +100,35 @@ public class EvaluacionDaoImpl implements EvaluacionDao {
         return listarEvaluaciones;
     }
     
+
+    /**
+     * @see EvaluacionesDao#getAllEvaluacionesByIdCurso()
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Evaluacion> getAllEvaluacionesByIdEvaluacionDependencia(int idEvaluacion) throws Exception {
+        sSession = sessionFactory.openSession();
+        List<Evaluacion> listarEvaluaciones =null;
+        try {
+            String queryEvaluacion = "SELECT e FROM Evaluacion e WHERE e.idEvaluacionDependencia = :id";
+            
+            Query query = sSession.createQuery(queryEvaluacion);
+            query.setInteger("id", idEvaluacion);
+            
+            listarEvaluaciones = (List<Evaluacion>) query.list();
+            
+
+        } catch (Exception e) {
+            logger.info("Metodo getAllEvaluacionesByIdEvaluacionDependencia: ", e);
+        } finally {
+            sSession.flush();
+            sSession.close();
+
+        }
+        
+        return listarEvaluaciones;
+    }
+    
     /**
      * @see EvaluacionesDao#getEvaluacionById(int)
      */

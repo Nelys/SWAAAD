@@ -35,6 +35,14 @@ public class Evaluacion implements Serializable {
 	
 	@Column(name="COLOR_TEXTO")
     private String colorTexto;
+	
+	private String formula;
+	
+	@Column(name="ES_FORMULA")
+    private byte esFormula;
+	
+//	@JoinColumn(name="ID_FORMULA")
+//    private Formula formula;
 
 	/*@Column(name="ID_CURSO")
 	private int idCurso;*/
@@ -114,5 +122,20 @@ public class Evaluacion implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getFormula() {
+        return this.formula;
+    }
 
+    public void setFormula(String formula) {
+        this.formula = formula;
+    }
+
+    public byte getEsFormula() {
+        return this.esFormula;
+    }
+
+    public void setEsFormula(byte esFormula) {
+        this.esFormula = esFormula;
+    }
 }
