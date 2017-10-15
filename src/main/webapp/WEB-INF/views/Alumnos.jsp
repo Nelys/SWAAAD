@@ -20,13 +20,13 @@
 				<th>IdAlumno</th>
 				<th>Alumno</th>
 			</tr>
-			<c:forEach var="lista" items="${alumnosLista}" >
+			<c:forEach var="lista" items="${alumnosLista}">
 				<tr>
 					<td>${lista.idAlumno}</td>
 					<td>${lista.nombres}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		</c:if>
+	</c:if>
 </body>
 </html>
