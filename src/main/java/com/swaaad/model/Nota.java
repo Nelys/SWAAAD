@@ -42,10 +42,15 @@ public class Nota implements Serializable {
         super();
         this.idNota = idNota;
         this.idAlumno = idAlumno;
-        //this.set
         this.notaEvaluativa = notaEvaluativa;
-        
-//        this.evaluacion = evaluacion;
+    }
+	
+	public Nota(int idNota, int idAlumno, Evaluacion evaluacion, int notaEvaluativa) {
+        super();
+        this.idNota = idNota;
+        this.idAlumno = idAlumno;
+        this.notaEvaluativa = notaEvaluativa;
+        this.evaluacion = evaluacion;
     }
 	
 	public int getIdNota() {
