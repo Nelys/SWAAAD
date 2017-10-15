@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
-import com.swaaad.model.CursoAlumno;
+import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AsistenciaService;
-import com.swaaad.service.CursoAlumnoService;
+
+
 
 @Controller
 public class AsistenciaController {
@@ -25,29 +25,19 @@ public class AsistenciaController {
 
 	@Autowired
 	AsistenciaService objAsistenciaService;
+	@Autowired
+	AlumnosService objAlumnoService;
 
 
 	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
-	public ModelAndView asistenciaPage(ModelAndView model) throws Exception {
+	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("asistenciaPage");
-	//	System.out.println("hola como estas");
-		List<Asistencia> ListarAsistencia = objAsistenciaService.getAllAsistencia();
-
-		//ListarAsistencia = objAsistenciaService.getAllAsistencia();
-//
-//		for (Asistencia asistenci : ListarAsistencia) {
-//
-//			logger.info("s:" + asistenci.getEstado());
-//		}
-		// logger.info("[NOMBRES: "+alumno.getNombres()+",
-		// APELLIDOS:"+alumno.getApellidos()+"]");
-		Asistencia asistencia = new Asistencia();
-
-		model.addObject("asistencia", asistencia);
-		model.addObject("ListarAsistencia", ListarAsistencia);
-
+		logger.info("alumnosPage");
 		
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
+
+		model.setViewName("asistencias");
 
 		return model;
 		
