@@ -7,16 +7,13 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-
-
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/swaaad" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="" />
 	</bean>
 
 
@@ -27,12 +24,10 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- <value>com.swaad.modelo.Carrera</value> -->
-				<!-- <value>com.swaaad.model.ActividadPedagogica</value> -->
+<!-- 				<value>com.swaaad.model.ActividadPedagogica</value> -->
 				<value>com.swaaad.model.Alumno</value>
 				<value>com.swaaad.model.Asistencia</value>
 				<value>com.swaaad.model.AulaDinamica</value>
-				<value>com.swaaad.model.Capacidad</value>
-				<value>com.swaaad.model.Competencia</value>
 				<value>com.swaaad.model.Curso</value>
 				<value>com.swaaad.model.CursoAlumno</value>
 				<value>com.swaaad.model.Docente</value>
@@ -41,12 +36,9 @@
 				<value>com.swaaad.model.Horario</value>
 				<value>com.swaaad.model.Nota</value>
 				<value>com.swaaad.model.Parte</value>
-				<value>com.swaaad.model.Periodo</value>
 				<value>com.swaaad.model.Pregunta</value>
-				<value>com.swaaad.model.Unidad</value>
 				<value>com.swaaad.model.Usuario</value>
 				<value>com.swaaad.model.Evaluacion</value>
-				<value>com.swaaad.model.Nota</value>
 
 				<!-- <value>com.swaaad.model.UsuarioRol</value> -->
 
@@ -89,26 +81,10 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 
-	<bean id="PeriodoDao" class="com.swaaad.dao.impl.PeriodoDaoImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="UnidadDao" class="com.swaaad.dao.impl.UnidadDaoImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="CompetenciaDao" class="com.swaaad.dao.impl.CompetenciaDaoImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
-	<bean id="CapacidadDao" class="com.swaaad.dao.impl.CapacidadDaoImpl">
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean>
-
 	<bean id="AulaDinamicaDao" class="com.swaaad.dao.impl.AulaDinamicaDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-	
+
 	<bean id="CursoAlumnoDao" class="com.swaaad.dao.impl.CursoAlumnoDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
@@ -116,10 +92,10 @@
 	<bean id="NotaDao" class="com.swaaad.dao.impl.NotaDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-	
+
 	<bean id="EvaluacionDao" class="com.swaaad.dao.impl.EvaluacionDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-	
+
 
 </beans>
