@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.swaaad.dao.AlumnosDao;
 import com.swaaad.dao.CursoAlumnoDao;
+import com.swaaad.dao.CursoDao;
 import com.swaaad.model.Alumno;
 import com.swaaad.model.Curso;
 import com.swaaad.model.CursoAlumno;
@@ -28,6 +29,9 @@ public class AlumnosServiceImpl implements AlumnosService {
 	@Autowired
 	CursoAlumnoDao objCursoAlumnoDao;
 
+	
+	@Autowired
+	CursoDao objCurso;
 	@Override
 	public void addAlumno(Alumno alumno, ServletRequest request) throws IOException, ServletException, Exception {
 
@@ -37,7 +41,18 @@ public class AlumnosServiceImpl implements AlumnosService {
         int iIdCurso = (Integer) session.getAttribute("idCurso");
 	    
 		objAlumnoDao.addAlumno(alumno);
-		objCursoAlumnoDao.addCursoAlumno(new CursoAlumno(alumno, new Curso(iIdCurso)));
+		
+		
+		//recuperar al curso
+		Curso curso= objCurso.getCursoById(iIdCurso);
+		
+		CursoAlumno cursoAlumno=new CursoAlumno();
+		cursoAlumno.setAlumno(alumno);
+		cursoAlumno.setCurso(curso);
+				
+		objCursoAlumnoDao.addCursoAlumno(cursoAlumno);
+				
+		//objCursoAlumnoDao.addCursoAlumno(new CursoAlumno(alumno, new Curso(iIdCurso)));
 
 	}
 

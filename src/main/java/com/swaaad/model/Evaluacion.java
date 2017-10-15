@@ -2,14 +2,14 @@ package com.swaaad.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
- * The persistent class for the evaluacion_1 database table.
+ * The persistent class for the evaluacion database table.
  * 
  */
 @Entity
-@Table(name="evaluacion")
 @NamedQuery(name="Evaluacion.findAll", query="SELECT e FROM Evaluacion e")
 public class Evaluacion implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,53 +19,50 @@ public class Evaluacion implements Serializable {
 	@Column(name="ID_EVALUACION")
 	private int idEvaluacion;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_CURSO")
-    private Curso curso;
-
-    @Column(name="ID_EVALUACION_DEPENDENCIA")
-    private int idEvaluacionDependencia;
-
-    private String nombre;
-	
-    private String descripcion;
-    
-    @Column(name="COLOR_FONDO")
+	@Column(name="COLOR_FONDO")
 	private String color;
-	
-	@Column(name="COLOR_TEXTO")
-    private String colorTexto;
-	
-	private String formula;
-	
-	@Column(name="ES_FORMULA")
-    private byte esFormula;
-	
-//	@JoinColumn(name="ID_FORMULA")
-//    private Formula formula;
 
-	/*@Column(name="ID_CURSO")
-	private int idCurso;*/
-	
+	@Column(name="COLOR_TEXTO")
+	private String colorTexto;
+
+	private String descripcion;
+
+	@Column(name="ES_FORMULA")
+	private byte esFormula;
+
+	private String formula;
+
+	@Column(name="ID_EVALUACION_DEPENDENCIA")
+	private int idEvaluacionDependencia;
+
+	private String nombre;
+
+	//bi-directional many-to-one association to Curso
+	@ManyToOne
+	@JoinColumn(name="ID_CURSO")
+	private Curso curso;
+
+	//bi-directional many-to-one association to Nota
+	@OneToMany(mappedBy="evaluacion")
+	private List<Nota> notas;
+
 	public Evaluacion() {
-	    // Constructor vacio
 	}
 
-	public Evaluacion(int idEvaluacion, String nombre, String descripcion, String color) {
-        super();
-        this.idEvaluacion = idEvaluacion;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.color = color;
-        
-    }
-
-    public int getIdEvaluacion() {
+	public int getIdEvaluacion() {
 		return this.idEvaluacion;
 	}
 
 	public void setIdEvaluacion(int idEvaluacion) {
 		this.idEvaluacion = idEvaluacion;
+	}
+
+	public String getColor() {
+		return this.color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public String getColorTexto() {
@@ -75,14 +72,6 @@ public class Evaluacion implements Serializable {
 	public void setColorTexto(String colorTexto) {
 		this.colorTexto = colorTexto;
 	}
-	
-	public String getColor() {
-        return this.color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
 	public String getDescripcion() {
 		return this.descripcion;
@@ -92,20 +81,21 @@ public class Evaluacion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Curso getCurso() {
-        return this.curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-	/*public int getIdCurso() {
-		return this.idCurso;
+	public byte getEsFormula() {
+		return this.esFormula;
 	}
 
-	public void setIdCurso(int idCurso) {
-		this.idCurso = idCurso;
-	}*/
+	public void setEsFormula(byte esFormula) {
+		this.esFormula = esFormula;
+	}
+
+	public String getFormula() {
+		return this.formula;
+	}
+
+	public void setFormula(String formula) {
+		this.formula = formula;
+	}
 
 	public int getIdEvaluacionDependencia() {
 		return this.idEvaluacionDependencia;
@@ -122,20 +112,35 @@ public class Evaluacion implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public String getFormula() {
-        return this.formula;
-    }
 
-    public void setFormula(String formula) {
-        this.formula = formula;
-    }
+	public Curso getCurso() {
+		return this.curso;
+	}
 
-    public byte getEsFormula() {
-        return this.esFormula;
-    }
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 
-    public void setEsFormula(byte esFormula) {
-        this.esFormula = esFormula;
-    }
+	public List<Nota> getNotas() {
+		return this.notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public Nota addNota(Nota nota) {
+		getNotas().add(nota);
+		nota.setEvaluacion(this);
+
+		return nota;
+	}
+
+	public Nota removeNota(Nota nota) {
+		getNotas().remove(nota);
+		nota.setEvaluacion(null);
+
+		return nota;
+	}
+
 }

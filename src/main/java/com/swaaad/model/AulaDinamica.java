@@ -21,14 +21,12 @@ public class AulaDinamica implements Serializable {
 
 	private String color;
 
-	@Column(name="COORD_X")
-	private int coordX;
+	private int x;
 
-	@Column(name="COORD_Y")
-	private int coordY;
+	private int y;
 
-	//uni-directional many-to-one association to Curso
-	@ManyToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to Curso
+	@ManyToOne
 	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 
@@ -51,20 +49,20 @@ public class AulaDinamica implements Serializable {
 		this.color = color;
 	}
 
-	public int getCoordX() {
-		return this.coordX;
+	public int getX() {
+		return this.x;
 	}
 
-	public void setCoordX(int coordX) {
-		this.coordX = coordX;
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public int getCoordY() {
-		return this.coordY;
+	public int getY() {
+		return this.y;
 	}
 
-	public void setCoordY(int coordY) {
-		this.coordY = coordY;
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public Curso getCurso() {

@@ -73,7 +73,8 @@ public class NotaServiceImpl implements NotaService{
 	
 	public void obtenerPromedio(Nota nota) throws Exception {
 	    
-	    int iIdAlumno = nota.getIdAlumno();
+//	    int iIdAlumno = nota.getIdAlumno();
+		int iIdAlumno = nota.getAlumno().getIdAlumno();
 	    
 	    int iIdEvaluacionHijo = nota.getEvaluacion().getIdEvaluacion();
 	    
@@ -106,7 +107,8 @@ public class NotaServiceImpl implements NotaService{
 //                evaluacionDependencia.setIdEvaluacionDependencia(evaluacion.getIdEvaluacion());
                 
                 // Obtener notas de un alumno
-                Nota notaDependencia = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(nota.getIdAlumno(), evaluacionDependencia.getIdEvaluacion()));
+//                Nota notaDependencia = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(nota.getIdAlumno(), evaluacionDependencia.getIdEvaluacion()));
+        	Nota notaDependencia = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(nota.getAlumno().getIdAlumno(), evaluacionDependencia.getIdEvaluacion()));
                 System.out.println( evaluacionDependencia.getIdEvaluacion() + " " +notaDependencia.getNotaEvaluativa() );
                 if(notaDependencia == null){
                     System.out.println("idEvaluacion_" + evaluacionDependencia.getIdEvaluacion() + " " + 0);
@@ -125,7 +127,8 @@ public class NotaServiceImpl implements NotaService{
         int iRedondeo=0;
         
         // Obtener nota evaluativa de la formula
-        Nota notaEvaluativa = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(nota.getIdAlumno(), evaluacionPadre.getIdEvaluacion()));
+        //Nota notaEvaluativa = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(nota.getIdAlumno(), evaluacionPadre.getIdEvaluacion()));
+        Nota notaEvaluativa = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(nota.getAlumno().getIdAlumno(), evaluacionPadre.getIdEvaluacion()));
         
 //        if(evaluacion.getEsFormula()==1){
         
@@ -137,7 +140,8 @@ public class NotaServiceImpl implements NotaService{
             // Establecer nota evaluativa
             if (notaEvaluativa == null) {
                 Nota notaPromedio = new Nota();
-                notaPromedio.setIdAlumno(nota.getIdAlumno());
+                notaPromedio.setAlumno(nota.getAlumno());
+//                notaPromedio.setIdAlumno(nota.getIdAlumno());
                 notaPromedio.setEvaluacion(evaluacionPadre);
                 notaPromedio.setNotaEvaluativa(iRedondeo);
                 objNotaDao.addNota(notaPromedio);

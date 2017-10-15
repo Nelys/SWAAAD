@@ -19,27 +19,20 @@ public class CursoAlumno implements Serializable {
 	@Column(name="ID_CURSO_ALUMNO")
 	private int idCursoAlumno;
 
-	//uni-directional many-to-one association to Alumno
-	@ManyToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to Alumno
+	@ManyToOne
 	@JoinColumn(name="ID_ALUMNO")
 	private Alumno alumno;
 
-	//uni-directional many-to-one association to Curso
-	@ManyToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to Curso
+	@ManyToOne
 	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 
 	public CursoAlumno() {
-	    // Constructor vacio
 	}
 
-	public CursoAlumno(Alumno alumno, Curso curso) {
-        super();
-        this.alumno = alumno;
-        this.curso = curso;
-    }
-
-    public int getIdCursoAlumno() {
+	public int getIdCursoAlumno() {
 		return this.idCursoAlumno;
 	}
 

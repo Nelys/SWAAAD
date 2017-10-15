@@ -2,6 +2,7 @@ package com.swaaad.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -31,6 +32,10 @@ public class Docente implements Serializable {
 	private String nombre;
 
 	private String usuario;
+
+	//bi-directional many-to-one association to Curso
+	@OneToMany(mappedBy="docente")
+	private List<Curso> cursos;
 
 	public Docente() {
 	}
@@ -97,6 +102,28 @@ public class Docente implements Serializable {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Curso> getCursos() {
+		return this.cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public Curso addCurso(Curso curso) {
+		getCursos().add(curso);
+		curso.setDocente(this);
+
+		return curso;
+	}
+
+	public Curso removeCurso(Curso curso) {
+		getCursos().remove(curso);
+		curso.setDocente(null);
+
+		return curso;
 	}
 
 }

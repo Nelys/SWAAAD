@@ -15,28 +15,28 @@ public class Formula implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_FORMULA")
-	private int idFormula;
+	@Column(name="ID_EVALUACION")
+	private int idEvaluacion;
 
-	private int id;
+	private String sistema;
 
 	public Formula() {
 	}
 
-	public int getIdFormula() {
-		return this.idFormula;
+	public int getIdEvaluacion() {
+		return this.idEvaluacion;
 	}
 
-	public void setIdFormula(int idFormula) {
-		this.idFormula = idFormula;
+	public void setIdEvaluacion(int idEvaluacion) {
+		this.idEvaluacion = idEvaluacion;
 	}
 
-	public int getId() {
-		return this.id;
+	public String getSistema() {
+		return this.sistema;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSistema(String sistema) {
+		this.sistema = sistema;
 	}
 
 }

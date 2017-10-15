@@ -22,8 +22,8 @@ public class Pregunta implements Serializable {
 
 	private String tema;
 
-	//uni-directional many-to-one association to Curso
-	@ManyToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to Curso
+	@ManyToOne
 	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 

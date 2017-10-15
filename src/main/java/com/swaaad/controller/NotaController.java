@@ -64,7 +64,9 @@ public class NotaController {
 		
 		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
 		
-		model.setViewName("listNota");
+		String vista="listNota";
+		System.out.println("********************"+vista);
+		model.setViewName(vista);
 
 		return model;
 	}

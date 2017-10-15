@@ -47,7 +47,7 @@
 	<definition name="listNota" extends="base-definition">
 		<put-attribute name="title" value="Evaluaciones" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/pages/nota/nota-lista.jsp" />
+			value="/WEB-INF/views/pages/nota/nota-lista2.jsp" />
 	</definition>
 
 	<!-- Pagina Asistencias -->

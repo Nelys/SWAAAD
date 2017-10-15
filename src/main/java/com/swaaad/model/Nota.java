@@ -5,11 +5,10 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the nota_1 database table.
+ * The persistent class for the nota database table.
  * 
  */
 @Entity
-@Table(name="nota")
 @NamedQuery(name="Nota.findAll", query="SELECT n FROM Nota n")
 public class Nota implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,54 +18,28 @@ public class Nota implements Serializable {
 	@Column(name="ID_NOTA")
 	private int idNota;
 
-	
-
-    @Column(name="ID_ALUMNO")
-	private int idAlumno;
-
 	@Column(name="NOTA_EVALUATIVA")
 	private int notaEvaluativa;
-	
-	//private int idEvaluacion;
 
-	//uni-directional many-to-one association to Evaluacion1
+	//bi-directional many-to-one association to Alumno
+	@ManyToOne
+	@JoinColumn(name="ID_ALUMNO")
+	private Alumno alumno;
+
+	//bi-directional many-to-one association to Evaluacion
 	@ManyToOne
 	@JoinColumn(name="ID_EVALUACION")
 	private Evaluacion evaluacion;
 
 	public Nota() {
-	    // Constructor vacio
 	}
-	
-	public Nota(int idNota, int idAlumno, int notaEvaluativa) {
-        super();
-        this.idNota = idNota;
-        this.idAlumno = idAlumno;
-        this.notaEvaluativa = notaEvaluativa;
-    }
-	
-	public Nota(int idNota, int idAlumno, Evaluacion evaluacion, int notaEvaluativa) {
-        super();
-        this.idNota = idNota;
-        this.idAlumno = idAlumno;
-        this.notaEvaluativa = notaEvaluativa;
-        this.evaluacion = evaluacion;
-    }
-	
+
 	public int getIdNota() {
 		return this.idNota;
 	}
 
 	public void setIdNota(int idNota) {
 		this.idNota = idNota;
-	}
-
-	public int getIdAlumno() {
-		return this.idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
 	}
 
 	public int getNotaEvaluativa() {
@@ -77,6 +50,14 @@ public class Nota implements Serializable {
 		this.notaEvaluativa = notaEvaluativa;
 	}
 
+	public Alumno getAlumno() {
+		return this.alumno;
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
+
 	public Evaluacion getEvaluacion() {
 		return this.evaluacion;
 	}
@@ -84,22 +65,5 @@ public class Nota implements Serializable {
 	public void setEvaluacion(Evaluacion evaluacion) {
 		this.evaluacion = evaluacion;
 	}
-	
-	public int getIdEvaluacion1() {
-        return this.evaluacion.getIdEvaluacion();
-    }
-
-    public void setIdEvaluacion1(Evaluacion evaluacion) {
-        this.evaluacion.setIdEvaluacion(evaluacion.getIdEvaluacion());
-        //1this.idEvaluacion = evaluacion.setIdEvaluacion(idEvaluacion);
-    }
-	/*
-	public int getIdEvaluacion() {
-        return this.idEvaluacion;
-    }
-
-    public void setIdEvaluacion(int idEvaluacion) {
-        this.idEvaluacion = idEvaluacion;
-    }*/
 
 }

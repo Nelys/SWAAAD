@@ -25,10 +25,10 @@ public class ActividadPedagogica implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 
-	private Object recordar;
+	private byte recordar;
 
-	//uni-directional many-to-one association to Curso
-	@ManyToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to Curso
+	@ManyToOne
 	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 
@@ -59,11 +59,11 @@ public class ActividadPedagogica implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Object getRecordar() {
+	public byte getRecordar() {
 		return this.recordar;
 	}
 
-	public void setRecordar(Object recordar) {
+	public void setRecordar(byte recordar) {
 		this.recordar = recordar;
 	}
 

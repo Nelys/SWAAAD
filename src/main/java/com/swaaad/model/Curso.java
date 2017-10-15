@@ -1,10 +1,8 @@
 package com.swaaad.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -32,31 +30,43 @@ public class Curso implements Serializable {
 
 	private String seccion;
 
-	//uni-directional many-to-one association to Docente
-	@ManyToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to ActividadPedagogica
+	@OneToMany(mappedBy="curso")
+	private List<ActividadPedagogica> actividadPedagogicas;
+
+	//bi-directional many-to-one association to Asistencia
+	@OneToMany(mappedBy="curso")
+	private List<Asistencia> asistencias;
+
+	//bi-directional many-to-one association to AulaDinamica
+	@OneToMany(mappedBy="curso")
+	private List<AulaDinamica> aulaDinamicas;
+
+	//bi-directional many-to-one association to Docente
+	@ManyToOne
 	@JoinColumn(name="ID_DOCENTE")
 	private Docente docente;
-	
-	@OneToMany(mappedBy = "curso")
-    private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
-	
-//	@OneToMany(mappedBy = "curso")
-//    private Set<Evaluacion> evaluaciones = new HashSet<Evaluacion>();
+
+	//bi-directional many-to-one association to CursoAlumno
+	@OneToMany(mappedBy="curso")
+	private List<CursoAlumno> cursoAlumnos;
+
+	//bi-directional many-to-one association to Evaluacion
+	@OneToMany(mappedBy="curso")
+	private List<Evaluacion> evaluacions;
+
+	//bi-directional many-to-one association to Horario
+	@OneToMany(mappedBy="curso")
+	private List<Horario> horarios;
+
+	//bi-directional many-to-one association to Pregunta
+	@OneToMany(mappedBy="curso")
+	private List<Pregunta> preguntas;
 
 	public Curso() {
-	    // Constructor vacio
 	}
 
-	
-	
-	public Curso(int idCurso) {
-        super();
-        this.idCurso = idCurso;
-    }
-
-
-
-    public int getIdCurso() {
+	public int getIdCurso() {
 		return this.idCurso;
 	}
 
@@ -104,12 +114,166 @@ public class Curso implements Serializable {
 		this.seccion = seccion;
 	}
 
+	public List<ActividadPedagogica> getActividadPedagogicas() {
+		return this.actividadPedagogicas;
+	}
+
+	public void setActividadPedagogicas(List<ActividadPedagogica> actividadPedagogicas) {
+		this.actividadPedagogicas = actividadPedagogicas;
+	}
+
+	public ActividadPedagogica addActividadPedagogica(ActividadPedagogica actividadPedagogica) {
+		getActividadPedagogicas().add(actividadPedagogica);
+		actividadPedagogica.setCurso(this);
+
+		return actividadPedagogica;
+	}
+
+	public ActividadPedagogica removeActividadPedagogica(ActividadPedagogica actividadPedagogica) {
+		getActividadPedagogicas().remove(actividadPedagogica);
+		actividadPedagogica.setCurso(null);
+
+		return actividadPedagogica;
+	}
+
+	public List<Asistencia> getAsistencias() {
+		return this.asistencias;
+	}
+
+	public void setAsistencias(List<Asistencia> asistencias) {
+		this.asistencias = asistencias;
+	}
+
+	public Asistencia addAsistencia(Asistencia asistencia) {
+		getAsistencias().add(asistencia);
+		asistencia.setCurso(this);
+
+		return asistencia;
+	}
+
+	public Asistencia removeAsistencia(Asistencia asistencia) {
+		getAsistencias().remove(asistencia);
+		asistencia.setCurso(null);
+
+		return asistencia;
+	}
+
+	public List<AulaDinamica> getAulaDinamicas() {
+		return this.aulaDinamicas;
+	}
+
+	public void setAulaDinamicas(List<AulaDinamica> aulaDinamicas) {
+		this.aulaDinamicas = aulaDinamicas;
+	}
+
+	public AulaDinamica addAulaDinamica(AulaDinamica aulaDinamica) {
+		getAulaDinamicas().add(aulaDinamica);
+		aulaDinamica.setCurso(this);
+
+		return aulaDinamica;
+	}
+
+	public AulaDinamica removeAulaDinamica(AulaDinamica aulaDinamica) {
+		getAulaDinamicas().remove(aulaDinamica);
+		aulaDinamica.setCurso(null);
+
+		return aulaDinamica;
+	}
+
 	public Docente getDocente() {
 		return this.docente;
 	}
 
 	public void setDocente(Docente docente) {
 		this.docente = docente;
+	}
+
+	public List<CursoAlumno> getCursoAlumnos() {
+		return this.cursoAlumnos;
+	}
+
+	public void setCursoAlumnos(List<CursoAlumno> cursoAlumnos) {
+		this.cursoAlumnos = cursoAlumnos;
+	}
+
+	public CursoAlumno addCursoAlumno(CursoAlumno cursoAlumno) {
+		getCursoAlumnos().add(cursoAlumno);
+		cursoAlumno.setCurso(this);
+
+		return cursoAlumno;
+	}
+
+	public CursoAlumno removeCursoAlumno(CursoAlumno cursoAlumno) {
+		getCursoAlumnos().remove(cursoAlumno);
+		cursoAlumno.setCurso(null);
+
+		return cursoAlumno;
+	}
+
+	public List<Evaluacion> getEvaluacions() {
+		return this.evaluacions;
+	}
+
+	public void setEvaluacions(List<Evaluacion> evaluacions) {
+		this.evaluacions = evaluacions;
+	}
+
+	public Evaluacion addEvaluacion(Evaluacion evaluacion) {
+		getEvaluacions().add(evaluacion);
+		evaluacion.setCurso(this);
+
+		return evaluacion;
+	}
+
+	public Evaluacion removeEvaluacion(Evaluacion evaluacion) {
+		getEvaluacions().remove(evaluacion);
+		evaluacion.setCurso(null);
+
+		return evaluacion;
+	}
+
+	public List<Horario> getHorarios() {
+		return this.horarios;
+	}
+
+	public void setHorarios(List<Horario> horarios) {
+		this.horarios = horarios;
+	}
+
+	public Horario addHorario(Horario horario) {
+		getHorarios().add(horario);
+		horario.setCurso(this);
+
+		return horario;
+	}
+
+	public Horario removeHorario(Horario horario) {
+		getHorarios().remove(horario);
+		horario.setCurso(null);
+
+		return horario;
+	}
+
+	public List<Pregunta> getPreguntas() {
+		return this.preguntas;
+	}
+
+	public void setPreguntas(List<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	public Pregunta addPregunta(Pregunta pregunta) {
+		getPreguntas().add(pregunta);
+		pregunta.setCurso(this);
+
+		return pregunta;
+	}
+
+	public Pregunta removePregunta(Pregunta pregunta) {
+		getPreguntas().remove(pregunta);
+		pregunta.setCurso(null);
+
+		return pregunta;
 	}
 
 }

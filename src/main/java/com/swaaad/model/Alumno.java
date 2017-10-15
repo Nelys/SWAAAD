@@ -1,12 +1,9 @@
 package com.swaaad.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
+import java.util.List;
 
-import com.swaaad.model.CursoAlumno;
 
 /**
  * The persistent class for the alumno database table.
@@ -46,26 +43,15 @@ public class Alumno implements Serializable {
 	@Column(name="NRO_ORDEN")
 	private int nroOrden;
 
+	//bi-directional many-to-one association to CursoAlumno
+	@OneToMany(mappedBy="alumno")
+	private List<CursoAlumno> cursoAlumnos;
+
+	//bi-directional many-to-one association to Nota
+	@OneToMany(mappedBy="alumno")
+	private List<Nota> notas;
+
 	public Alumno() {
-	    // Constructor Vacio
-	}
-	
-	public Alumno(int idAlumno, String apellidos, String nombres) {
-        super();
-        this.idAlumno = idAlumno;
-        this.apellidos = apellidos;
-        this.nombres = nombres;
-    }
-
-    @OneToMany(mappedBy = "alumno")
-    private Set<CursoAlumno> cursoalumnos = new HashSet<CursoAlumno>();
-
-	@Override
-	public String toString() {
-		return "Alumno [idAlumno=" + idAlumno + ", apellidos=" + apellidos + ", apellidosApoderado="
-				+ apellidosApoderado + ", contrasena=" + contrasena + ", email=" + email + ", emailApoderado="
-				+ emailApoderado + ", genero=" + genero + ", nombres=" + nombres + ", nombresApoderado="
-				+ nombresApoderado + ", nroOrden=" + nroOrden + "]";
 	}
 
 	public int getIdAlumno() {
@@ -154,6 +140,50 @@ public class Alumno implements Serializable {
 
 	public void setNroOrden(int nroOrden) {
 		this.nroOrden = nroOrden;
+	}
+
+	public List<CursoAlumno> getCursoAlumnos() {
+		return this.cursoAlumnos;
+	}
+
+	public void setCursoAlumnos(List<CursoAlumno> cursoAlumnos) {
+		this.cursoAlumnos = cursoAlumnos;
+	}
+
+	public CursoAlumno addCursoAlumno(CursoAlumno cursoAlumno) {
+		getCursoAlumnos().add(cursoAlumno);
+		cursoAlumno.setAlumno(this);
+
+		return cursoAlumno;
+	}
+
+	public CursoAlumno removeCursoAlumno(CursoAlumno cursoAlumno) {
+		getCursoAlumnos().remove(cursoAlumno);
+		cursoAlumno.setAlumno(null);
+
+		return cursoAlumno;
+	}
+
+	public List<Nota> getNotas() {
+		return this.notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public Nota addNota(Nota nota) {
+		getNotas().add(nota);
+		nota.setAlumno(this);
+
+		return nota;
+	}
+
+	public Nota removeNota(Nota nota) {
+		getNotas().remove(nota);
+		nota.setAlumno(null);
+
+		return nota;
 	}
 
 }

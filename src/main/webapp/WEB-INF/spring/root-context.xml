@@ -24,7 +24,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- <value>com.swaad.modelo.Carrera</value> -->
-<!-- 				<value>com.swaaad.model.ActividadPedagogica</value> -->
+				<value>com.swaaad.model.ActividadPedagogica</value>
 				<value>com.swaaad.model.Alumno</value>
 				<value>com.swaaad.model.Asistencia</value>
 				<value>com.swaaad.model.AulaDinamica</value>

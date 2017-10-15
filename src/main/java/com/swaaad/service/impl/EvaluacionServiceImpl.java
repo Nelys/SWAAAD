@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swaaad.dao.AlumnosDao;
+import com.swaaad.dao.CursoDao;
 import com.swaaad.dao.EvaluacionDao;
 import com.swaaad.dao.NotaDao;
 import com.swaaad.model.Alumno;
@@ -34,12 +35,18 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     @Autowired
     NotaDao objNotaDao;
 
+    @Autowired
+    CursoDao objCurso;
     @Override
     public void addEvaluacion(Evaluacion evaluacion, ServletRequest request) throws Exception {
 
         HttpServletRequest request1 = (HttpServletRequest)request;
         HttpSession session = request1.getSession(false);
-        evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso"))); 
+
+        
+        Curso curso=objCurso.getCursoById((Integer) session.getAttribute("idCurso"));
+        evaluacion.setCurso(curso); 
+//      evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso")));
         
         objEvaluacionDao.addEvaluacion(evaluacion);
 
@@ -71,7 +78,11 @@ public class EvaluacionServiceImpl implements EvaluacionService {
         
         HttpServletRequest request1 = (HttpServletRequest)request;
         HttpSession session = request1.getSession(false);
-        evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso"))); 
+        
+        
+        Curso curso=objCurso.getCursoById((Integer) session.getAttribute("idCurso"));
+        evaluacion.setCurso(curso); 
+//        evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso"))); 
         
         objEvaluacionDao.updateEvaluacion(evaluacion);
         
@@ -155,7 +166,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
                 // Establecer nota evaluativa
                 if (nota == null) {
                     Nota notaPromedio = new Nota();
-                    notaPromedio.setIdAlumno(alumno.getIdAlumno());
+                    
+//                    notaPromedio.setIdAlumno(alumno.getIdAlumno());
+                    notaPromedio.setAlumno(alumno);
                     notaPromedio.setEvaluacion(evaluacion);
                     notaPromedio.setNotaEvaluativa(iRedondeo);
                     objNotaDao.addNota(notaPromedio);
