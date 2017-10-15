@@ -6,14 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.NotasAlumno;
 import com.swaaad.model.Alumno;
@@ -45,9 +43,9 @@ public class AjaxController2 {
      * Controlador JSON Alumno por Id
      * @throws Exception 
      */
-    @RequestMapping(value = "/prepadarNota", method = RequestMethod.GET) // POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/prepararNota", method = RequestMethod.GET) // POST,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void prepadarNota(@RequestParam("idNota") int idNota, @RequestParam("idAlumno") int idAlumno,
+    public void prepararNota(@RequestParam("idNota") int idNota, @RequestParam("idAlumno") int idAlumno,
             @RequestParam("idEvaluacion") int idEvaluacion, @RequestParam("notaEvaluativa") int notaEvaluativa) throws Exception {
         
         Evaluacion evaluacion = new Evaluacion();
