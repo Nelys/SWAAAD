@@ -1,3 +1,1 @@
-<div>
-  Made in this world.
-</div>
+<div>Made in this world.</div>

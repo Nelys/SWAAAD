@@ -1,101 +1,129 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
-<tiles-definitions>  
- 
-   <!-- Base Definition -->
-	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">  -->
-	<definition name="base-definition" template="WEB-INF/views/tiles/layouts/defaultLayout.jsp"> 
-		<put-attribute name="title" value="" />  
-		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />  
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />  
-		<put-attribute name="body" value="" />  
-<!-- 		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />   -->
-   </definition>  
- 
-   <!-- Pagina Inicial -->
-   <definition name="home" extends="base-definition">  
-       <put-attribute name="title" value="SWAAAD" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
-   </definition>  
+<tiles-definitions>
 
-   <!-- Pagina del perfil del Docente -->
-   <definition name="perfil" extends="base-definition">  
-       <put-attribute name="title" value="Perfil" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/perfil.jsp" />  
-   </definition>  
-      
-   <!-- Pagina Cursos -->
-   <definition name="cursos" extends="base-definition">  
-       <put-attribute name="title" value="Cursos" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/curso/cursos.jsp" />  
-   </definition> 
-   
-   <!-- Pagina Alumnos -->
-   <definition name="alumnos" extends="base-definition">  
-       <put-attribute name="title" value="Alumnos" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumnos.jsp" />  
-   </definition>
-   
-   <!-- Pagina Evaluaciones -->
-   <definition name="listNota" extends="base-definition">  
-       <put-attribute name="title" value="Evaluaciones" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/nota/nota-lista.jsp" />  
-   </definition> 
-   
-   <!-- Pagina Asistencias -->
-   <definition name="asistencias" extends="base-definition">  
-       <put-attribute name="title" value="Asistencias" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/asistencia/asistencias.jsp" />  
-   </definition> 
-   
-   <!-- Pagina Actividades Pedagogicas -->
-   <definition name="actividades-pedagogicas" extends="base-definition">  
-       <put-attribute name="title" value="Actividades Pedagogicas" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/actividad-pedagogica/actividades-pedagogicas.jsp" />  
-   </definition> 
-   
-   <!-- Pagina Aula Dinamica -->
-   <definition name="aula-dinamica" extends="base-definition">  
-       <put-attribute name="title" value="Aula Dinamicas" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/aula-dinamica/aula-dinamica.jsp" />  
-   </definition> 
-   
-   <!-- Pagina Participacion -->
-   <definition name="participacion" extends="base-definition">  
-       <put-attribute name="title" value="Participacion" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/participacion/participacion.jsp" />  
-   </definition> 
-   
-   <!-- Pagina Grupos -->
-   <definition name="grupos" extends="base-definition">  
-       <put-attribute name="title" value="Grupos" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/grupo/grupos.jsp" />  
-   </definition> 
-   <!-- Alumno Formulario -->
-   <definition name="form-alumno" extends="base-definition">  
-       <put-attribute name="title" value="Alumno Formulario" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumno-formulario.jsp" />  
-   </definition> 
-   <!-- Actividad Pedagogica Formulario -->
-   <definition name="form-actividadPedagogica" extends="base-definition">  
-       <put-attribute name="title" value="Actividad Pedagogica Formulario" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/actividad-pedagogica/actividad-pedagogica-formulario.jsp" />  
-   </definition> 
-   <!-- Curso Formulario -->
-   <definition name="form-curso" extends="base-definition">  
-       <put-attribute name="title" value="Curso Formulario" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-formulario.jsp" />  
-   </definition>
-   <!-- Horario Formulario -->
-   <definition name="form-horario" extends="base-definition">  
-       <put-attribute name="title" value="Horario del Curso" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-horario.jsp" />  
-   </definition>
-    <!-- Evaluacion Formulario -->
-   <definition name="form-evaluacion" extends="base-definition">  
-       <put-attribute name="title" value="Nota del Curso por Alumno" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/nota/nota-formulario.jsp" />  
-   </definition> 
-   
+	<!-- Base Definition -->
+	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> -->
+	<definition name="base-definition"
+		template="WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />
+		<put-attribute name="body" value="" />
+		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" 
+			/> -->
+	</definition>
+
+	<!-- Pagina Inicial -->
+	<definition name="home" extends="base-definition">
+		<put-attribute name="title" value="SWAAAD" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
+	</definition>
+
+	<!-- Pagina del perfil del Docente -->
+	<definition name="perfil" extends="base-definition">
+		<put-attribute name="title" value="Perfil" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/perfil.jsp" />
+	</definition>
+
+	<!-- Pagina Cursos -->
+	<definition name="cursos" extends="base-definition">
+		<put-attribute name="title" value="Cursos" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/curso/cursos.jsp" />
+	</definition>
+
+	<!-- Pagina Alumnos -->
+	<definition name="alumnos" extends="base-definition">
+		<put-attribute name="title" value="Alumnos" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/alumno/alumnos.jsp" />
+	</definition>
+
+	<!-- Pagina Evaluaciones -->
+	<definition name="listNota" extends="base-definition">
+		<put-attribute name="title" value="Evaluaciones" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/nota/nota-lista.jsp" />
+	</definition>
+
+	<!-- Pagina Asistencias -->
+	<definition name="asistencias" extends="base-definition">
+		<put-attribute name="title" value="Asistencias" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/asistencia/asistencias.jsp" />
+	</definition>
+
+	<!-- Pagina Actividades Pedagogicas -->
+	<definition name="actividades-pedagogicas" extends="base-definition">
+		<put-attribute name="title" value="Actividades Pedagogicas" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/actividad-pedagogica/actividades-pedagogicas.jsp" />
+	</definition>
+
+	<!-- Pagina Aula Dinamica -->
+	<definition name="aula-dinamica" extends="base-definition">
+		<put-attribute name="title" value="Aula Dinamicas" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/aula-dinamica/aula-dinamica.jsp" />
+	</definition>
+
+	<!-- Pagina Participacion -->
+	<definition name="participacion" extends="base-definition">
+		<put-attribute name="title" value="Participacion" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/participacion/participacion.jsp" />
+	</definition>
+
+	<!-- Pagina Grupos -->
+	<definition name="grupos" extends="base-definition">
+		<put-attribute name="title" value="Grupos" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/grupo/grupos.jsp" />
+	</definition>
+	<!-- Alumno Formulario -->
+	<definition name="form-alumno" extends="base-definition">
+		<put-attribute name="title" value="Alumno Formulario" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/alumno/alumno-formulario.jsp" />
+	</definition>
+	<!-- Actividad Pedagogica Formulario -->
+	<definition name="form-actividadPedagogica" extends="base-definition">
+		<put-attribute name="title" value="Actividad Pedagogica Formulario" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/actividad-pedagogica/actividad-pedagogica-formulario.jsp" />
+	</definition>
+	<!-- Curso Formulario -->
+	<definition name="form-curso" extends="base-definition">
+		<put-attribute name="title" value="Curso Formulario" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/curso/curso-formulario.jsp" />
+	</definition>
+	<!-- Horario Formulario -->
+	<definition name="form-horario" extends="base-definition">
+		<put-attribute name="title" value="Horario del Curso" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/curso/curso-horario.jsp" />
+	</definition>
+	<!-- Evaluacion Formulario -->
+	<definition name="form-evaluacion" extends="base-definition">
+		<put-attribute name="title" value="Nota del Curso por Alumno" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/nota/nota-formulario.jsp" />
+	</definition>
+	<!-- Alumno Reporte -->
+	<definition name="report-alumnos" extends="base-definition">
+		<put-attribute name="title" value="Reporte de Alumnos" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/alumno/alumno-report.jsp" />
+	</definition>
+	<definition name="reporte" extends="base-definition">
+		<put-attribute name="title" value="Reporte de Alumnos" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/alumno-report.jsp" />
+	</definition>
+
 </tiles-definitions>
