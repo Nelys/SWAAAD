@@ -3,6 +3,7 @@ package com.swaaad.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.AlumnoDTO;
+import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
+import com.swaaad.model.CursoAlumno;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AsistenciaService;
-
-
+import com.swaaad.service.CursoAlumnoService;
 
 @Controller
 public class AsistenciaController {
@@ -28,20 +33,33 @@ public class AsistenciaController {
 	@Autowired
 	AlumnosService objAlumnoService;
 
+	@Autowired
+	CursoAlumnoService objCursoAlumno;
 
 	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("asistenciaPage");
-		logger.info("alumnosPage");
-		
-		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
+
+		HttpServletRequest request1 = (HttpServletRequest) request;
+		HttpSession session = request1.getSession(false);
+
+		int idCurso = (Integer) session.getAttribute("idCurso");
+
+		@SuppressWarnings("unused")
+		List<CursoAlumno> listaAlumnosCursos = objCursoAlumno.getAllAlumnosByCurso(idCurso);
+
+		System.out.println("mensaje de los cambios");
+		// model.addObject("listAlumnos",
+		// objAlumnoService.getAllAlumnosByIdCurso(request));
+		model.addObject("listAlumnos", listaAlumnosCursos);
 
 		model.setViewName("asistencias");
 
 		return model;
-		
+
 	}
+
 	@RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
 	public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia) throws Exception {
 
@@ -59,7 +77,6 @@ public class AsistenciaController {
 		}
 		return new ModelAndView("redirect:/asistencias");
 	}
-	
 
 	@RequestMapping(value = "/newAsistencia", method = RequestMethod.GET)
 	public ModelAndView newAsistencia(ModelAndView model) throws Exception {
@@ -70,5 +87,21 @@ public class AsistenciaController {
 		return model;
 	}
 
-	
+	/**
+	 * Controlador JSON Alumno por Id
+	 * 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/guardarAsistenciaAlumno", method = RequestMethod.GET) // POST,produces
+	@ResponseBody
+	public AlumnoDTO getAlumnoById(@RequestParam("tipo") String tipo, @RequestParam("idAlumnoCurso") int idAlumnoCurso)
+			throws Exception {
+
+		//Asistencia.
+	//	objAsistenciaService.addAsistencia(asistencia);
+		
+		//METODO PARA GUARDAR ASISTENCIA
+		return null;
+	}
+
 }

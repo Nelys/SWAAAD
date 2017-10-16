@@ -1,5 +1,7 @@
 package com.swaaad.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +32,9 @@ public class CursoAlumnoServiceImpl implements CursoAlumnoService {
 	}
 
 	@Override
-	public CursoAlumno getAllAlumnosByCurso(int idAlumno) throws Exception {
+	public List<CursoAlumno> getAllAlumnosByCurso(int idCurso) throws Exception {
 		
-		return objCursoAlumnoDao.getAllAlumnosByCurso(idAlumno);
+		return objCursoAlumnoDao.getAllAlumnosByCurso(idCurso);
 	}
 
 }

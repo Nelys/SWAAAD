@@ -1,5 +1,7 @@
 package com.swaaad.service;
 
+import java.util.List;
+
 import com.swaaad.model.CursoAlumno;
 
 public interface CursoAlumnoService {
@@ -10,6 +12,6 @@ public interface CursoAlumnoService {
 
 	void updateCursoAlumno(CursoAlumno cursoAlumno) throws Exception;
 
-	CursoAlumno getAllAlumnosByCurso(int idAlumno) throws Exception;
+	List<CursoAlumno> getAllAlumnosByCurso(int idCurso) throws Exception;
 
 }

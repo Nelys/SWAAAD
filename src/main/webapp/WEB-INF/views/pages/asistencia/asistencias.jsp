@@ -15,8 +15,9 @@
 		<!-- Opcion de la tabla -->
 		<p>
 		<div class='row'>
-			<div class="col-md-1">
-				<a class="btn btn-success" href="newAsistencia"><i class="fa fa-plus"></i> Nuevo</a>
+			<div class="col-md-2 col-lg-1">
+				<a class="btn btn-success" href="newAsistencia"><i
+					class="fa fa-plus"></i> Nuevo</a>
 			</div>
 
 			<div class="col-md-4">
@@ -42,7 +43,7 @@
 		</p>
 		<!-- Resgistros de la tabla -->
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-6">
 
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
@@ -55,21 +56,16 @@
 							</tr>
 							<c:forEach var="lista" items="${listAlumnos}">
 								<tr>
-									<td>${lista.nroOrden}</td>
-									<td>${lista.nombres},${lista.apellidos}</td>
-									<td style="text-align: center" width="100px">
-									<select>
-									<option  value="A"> Asistio
-									<option value="F"> Falta
-									<option value="T"> Tarde
-									<option value="FJ"> Falta Justificada
-									<option value="TJ"> Tardanza Justificada
-									</select>
-
-<!-- 									<td style="text-align: center" width="100px"> -->
-<%-- 									<a class="btn btn-sm btn-warning btn-sm" href="editAlumno?id=${lista.idAlumno}"><i class="fa fa-pencil-square-o"></i></a>  --%>
-<%-- 									<a class="btn btn-sm btn-danger btn-sm" href="deleteAlumno?id=${lista.idAlumno}"><i	class="fa fa-trash-o"></i></a> --%>
-<!-- 									</td> -->
+									<td>${lista.alumno.nroOrden}</td>
+									<td>${lista.alumno.nombres},${lista.alumno.apellidos}</td>
+									<td style="text-align: center" width="100px"><select
+										onchange="enviarAsistencia(this,${lista.idCursoAlumno})">
+											<option value="A">Asistio
+											<option value="F">Falta
+											<option value="T">Tarde
+											<option value="FJ">Falta Justificada
+											<option value="TJ">Tardanza Justificada
+									</select></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -82,6 +78,40 @@
 
 	</div>
 	<!-- /.container-fluid -->
+	<script>
+function enviarAsistencia(obj,idCursoAlumno){
+	
+	
+	var tipoistencias=$(obj).val();
+	var AlumnoCurso=idCursoAlumno;
+	$.ajax({
+		type: "GET",
+	  	dataType: "json",
+		url : '${pageContext.request.contextPath}/guardarAsistenciaAlumno',
+		data: { 
+			tipo :  tipoAsistencias,
+			idAlumnoCurso :AlumnoCurso
+        }
+	})
+	.done(function( data, textStatus, jqXHR ) {
+		if ( console && console.log ) {
+			console.log( "La solicitud se ha completado correctamente. " );
+			}
+	})
+	.fail(function( jqXHR, textStatus, errorThrown ) {
+            if ( console && console.log ) {
+                console.log( "La solicitud a fallado: " +  textStatus);
+            }
+// 		success: function(result){
+// 			console.log("trajo");
+// 		},
+// 		error: function(x,e){
+// 			toastr.error('Debe ingresar una nota', 'Error');
+// //			    alert("error occur");
+// 		} 
+	});
 
+}
+</script>
 </div>
 <!-- /#page-wrapper -->

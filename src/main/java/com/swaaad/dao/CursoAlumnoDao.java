@@ -1,6 +1,8 @@
 package com.swaaad.dao;
 
 
+import java.util.List;
+
 import com.swaaad.model.CursoAlumno;
 /**
  * @author Nelys
@@ -36,13 +38,7 @@ public interface CursoAlumnoDao {
 	 */
 	void updateCursoAlumno(CursoAlumno cursoAlumno) throws Exception;
 
-	CursoAlumno getAllAlumnosByCurso(int idCurso) throws Exception;
+	List<CursoAlumno> getAllAlumnosByCurso(int idCurso) throws Exception;
 
-	/**
-	 * Elimina CursoAlumno
-	 * 
-	 * @param idCursoAlumno
-	 *            : int id CursoAlumno
-	 * @throws Exception
-	 */
+	
 }

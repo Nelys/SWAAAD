@@ -1,12 +1,13 @@
 package com.swaaad.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.swaaad.dao.CursoAlumnoDao;
-import com.swaaad.model.Alumno;
 import com.swaaad.model.CursoAlumno;
 
 public class CursoAlumnoDaoImpl implements CursoAlumnoDao {
@@ -83,16 +84,16 @@ public class CursoAlumnoDaoImpl implements CursoAlumnoDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public CursoAlumno getAllAlumnosByCurso(int idCurso) throws Exception {
+	public List<CursoAlumno> getAllAlumnosByCurso(int idCurso) throws Exception {
 		sSession = sessionFactory.openSession();
-		CursoAlumno cursoAlumno = null;
+		List<CursoAlumno> cursoAlumnos = null;
 		try {
-			String queryCursoAlumno = "SELECT Nombres FROM Alumno as al INNER JOIN curso_alumno as ca ON al.ID_ALUMNO=ca.ID_ALUMNO"
-					+ " WHERE ca.ID_CURSO=idCurso";
+			String queryCursoAlumno = "SELECT ca FROM CursoAlumno ca JOIN ca.curso c WHERE c.idCurso=:idCurso  ";
 			Query query = sSession.createQuery(queryCursoAlumno);
 			query.setInteger("idCurso", idCurso);
-			cursoAlumno = (CursoAlumno) query.uniqueResult();
+			cursoAlumnos = (List<CursoAlumno>) query.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,7 +102,7 @@ public class CursoAlumnoDaoImpl implements CursoAlumnoDao {
 			sSession.close();
 
 		}
-		return cursoAlumno;
+		return cursoAlumnos;
 	}
 
 }
