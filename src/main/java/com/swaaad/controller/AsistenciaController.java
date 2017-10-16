@@ -1,5 +1,6 @@
 package com.swaaad.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,8 +98,12 @@ public class AsistenciaController {
 	public AlumnoDTO getAlumnoById(@RequestParam("tipo") String tipo, @RequestParam("idAlumnoCurso") int idAlumnoCurso)
 			throws Exception {
 
+		CursoAlumno cursoAlumno=objCursoAlumno.getCursoAlumnoById(idAlumnoCurso);
+		
+		Asistencia asistencia=new Asistencia();
+//		asistencia.set
 		//Asistencia.
-	//	objAsistenciaService.addAsistencia(asistencia);
+//		objAsistenciaService.addAsistencia(asistencia);
 		
 		//METODO PARA GUARDAR ASISTENCIA
 		return null;
