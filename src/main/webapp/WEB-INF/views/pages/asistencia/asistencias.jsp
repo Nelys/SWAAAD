@@ -13,11 +13,13 @@
 		</div>
 
 		<!-- Opcion de la tabla -->
-	
+
 		<div class='row'>
 			<div class="col-md-2 col-lg-1">
-				<a class="btn btn-success" href="newAsistencia"><i
-					class="fa fa-plus"></i> Nuevo</a>
+				<button class="btn btn-success" href="newAsistencia"
+					data-toggle="modal" data-target="#myModal">
+					<i class="fa fa-plus"></i> Nuevo
+				</button>
 			</div>
 
 			<div class="col-md-4">
@@ -40,12 +42,12 @@
 				</div>
 			</div>
 		</div>
-	
-		
+		<br> <br>
+		<br>
+
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-6">
-
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
 						<table class="table table-bordered table-hover table-striped">
@@ -78,8 +80,52 @@
 		<!-- /.row -->
 
 	</div>
-	<!-- /.container-fluid -->
-	<script>
+
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-sm">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Nueva Asistencia</h4>
+			</div>
+			<div class="modal-body">
+
+				<div class="form-group">
+					<label for="text">Fecha</label>
+					<div class="input-group">
+						<input type="date" class="form-control" id="fecha">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" id="guardarAsistencia">Guardar</button>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- /.container-fluid -->
+<script>
+$( "#guardarAsistencia" ).click(function() {
+	 //enviar guardar asistencia
+	 alert("Guardara");
+// 	 $.post("demo_test.asp", function(data, status){
+// 	        alert("Data: " + data + "\nStatus: " + status);
+// 	    });
+	});
+
 function enviarAsistencia(obj,idCursoAlumno){
 	
 	
@@ -104,16 +150,9 @@ function enviarAsistencia(obj,idCursoAlumno){
             if ( console && console.log ) {
                 console.log( "La solicitud a fallado: " +  textStatus);
             }
-// 		success: function(result){
-// 			console.log("trajo");
-// 		},
-// 		error: function(x,e){
-// 			toastr.error('Debe ingresar una nota', 'Error');
-// //			    alert("error occur");
-// 		} 
+
 
 	});
 }
 </script>
-</div>
 <!-- /#page-wrapper -->
