@@ -20,13 +20,15 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `actividad_pedagogica`;
 CREATE TABLE `actividad_pedagogica` (
-  `ID_ACTIVIDAD` int(11) NOT NULL AUTO_INCREMENT,
-  `FECHA` datetime(6) DEFAULT NULL,
-  `DESCRIPCION` varchar(50) DEFAULT NULL,
-  `RECORDAR` bit(1) DEFAULT NULL,
-  `ID_CURSO` int(11) NOT NULL,
-  PRIMARY KEY (`ID_ACTIVIDAD`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ID_ACTIVIDAD` INT(11) NOT NULL AUTO_INCREMENT,
+  `FECHA` DATETIME(6) DEFAULT NULL,
+  `DESCRIPCION` VARCHAR(50) DEFAULT NULL,
+  `RECORDAR` BIT(1) DEFAULT NULL,
+  `ID_CURSO` INT(11) NOT NULL,
+  PRIMARY KEY (`ID_ACTIVIDAD`),
+  KEY `FK_CURSO_ACTIVIDADPEDAGOGICA` (`ID_CURSO`),
+  CONSTRAINT `FK_CURSO_ACTIVIDADPEDAGOGICA` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of actividad_pedagogica
@@ -37,78 +39,81 @@ CREATE TABLE `actividad_pedagogica` (
 -- ----------------------------
 DROP TABLE IF EXISTS `alumno`;
 CREATE TABLE `alumno` (
-  `ID_ALUMNO` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRES` varchar(50) DEFAULT NULL,
-  `APELLIDOS` varchar(50) DEFAULT NULL,
-  `GENERO` varchar(1) DEFAULT NULL,
-  `EMAIL` varchar(60) DEFAULT NULL,
-  `CONTRASENA` varchar(60) DEFAULT NULL,
-  `NRO_ORDEN` int(11) DEFAULT NULL,
-  `NOMBRES_APODERADO` varchar(50) DEFAULT NULL,
-  `APELLIDOS_APODERADO` varchar(50) DEFAULT NULL,
-  `EMAIL_APODERADO` varchar(60) DEFAULT NULL,
-  `IMAGEN` varchar(60) DEFAULT NULL,
+  `ID_ALUMNO` INT(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRES` VARCHAR(50) DEFAULT NULL,
+  `APELLIDOS` VARCHAR(50) DEFAULT NULL,
+  `GENERO` VARCHAR(1) DEFAULT NULL,
+  `EMAIL` VARCHAR(60) DEFAULT NULL,
+  `CONTRASENA` VARCHAR(60) DEFAULT NULL,
+  `NRO_ORDEN` INT(11) DEFAULT NULL,
+  `NOMBRES_APODERADO` VARCHAR(50) DEFAULT NULL,
+  `APELLIDOS_APODERADO` VARCHAR(50) DEFAULT NULL,
+  `EMAIL_APODERADO` VARCHAR(60) DEFAULT NULL,
+  `IMAGEN` VARCHAR(60) DEFAULT NULL,
   PRIMARY KEY (`ID_ALUMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=INNODB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of alumno
 -- ----------------------------
-INSERT INTO `alumno` VALUES ('1', 'Brenda Laura', 'Arag�n Salinas', 'F', 'brenda .arag�n @gmail.com', 'brenda1234', '1', 'Fernando Carlos', 'Arag�n ', 'Arag�n @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('2', 'Karla Stephany', 'Aranibar Tila', 'F', 'karla .aranibar @gmail.com', 'karla1234', '2', 'Josue ', 'Aranibar ', 'Aranibar @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('3', 'Rosa Edith', 'Atayupanqui Due�as', 'F', 'rosa .atayupanqui @gmail.com', 'rosa1234', '3', 'Pedro Carlos', 'Atayupanqui ', 'Atayupanqui @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('4', 'Grisel Mercedes', 'Bald�rrago Tinoco', 'F', 'grisel .bald�rrago @gmail.com', 'grisel1234', '4', 'Samuel Pedro', 'Bald�rrago ', 'Bald�rrago @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('5', 'Angie Camila', 'Barriga Fern�ndez', 'F', 'angie .barriga @gmail.com', 'angie1234', '5', 'Cesar', 'Barriga ', 'Barriga @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('6', 'Fiorela Alejaa', 'Begazo Vera', null, 'fiorela .begazo @gmail.com', null, '0', null, null, null, null);
-INSERT INTO `alumno` VALUES ('7', 'Yenifer Pilar', 'Cahuana Pacha', 'F', 'yenifer .cahuana @gmail.com', 'yenifer1234', '7', 'Roberto', 'Cahuana ', 'Cahuana @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('8', 'Lizbeth Reyna', 'Cayani Tejada', 'F', 'lizbeth .cayani @gmail.com', 'lizbeth1234', '8', 'Luis', 'Cayani ', 'Cayani @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('9', 'Nicole Fabiola', 'Cayro Prevate', 'F', 'nicole .cayro @gmail.com', 'nicole1234', '9', 'Estefano', 'Cayro ', 'Cayro @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('10', 'Amanda Rebeca', 'Cazorla Jim�nez', 'F', 'amanda .cazorla @gmail.com', 'amanda1234', '10', 'David', 'Cazorla ', 'Cazorla @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('11', 'Bettsy Brigite', 'Ccalachua Aquepucho', 'F', 'bettsy .ccalachua @gmail.com', 'bettsy1234', '11', 'Cesar Luis', 'Ccalachua ', 'Ccalachua @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('12', 'Claudia Betsa', 'Chavez Marin', 'F', 'claudia .chavez @gmail.com', 'claudia1234', '12', 'Julios Cesar', 'Chavez ', 'Chavez @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('13', 'Karina Ximena', 'Checcori Moina', 'F', 'karina .checcori @gmail.com', 'karina1234', '13', 'Jhonatan Julio', 'Checcori ', 'Checcori @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('14', 'Claudia Patricia', 'Delgado Frisancho', 'F', 'claudia .delgado @gmail.com', 'claudia1234', '14', 'Fabricio', 'Delgado ', 'Delgado @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('15', 'Mayra Matilde', 'D�az C�rdenas', 'F', 'mayra .d�az @gmail.com', 'mayra1234', '15', 'Tomas', 'D�az ', 'D�az @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('16', 'Leira Miluska', 'Enr�quez Huayta', 'F', 'leira .enr�quez @gmail.com', 'leira1234', '16', null, 'Enr�quez ', 'Enr�quez @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('17', 'Allison Yolanda', 'Escalante Palacios', 'F', 'allison .escalante @gmail.com', 'allison1234', '17', null, 'Escalante ', 'Escalante @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('18', 'Bianka Lucia', 'Garcia Iba�ez', 'F', 'bianka .garcia @gmail.com', 'bianka1234', '18', null, 'Garcia ', 'Garcia @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('19', 'Milagros A.', 'Motta Rond�n', 'F', 'milagros .motta @gmail.com', 'milagros1234', '19', null, 'Motta ', 'Motta @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('20', 'Diana Margior', 'N��ez Ch�vez', 'F', 'diana .n��ez @gmail.com', 'diana1234', '20', null, 'N��ez ', 'N��ez @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('21', 'Shirley Patric', 'Ortiz Delgado', 'F', 'shirley .ortiz @gmail.com', 'shirley1234', '21', null, 'Ortiz ', 'Ortiz @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('22', 'Ana Paula', 'Osorio Vargas', 'F', 'ana .osorio @gmail.com', 'ana1234', '22', null, 'Osorio ', 'Osorio @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('23', 'Lizeth Diana', 'Pe�a Villafuerte', 'F', 'lizeth .pe�a @gmail.com', 'lizeth1234', '23', null, 'Pe�a ', 'Pe�a @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('24', 'Luz Clara', 'Pillco Ramos', 'F', 'luz .pillco @gmail.com', 'luz1234', '24', null, 'Pillco ', 'Pillco @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('25', 'Alanys Virginia', 'Pineda Fern�ndez', 'F', 'alanys .pineda @gmail.com', 'alanys1234', '25', null, 'Pineda ', 'Pineda @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('26', 'Carla Daniela', 'Quiroz Condori', 'F', 'carla .quiroz @gmail.com', 'carla1234', '26', null, 'Quiroz ', 'Quiroz @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('27', 'Yakelyn Pao', 'Rios Salas', 'F', 'yakelyn .rios @gmail.com', 'yakelyn1234', '27', null, 'Rios ', 'Rios @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('28', 'Virginia del Carme', 'Rodr�guez Delelis', 'F', 'virginia .rodr�guez @gmail.com', 'virginia1234', '28', null, 'Rodr�guez ', 'Rodr�guez @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('29', 'Carola Andrea Alex', 'Rond�n De La Cruz', 'F', 'carola .rond�n @gmail.com', 'carola1234', '29', null, 'Rond�n ', 'Rond�n @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('30', 'Stephanie Alexan', 'Salas Rodriguez', 'F', 'stephanie .salas @gmail.com', 'stephanie1234', '30', null, 'Salas ', 'Salas @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('31', 'Luciana Anthua', 'Smith Postigo', 'F', 'luciana .smith @gmail.com', 'luciana1234', '31', null, 'Smith ', 'Smith @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('32', 'Jose Manuel', 'Tejada Mamani', 'M', 'jose .tejada @gmail.com', 'jose1234', '32', null, 'Tejada ', 'Tejada @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('33', 'Andrea Del Carmen', 'Valdivia Cisneros', 'F', 'andrea .valdivia @gmail.com', 'andrea1234', '33', null, 'Valdivia ', 'Valdivia @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('34', 'Rosse Mary', 'Valdivia Paredes', 'F', 'rosse .valdivia @gmail.com', 'rosse1234', '34', null, 'Valdivia ', 'Valdivia @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('35', 'Clara Giannella', 'Valdivia Tinajeros', 'F', 'clara .valdivia @gmail.com', 'clara1234', '35', null, 'Valdivia ', 'Valdivia @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('36', 'Fabiola Cristin', 'Valencia Neyra', 'F', 'fabiola .valencia @gmail.com', 'fabiola1234', '36', null, 'Valencia ', 'Valencia @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('37', 'Richard  A.', 'Hanco Mamani', 'M', 'richard .hanco @gmail.com', 'richard1234', '37', null, 'Hanco ', 'Hanco @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('38', 'Denise Antonella', 'Zevallos Barriga', 'F', 'denise .zevallos @gmail.com', 'denise1234', '38', null, 'Zevallos ', 'Zevallos @hotmail.com', null);
-INSERT INTO `alumno` VALUES ('39', '', '', null, '', null, '0', null, null, null, null);
-INSERT INTO `alumno` VALUES ('40', 'aaaa', 'aaaa', null, 'aaaaa', null, '0', null, null, null, null);
-INSERT INTO `alumno` VALUES ('41', 'aaaa', 'aaaaaa', null, 'asdf@gmail.com', null, '0', null, null, null, null);
-INSERT INTO `alumno` VALUES ('42', 'Lizeth Diana', 'Smith Postigo', null, 'bbbb@gmail.com', null, '0', null, null, null, null);
-INSERT INTO `alumno` VALUES ('43', 'Clara Giannella', 'Valdivia Tinajeros', null, 'ccccccccc@gmail.com', null, '0', null, null, null, null);
-INSERT INTO `alumno` VALUES ('44', 'Ana Maria', 'Sanchez Diaz', null, '', null, '0', null, null, null, null);
+INSERT INTO `alumno` VALUES ('1', 'Brenda Laura', 'Arag�n Salinas', 'F', 'brenda .arag�n @gmail.com', 'brenda1234', '1', 'Fernando Carlos', 'Arag�n ', 'Arag�n @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('2', 'Karla Stephany', 'Aranibar Tila', 'F', 'karla .aranibar @gmail.com', 'karla1234', '2', 'Josue ', 'Aranibar ', 'Aranibar @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('3', 'Rosa Edith', 'Atayupanqui Due�as', 'F', 'rosa .atayupanqui @gmail.com', 'rosa1234', '3', 'Pedro Carlos', 'Atayupanqui ', 'Atayupanqui @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('4', 'Grisel Mercedes', 'Bald�rrago Tinoco', 'F', 'grisel .bald�rrago @gmail.com', 'grisel1234', '4', 'Samuel Pedro', 'Bald�rrago ', 'Bald�rrago @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('5', 'Angie Camila', 'Barriga Fern�ndez', 'F', 'angie .barriga @gmail.com', 'angie1234', '5', 'Cesar', 'Barriga ', 'Barriga @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('6', 'Fiorela Alejaa', 'Begazo Vera', NULL, 'fiorela .begazo @gmail.com', NULL, '0', NULL, NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES ('7', 'Yenifer Pilar', 'Cahuana Pacha', 'F', 'yenifer .cahuana @gmail.com', 'yenifer1234', '7', 'Roberto', 'Cahuana ', 'Cahuana @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('8', 'Lizbeth Reyna', 'Cayani Tejada', 'F', 'lizbeth .cayani @gmail.com', 'lizbeth1234', '8', 'Luis', 'Cayani ', 'Cayani @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('9', 'Nicole Fabiola', 'Cayro Prevate', 'F', 'nicole .cayro @gmail.com', 'nicole1234', '9', 'Estefano', 'Cayro ', 'Cayro @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('10', 'Amanda Rebeca', 'Cazorla Jim�nez', 'F', 'amanda .cazorla @gmail.com', 'amanda1234', '10', 'David', 'Cazorla ', 'Cazorla @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('11', 'Bettsy Brigite', 'Ccalachua Aquepucho', 'F', 'bettsy .ccalachua @gmail.com', 'bettsy1234', '11', 'Cesar Luis', 'Ccalachua ', 'Ccalachua @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('12', 'Claudia Betsa', 'Chavez Marin', 'F', 'claudia .chavez @gmail.com', 'claudia1234', '12', 'Julios Cesar', 'Chavez ', 'Chavez @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('13', 'Karina Ximena', 'Checcori Moina', 'F', 'karina .checcori @gmail.com', 'karina1234', '13', 'Jhonatan Julio', 'Checcori ', 'Checcori @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('14', 'Claudia Patricia', 'Delgado Frisancho', 'F', 'claudia .delgado @gmail.com', 'claudia1234', '14', 'Fabricio', 'Delgado ', 'Delgado @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('15', 'Mayra Matilde', 'D�az C�rdenas', 'F', 'mayra .d�az @gmail.com', 'mayra1234', '15', 'Tomas', 'D�az ', 'D�az @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('16', 'Leira Miluska', 'Enr�quez Huayta', 'F', 'leira .enr�quez @gmail.com', 'leira1234', '16', NULL, 'Enr�quez ', 'Enr�quez @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('17', 'Allison Yolanda', 'Escalante Palacios', 'F', 'allison .escalante @gmail.com', 'allison1234', '17', NULL, 'Escalante ', 'Escalante @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('18', 'Bianka Lucia', 'Garcia Iba�ez', 'F', 'bianka .garcia @gmail.com', 'bianka1234', '18', NULL, 'Garcia ', 'Garcia @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('19', 'Milagros A.', 'Motta Rond�n', 'F', 'milagros .motta @gmail.com', 'milagros1234', '19', NULL, 'Motta ', 'Motta @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('20', 'Diana Margior', 'N��ez Ch�vez', 'F', 'diana .n��ez @gmail.com', 'diana1234', '20', NULL, 'N��ez ', 'N��ez @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('21', 'Shirley Patric', 'Ortiz Delgado', 'F', 'shirley .ortiz @gmail.com', 'shirley1234', '21', NULL, 'Ortiz ', 'Ortiz @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('22', 'Ana Paula', 'Osorio Vargas', 'F', 'ana .osorio @gmail.com', 'ana1234', '22', NULL, 'Osorio ', 'Osorio @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('23', 'Lizeth Diana', 'Pe�a Villafuerte', 'F', 'lizeth .pe�a @gmail.com', 'lizeth1234', '23', NULL, 'Pe�a ', 'Pe�a @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('24', 'Luz Clara', 'Pillco Ramos', 'F', 'luz .pillco @gmail.com', 'luz1234', '24', NULL, 'Pillco ', 'Pillco @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('25', 'Alanys Virginia', 'Pineda Fern�ndez', 'F', 'alanys .pineda @gmail.com', 'alanys1234', '25', NULL, 'Pineda ', 'Pineda @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('26', 'Carla Daniela', 'Quiroz Condori', 'F', 'carla .quiroz @gmail.com', 'carla1234', '26', NULL, 'Quiroz ', 'Quiroz @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('27', 'Yakelyn Pao', 'Rios Salas', 'F', 'yakelyn .rios @gmail.com', 'yakelyn1234', '27', NULL, 'Rios ', 'Rios @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('28', 'Virginia del Carme', 'Rodr�guez Delelis', 'F', 'virginia .rodr�guez @gmail.com', 'virginia1234', '28', NULL, 'Rodr�guez ', 'Rodr�guez @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('29', 'Carola Andrea Alex', 'Rond�n De La Cruz', 'F', 'carola .rond�n @gmail.com', 'carola1234', '29', NULL, 'Rond�n ', 'Rond�n @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('30', 'Stephanie Alexan', 'Salas Rodriguez', 'F', 'stephanie .salas @gmail.com', 'stephanie1234', '30', NULL, 'Salas ', 'Salas @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('31', 'Luciana Anthua', 'Smith Postigo', 'F', 'luciana .smith @gmail.com', 'luciana1234', '31', NULL, 'Smith ', 'Smith @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('32', 'Jose Manuel', 'Tejada Mamani', 'M', 'jose .tejada @gmail.com', 'jose1234', '32', NULL, 'Tejada ', 'Tejada @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('33', 'Andrea Del Carmen', 'Valdivia Cisneros', 'F', 'andrea .valdivia @gmail.com', 'andrea1234', '33', NULL, 'Valdivia ', 'Valdivia @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('34', 'Rosse Mary', 'Valdivia Paredes', 'F', 'rosse .valdivia @gmail.com', 'rosse1234', '34', NULL, 'Valdivia ', 'Valdivia @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('35', 'Clara Giannella', 'Valdivia Tinajeros', 'F', 'clara .valdivia @gmail.com', 'clara1234', '35', NULL, 'Valdivia ', 'Valdivia @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('36', 'Fabiola Cristin', 'Valencia Neyra', 'F', 'fabiola .valencia @gmail.com', 'fabiola1234', '36', NULL, 'Valencia ', 'Valencia @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('37', 'Richard  A.', 'Hanco Mamani', 'M', 'richard .hanco @gmail.com', 'richard1234', '37', NULL, 'Hanco ', 'Hanco @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('38', 'Denise Antonella', 'Zevallos Barriga', 'F', 'denise .zevallos @gmail.com', 'denise1234', '38', NULL, 'Zevallos ', 'Zevallos @hotmail.com', NULL);
+INSERT INTO `alumno` VALUES ('39', '', '', NULL, '', NULL, '0', NULL, NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES ('40', 'aaaa', 'aaaa', NULL, 'aaaaa', NULL, '0', NULL, NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES ('41', 'aaaa', 'aaaaaa', NULL, 'asdf@gmail.com', NULL, '0', NULL, NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES ('42', 'Lizeth Diana', 'Smith Postigo', NULL, 'bbbb@gmail.com', NULL, '0', NULL, NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES ('43', 'Clara Giannella', 'Valdivia Tinajeros', NULL, 'ccccccccc@gmail.com', NULL, '0', NULL, NULL, NULL, NULL);
+INSERT INTO `alumno` VALUES ('44', 'Ana Maria', 'Sanchez Diaz', NULL, '', NULL, '0', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for asistencia
 -- ----------------------------
 DROP TABLE IF EXISTS `asistencia`;
 CREATE TABLE `asistencia` (
-  `ID_ASISTENCIA` int(11) NOT NULL AUTO_INCREMENT,
-  `ESTADO` varchar(1) DEFAULT NULL,
-  `ID_CURSO` int(11) NOT NULL,
-  PRIMARY KEY (`ID_ASISTENCIA`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ID_ASISTENCIA` INT(11) NOT NULL AUTO_INCREMENT,
+  `ESTADO` VARCHAR(1) DEFAULT NULL,
+  `FECHA` DATE DEFAULT NULL,
+  `ID_CURSO_ALUMNO` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_ASISTENCIA`),
+  KEY `FK_CURSOALUMNO_ASISTENCIA` (`ID_CURSO_ALUMNO`),
+  CONSTRAINT `FK_CURSOALUMNO_ASISTENCIA` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of asistencia
@@ -119,13 +124,13 @@ CREATE TABLE `asistencia` (
 -- ----------------------------
 DROP TABLE IF EXISTS `aula_dinamica`;
 CREATE TABLE `aula_dinamica` (
-  `ID_AULA_DINAMICA` int(11) NOT NULL AUTO_INCREMENT,
-  `X` int(11) DEFAULT NULL,
-  `Y` int(11) DEFAULT NULL,
-  `COLOR` varchar(7) DEFAULT NULL,
-  `ID_CURSO` int(11) NOT NULL,
+  `ID_AULA_DINAMICA` INT(11) NOT NULL AUTO_INCREMENT,
+  `X` INT(11) DEFAULT NULL,
+  `Y` INT(11) DEFAULT NULL,
+  `COLOR` VARCHAR(7) DEFAULT NULL,
+  `ID_CURSO` INT(11) NOT NULL,
   PRIMARY KEY (`ID_AULA_DINAMICA`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=INNODB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aula_dinamica
@@ -140,17 +145,17 @@ INSERT INTO `aula_dinamica` VALUES ('4', '79', '86', 'f13e00', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
-  `ID_CURSO` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE_CURSO` varchar(60) NOT NULL,
-  `INSTITUCION` varchar(60) DEFAULT NULL,
-  `GRADO` int(11) DEFAULT NULL,
-  `SECCION` varchar(1) DEFAULT NULL,
-  `ANIO` int(4) DEFAULT NULL,
-  `ID_DOCENTE` int(11) NOT NULL,
+  `ID_CURSO` INT(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE_CURSO` VARCHAR(60) NOT NULL,
+  `INSTITUCION` VARCHAR(60) DEFAULT NULL,
+  `GRADO` INT(11) DEFAULT NULL,
+  `SECCION` VARCHAR(1) DEFAULT NULL,
+  `ANIO` INT(4) DEFAULT NULL,
+  `ID_DOCENTE` INT(11) NOT NULL,
   PRIMARY KEY (`ID_CURSO`),
   KEY `fk_CURSO_DOCENTE1` (`ID_DOCENTE`),
   CONSTRAINT `fk_CURSO_DOCENTE1` FOREIGN KEY (`ID_DOCENTE`) REFERENCES `docente` (`ID_DOCENTE`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=INNODB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of curso
@@ -167,15 +172,15 @@ INSERT INTO `curso` VALUES ('6', 'Fisica I', 'Mu�oz Najar', '5', 'C', '2017', 
 -- ----------------------------
 DROP TABLE IF EXISTS `curso_alumno`;
 CREATE TABLE `curso_alumno` (
-  `ID_CURSO_ALUMNO` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_CURSO` int(11) NOT NULL,
-  `ID_ALUMNO` int(11) NOT NULL,
+  `ID_CURSO_ALUMNO` INT(11) NOT NULL AUTO_INCREMENT,
+  `ID_CURSO` INT(11) NOT NULL,
+  `ID_ALUMNO` INT(11) NOT NULL,
   PRIMARY KEY (`ID_CURSO_ALUMNO`),
   KEY `fk_CURSO_ALUMNO_ALUMNO1` (`ID_ALUMNO`),
   KEY `fk_CURSO_ALUMNO_CURSO_idx` (`ID_CURSO`),
   CONSTRAINT `fk_CURSO_ALUMNO_ALUMNO1` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `fk_CURSO_ALUMNO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=INNODB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of curso_alumno
@@ -195,44 +200,44 @@ INSERT INTO `curso_alumno` VALUES ('9', '1', '44');
 -- ----------------------------
 DROP TABLE IF EXISTS `docente`;
 CREATE TABLE `docente` (
-  `ID_DOCENTE` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE` varchar(50) DEFAULT NULL,
-  `APELLIDOS` varchar(50) DEFAULT NULL,
-  `GENERO` varchar(1) DEFAULT NULL,
-  `EMAIL` varchar(60) DEFAULT NULL,
-  `CONTRASENA` varchar(60) DEFAULT NULL,
-  `FOTO` varchar(100) DEFAULT NULL,
-  `USUARIO` varchar(45) NOT NULL,
+  `ID_DOCENTE` INT(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE` VARCHAR(50) DEFAULT NULL,
+  `APELLIDOS` VARCHAR(50) DEFAULT NULL,
+  `GENERO` VARCHAR(1) DEFAULT NULL,
+  `EMAIL` VARCHAR(60) DEFAULT NULL,
+  `CONTRASENA` VARCHAR(60) DEFAULT NULL,
+  `FOTO` VARCHAR(100) DEFAULT NULL,
+  `USUARIO` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`ID_DOCENTE`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of docente
 -- ----------------------------
-INSERT INTO `docente` VALUES ('1', 'Carlos', 'Supo Mollocondo', 'M', 'carlos.supo@gmail.com', '123456', null, '1');
-INSERT INTO `docente` VALUES ('2', 'Lilian', 'Arias Lizares', 'F', 'LilianLizares@gmail.com', '123456', null, '2');
-INSERT INTO `docente` VALUES ('3', 'Claudia ', 'Quispe Ruiz', 'F', 'claudiaquispe@gmail.com', '123456', null, '3');
-INSERT INTO `docente` VALUES ('4', 'Karina Viviana', 'Prado Umpire', 'F', 'KarinVivi@gmail.com', '123456', null, '4');
-INSERT INTO `docente` VALUES ('5', 'Kelvin', 'Macedo Ylachoque', 'M', 'Kerlvinmacedo@gmail.com', '123456', null, '5');
+INSERT INTO `docente` VALUES ('1', 'Carlos', 'Supo Mollocondo', 'M', 'carlos.supo@gmail.com', '123456', NULL, '1');
+INSERT INTO `docente` VALUES ('2', 'Lilian', 'Arias Lizares', 'F', 'LilianLizares@gmail.com', '123456', NULL, '2');
+INSERT INTO `docente` VALUES ('3', 'Claudia ', 'Quispe Ruiz', 'F', 'claudiaquispe@gmail.com', '123456', NULL, '3');
+INSERT INTO `docente` VALUES ('4', 'Karina Viviana', 'Prado Umpire', 'F', 'KarinVivi@gmail.com', '123456', NULL, '4');
+INSERT INTO `docente` VALUES ('5', 'Kelvin', 'Macedo Ylachoque', 'M', 'Kerlvinmacedo@gmail.com', '123456', NULL, '5');
 
 -- ----------------------------
 -- Table structure for evaluacion
 -- ----------------------------
 DROP TABLE IF EXISTS `evaluacion`;
 CREATE TABLE `evaluacion` (
-  `ID_EVALUACION` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_CURSO` int(11) NOT NULL,
-  `ID_EVALUACION_DEPENDENCIA` int(11) DEFAULT NULL,
-  `NOMBRE` varchar(30) DEFAULT NULL,
-  `DESCRIPCION` varchar(60) DEFAULT NULL,
-  `COLOR_FONDO` varchar(7) DEFAULT NULL,
-  `COLOR_TEXTO` varchar(7) DEFAULT NULL,
-  `FORMULA` varchar(255) DEFAULT NULL,
-  `ES_FORMULA` bit(1) NOT NULL,
+  `ID_EVALUACION` INT(11) NOT NULL AUTO_INCREMENT,
+  `ID_CURSO` INT(11) NOT NULL,
+  `ID_EVALUACION_DEPENDENCIA` INT(11) DEFAULT NULL,
+  `NOMBRE` VARCHAR(30) DEFAULT NULL,
+  `DESCRIPCION` VARCHAR(60) DEFAULT NULL,
+  `COLOR_FONDO` VARCHAR(7) DEFAULT NULL,
+  `COLOR_TEXTO` VARCHAR(7) DEFAULT NULL,
+  `FORMULA` VARCHAR(255) DEFAULT NULL,
+  `ES_FORMULA` BIT(1) NOT NULL,
   PRIMARY KEY (`ID_EVALUACION`),
   KEY `FK_CURSO_EVALUACION_idx` (`ID_CURSO`),
   CONSTRAINT `FK_CURSO_EVALUACION` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=INNODB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluacion
@@ -241,16 +246,16 @@ INSERT INTO `evaluacion` VALUES ('1', '1', '4', 'TAREA1', '', '#ffffff', '#00000
 INSERT INTO `evaluacion` VALUES ('2', '1', '4', 'TAREA2', 'a', '#ffffff', '#000000', '0', '\0');
 INSERT INTO `evaluacion` VALUES ('3', '1', '4', 'TAREA3', 'a', '#ffffff', '#000000', '0', '\0');
 INSERT INTO `evaluacion` VALUES ('4', '1', '25', 'PROM', 'a', '#e6deac', '#000000', '(idEvaluacion_1+idEvaluacion_2+idEvaluacion_3)/3', '');
-INSERT INTO `evaluacion` VALUES ('5', '2', '0', 'TAREA1', 'a', '#337ab7', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('6', '2', '8', 'TAREA2', 'a', '#000005', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('7', '2', '8', 'TAREA3', 'a', '#000006', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('8', '2', '13', 'PROM', 'a', '#000007', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('9', '2', '12', 'TAREA1', 'a', '#000000', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('10', '2', '12', 'TAREA2', 'a', '#000001', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('11', '2', '12', 'TAREA3', 'a', '#000002', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('12', '2', '13', 'PROM', 'aa', '#000003', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('13', '2', '0', 'PROME', 'a', '#000004', '#ffffff', null, '\0');
-INSERT INTO `evaluacion` VALUES ('14', '2', '0', 'EXP1', 'a', '#000005', '#ffffff', null, '\0');
+INSERT INTO `evaluacion` VALUES ('5', '2', '0', 'TAREA1', 'a', '#337ab7', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('6', '2', '8', 'TAREA2', 'a', '#000005', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('7', '2', '8', 'TAREA3', 'a', '#000006', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('8', '2', '13', 'PROM', 'a', '#000007', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('9', '2', '12', 'TAREA1', 'a', '#000000', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('10', '2', '12', 'TAREA2', 'a', '#000001', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('11', '2', '12', 'TAREA3', 'a', '#000002', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('12', '2', '13', 'PROM', 'aa', '#000003', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('13', '2', '0', 'PROME', 'a', '#000004', '#ffffff', NULL, '\0');
+INSERT INTO `evaluacion` VALUES ('14', '2', '0', 'EXP1', 'a', '#000005', '#ffffff', NULL, '\0');
 INSERT INTO `evaluacion` VALUES ('15', '1', '17', 'TAREA 1', '', '#ffffff', '#000000', '', '\0');
 INSERT INTO `evaluacion` VALUES ('16', '1', '17', 'TAREA5', '', '#ffffff', '#000000', '', '\0');
 INSERT INTO `evaluacion` VALUES ('17', '1', '25', 'PROM 1', '', '#5cb85c', '#ffffff', 'idEvaluacion_15+idEvaluacion_16', '');
@@ -264,13 +269,15 @@ INSERT INTO `evaluacion` VALUES ('25', '1', '0', 'QWER', 'QWER', '#777777', '#00
 -- ----------------------------
 DROP TABLE IF EXISTS `horario`;
 CREATE TABLE `horario` (
-  `ID_HORARIO` int(11) NOT NULL AUTO_INCREMENT,
-  `DIA` date DEFAULT NULL,
-  `HORA_INICIO` time(6) DEFAULT NULL,
-  `HORA_FIN` time(6) DEFAULT NULL,
-  `ID_CURSO` int(11) NOT NULL,
-  PRIMARY KEY (`ID_HORARIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ID_HORARIO` INT(11) NOT NULL AUTO_INCREMENT,
+  `DIA` DATE DEFAULT NULL,
+  `HORA_INICIO` TIME(6) DEFAULT NULL,
+  `HORA_FIN` TIME(6) DEFAULT NULL,
+  `ID_CURSO` INT(11) NOT NULL,
+  PRIMARY KEY (`ID_HORARIO`),
+  KEY `fk_HORARIO_CURSO` (`ID_CURSO`),
+  CONSTRAINT `fk_HORARIO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of horario

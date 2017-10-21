@@ -13,7 +13,7 @@
 		</div>
 
 		<!-- Opcion de la tabla -->
-		<p>
+	
 		<div class='row'>
 			<div class="col-md-2 col-lg-1">
 				<a class="btn btn-success" href="newAsistencia"><i
@@ -40,7 +40,8 @@
 				</div>
 			</div>
 		</div>
-		</p>
+	
+		
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-6">
@@ -82,8 +83,9 @@
 function enviarAsistencia(obj,idCursoAlumno){
 	
 	
-	var tipoistencias=$(obj).val();
+	var tipoAsistencias=$(obj).val();
 	var AlumnoCurso=idCursoAlumno;
+	
 	$.ajax({
 		type: "GET",
 	  	dataType: "json",
@@ -109,8 +111,8 @@ function enviarAsistencia(obj,idCursoAlumno){
 // 			toastr.error('Debe ingresar una nota', 'Error');
 // //			    alert("error occur");
 // 		} 
-	});
 
+	});
 }
 </script>
 </div>

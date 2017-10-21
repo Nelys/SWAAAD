@@ -151,6 +151,19 @@ public class AjaxController2 {
 
 		return new Nota4Wrapper(result);
 	}
+	/**
+	 * Controlador JSON listado de notas
+	 */
+	@RequestMapping(value = "/luis", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public AlumnoDTO json4Page() throws Exception {
+		AlumnoDTO alumnoDTO = new AlumnoDTO();
+		alumnoDTO.setApellidos("Alberto");
+		alumnoDTO.setIdAlumno(1);
+		alumnoDTO.setNombres("asdasd");
+		return alumnoDTO;
+	}
+
 
 	@RequestMapping(value = "/json3", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody

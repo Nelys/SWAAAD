@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.AlumnoDTO;
-import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
 import com.swaaad.model.CursoAlumno;
 import com.swaaad.service.AlumnosService;
@@ -35,7 +34,7 @@ public class AsistenciaController {
 	AlumnosService objAlumnoService;
 
 	@Autowired
-	CursoAlumnoService objCursoAlumno;
+	CursoAlumnoService objCursoAlumnoService;
 
 	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
@@ -46,38 +45,34 @@ public class AsistenciaController {
 		HttpSession session = request1.getSession(false);
 
 		int idCurso = (Integer) session.getAttribute("idCurso");
-
 		@SuppressWarnings("unused")
-		List<CursoAlumno> listaAlumnosCursos = objCursoAlumno.getAllAlumnosByCurso(idCurso);
+		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
 
 		System.out.println("mensaje de los cambios");
-		// model.addObject("listAlumnos",
-		// objAlumnoService.getAllAlumnosByIdCurso(request));
 		model.addObject("listAlumnos", listaAlumnosCursos);
-
 		model.setViewName("asistencias");
 
 		return model;
-
 	}
 
-	@RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
-	public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia) throws Exception {
-
-		logger.info("saveAsistencia");
-
-		try {
-			if (asistencia.getIdAsistencia() == 0) {
-				objAsistenciaService.addAsistencia(asistencia);
-			} else {
-				objAsistenciaService.updateAsistencia(asistencia);
-			}
-
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-		return new ModelAndView("redirect:/asistencias");
-	}
+	 @RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
+	 public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia)
+	 throws Exception {
+	
+	 logger.info("saveAsistencia");
+	
+	 try {
+	 if (asistencia.getIdAsistencia() == 0) {
+	 objAsistenciaService.addAsistencia(asistencia);
+	 } else {
+	 objAsistenciaService.updateAsistencia(asistencia);
+	 }
+	
+	 } catch (Exception e) {
+	 e.getStackTrace();
+	 }
+	 return new ModelAndView("redirect:/asistencias");
+	 }
 
 	@RequestMapping(value = "/newAsistencia", method = RequestMethod.GET)
 	public ModelAndView newAsistencia(ModelAndView model) throws Exception {
@@ -95,17 +90,15 @@ public class AsistenciaController {
 	 */
 	@RequestMapping(value = "/guardarAsistenciaAlumno", method = RequestMethod.GET) // POST,produces
 	@ResponseBody
+	// recibe parametros de una peticion del navegador
 	public AlumnoDTO getAlumnoById(@RequestParam("tipo") String tipo, @RequestParam("idAlumnoCurso") int idAlumnoCurso)
 			throws Exception {
+		// declaro un variable cursoAlumno de tipo CursoAlumno el cualguadara
+		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
+		Asistencia asistencia = new Asistencia();
 
-		CursoAlumno cursoAlumno=objCursoAlumno.getCursoAlumnoById(idAlumnoCurso);
-		
-		Asistencia asistencia=new Asistencia();
-//		asistencia.set
-		//Asistencia.
-//		objAsistenciaService.addAsistencia(asistencia);
-		
-		//METODO PARA GUARDAR ASISTENCIA
+		// objAsistenciaService.addAsistencia(asistencia);
+		// METODO PARA GUARDAR ASISTENCIA
 		return null;
 	}
 
