@@ -34,16 +34,28 @@
 					href="#"><i class="fa fa-print"></i> Imprimir</a>
 
 			</div>
+
 			<div class="col-md-3">
 				<div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2"><i
-						class="fa fa-search"></i></span> <input type="text" class="form-control"
-						placeholder="Buscar ..." aria-describedby="sizing-addon2">
+					<select class="form-control">
+						<option>Enero</option>
+						<option>Febrero</option>
+						<option>Marzo</option>
+						<option>Abril</option>
+						<option>Mayo</option>
+						<option>Junio</option>
+						<option>Julio</option>
+						<option>Agosto</option>
+						<option>Septiembre</option>
+						<option>Octubre</option>
+						<option>Noviembre</option>
+						<option>Diciembre</option>
+					</select>
 				</div>
 			</div>
+
 		</div>
-		<br> <br>
-		<br>
+		<br> <br> <br>
 
 		<!-- Resgistros de la tabla -->
 		<div class="row">
@@ -59,10 +71,11 @@
 							</tr>
 							<c:forEach var="lista" items="${listAlumnos}">
 								<tr>
-									<td>${lista.alumno.nroOrden}</td>
-									<td>${lista.alumno.nombres},${lista.alumno.apellidos}</td>
-									<td style="text-align: center" width="100px"><select
-										onchange="enviarAsistencia(this,${lista.idCursoAlumno})">
+									<td>${lista.cursoAlumno.alumno.nroOrden}</td>
+									<td>${lista.cursoAlumno.alumno.nombres},${lista.cursoAlumno.alumno.apellidos}</td>
+									<td style="text-align center" width="100px"><select
+<%-- 										onchange="enviarAsistencia(this,${lista.idCursoAlumno})" --%>
+										>
 											<option value="A">Asistio
 											<option value="F">Falta
 											<option value="T">Tarde
