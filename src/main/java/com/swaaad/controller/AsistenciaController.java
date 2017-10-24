@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.swaaad.dto.AlumnoDTO;
 import com.swaaad.model.Asistencia;
 import com.swaaad.model.CursoAlumno;
+import com.swaaad.reports.CursoAlumnoReport;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AsistenciaService;
 import com.swaaad.service.CursoAlumnoService;
@@ -33,8 +35,10 @@ public class AsistenciaController {
 	@Autowired
 	AlumnosService objAlumnoService;
 
+	
 	@Autowired
 	CursoAlumnoService objCursoAlumnoService;
+
 
 	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
@@ -46,13 +50,28 @@ public class AsistenciaController {
 
 		int idCurso = (Integer) session.getAttribute("idCurso");
 		@SuppressWarnings("unused")
-		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
+//		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
+		List<Asistencia> listaAlumnosCursos=objAsistenciaService.getAllAlumnosByCursoMes(idCurso);
+		List<Integer> listarDiasMes=objAsistenciaService.asistenciaMes(10, idCurso);
 
 		System.out.println("mensaje de los cambios");
 		model.addObject("listAlumnos", listaAlumnosCursos);
+		model.addObject("listarDiasMes", listarDiasMes);
 		model.setViewName("asistencias");
 
 		return model;
+	}
+	
+	@RequestMapping(value = "/pdf", method = RequestMethod.GET)
+	public String generatePdfReports(ModelMap modelMap) throws Exception {
+
+		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(3);
+		
+		
+		CursoAlumnoReport ar = new CursoAlumnoReport();
+		modelMap.put("listaAlumnos", ar.findAllAlumnos(listaAlumnosCursos));
+		
+		return "asistencia_reporte";
 	}
 
 	 @RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
@@ -94,7 +113,7 @@ public class AsistenciaController {
 	public AlumnoDTO getAlumnoById(@RequestParam("tipo") String tipo, @RequestParam("idAlumnoCurso") int idAlumnoCurso)
 			throws Exception {
 		// declaro un variable cursoAlumno de tipo CursoAlumno el cualguadara
-		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
+//		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
 		Asistencia asistencia = new Asistencia();
 
 		// objAsistenciaService.addAsistencia(asistencia);

@@ -2,6 +2,7 @@ package com.swaaad.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -18,6 +19,10 @@ public class CursoAlumno implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_CURSO_ALUMNO")
 	private int idCursoAlumno;
+
+	//bi-directional many-to-one association to Asistencia
+	@OneToMany(mappedBy="cursoAlumno")
+	private List<Asistencia> asistencias;
 
 	//bi-directional many-to-one association to Alumno
 	@ManyToOne
@@ -38,6 +43,28 @@ public class CursoAlumno implements Serializable {
 
 	public void setIdCursoAlumno(int idCursoAlumno) {
 		this.idCursoAlumno = idCursoAlumno;
+	}
+
+	public List<Asistencia> getAsistencias() {
+		return this.asistencias;
+	}
+
+	public void setAsistencias(List<Asistencia> asistencias) {
+		this.asistencias = asistencias;
+	}
+
+	public Asistencia addAsistencia(Asistencia asistencia) {
+		getAsistencias().add(asistencia);
+		asistencia.setCursoAlumno(this);
+
+		return asistencia;
+	}
+
+	public Asistencia removeAsistencia(Asistencia asistencia) {
+		getAsistencias().remove(asistencia);
+		asistencia.setCursoAlumno(null);
+
+		return asistencia;
 	}
 
 	public Alumno getAlumno() {

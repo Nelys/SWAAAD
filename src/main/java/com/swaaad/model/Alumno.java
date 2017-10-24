@@ -1,4 +1,4 @@
- package com.swaaad.model;
+package com.swaaad.model;
 
 import java.io.Serializable;
 import javax.persistence.*;

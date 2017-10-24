@@ -2,6 +2,7 @@ package com.swaaad.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 import com.swaaad.dao.AsistenciaDao;
 import com.swaaad.model.Alumno;
 import com.swaaad.model.Asistencia;
+import com.swaaad.model.CursoAlumno;
 
 public class AsistenciaDaoImpl implements AsistenciaDao {
 
@@ -55,12 +57,47 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Asistencia> getAllAsistencia() throws Exception {
+	public List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception {
 		sSession = sessionFactory.openSession();
-		List<Asistencia> listarAsistencia = sSession.createCriteria(Asistencia.class).list();
-		sSession.close();
-		return listarAsistencia;
+		List<Asistencia> listaAsistencia = null;
+		try {
+			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca WHERE ca.curso.idCurso=:idCurso";
+			Query query = sSession.createQuery(queryAsistencia);
+			query.setInteger("idCurso", idCurso);
+			listaAsistencia =(List<Asistencia>) query.list();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+		return listaAsistencia;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Integer> diasMes = null;
+		try {
+			String queryAsistencia = "SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND month(a.fecha)=:Mes GROUP BY day(a.fecha)";
+			Query query = sSession.createQuery(queryAsistencia);
+			query.setInteger("idCurso", idCurso);
+			query.setInteger("Mes", Mes);
+			diasMes =(List<Integer>) query.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+		return diasMes;
+	}
+
+
 
 }

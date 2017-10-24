@@ -12,5 +12,7 @@ public interface AsistenciaService {
 
 	void updateAsistencia(Asistencia asistencia) throws Exception;
 
-	List<Asistencia> getAllAsistencia() throws Exception;
+	List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception;
+
+	public List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception;
 }

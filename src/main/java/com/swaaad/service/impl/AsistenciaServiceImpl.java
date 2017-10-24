@@ -27,9 +27,17 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	}
 
 	@Override
-	public List<Asistencia> getAllAsistencia() throws Exception {
-		
-		return objAsistenciaDao.getAllAsistencia();
+	public List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception {
+		// TODO Auto-generated method stub
+		return objAsistenciaDao.getAllAlumnosByCursoMes(idCurso);
 	}
+
+	@Override
+	public List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception {
+		// TODO Auto-generated method stub
+		return objAsistenciaDao.asistenciaMes(Mes, idCurso);
+	}
+
+	
 
 }

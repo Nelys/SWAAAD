@@ -34,10 +34,6 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy="curso")
 	private List<ActividadPedagogica> actividadPedagogicas;
 
-	//bi-directional many-to-one association to Asistencia
-	@OneToMany(mappedBy="curso")
-	private List<Asistencia> asistencias;
-
 	//bi-directional many-to-one association to AulaDinamica
 	@OneToMany(mappedBy="curso")
 	private List<AulaDinamica> aulaDinamicas;
@@ -134,28 +130,6 @@ public class Curso implements Serializable {
 		actividadPedagogica.setCurso(null);
 
 		return actividadPedagogica;
-	}
-
-	public List<Asistencia> getAsistencias() {
-		return this.asistencias;
-	}
-
-	public void setAsistencias(List<Asistencia> asistencias) {
-		this.asistencias = asistencias;
-	}
-
-	public Asistencia addAsistencia(Asistencia asistencia) {
-		getAsistencias().add(asistencia);
-		asistencia.setCurso(this);
-
-		return asistencia;
-	}
-
-	public Asistencia removeAsistencia(Asistencia asistencia) {
-		getAsistencias().remove(asistencia);
-		asistencia.setCurso(null);
-
-		return asistencia;
 	}
 
 	public List<AulaDinamica> getAulaDinamicas() {

@@ -2,6 +2,7 @@ package com.swaaad.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -20,10 +21,13 @@ public class Asistencia implements Serializable {
 
 	private String estado;
 
-	//bi-directional many-to-one association to Curso
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+
+	//bi-directional many-to-one association to CursoAlumno
 	@ManyToOne
-	@JoinColumn(name="ID_CURSO")
-	private Curso curso;
+	@JoinColumn(name="ID_CURSO_ALUMNO")
+	private CursoAlumno cursoAlumno;
 
 	public Asistencia() {
 	}
@@ -44,12 +48,20 @@ public class Asistencia implements Serializable {
 		this.estado = estado;
 	}
 
-	public Curso getCurso() {
-		return this.curso;
+	public Date getFecha() {
+		return this.fecha;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public CursoAlumno getCursoAlumno() {
+		return this.cursoAlumno;
+	}
+
+	public void setCursoAlumno(CursoAlumno cursoAlumno) {
+		this.cursoAlumno = cursoAlumno;
 	}
 
 }

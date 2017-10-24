@@ -3,6 +3,7 @@ package com.swaaad.dao;
 import java.util.List;
 
 import com.swaaad.model.Asistencia;
+import com.swaaad.model.CursoAlumno;
 
 /**
  * @author Nelys
@@ -26,5 +27,7 @@ public interface AsistenciaDao {
 	 */
 	void upddateAsistencia(Asistencia asistencia) throws Exception;
 
-	List<Asistencia> getAllAsistencia() throws Exception;
+	List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception;
+
+	List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception;
 }
