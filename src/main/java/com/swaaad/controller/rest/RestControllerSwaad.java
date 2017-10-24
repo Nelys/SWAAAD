@@ -4,7 +4,12 @@ package com.swaaad.controller.rest;
 
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +19,7 @@ import com.swaaad.dto.AlumnoDTO;
 @RestController
 public class RestControllerSwaad {
 	
-	@RequestMapping("/alumno")
+	@GetMapping("/alumno")
 	public AlumnoDTO getAlumno() {
 				
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
@@ -22,6 +27,17 @@ public class RestControllerSwaad {
 		alumnoDTO.setIdAlumno(1);
 		alumnoDTO.setNombres("asdasd");
 		return alumnoDTO;
+		
+	}
+	@PostMapping("/alumno")
+	public ResponseEntity<?> getAlumno2(RequestEntity<AlumnoDTO> alum) {
+				//por que cerraste el chat guarda y hacs correr
+				//bueno creo que no estas entonces segure sin explicar 
+		
+		
+		AlumnoDTO alumnoDTO = alum.getBody();
+		
+		return new ResponseEntity<AlumnoDTO>(alumnoDTO,HttpStatus.CREATED);
 		
 	}
 }
