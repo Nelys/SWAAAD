@@ -1,5 +1,6 @@
 package com.swaaad.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -15,4 +16,8 @@ public interface AsistenciaService {
 	List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception;
 
 	public List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception;
+
+	List<Date> getDayOfAlumnosByCurso(int idCurso) throws Exception;
+
+	List<Asistencia> getEstadoByAlumnoCurso(int idCurso) throws Exception;
 }

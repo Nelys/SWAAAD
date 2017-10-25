@@ -1,5 +1,6 @@
 package com.swaaad.dao.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -96,6 +97,51 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 
 		}
 		return diasMes;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Date> getDayOfAlumnosByCurso(int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Date> listarDiaPorMes = null;
+		try {
+//			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca WHERE ca.curso.idCurso=:idCurso";
+			String queryAsistencia = "SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso GROUP BY day(a.fecha)";
+//			SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=1 AND month(a.fecha)=10 GROUP BY day(a.fecha)
+			Query query = sSession.createQuery(queryAsistencia);
+			query.setInteger("idCurso", idCurso);
+			listarDiaPorMes =(List<Date>) query.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+		return listarDiaPorMes;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Asistencia> getEstadoByAlumnoCurso(int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Asistencia> listarDiaPorMes = null;
+		try {
+//			
+			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso";			
+			Query query = sSession.createQuery(queryAsistencia);
+			query.setInteger("idCurso", idCurso);
+			listarDiaPorMes =(List<Asistencia>) query.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+		return listarDiaPorMes;
 	}
 
 

@@ -1,5 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
 <div id="page-wrapper">
@@ -59,23 +61,35 @@
 
 		<!-- Resgistros de la tabla -->
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-12">
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
 						<table class="table table-bordered table-hover table-striped">
 							<tr>
 								<th>No</th>
 								<th>Alumno</th>
-								<th>Accion</th>
+								<c:forEach var="listaDia" items="${listarDiasMes}">
+									<th>${listaDia}</th>
 
+									<%--<th><fmt:formatDate value="${listaDia}" pattern="dd" /></th> --%>
+								</c:forEach>
+								<th>Accion</th>
 							</tr>
+
 							<c:forEach var="lista" items="${listAlumnos}">
 								<tr>
-									<td>${lista.cursoAlumno.alumno.nroOrden}</td>
-									<td>${lista.cursoAlumno.alumno.nombres},${lista.cursoAlumno.alumno.apellidos}</td>
-									<td style="text-align center" width="100px"><select
-<%-- 										onchange="enviarAsistencia(this,${lista.idCursoAlumno})" --%>
-										>
+									<%-- 									<td>${lista.cursoAlumno.alumno.nroOrden}</td> --%>
+									<%-- 									<td>${lista.cursoAlumno.alumno.nombres},${lista.cursoAlumno.alumno.apellidos}</td> --%>
+									<td>${lista.alumno.nroOrden}</td>
+									<td>${lista.alumno.nombres},${lista.alumno.apellidos}</td>
+									<c:forEach var="listaEstado" items="${listaEstadoPorCurso}">
+									<th><fmt:formatDate value="${listaEstado.fecha}" pattern="dd" /></th>
+									<c:if test="${listaEstado.fecha}="></c:if>
+										<td>${listaEstado.estado}</td>
+									</c:forEach>
+
+									<td style="" width="100px"><select
+										onchange="enviarAsistencia(this,${lista.idCursoAlumno})">
 											<option value="A">Asistio
 											<option value="F">Falta
 											<option value="T">Tarde
@@ -84,6 +98,8 @@
 									</select></td>
 								</tr>
 							</c:forEach>
+
+
 						</table>
 					</c:if>
 				</div>
@@ -131,41 +147,37 @@
 
 <!-- /.container-fluid -->
 <script>
-$( "#guardarAsistencia" ).click(function() {
-	 //enviar guardar asistencia
-	 alert("Guardara");
-// 	 $.post("demo_test.asp", function(data, status){
-// 	        alert("Data: " + data + "\nStatus: " + status);
-// 	    });
+	$("#guardarAsistencia").click(function() {
+		//enviar guardar asistencia
+		alert("Guardara");
+		// 	 $.post("demo_test.asp", function(data, status){
+		// 	        alert("Data: " + data + "\nStatus: " + status);
+		// 	    });
 	});
 
-function enviarAsistencia(obj,idCursoAlumno){
-	
-	
-	var tipoAsistencias=$(obj).val();
-	var AlumnoCurso=idCursoAlumno;
-	
-	$.ajax({
-		type: "GET",
-	  	dataType: "json",
-		url : '${pageContext.request.contextPath}/guardarAsistenciaAlumno',
-		data: { 
-			tipo :  tipoAsistencias,
-			idAlumnoCurso :AlumnoCurso
-        }
-	})
-	.done(function( data, textStatus, jqXHR ) {
-		if ( console && console.log ) {
-			console.log( "La solicitud se ha completado correctamente. " );
+	function enviarAsistencia(obj, idCursoAlumno) {
+
+		var tipoAsistencias = $(obj).val();
+		var AlumnoCurso = idCursoAlumno;
+
+		$.ajax({
+			type : "GET",
+			dataType : "json",
+			url : '${pageContext.request.contextPath}/guardarAsistenciaAlumno',
+			data : {
+				tipo : tipoAsistencias,
+				idAlumnoCurso : AlumnoCurso
 			}
-	})
-	.fail(function( jqXHR, textStatus, errorThrown ) {
-            if ( console && console.log ) {
-                console.log( "La solicitud a fallado: " +  textStatus);
-            }
+		}).done(function(data, textStatus, jqXHR) {
+			if (console && console.log) {
+				console.log("La solicitud se ha completado correctamente. ");
+			}
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+			if (console && console.log) {
+				console.log("La solicitud a fallado: " + textStatus);
+			}
 
-
-	});
-}
+		});
+	}
 </script>
 <!-- /#page-wrapper -->

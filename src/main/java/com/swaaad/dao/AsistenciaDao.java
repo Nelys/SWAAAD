@@ -1,5 +1,6 @@
 package com.swaaad.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.swaaad.model.Asistencia;
@@ -30,4 +31,8 @@ public interface AsistenciaDao {
 	List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception;
 
 	List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception;
+
+	List<Date> getDayOfAlumnosByCurso(int idCurso) throws Exception;
+
+	List<Asistencia> getEstadoByAlumnoCurso(int idCurso) throws Exception;
 }

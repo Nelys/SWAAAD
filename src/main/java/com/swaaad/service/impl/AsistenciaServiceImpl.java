@@ -1,5 +1,6 @@
 package com.swaaad.service.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,18 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	public List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception {
 		// TODO Auto-generated method stub
 		return objAsistenciaDao.asistenciaMes(Mes, idCurso);
+	}
+
+	@Override
+	public List<Date> getDayOfAlumnosByCurso(int idCurso) throws Exception {
+		// TODO Auto-generated method stub
+		return objAsistenciaDao.getDayOfAlumnosByCurso(idCurso);
+	}
+
+	@Override
+	public List<Asistencia> getEstadoByAlumnoCurso(int idCurso) throws Exception {
+		// TODO Auto-generated method stub
+		return objAsistenciaDao.getEstadoByAlumnoCurso(idCurso);
 	}
 
 	
