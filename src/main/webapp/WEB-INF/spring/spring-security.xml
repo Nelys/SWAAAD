@@ -24,6 +24,9 @@
 		<!-- esto dar permiso para que quien genere pdf -->
 		<intercept-url pattern="/pdf**" access="permitAll" />
 
+		<!-- permitimos el acceso de identificacion a la ruta, con fines de ejemplo -->
+		<intercept-url pattern="/hello**" access="permitAll" />
+
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
 		<form-login login-page="/login" default-target-url="/cursos"
