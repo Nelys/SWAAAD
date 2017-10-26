@@ -8,23 +8,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.AulaDinamica;
+import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AulaDinamicaService;
-
+@CrossOrigin
 @Controller
 public class AulaDinamicaController {
 	private static final Logger logger = LoggerFactory.getLogger(AulaDinamicaController.class);
 	@Autowired
-	AulaDinamicaService objAulaDinamicaService;
+	private AulaDinamicaService objAulaDinamicaService;
+	
+	@Autowired
+	private AlumnosService objAlumnoService;
+	
 
 	@RequestMapping(value = { "aula-dinamica" }, method = RequestMethod.GET)
-	public ModelAndView aulaDinamicasPage(ModelAndView model) throws Exception {
+	public ModelAndView aulaDinamicasPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("aulaDinamicasPage");
 		//
@@ -36,7 +41,7 @@ public class AulaDinamicaController {
 
 		model.addObject("aulaDinamica", aulaDinamica);
 		model.addObject("listAulaDinamica", ListarAulaDinamica);
-
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
 //		model.setViewName("pages/aulaDinamicas/aulaDinamicas");
 		model.setViewName("aula-dinamica");
 
@@ -44,10 +49,12 @@ public class AulaDinamicaController {
 	}
 
 	@RequestMapping(value = "/saveAulaDinamica", method = RequestMethod.POST)
-	public ModelAndView saveAulaDinamica(@ModelAttribute("aulaDinamica") AulaDinamica aulaDinamica, BindingResult result) throws Exception {
+	public ModelAndView saveAulaDinamica(@ModelAttribute("aulaDinamica") AulaDinamica aulaDinamica) throws Exception {
 
 		logger.info("saveAulaDinamica");
 
+		
+		System.out.println("saveAulaDinamica");
 		try {
 			if (aulaDinamica.getIdAulaDinamica() == 0) {
 				objAulaDinamicaService.addAulaDinamica(aulaDinamica);

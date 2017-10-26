@@ -27,7 +27,7 @@ public class AulaDinamica implements Serializable {
 
 	//bi-directional many-to-one association to Curso
 	@ManyToOne
-	@JoinColumn(name="ID_CURSO")
+	@JoinColumn(name="ID_CURSO_ALUMNO")
 	private Curso curso;
 
 	public AulaDinamica() {
