@@ -13,7 +13,7 @@
 		</div>
 
 		<!-- Opcion de la tabla -->
-		<p>
+		
 		<div class='row'>
 			<div class="col-md-1">
 				<a class="btn btn-success" href="newActividadPedagogica"><i class="fa fa-plus"></i> Nuevo</a>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</div>
-		</p>
+		
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
