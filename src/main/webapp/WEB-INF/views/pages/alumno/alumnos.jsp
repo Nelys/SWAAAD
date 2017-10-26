@@ -29,7 +29,7 @@
 				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i>
 					PDF</a> <a class="btn btn-primary" href="#"><i
 					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default"
-					href="reportAlumno"><i class="fa fa-print"></i> Imprimir</a>
+					href="AlumnoReporte"><i class="fa fa-print"></i> Imprimir</a>
 
 			</div>
 			<div class="col-md-3">
