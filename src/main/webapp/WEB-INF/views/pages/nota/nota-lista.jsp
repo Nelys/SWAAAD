@@ -131,7 +131,7 @@ table tr .rows {
 		</div>
 
 		<!-- Opcion de la tabla -->
-		<p>
+		
 		<div class='row'>
 			<div class="col-md-2">
 				<a class="btn btn-success" href="newEvaluacion"><i
@@ -157,7 +157,7 @@ table tr .rows {
 				</div>
 			</div>
 		</div>
-		</p>
+		
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">

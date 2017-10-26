@@ -113,8 +113,7 @@ table tr .rows {
 		</div>
 
 		<!-- Opcion de la tabla -->
-		<p>
-		<div class='row'>
+				<div class='row'>
 			<div class="col-md-2">
 				<a class="btn btn-success" href="newEvaluacion"><i
 					class="fa fa-plus"></i> Nueva Evaluación</a>
@@ -135,7 +134,7 @@ table tr .rows {
 				</div>
 			</div>
 		</div>
-		</p>
+		
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -189,7 +188,7 @@ table tr .rows {
 							</div>
 							<form:form action="saveNota" method="GET" modelAttribute="nota">
 								<div class="modal-body">
-								<form name="ejemplo2" action="11-html5-number-input.php" method="POST">
+								
 									<div>
 										<form:hidden path="idNota" />
 										<form:hidden cssClass="idAlumno" path="alumno.idAlumno" />
