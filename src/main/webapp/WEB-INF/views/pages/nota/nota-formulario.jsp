@@ -60,7 +60,7 @@ h2 {
 
 		<div class="row">
 			<div class="col-lg-6">
-				<h1>Formulario Evaluacion</h1>
+				<h1>Formulario Evaluación</h1>
 				<form:form action="saveEvaluacion" method="post"
 					modelAttribute="evaluacion" cssClass="form-horizontal" role="form"
 					data-toggle="validator">
