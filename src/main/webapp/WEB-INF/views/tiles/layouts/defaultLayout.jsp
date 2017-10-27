@@ -60,9 +60,13 @@
 		<!-- Insertar Menu -->
 		<tiles:insertAttribute name="menu" />
 
-		<!-- Insertar Cuerpo -->
-		<tiles:insertAttribute name="body" />
+		<div id="page-wrapper">
 
+			<div class="container-fluid">
+				<!-- Insertar Cuerpo -->
+				<tiles:insertAttribute name="body" />
+			</div>
+		</div>
 	</div>
 
 	<!-- jQuery -->
@@ -89,21 +93,21 @@
 	<script>
 		$(function() {
 			toastr.options = {
-		  		  "closeButton": true,
-		  		  "debug": true,
-		  		  "newestOnTop": true,
-		  		  "progressBar": false,
-		  		  "positionClass": "toast-top-right",
-		  		  "preventDuplicates": true,
-		  		  "showDuration": "300",
-		  		  "hideDuration": "1000",
-		  		  "timeOut": "5000",
-		  		  "extendedTimeOut": "1000",
-		  		  "showEasing": "swing",
-		  		  "hideEasing": "linear",
-		  		  "showMethod": "fadeIn",
-		  		  "hideMethod": "fadeOut"
-					}
+				"closeButton" : true,
+				"debug" : true,
+				"newestOnTop" : true,
+				"progressBar" : false,
+				"positionClass" : "toast-top-right",
+				"preventDuplicates" : true,
+				"showDuration" : "300",
+				"hideDuration" : "1000",
+				"timeOut" : "5000",
+				"extendedTimeOut" : "1000",
+				"showEasing" : "swing",
+				"hideEasing" : "linear",
+				"showMethod" : "fadeIn",
+				"hideMethod" : "fadeOut"
+			}
 		});
 	</script>
 </body>

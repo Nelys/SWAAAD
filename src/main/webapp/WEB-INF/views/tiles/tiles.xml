@@ -2,6 +2,17 @@
 <!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+	<!-- Base Definition -->
+	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> -->
+	<definition name="base-definition2"
+		template="WEB-INF/views/tiles/layouts/defaultLayout2.jsp">
+		<put-attribute name="title" value="" />
+				<put-attribute name="menu"
+			value="/WEB-INF/views/tiles/template/menu2.jsp" />
+		<put-attribute name="body" value="" />
+		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" 
+			/> -->
+	</definition>
 
 	<!-- Base Definition -->
 	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> -->
@@ -30,14 +41,14 @@
 	</definition>
 
 	<!-- Pagina Cursos -->
-	<definition name="cursos" extends="base-definition">
+	<definition name="cursos" extends="base-definition2">
 		<put-attribute name="title" value="Cursos" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/curso/cursos.jsp" />
 	</definition>
 
 	<!-- Pagina Alumnos -->
-	<definition name="alumnos" extends="base-definition">
+	<definition name="alumnos" extends="base-definition2">
 		<put-attribute name="title" value="Alumnos" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/alumno/alumnos.jsp" />
@@ -51,7 +62,7 @@
 	</definition>
 
 	<!-- Pagina Asistencias -->
-	<definition name="asistencias" extends="base-definition">
+	<definition name="asistencias" extends="base-definition2">
 		<put-attribute name="title" value="Asistencias" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/asistencia/asistencias.jsp" />
