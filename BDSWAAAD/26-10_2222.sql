@@ -72,7 +72,7 @@ CREATE TABLE `asistencia` (
 
 /*Data for the table `asistencia` */
 
-insert  into `asistencia`(`ID_ASISTENCIA`,`ESTADO`,`FECHA`,`ID_CURSO_ALUMNO`) values (143,'A','2017-10-10',1),(144,'A','2017-10-10',2),(145,'A','2017-10-10',3),(146,'A','2017-10-10',4),(147,'A','2017-10-10',5),(148,'A','2017-11-11',1),(149,'A','2017-11-11',2),(150,'A','2017-11-11',3),(151,'A','2017-11-11',4),(152,'A','2017-11-11',5),(153,'A','2017-12-12',1),(154,'A','2017-12-12',2),(155,'F','2017-12-12',3),(156,'A','2017-12-12',4),(157,'A','2017-12-12',5),(158,'A','2017-10-10',6),(159,'A','2017-10-10',7),(160,'F','2017-10-10',8),(161,'A','2017-10-10',9),(162,'A','2017-10-10',10),(163,'A','2017-11-11',6),(164,'A','2017-11-11',7),(165,'F','2017-11-11',8),(166,'A','2017-11-11',9),(167,'A','2017-11-11',10),(168,'A','2017-12-12',6),(169,'A','2017-12-12',7),(170,'F','2017-12-12',8),(171,'A','2017-12-12',9),(172,'A','2017-12-12',10),(173,'A','2017-09-11',11),(174,'A','2017-09-11',12),(175,'F','2017-09-11',13),(176,'A','2017-09-11',14),(177,'A','2017-09-11',15),(178,'A','2017-10-12',11),(179,'A','2017-10-12',12),(180,'F','2017-10-12',13),(181,'A','2017-10-12',14),(182,'A','2017-10-12',15),(183,'A','2017-11-13',11),(184,'A','2017-11-13',12),(185,'F','2017-11-13',13),(186,'A','2017-11-13',14),(187,'A','2017-11-13',15);
+insert  into `asistencia`(`ID_ASISTENCIA`,`ESTADO`,`FECHA`,`ID_CURSO_ALUMNO`) values (143,'F','2017-10-10',1),(144,'A','2017-10-11',2),(145,'A','2017-10-11',3),(146,'A','2017-10-10',4),(147,'A','2017-10-10',5),(148,'A','2017-11-11',1),(149,'A','2017-11-11',2),(150,'A','2017-11-11',3),(151,'A','2017-11-11',4),(152,'A','2017-11-11',5),(153,'T','2017-12-12',1),(154,'A','2017-12-12',2),(155,'F','2017-12-12',3),(156,'A','2017-12-12',4),(157,'A','2017-12-12',5),(158,'A','2017-10-10',6),(159,'A','2017-10-10',7),(160,'F','2017-10-10',8),(161,'A','2017-10-10',9),(162,'A','2017-10-10',10),(163,'A','2017-11-11',6),(164,'A','2017-11-11',7),(165,'F','2017-11-11',8),(166,'A','2017-11-11',9),(167,'A','2017-11-11',10),(168,'A','2017-12-12',6),(169,'A','2017-12-12',7),(170,'F','2017-12-12',8),(171,'A','2017-12-12',9),(172,'A','2017-12-12',10),(173,'A','2017-09-11',11),(174,'A','2017-09-11',12),(175,'F','2017-09-11',13),(176,'A','2017-09-11',14),(177,'A','2017-09-11',15),(178,'A','2017-10-12',11),(179,'A','2017-10-12',12),(180,'F','2017-10-12',13),(181,'A','2017-10-12',14),(182,'A','2017-10-12',15),(183,'A','2017-11-13',11),(184,'A','2017-11-13',12),(185,'F','2017-11-13',13),(186,'A','2017-11-13',14),(187,'A','2017-11-13',15);
 
 /*Table structure for table `aula_dinamica` */
 
@@ -125,7 +125,7 @@ CREATE TABLE `curso_alumno` (
   KEY `fk_CURSO_ALUMNO_CURSO_idx` (`ID_CURSO`),
   CONSTRAINT `fk_CURSO_ALUMNO_ALUMNO1` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `fk_CURSO_ALUMNO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `curso_alumno` */
 
@@ -172,7 +172,7 @@ CREATE TABLE `evaluacion` (
 
 /*Data for the table `evaluacion` */
 
-insert  into `evaluacion`(`ID_EVALUACION`,`ID_CURSO`,`ID_EVALUACION_DEPENDENCIA`,`NOMBRE`,`DESCRIPCION`,`COLOR_FONDO`,`COLOR_TEXTO`,`FORMULA`,`ES_FORMULA`) values (1,1,26,'TAREA1','','#ffffff','#000000','idEvaluacion_1idEvaluacion_3','\0'),(2,1,4,'TAREA2','a','#ffffff','#000000','0','\0'),(3,1,4,'TAREA3','a','#ffffff','#000000','0','\0'),(4,1,25,'PROM','a','#e6deac','#000000','(idEvaluacion_1+idEvaluacion_2+idEvaluacion_3)/3',''),(5,2,0,'TAREA1','a','#337ab7','#ffffff',NULL,'\0'),(6,2,8,'TAREA2','a','#000005','#ffffff',NULL,'\0'),(7,2,8,'TAREA3','a','#000006','#ffffff',NULL,'\0'),(8,2,13,'PROM','a','#000007','#ffffff',NULL,'\0'),(9,2,12,'TAREA1','a','#000000','#ffffff',NULL,'\0'),(10,2,12,'TAREA2','a','#000001','#ffffff',NULL,'\0'),(11,2,12,'TAREA3','a','#000002','#ffffff',NULL,'\0'),(12,2,13,'PROM','aa','#000003','#ffffff',NULL,'\0'),(13,2,0,'PROME','a','#000004','#ffffff',NULL,'\0'),(14,2,0,'EXP1','a','#000005','#ffffff',NULL,'\0'),(15,1,17,'TAREA 1','','#ffffff','#000000','','\0'),(16,1,17,'TAREA5','','#ffffff','#000000','','\0'),(17,1,25,'PROM 1','','#5cb85c','#ffffff','idEvaluacion_15+idEvaluacion_16',''),(18,1,20,'EXPO2','','#ffffff','#000000','','\0'),(19,1,20,'EXPO3','','#ffffff','#000000','','\0'),(20,1,25,'EXPO4','','#337ab7','#ffffff','idEvaluacion_18+idEvaluacion_19',''),(25,1,0,'QWER','QWER','#777777','#000000','idEvaluacion_4+idEvaluacion_17+idEvaluacion_20',''),(26,1,0,'aa','asa','#7e4949','#160303','idEvaluacion_1+9',''),(27,1,0,'prueba','prome','#ffffff','#0e0e0e','','\0');
+insert  into `evaluacion`(`ID_EVALUACION`,`ID_CURSO`,`ID_EVALUACION_DEPENDENCIA`,`NOMBRE`,`DESCRIPCION`,`COLOR_FONDO`,`COLOR_TEXTO`,`FORMULA`,`ES_FORMULA`) values (1,1,0,'tarea1','','#ffffff','#000000','idEvaluacion_1idEvaluacion_3','\0'),(2,1,4,'TAREA2','a','#ffffff','#000000','0','\0'),(3,1,0,'TAREA3','a','#ffffff','#000000','0','\0'),(4,1,25,'PROM','a','#e6deac','#000000','(idEvaluacion_1+idEvaluacion_2+idEvaluacion_3)/3',''),(5,2,0,'TAREA1','a','#337ab7','#ffffff',NULL,'\0'),(6,2,8,'TAREA2','a','#000005','#ffffff',NULL,'\0'),(7,2,8,'TAREA3','a','#000006','#ffffff',NULL,'\0'),(8,2,13,'PROM','a','#000007','#ffffff',NULL,'\0'),(9,2,12,'TAREA1','a','#000000','#ffffff',NULL,'\0'),(10,2,12,'TAREA2','a','#000001','#ffffff',NULL,'\0'),(11,2,12,'TAREA3','a','#000002','#ffffff',NULL,'\0'),(12,2,13,'PROM','aa','#000003','#ffffff',NULL,'\0'),(13,2,0,'PROME','a','#000004','#ffffff',NULL,'\0'),(14,2,0,'EXP1','a','#000005','#ffffff',NULL,'\0'),(15,1,17,'TAREA 1','','#ffffff','#000000','','\0'),(16,1,17,'TAREA5','','#ffffff','#000000','','\0'),(17,1,25,'PROM 1','','#5cb85c','#ffffff','idEvaluacion_15+idEvaluacion_16',''),(18,1,20,'EXPO2','','#ffffff','#000000','','\0'),(19,1,20,'EXPO3','','#ffffff','#000000','','\0'),(20,1,25,'EXPO4','','#337ab7','#ffffff','idEvaluacion_18+idEvaluacion_19',''),(25,1,0,'QWER','QWER','#777777','#000000','idEvaluacion_4+idEvaluacion_17+idEvaluacion_20',''),(26,1,0,'aa','asa','#7e4949','#160303','idEvaluacion_1+9',''),(27,1,0,'prueba','prome','#ffffff','#0e0e0e','','\0');
 
 /*Table structure for table `formula` */
 
@@ -224,7 +224,7 @@ CREATE TABLE `nota` (
 
 /*Data for the table `nota` */
 
-insert  into `nota`(`ID_NOTA`,`ID_ALUMNO`,`ID_EVALUACION`,`NOTA_EVALUATIVA`) values (1,2,1,13),(2,2,2,5),(3,1,1,18),(4,7,5,16),(5,6,2,15),(6,6,3,20),(7,2,3,13),(8,2,4,10),(9,6,4,14),(10,1,5,4),(11,3,9,6),(12,1,11,0),(13,6,20,16),(14,6,18,2),(15,43,1,1),(16,43,2,1),(21,42,4,1),(22,43,4,1),(23,6,15,8),(24,6,16,20),(25,6,17,28),(26,2,17,4),(27,42,17,7),(28,43,17,4),(29,2,20,1),(30,42,20,1),(31,43,20,1),(32,6,25,58),(33,2,25,15),(34,42,25,9),(35,43,25,6),(36,6,19,14),(37,42,1,2),(38,2,15,3),(39,42,15,2),(40,42,16,5),(41,2,16,1),(42,43,15,2),(43,43,16,2),(44,2,19,1),(45,42,19,3),(46,43,19,1),(47,44,15,2),(48,44,17,2),(49,44,20,0),(50,44,25,2),(51,6,1,8),(52,6,26,17),(53,2,26,22),(54,42,26,11),(55,43,26,10),(56,44,26,9);
+insert  into `nota`(`ID_NOTA`,`ID_ALUMNO`,`ID_EVALUACION`,`NOTA_EVALUATIVA`) values (1,2,1,0),(2,2,2,5),(3,1,1,0),(4,7,5,16),(5,6,2,15),(6,6,3,20),(7,2,3,13),(8,2,4,10),(9,6,4,14),(10,1,5,4),(11,3,9,6),(12,1,11,0),(13,6,20,16),(14,6,18,2),(15,43,1,1),(16,43,2,1),(21,42,4,1),(22,43,4,1),(23,6,15,8),(24,6,16,20),(25,6,17,28),(26,2,17,4),(27,42,17,7),(28,43,17,4),(29,2,20,1),(30,42,20,1),(31,43,20,1),(32,6,25,58),(33,2,25,15),(34,42,25,9),(35,43,25,6),(36,6,19,14),(37,42,1,2),(38,2,15,3),(39,42,15,2),(40,42,16,5),(41,2,16,1),(42,43,15,2),(43,43,16,2),(44,2,19,1),(45,42,19,3),(46,43,19,1),(47,44,15,2),(48,44,17,2),(49,44,20,0),(50,44,25,2),(51,6,1,8),(52,6,26,17),(53,2,26,22),(54,42,26,11),(55,43,26,10),(56,44,26,9);
 
 /*Table structure for table `pregunta` */
 
@@ -252,11 +252,11 @@ CREATE TABLE `user_roles` (
   UNIQUE KEY `uni_username_role` (`role`,`username`),
   KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_roles` */
 
-insert  into `user_roles`(`user_role_id`,`username`,`role`) values (1,'user','ROLE_ADMIN');
+insert  into `user_roles`(`user_role_id`,`username`,`role`) values (3,'luis','ROLE_ADMIN'),(1,'user','ROLE_ADMIN');
 
 /*Table structure for table `users` */
 
@@ -271,7 +271,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`username`,`password`,`enabled`) values ('user','$2a$10$5sS4zKvX6sGuiAc2sJj/YukoFw0.oZoZrL2f5Cl4i5OnTh4JxeyWS',1);
+insert  into `users`(`username`,`password`,`enabled`) values ('luis','$2a$10$5sS4zKvX6sGuiAc2sJj/YukoFw0.oZoZrL2f5Cl4i5OnTh4JxeyWS',1),('user','$2a$10$eGR3JIDoDSX.aJnnJ26L0OUAftI8k3Yc9jgIy3hqR43SlBaasRVFK',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
