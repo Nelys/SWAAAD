@@ -129,10 +129,18 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 		List<Asistencia> listarDiaPorMes = null;
 		try {
 //			
-			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso";			
+			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso  ";		
+			// GROUP BY day(a.fecha)
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
 			listarDiaPorMes =(List<Asistencia>) query.list();
+			
+			for (Asistencia objeto : listarDiaPorMes) {
+//				System.out.println(objeto);
+				 System.out.println(objeto.getFecha() +" - "+objeto.getEstado());
+//				System.out.println(objeto);
+			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

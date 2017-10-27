@@ -39,19 +39,19 @@
 
 			<div class="col-md-3">
 				<div class="input-group">
-					<select class="form-control">
-						<option>Enero</option>
-						<option>Febrero</option>
-						<option>Marzo</option>
-						<option>Abril</option>
-						<option>Mayo</option>
-						<option>Junio</option>
-						<option>Julio</option>
-						<option>Agosto</option>
-						<option>Septiembre</option>
-						<option>Octubre</option>
-						<option>Noviembre</option>
-						<option>Diciembre</option>
+					<select class="form-control" onchange="enviarMes(this,${lista.idCursoAlumno})">
+						<option value="1">Enero</option>
+						<option value="2">Febrero</option>
+						<option value="3">Marzo</option>
+						<option value="4">Abril</option>
+						<option value="5">Mayo</option>
+						<option value="6">Junio</option>
+						<option value="7">Julio</option>
+						<option value="8">Agosto</option>
+						<option value="9">Septiembre</option>
+						<option value="10">Octubre</option>
+						<option value="11">Noviembre</option>
+						<option value="12">Diciembre</option>
 					</select>
 				</div>
 			</div>
@@ -70,24 +70,37 @@
 								<th>Alumno</th>
 								<c:forEach var="listaDia" items="${listarDiasMes}">
 									<th>${listaDia}</th>
-
-									<%--<th><fmt:formatDate value="${listaDia}" pattern="dd" /></th> --%>
 								</c:forEach>
 								<th>Accion</th>
 							</tr>
 
+							<!-- ListaAlumnos -->
 							<c:forEach var="lista" items="${listAlumnos}">
 								<tr>
-									<%-- 									<td>${lista.cursoAlumno.alumno.nroOrden}</td> --%>
-									<%-- 									<td>${lista.cursoAlumno.alumno.nombres},${lista.cursoAlumno.alumno.apellidos}</td> --%>
 									<td>${lista.alumno.nroOrden}</td>
 									<td>${lista.alumno.nombres},${lista.alumno.apellidos}</td>
+
+									<!-- 						ListEstados				 -->
 									<c:forEach var="listaEstado" items="${listaEstadoPorCurso}">
-									<th><fmt:formatDate value="${listaEstado.fecha}" pattern="dd" /></th>
-									<c:if test="${listaEstado.fecha}="></c:if>
-										<td>${listaEstado.estado}</td>
+										<fmt:formatDate var="dia" value="${listaEstado.fecha}"
+											pattern="dd" />
+										<c:if
+											test="${lista.alumno.idAlumno==listaEstado.cursoAlumno.alumno.idAlumno}">
+
+
+<%-- 											<c:forEach var="listaDia" items="${listarDiasMes}"> --%>
+
+<%-- 												<c:if test="${listaDia == dia}"> --%>
+
+													<td>${listaEstado.estado}</td>
+
+<%-- 												</c:if> --%>
+
+<%-- 											</c:forEach> --%>
+										</c:if>
 									</c:forEach>
 
+									<!-- fin estado-->
 									<td style="" width="100px"><select
 										onchange="enviarAsistencia(this,${lista.idCursoAlumno})">
 											<option value="A">Asistio
@@ -97,7 +110,11 @@
 											<option value="TJ">Tardanza Justificada
 									</select></td>
 								</tr>
+
 							</c:forEach>
+
+
+
 
 
 						</table>
@@ -179,5 +196,12 @@
 
 		});
 	}
+	
+	
+$("#capturarMes").click(function(){
+		
+	
+}
+		
 </script>
 <!-- /#page-wrapper -->
