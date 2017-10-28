@@ -40,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		
+		<br> <br>
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">

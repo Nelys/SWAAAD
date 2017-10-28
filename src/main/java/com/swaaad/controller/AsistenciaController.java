@@ -63,12 +63,12 @@ public class AsistenciaController {
 		HttpSession session = request1.getSession(false);
 
 		int idCurso = (Integer) session.getAttribute("idCurso");
+		
 		@SuppressWarnings("unused")
 		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
-		List<Date> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso);
+		List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso, 10);
 		List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso);
-//		List<Asistencia> listaAlumnosCursos=objAsistenciaService.getAllAlumnosByCursoMes(idCurso);
-//		List<Integer> listarDiasMes=objAsistenciaService.asistenciaMes(10, idCurso);
+
 
 		System.out.println("mensaje de los cambios");
 		model.addObject("listAlumnos", listaAlumnosCursos);
@@ -180,7 +180,7 @@ public class AsistenciaController {
 		// declaro un variable cursoAlumno de tipo CursoAlumno el cualguadara
 //		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
 		Asistencia asistencia = new Asistencia();
-
+		System.out.println(tipo + " " + idAlumnoCurso);
 		// objAsistenciaService.addAsistencia(asistencia);
 		// METODO PARA GUARDAR ASISTENCIA
 		return null;

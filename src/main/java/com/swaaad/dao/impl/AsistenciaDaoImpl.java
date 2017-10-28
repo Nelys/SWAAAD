@@ -101,17 +101,25 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Date> getDayOfAlumnosByCurso(int idCurso) throws Exception {
+	public List<Integer> getDayOfAlumnosByCurso(int idCurso, int mes) throws Exception {
 		sSession = sessionFactory.openSession();
-		List<Date> listarDiaPorMes = null;
+		List<Integer> listarDiaPorMes = null;
 		try {
 //			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca WHERE ca.curso.idCurso=:idCurso";
-			String queryAsistencia = "SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso GROUP BY day(a.fecha)";
+			String queryAsistencia = "SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND month(a.fecha)=:mes GROUP BY day(a.fecha)";
 //			SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=1 AND month(a.fecha)=10 GROUP BY day(a.fecha)
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
-			listarDiaPorMes =(List<Date>) query.list();
+			query.setInteger("mes", mes);
+			listarDiaPorMes =(List<Integer>) query.list();
 
+			for (Integer objeto : listarDiaPorMes) {
+//				System.out.println(objeto);
+				 System.out.println(objeto);
+//				System.out.println(objeto);
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

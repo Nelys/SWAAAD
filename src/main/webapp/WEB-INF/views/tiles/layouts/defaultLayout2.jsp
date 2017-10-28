@@ -25,7 +25,21 @@
 	href="<c:url value='/resources/template/fonts/font-awesome.min.css' />"
 	rel="stylesheet" type="text/css">
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="<c:url value='/resources/template/js/jquery.js' />"></script>
 
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="<c:url value='/resources/template/js/bootstrap.min.js' />"></script>
+
+	<!-- Sparkline graphs -->
+	<script src="<c:url value='/resources/template/js/sparkline.js' />"></script>
+
+	<!-- jquery ScrollUp JS -->
+	<script
+		src="<c:url value='/resources/template/js/scrollup/jquery.scrollUp.js' />"></script>
+
+	<!-- Custom Index -->
+	<script src="<c:url value='/resources/template/js/custom.js' />"></script>
 </head>
 
 <body>
@@ -285,21 +299,7 @@
 	</div>
 	<!-- Dashboard Wrapper ends -->
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<c:url value='/resources/template/js/jquery.js' />"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="<c:url value='/resources/template/js/bootstrap.min.js' />"></script>
-
-	<!-- Sparkline graphs -->
-	<script src="<c:url value='/resources/template/js/sparkline.js' />"></script>
-
-	<!-- jquery ScrollUp JS -->
-	<script
-		src="<c:url value='/resources/template/js/scrollup/jquery.scrollUp.js' />"></script>
-
-	<!-- Custom Index -->
-	<script src="<c:url value='/resources/template/js/custom.js' />"></script>
+	
 
 </body>
 </html>

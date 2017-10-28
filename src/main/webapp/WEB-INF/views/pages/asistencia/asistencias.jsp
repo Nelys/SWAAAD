@@ -17,17 +17,14 @@
 		<!-- Opcion de la tabla -->
 
 		<div class='row'>
-			<div class="col-md-2 col-lg-1">
+			<div class="col-md-4 col-lg-3">
 				<button class="btn btn-success" href="newAsistencia"
 					data-toggle="modal" data-target="#myModal">
 					<i class="fa fa-plus"></i> Nuevo
 				</button>
 			</div>
 
-			<div class="col-md-4">
-				<a class="btn btn-default" href="importarAlumno"><i
-					class="fa fa-upload"></i> Importar</a>
-			</div>
+		
 
 			<div class="col-lg-4 text-right">
 				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i>
@@ -37,22 +34,25 @@
 
 			</div>
 
-			<div class="col-md-3">
-				<div class="input-group">
-					<select class="form-control" onchange="enviarMes(this,${lista.idCursoAlumno})">
-						<option value="1">Enero</option>
-						<option value="2">Febrero</option>
-						<option value="3">Marzo</option>
-						<option value="4">Abril</option>
-						<option value="5">Mayo</option>
-						<option value="6">Junio</option>
-						<option value="7">Julio</option>
-						<option value="8">Agosto</option>
-						<option value="9">Septiembre</option>
-						<option value="10">Octubre</option>
-						<option value="11">Noviembre</option>
-						<option value="12">Diciembre</option>
-					</select>
+			<div class="col-md-4 form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-1 control-label" >Mes</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="cbxMeses">
+							<option value="1">Enero</option>
+							<option value="2">Febrero</option>
+							<option value="3">Marzo</option>
+							<option value="4">Abril</option>
+							<option value="5">Mayo</option>
+							<option value="6">Junio</option>
+							<option value="7">Julio</option>
+							<option value="8">Agosto</option>
+							<option value="9">Septiembre</option>
+							<option value="10">Octubre</option>
+							<option value="11">Noviembre</option>
+							<option value="12">Diciembre</option>
+						</select>
+					</div>
 				</div>
 			</div>
 
@@ -64,7 +64,7 @@
 			<div class="col-lg-12">
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
-						<table class="table table-bordered table-hover table-striped">
+						<table id="table" class="table table-bordered table-hover table-striped">
 							<tr>
 								<th>No</th>
 								<th>Alumno</th>
@@ -76,7 +76,7 @@
 
 							<!-- ListaAlumnos -->
 							<c:forEach var="lista" items="${listAlumnos}">
-								<tr>
+								<tr id="${lista.idCursoAlumno}" class="tdAsistencia">
 									<td>${lista.alumno.nroOrden}</td>
 									<td>${lista.alumno.nombres},${lista.alumno.apellidos}</td>
 
@@ -88,15 +88,15 @@
 											test="${lista.alumno.idAlumno==listaEstado.cursoAlumno.alumno.idAlumno}">
 
 
-<%-- 											<c:forEach var="listaDia" items="${listarDiasMes}"> --%>
+											<c:forEach var="listaDia" items="${listarDiasMes}">
 
-<%-- 												<c:if test="${listaDia == dia}"> --%>
+												<c:if test="${listaDia == dia}">
 
 													<td>${listaEstado.estado}</td>
 
-<%-- 												</c:if> --%>
+												</c:if>
 
-<%-- 											</c:forEach> --%>
+											</c:forEach>
 										</c:if>
 									</c:forEach>
 
@@ -158,14 +158,22 @@
 	</div>
 </div>
 
-<!-- /.container-fluid -->
-<script>
-	$("#guardarAsistencia").click(function() {
-		//enviar guardar asistencia
-		alert("Guardara");
-		// 	 $.post("demo_test.asp", function(data, status){
-		// 	        alert("Data: " + data + "\nStatus: " + status);
-		// 	    });
+
+<script type="text/javascript">
+	
+// 	$(document).on("click", "#table .tdAsistencia", function(e) {
+		// Obteniendo el id del elemento td
+// 		var id = $(".tdAsistencia").attr('id');
+	
+	
+	
+	$("#cbxMeses").change(function(){
+
+// 		console.log($("#cbxMeses").val());
+// 		alert("cambio  "+$(this).val());
+// 		var numeroMes=$(this.val());
+// 		console.log($(".tdAsistencia").attr('id'));
+		enviarAsistencia($(this.val()), $(".tdAsistencia").attr('id'));
 	});
 
 	function enviarAsistencia(obj, idCursoAlumno) {
@@ -174,8 +182,8 @@
 		var AlumnoCurso = idCursoAlumno;
 
 		$.ajax({
-			type : "GET",
-			dataType : "json",
+// 			type : "GET",
+// 			dataType : "json",
 			url : '${pageContext.request.contextPath}/guardarAsistenciaAlumno',
 			data : {
 				tipo : tipoAsistencias,
@@ -193,11 +201,5 @@
 		});
 	}
 	
-	
-$("#capturarMes").click(function(){
-		
-	
-}
-		
 </script>
 <!-- /#page-wrapper -->

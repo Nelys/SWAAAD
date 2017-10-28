@@ -40,9 +40,9 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	}
 
 	@Override
-	public List<Date> getDayOfAlumnosByCurso(int idCurso) throws Exception {
+	public List<Integer> getDayOfAlumnosByCurso(int idCurso, int mes) throws Exception {
 		// TODO Auto-generated method stub
-		return objAsistenciaDao.getDayOfAlumnosByCurso(idCurso);
+		return objAsistenciaDao.getDayOfAlumnosByCurso(idCurso, mes);
 	}
 
 	@Override
