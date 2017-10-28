@@ -25,21 +25,51 @@
 	href="<c:url value='/resources/template/fonts/font-awesome.min.css' />"
 	rel="stylesheet" type="text/css">
 
+
+<!-- Data Tables -->
+<link href="<c:url value='/resources/template/css/datatables/dataTables.bs.min.css' />" rel="stylesheet" />
+<link href="<c:url value='/resources/template/css/datatables/autoFill.bs.min.css' />" rel="stylesheet" />
+<link href="<c:url value='/resources/template/css/datatables/fixedHeader.bs.css' />" rel="stylesheet" />
+<link href="<c:url value='/resources/template/css/datatables/buttons.bs.css' />" rel="stylesheet" />
+
+
+
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<c:url value='/resources/template/js/jquery.js' />"></script>
+<script src="<c:url value='/resources/template/js/jquery.js' />"></script>
 
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="<c:url value='/resources/template/js/bootstrap.min.js' />"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="<c:url value='/resources/template/js/bootstrap.min.js' />"></script>
 
-	<!-- Sparkline graphs -->
-	<script src="<c:url value='/resources/template/js/sparkline.js' />"></script>
+<!-- Sparkline graphs -->
+<script src="<c:url value='/resources/template/js/sparkline.js' />"></script>
 
-	<!-- jquery ScrollUp JS -->
-	<script
-		src="<c:url value='/resources/template/js/scrollup/jquery.scrollUp.js' />"></script>
+<!-- jquery ScrollUp JS -->
+<script
+	src="<c:url value='/resources/template/js/scrollup/jquery.scrollUp.js' />"></script>
 
-	<!-- Custom Index -->
-	<script src="<c:url value='/resources/template/js/custom.js' />"></script>
+
+<!-- Data Tables -->
+<script src="<c:url value='/resources/template/js/datatables/dataTables.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/dataTables.bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/dataTables.tableTools.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/autoFill.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/autoFill.bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/fixedHeader.min.js' />"></script>
+
+<!-- Download / CSV / Copy / Print -->
+<script src="<c:url value='/resources/template/js/datatables/buttons.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/flash.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/jszip.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/pdfmake.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/vfs_fonts.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/html5.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/buttons.print.min.js' />"></script>
+
+
+<!-- Custom Index -->
+<script src="<c:url value='/resources/template/js/custom.js' />"></script>
 </head>
 
 <body>
@@ -246,33 +276,10 @@
 
 		<!-- Top Bar starts -->
 		<div class="top-bar">
-			<div class="page-title"><tiles:getAsString name="title" /></div>
-			<ul class="stats hidden-xs">
-				<li>
-					<div class="stats-block hidden-sm hidden-xs">
-						<span id="downloads_graph"></span>
-					</div>
-					<div class="stats-details">
-						<h4>
-							$<span id="today_income">580</span> <i
-								class="fa fa-chevron-up up"></i>
-						</h4>
-						<h5>Today's Income</h5>
-					</div>
-				</li>
-				<li>
-					<div class="stats-block hidden-sm hidden-xs">
-						<span id="users_online_graph"></span>
-					</div>
-					<div class="stats-details">
-						<h4>
-							$<span id="today_expenses">235</span> <i
-								class="fa fa-chevron-down down"></i>
-						</h4>
-						<h5>Today's Expenses</h5>
-					</div>
-				</li>
-			</ul>
+			<div class="page-title">
+				<tiles:getAsString name="title" />
+			</div>
+
 		</div>
 		<!-- Main Container starts -->
 		<div class="main-container">
@@ -299,7 +306,7 @@
 	</div>
 	<!-- Dashboard Wrapper ends -->
 
-	
+
 
 </body>
 </html>

@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import java.util.HashMap;
 
 import java.util.Map;
@@ -22,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.AlumnoDTO;
+import com.swaaad.exceptions.AsistenciaException;
 import com.swaaad.model.Asistencia;
 import com.swaaad.model.CursoAlumno;
 import com.swaaad.reports.CursoAlumnoReport;
@@ -40,6 +41,7 @@ import com.swaaad.service.CursoAlumnoService;
 
 @Controller
 public class AsistenciaController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(AsistenciaController.class);
 
 	@Autowired
@@ -47,54 +49,68 @@ public class AsistenciaController {
 	@Autowired
 	AlumnosService objAlumnoService;
 
-	
 	@Autowired
 	CursoAlumnoService objCursoAlumnoService;
 
-
 	@Autowired
-	ServletContext context; 
+	ServletContext context;
+
 	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("asistenciaPage");
+		try {
+			HttpServletRequest request1 = (HttpServletRequest) request;
+			HttpSession session = request1.getSession(false);
 
-		HttpServletRequest request1 = (HttpServletRequest) request;
-		HttpSession session = request1.getSession(false);
+			int idCurso = (Integer) session.getAttribute("idCurso");
 
-		int idCurso = (Integer) session.getAttribute("idCurso");
-		
-		@SuppressWarnings("unused")
-		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
-		List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso, 10);
-		List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso);
+			List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
+			List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso, 10);
+			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso);
 
+			System.out.println("mensaje de los cambios");
+			model.addObject("listAlumnos", listaAlumnosCursos);
+			model.addObject("listarDiasMes", listaDiaPorMes);
+			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
+			model.setViewName("asistencias");
 
-		System.out.println("mensaje de los cambios");
-		model.addObject("listAlumnos", listaAlumnosCursos);
-		model.addObject("listarDiasMes", listaDiaPorMes);
-		model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
-		model.setViewName("asistencias");
-
+		} catch (Exception e) {
+			model.setViewName("redirect:/cursos");
+			logger.info("problemas con curso no se ");
+			
+		}
 		return model;
 	}
-	
-	
-//	para mostart el formulario
+
+	@ExceptionHandler(AsistenciaException.class)
+	public ModelAndView handleUsuarioNoEncontradoException(HttpServletRequest request, Exception ex) {
+
+		System.out.println("URL de la Peticion = " + request.getRequestURL());
+		System.out.println("Exception Lanzada = " + ex);
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("exception", ex);
+		modelAndView.addObject("url", request.getRequestURL());
+
+		modelAndView.setViewName("error");
+		return modelAndView;
+	}
+	// para mostart el formulario
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String HelloWorld(Model model) {		
-		//model.addAttribute("lstUser", lstUser);
+	public String HelloWorld(Model model) {
+		// model.addAttribute("lstUser", lstUser);
 		model.addAttribute("message", "Welcome to Spring MVC");
 		return "hello";
 	}
-	
-//	para capturar el envio del formulario
+
+	// para capturar el envio del formulario
 	@RequestMapping(value = "/hello", method = RequestMethod.POST)
 	public String processExcel2007(Model model, @RequestParam("excelfile2007") MultipartFile excelfile) {
 		System.out.println("hello subir archivos");
 		try {
 			List<AlumnoDTO> lstUser = new ArrayList<>();
-			
+
 			System.out.println("hello subir archivos try");
 			int i = 0;
 			// Creates a workbook object from the uploaded excelfile
@@ -111,12 +127,12 @@ public class AsistenciaController {
 				// Sets the Read data to the model class
 				user.setIdAlumno((int) row.getCell(0).getNumericCellValue());
 				user.setApellidos(row.getCell(1).getStringCellValue());
-//				user.setNombres(row.getCell(2).getDateCellValue());
+				// user.setNombres(row.getCell(2).getDateCellValue());
 				user.setNombres(row.getCell(2).getStringCellValue());
 				// persist data into database in here
 				lstUser.add(user);
-				
-			}			
+
+			}
 			workbook.close();
 			model.addAttribute("lstUser", lstUser);
 		} catch (Exception e) {
@@ -125,38 +141,35 @@ public class AsistenciaController {
 		System.out.println("hello subir archivos hello");
 		return "hello";
 	}
-	
-	
+
 	@RequestMapping(value = "/pdf", method = RequestMethod.GET)
 	public String generatePdfReports(ModelMap modelMap) throws Exception {
 
 		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(3);
-		
-		
+
 		CursoAlumnoReport ar = new CursoAlumnoReport();
 		modelMap.put("listaAlumnos", ar.findAllAlumnos(listaAlumnosCursos));
-		
+
 		return "asistencia_reporte";
 	}
 
-	 @RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
-	 public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia)
-	 throws Exception {
-	
-	 logger.info("saveAsistencia");
-	
-	 try {
-	 if (asistencia.getIdAsistencia() == 0) {
-	 objAsistenciaService.addAsistencia(asistencia);
-	 } else {
-	 objAsistenciaService.updateAsistencia(asistencia);
-	 }
-	
-	 } catch (Exception e) {
-	 e.getStackTrace();
-	 }
-	 return new ModelAndView("redirect:/asistencias");
-	 }
+	@RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
+	public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia) throws Exception {
+
+		logger.info("saveAsistencia");
+
+		try {
+			if (asistencia.getIdAsistencia() == 0) {
+				objAsistenciaService.addAsistencia(asistencia);
+			} else {
+				objAsistenciaService.updateAsistencia(asistencia);
+			}
+
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return new ModelAndView("redirect:/asistencias");
+	}
 
 	@RequestMapping(value = "/newAsistencia", method = RequestMethod.GET)
 	public ModelAndView newAsistencia(ModelAndView model) throws Exception {
@@ -178,10 +191,10 @@ public class AsistenciaController {
 	public AlumnoDTO getAlumnoById(@RequestParam("tipo") String tipo, @RequestParam("idAlumnoCurso") int idAlumnoCurso)
 			throws Exception {
 		// declaro un variable cursoAlumno de tipo CursoAlumno el cualguadara
-//		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
+		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
 		Asistencia asistencia = new Asistencia();
 		System.out.println(tipo + " " + idAlumnoCurso);
-		// objAsistenciaService.addAsistencia(asistencia);
+		objAsistenciaService.addAsistencia(asistencia);
 		// METODO PARA GUARDAR ASISTENCIA
 		return null;
 	}
