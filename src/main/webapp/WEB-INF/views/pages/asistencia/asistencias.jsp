@@ -7,12 +7,6 @@
 <div id="page-wrapper">
 
 	<div class="container-fluid">
-		<!-- Titulo -->
-		<div class='row'>
-			<div class="col-md-12">
-				<h2>Asistencia Alumnos</h2>
-			</div>
-		</div>
 
 		<!-- Opcion de la tabla -->
 
@@ -90,16 +84,20 @@
 											<c:if
 												test="${lista.alumno.idAlumno==listaEstado.cursoAlumno.alumno.idAlumno}">
 
-
 												<c:forEach var="listaDia" items="${listarDiasMes}">
 
 													<c:if test="${listaDia == dia}">
+														<td>${listaEstado.estado}</td>
 
+													</c:if>
+													<c:if test="${listaDia == dia}">
 														<td>${listaEstado.estado}</td>
 
 													</c:if>
 
+
 												</c:forEach>
+
 											</c:if>
 										</c:forEach>
 
@@ -622,8 +620,6 @@
 </div>
 
 
-
-
 <script type="text/javascript">
 
 $(function(){
@@ -654,8 +650,11 @@ $(function(){
 	});
 	
 	
+	$("#cbxMeses").change(function(){
+
+		enviarAsistencia($(this.val()), $(".tdAsistencia").attr('id'));
+	});
 	
-// 	$("#enviarAsistencia").change(function(){})
 	
 	
 	
