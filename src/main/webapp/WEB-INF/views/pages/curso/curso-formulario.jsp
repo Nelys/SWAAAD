@@ -12,13 +12,14 @@
 				<form:form action="saveCurso" method="post" modelAttribute="curso"
 					cssClass="form-horizontal">
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="email">ID</label>
+						<label class="control-label col-sm-2" for="idCurso">ID</label>
 						<div class="col-sm-10">
 							<form:input path="idCurso" cssClass="form-control" />
 						</div>
 					</div>
+					
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="email">Curso:</label>
+						<label class="control-label col-sm-2" for="nombreCurso">Curso:</label>
 						<div class="col-sm-10">
 
 							<form:input path="nombreCurso" cssClass="form-control" />

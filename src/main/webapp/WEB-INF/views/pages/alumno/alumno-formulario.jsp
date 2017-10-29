@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
+
+<script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
+<script src="<c:url value='/resources/js/validate-forms.js' />"></script>
 <div id="page-wrapper">
 
 	<div class="container-fluid">
@@ -12,20 +15,20 @@
 				<form:form action="saveAlumno" method="post" modelAttribute="alumno"
 					cssClass="form-horizontal">
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="email">ID</label>
+						<label class="control-label col-sm-2" for="id">ID</label>
 						<div class="col-sm-10">
 							<form:input path="idAlumno" cssClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="email">Nombres:</label>
+						<label class="control-label col-sm-2" for="nombres">Nombres:</label>
 						<div class="col-sm-10">
 
 							<form:input path="nombres" cssClass="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd">Apellidos:</label>
+						<label class="control-label col-sm-2" for="apellidos">Apellidos:</label>
 						<div class="col-sm-10">
 
 							<form:input path="apellidos" cssClass="form-control" />
@@ -44,7 +47,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd">Email:</label>
+						<label class="control-label col-sm-2" for="email">Email:</label>
 						<div class="col-sm-10">
 							<form:input path="email" cssClass="form-control" />
 						</div>
