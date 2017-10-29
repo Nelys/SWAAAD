@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +41,7 @@ import com.swaaad.service.AsistenciaService;
 import com.swaaad.service.CursoAlumnoService;
 
 @Controller
+@RequestMapping("asistencias")
 public class AsistenciaController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AsistenciaController.class);
@@ -54,8 +56,8 @@ public class AsistenciaController {
 
 	@Autowired
 	ServletContext context;
-
-	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
+	@RequestMapping("")
+//	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("asistenciaPage");
@@ -68,20 +70,29 @@ public class AsistenciaController {
 			List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
 			List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso, 10);
 			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso);
-
+			logger.info("paso1"+idCurso);
 			System.out.println("mensaje de los cambios");
 			model.addObject("listAlumnos", listaAlumnosCursos);
 			model.addObject("listarDiasMes", listaDiaPorMes);
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
-			model.setViewName("asistencias");
-
+			logger.info("paso2");
+			model.setViewName("asistencia");
+			logger.info("paso");
 		} catch (Exception e) {
-			model.setViewName("redirect:/cursos");
+			//model.setViewName("redirect:/cursos");
 			logger.info("problemas con curso no se ");
 			
 		}
 		return model;
 	}
+	// para mostart el formulario
+	@RequestMapping("/mes/{id}")
+	public String HelloWorld2(Model model, @PathVariable("id") int id) {
+		// model.addAttribute("lstUser", lstUser);
+		model.addAttribute("message", "Welcome to Spring MVC"+id);
+		return "hello";
+	}
+	
 
 	@ExceptionHandler(AsistenciaException.class)
 	public ModelAndView handleUsuarioNoEncontradoException(HttpServletRequest request, Exception ex) {
@@ -96,6 +107,11 @@ public class AsistenciaController {
 		modelAndView.setViewName("error");
 		return modelAndView;
 	}
+	
+
+
+	
+	
 	// para mostart el formulario
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String HelloWorld(Model model) {
