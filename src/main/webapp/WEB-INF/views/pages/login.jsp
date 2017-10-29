@@ -7,38 +7,12 @@
 <link href="<c:url value='/resources/css/bootstrap.min.css' />"
 	rel="stylesheet">
 
-    <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script>
+<script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script>
 <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
+<script src="<c:url value='/resources/js/validate-forms.js' />"></script>
+
 <style>
-/* .error { */
-/* 	padding: 15px; */
-/* 	margin-bottom: 20px; */
-/* 	border: 1px solid transparent; */
-/* 	border-radius: 4px; */
-/* 	color: #a94442; */
-/* 	background-color: #f2dede; */
-/* 	border-color: #ebccd1; */
-/* } */
-
-/* .msg { */
-/* 	padding: 15px; */
-/* 	margin-bottom: 20px; */
-/* 	border: 1px solid transparent; */
-/* 	border-radius: 4px; */
-/* 	color: #31708f; */
-/* 	background-color: #d9edf7; */
-/* 	border-color: #bce8f1; */
-/* } */
-
-/* #login-box { */
-/* 	width: 300px; */
-/* 	padding: 20px; */
-/* 	margin: 100px auto; */
-/* 	background: #fff; */
-/* 	-webkit-border-radius: 2px; */
-/* 	-moz-border-radius: 2px; */
-/* 	border: 1px solid #000; */
-/* } */
 @import
 	url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700")
 	;
@@ -158,6 +132,7 @@ body {
 }
 </style>
 </head>
+
 <body onload='document.loginForm.username.focus();'>
 
 	<div class="login-body">
@@ -166,20 +141,26 @@ body {
 				<ul id="top-bar" class="nav nav-tabs nav-justified">
 					<li class="active"><a href="#login-access">Acceso</a></li>
 					<li><a href="#menu1">Registro</a></li>
-    				
+
 				</ul>
-				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+				<div
+					class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
 					<div id="login-access" class="tab-pane fade active in">
 						<h2>
 							<i class="glyphicon glyphicon-log-in"></i> Acceso
 						</h2>
+						<!-- Formulario de Acceso -->
 						<form name='loginForm' method="post" accept-charset="utf-8"
 							autocomplete="off" role="form" class="form-horizontal">
+
+							<!-- usuario -->
 							<div class="form-group ">
 								<label for="login" class="sr-only">Usuario</label> <input
 									type="text" class="form-control" name="username" id="username"
 									placeholder="Email" tabindex="1" value="" />
 							</div>
+
+							<!-- PassWord -->
 							<div class="form-group ">
 								<label for="password" class="sr-only">Password</label> <input
 									type="password" class="form-control" name="password"
@@ -192,15 +173,19 @@ body {
 							<c:if test="${not empty msg}">
 								<div class="msg">${msg}</div>
 							</c:if>
+
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-							<br />
+								value="${_csrf.token}" /> <br />
 							<div class="form-group ">
 								<button type="submit" name="log-me-in" id="submit" tabindex="5"
 									class="btn btn-lg btn-primary">Entra</button>
 							</div>
 						</form>
 					</div>
+
+
+					<!-- Registrar Usuario -->
+
 					<div id="menu1" class="tab-pane fade">
 						<h2>
 							<i class="glyphicon glyphicon-log-in"></i> Registro
@@ -223,7 +208,7 @@ body {
 									id="password" placeholder="Password" value="" tabindex="2" />
 							</div>
 
-			
+
 							<br />
 							<div class="form-group ">
 								<button type="submit" name="log-me-in" id="submit" tabindex="5"
@@ -232,16 +217,19 @@ body {
 						</form>
 					</div>
 				</div>
-				
+
 			</section>
 		</article>
 	</div>
 	<script>
-$(document).ready(function(){
-    $(".nav-tabs a").click(function(){
-        $(this).tab('show');
-    });
-});
-</script>
+		$(document).ready(function() {
+			$(".nav-tabs a").click(function() {
+				$(this).tab('show');
+			});
+
+		});
+
+		
+	</script>
 </body>
 </html>
