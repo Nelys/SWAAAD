@@ -6,14 +6,13 @@
 
 	<div class="container-fluid">
 		<!-- Titulo -->
-		<div class='row'>
-			<div class="col-md-12">
-				<h2>Lista Alumnos</h2>
-			</div>
-		</div>
+<!-- 		<div class='row'> -->
+<!-- 			<div class="col-md-12"> -->
+<!-- 				<h2>Lista Alumnos</h2> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!-- Opcion de la tabla -->
-		
 		<div class='row'>
 			<div class="col-md-1">
 				<a class="btn btn-success" href="newAlumno"><i
@@ -21,13 +20,13 @@
 			</div>
 
 			<div class="col-md-4">
-				<a class="btn btn-default" href="newAlumno"><i
+				<a class="btn btn-default" href="hello"><i
 					class="fa fa-upload"></i> Importar</a>
 			</div>
 
 			<div class="col-lg-4 text-right">
 				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i>
-					PDF</a> <a class="btn btn-primary" href="#"><i
+					PDF</a> <a class="btn btn-primary" href="xls"><i
 					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default"
 					href="AlumnoReporte"><i class="fa fa-print"></i> Imprimir</a>
 
@@ -40,14 +39,15 @@
 				</div>
 			</div>
 		</div>
-		
+		<br>
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
 
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
-						<table class="table table-bordered table-hover table-striped">
+						<table id="miTable" class="table table-bordered table-hover table-striped">
+						<thead>
 							<tr>
 								<th>ID</th>
 								<th>Alumno</th>
@@ -59,6 +59,8 @@
 								<th>Email Apoderado</th>
 								<th>ACCION</th>
 							</tr>
+						</thead>
+						<tbody>
 							<c:forEach var="lista" items="${listAlumnos}">
 								<tr>
 									<td>${lista.idAlumno}</td>
@@ -78,6 +80,7 @@
 											class="fa fa-trash-o"></i></a></td>
 								</tr>
 							</c:forEach>
+						</tbody>
 						</table>
 					</c:if>
 				</div>
@@ -85,7 +88,18 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
+		<script type="text/javascript">
+		
+		$(function(){
+			
+			$('#miTable').DataTable( {
+				dom: 'Bfrtip',
+				buttons: [
+					'copy', 'csv', 'excel', 'pdf', 'print'
+				]
+			});
+		});
+		</script>
 	</div>
 	<!-- /.container-fluid -->
 
