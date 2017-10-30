@@ -18,14 +18,12 @@ public class Pregunta implements Serializable {
 	@Column(name="ID_PREGUNTA")
 	private int idPregunta;
 
+	@Column(name="ID_CURSO")
+	private int idCurso;
+
 	private String pregunta;
 
 	private String tema;
-
-	//bi-directional many-to-one association to Curso
-	@ManyToOne
-	@JoinColumn(name="ID_CURSO")
-	private Curso curso;
 
 	public Pregunta() {
 	}
@@ -36,6 +34,14 @@ public class Pregunta implements Serializable {
 
 	public void setIdPregunta(int idPregunta) {
 		this.idPregunta = idPregunta;
+	}
+
+	public int getIdCurso() {
+		return this.idCurso;
+	}
+
+	public void setIdCurso(int idCurso) {
+		this.idCurso = idCurso;
 	}
 
 	public String getPregunta() {
@@ -52,14 +58,6 @@ public class Pregunta implements Serializable {
 
 	public void setTema(String tema) {
 		this.tema = tema;
-	}
-
-	public Curso getCurso() {
-		return this.curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
 	}
 
 }

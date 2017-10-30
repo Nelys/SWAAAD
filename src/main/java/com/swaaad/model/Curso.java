@@ -47,10 +47,6 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy="curso")
 	private List<Horario> horarios;
 
-	//bi-directional many-to-one association to Pregunta
-	@OneToMany(mappedBy="curso")
-	private List<Pregunta> preguntas;
-
 	public Curso() {
 	}
 
@@ -174,28 +170,6 @@ public class Curso implements Serializable {
 		horario.setCurso(null);
 
 		return horario;
-	}
-
-	public List<Pregunta> getPreguntas() {
-		return this.preguntas;
-	}
-
-	public void setPreguntas(List<Pregunta> preguntas) {
-		this.preguntas = preguntas;
-	}
-
-	public Pregunta addPregunta(Pregunta pregunta) {
-		getPreguntas().add(pregunta);
-		pregunta.setCurso(this);
-
-		return pregunta;
-	}
-
-	public Pregunta removePregunta(Pregunta pregunta) {
-		getPreguntas().remove(pregunta);
-		pregunta.setCurso(null);
-
-		return pregunta;
 	}
 
 }
