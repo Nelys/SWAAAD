@@ -9,6 +9,7 @@
 
 <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script>
 <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
+
 <script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
 
@@ -190,18 +191,22 @@ body {
 						<h2>
 							<i class="glyphicon glyphicon-log-in"></i> Registro
 						</h2>
+						
 						<form name='registroForm' method="post" accept-charset="utf-8"
 							autocomplete="off" role="form" class="form-horizontal">
+							
 							<div class="form-group ">
 								<label for="login" class="sr-only">Nombre</label> <input
 									type="text" class="form-control" name="username" id="username"
 									placeholder="Email" tabindex="1" value="" />
 							</div>
+							
 							<div class="form-group ">
 								<label for="login" class="sr-only">Usuario</label> <input
 									type="text" class="form-control" name="username" id="username"
 									placeholder="Email" tabindex="1" value="" />
 							</div>
+							
 							<div class="form-group ">
 								<label for="password" class="sr-only">Password</label> <input
 									type="password" class="form-control" name="password"
