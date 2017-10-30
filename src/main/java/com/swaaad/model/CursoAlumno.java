@@ -20,6 +20,10 @@ public class CursoAlumno implements Serializable {
 	@Column(name="ID_CURSO_ALUMNO")
 	private int idCursoAlumno;
 
+	//bi-directional many-to-one association to ActividadPedagogica
+	@OneToMany(mappedBy="cursoAlumno")
+	private List<ActividadPedagogica> actividadPedagogicas;
+
 	//bi-directional many-to-one association to Asistencia
 	@OneToMany(mappedBy="cursoAlumno")
 	private List<Asistencia> asistencias;
@@ -43,6 +47,28 @@ public class CursoAlumno implements Serializable {
 
 	public void setIdCursoAlumno(int idCursoAlumno) {
 		this.idCursoAlumno = idCursoAlumno;
+	}
+
+	public List<ActividadPedagogica> getActividadPedagogicas() {
+		return this.actividadPedagogicas;
+	}
+
+	public void setActividadPedagogicas(List<ActividadPedagogica> actividadPedagogicas) {
+		this.actividadPedagogicas = actividadPedagogicas;
+	}
+
+	public ActividadPedagogica addActividadPedagogica(ActividadPedagogica actividadPedagogica) {
+		getActividadPedagogicas().add(actividadPedagogica);
+		actividadPedagogica.setCursoAlumno(this);
+
+		return actividadPedagogica;
+	}
+
+	public ActividadPedagogica removeActividadPedagogica(ActividadPedagogica actividadPedagogica) {
+		getActividadPedagogicas().remove(actividadPedagogica);
+		actividadPedagogica.setCursoAlumno(null);
+
+		return actividadPedagogica;
 	}
 
 	public List<Asistencia> getAsistencias() {

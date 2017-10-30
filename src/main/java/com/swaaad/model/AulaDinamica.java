@@ -19,16 +19,22 @@ public class AulaDinamica implements Serializable {
 	@Column(name="ID_AULA_DINAMICA")
 	private int idAulaDinamica;
 
-	private String color;
+	@Column(name="COLOR_FONDO")
+	private String colorFondo;
 
-	private int x;
+	@Column(name="COLOR_TEXTO")
+	private String colorTexto;
 
-	private int y;
+	@Column(name="COORD_X")
+	private int coordX;
 
-	//bi-directional many-to-one association to Curso
-	@ManyToOne
-	@JoinColumn(name="ID_CURSO_ALUMNO")
-	private Curso curso;
+	@Column(name="COORD_Y")
+	private int coordY;
+
+	private byte estado;
+
+	@Column(name="ID_CURSO_ALUMNO")
+	private int idCursoAlumno;
 
 	public AulaDinamica() {
 	}
@@ -41,36 +47,52 @@ public class AulaDinamica implements Serializable {
 		this.idAulaDinamica = idAulaDinamica;
 	}
 
-	public String getColor() {
-		return this.color;
+	public String getColorFondo() {
+		return this.colorFondo;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
+	public void setColorFondo(String colorFondo) {
+		this.colorFondo = colorFondo;
 	}
 
-	public int getX() {
-		return this.x;
+	public String getColorTexto() {
+		return this.colorTexto;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setColorTexto(String colorTexto) {
+		this.colorTexto = colorTexto;
 	}
 
-	public int getY() {
-		return this.y;
+	public int getCoordX() {
+		return this.coordX;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setCoordX(int coordX) {
+		this.coordX = coordX;
 	}
 
-	public Curso getCurso() {
-		return this.curso;
+	public int getCoordY() {
+		return this.coordY;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCoordY(int coordY) {
+		this.coordY = coordY;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public int getIdCursoAlumno() {
+		return this.idCursoAlumno;
+	}
+
+	public void setIdCursoAlumno(int idCursoAlumno) {
+		this.idCursoAlumno = idCursoAlumno;
 	}
 
 }

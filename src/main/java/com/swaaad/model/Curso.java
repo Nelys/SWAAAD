@@ -30,14 +30,6 @@ public class Curso implements Serializable {
 
 	private String seccion;
 
-	//bi-directional many-to-one association to ActividadPedagogica
-	@OneToMany(mappedBy="curso")
-	private List<ActividadPedagogica> actividadPedagogicas;
-
-	//bi-directional many-to-one association to AulaDinamica
-	@OneToMany(mappedBy="curso")
-	private List<AulaDinamica> aulaDinamicas;
-
 	//bi-directional many-to-one association to Docente
 	@ManyToOne
 	@JoinColumn(name="ID_DOCENTE")
@@ -108,50 +100,6 @@ public class Curso implements Serializable {
 
 	public void setSeccion(String seccion) {
 		this.seccion = seccion;
-	}
-
-	public List<ActividadPedagogica> getActividadPedagogicas() {
-		return this.actividadPedagogicas;
-	}
-
-	public void setActividadPedagogicas(List<ActividadPedagogica> actividadPedagogicas) {
-		this.actividadPedagogicas = actividadPedagogicas;
-	}
-
-	public ActividadPedagogica addActividadPedagogica(ActividadPedagogica actividadPedagogica) {
-		getActividadPedagogicas().add(actividadPedagogica);
-		actividadPedagogica.setCurso(this);
-
-		return actividadPedagogica;
-	}
-
-	public ActividadPedagogica removeActividadPedagogica(ActividadPedagogica actividadPedagogica) {
-		getActividadPedagogicas().remove(actividadPedagogica);
-		actividadPedagogica.setCurso(null);
-
-		return actividadPedagogica;
-	}
-
-	public List<AulaDinamica> getAulaDinamicas() {
-		return this.aulaDinamicas;
-	}
-
-	public void setAulaDinamicas(List<AulaDinamica> aulaDinamicas) {
-		this.aulaDinamicas = aulaDinamicas;
-	}
-
-	public AulaDinamica addAulaDinamica(AulaDinamica aulaDinamica) {
-		getAulaDinamicas().add(aulaDinamica);
-		aulaDinamica.setCurso(this);
-
-		return aulaDinamica;
-	}
-
-	public AulaDinamica removeAulaDinamica(AulaDinamica aulaDinamica) {
-		getAulaDinamicas().remove(aulaDinamica);
-		aulaDinamica.setCurso(null);
-
-		return aulaDinamica;
 	}
 
 	public Docente getDocente() {
