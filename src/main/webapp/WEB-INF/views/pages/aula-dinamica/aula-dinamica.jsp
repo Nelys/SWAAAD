@@ -8,14 +8,13 @@
 
 	<div class="container-fluid">
 		<!-- Titulo -->
-		<div class='row'>
-			<div class="col-md-12">
-				<h2>Aula</h2>
-			</div>
-		</div>
+<!-- 		<div class='row'> -->
+<!-- 			<div class="col-md-12"> -->
+<!-- 				<h2>Aula</h2> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!-- Opcion de la tabla -->
-		<p>
 		<div class='row'>
 			<div class="col-md-2">
 				<button id="btnFormula" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm" type="button" ><i class="fa fa-plus"></i> Agregar Alumnos</button>
@@ -49,8 +48,9 @@
 				<a class="btn btn-default" href="#"><i class="fa fa-print"></i> Imprimir</a>
 
 			</div>
-
-			<!-- Contenido Aula Modal -->
+		</div>
+		<br>
+<!-- Contenido Aula Modal -->
 				<div id="modalSistema" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 					<div class="modal-dialog modal-sm" role="document">
 						<div class="modal-content">
@@ -100,16 +100,7 @@
 					</div>
 				</div>
 				<!-- / Contenido Modal -->
-				
-				
-<!-- 			<div class="col-md-3"> -->
-<!-- 				<div class="input-group"> -->
-<!-- 					<span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span> -->
-<!-- 					<input type="text" class="form-control" placeholder="Buscar ..." aria-describedby="sizing-addon2"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-		</div>
-		</p>
+
 
 		<!-- Resgistros de la tabla -->
 		<div id="identificador" style="display: none;">hola</div>
@@ -117,11 +108,13 @@
 
 		<form:form action="saveAulaDinamica" method="post"
 			modelAttribute="aulaDinamica">
-			<form:hidden path="idAulaDinamica" />
-<%-- 			<form:hidden path="idCurso" value="1"/> --%>
-			<form:hidden path="x" />
-			<form:hidden path="y" />
-			<form:hidden path="color" />
+			<form:input path="idAulaDinamica" />
+			<form:input path="cursoAlumno.idCursoAlumno" />
+			<form:input path="coordX" />
+			<form:input path="coordY" />
+			<form:input path="colorFondo" />
+			<form:input path="colorTexto" />
+			<form:input path="estado" />
 			<button type="submit" style="display: none;">Guardar</button>
 		</form:form>
 		<div class="row">
@@ -129,10 +122,11 @@
 				style="border: 1px black solid; height: 400px; position: relative;">
 				<c:forEach var="lista" items="${listAulaDinamica}">
 					<div id="alumno_${lista.idAulaDinamica}" class="principal"
-						style="left:${lista.x}px; top:${lista.y}px; width:60px; height:80px; background:#${lista.color}; position: absolute; border-radius: 4px 4px 4px 4px">
-						<div style="color: white; text-align: center; font-size: 100%;">Id:
-							${lista.idAulaDinamica}</div>
-
+						style="left:${lista.coordX}px; top:${lista.coordY}px; width:60px; height:80px; background:#${lista.colorFondo}; position: absolute; border-radius: 4px 4px 4px 4px">
+						<!-- Datos del Alumno -->
+						<div id="idAulaDinamica" style="display: none;">${lista.cursoAlumno.idCursoAlumno}</div>
+						<div style="color: white; text-align: center; font-size: 100%;">${lista.idAulaDinamica}</div>
+						<div style="color: white; text-align: center; font-size: 100%;">${lista.cursoAlumno.alumno.nombres}, ${lista.cursoAlumno.alumno.apellidos}</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -173,7 +167,9 @@
 
 									hexc($('#' + id).css("backgroundColor"));
 
-									$('#color').val(color);
+									$('#colorFondo').val(color);
+									$('#cursoAlumno.idCursoAlumno').val($('#idAulaDinamica').text());
+									console.log(($('#idAulaDinamica').text());
 								});
 
 						$('#aula').mousemove(
@@ -181,8 +177,8 @@
 									if (id != null) {
 										var p = $('#' + id);
 										var position = p.position();
-										$('#x').val(position.left);
-										$('#y').val(position.top);
+										$('#coordX').val(position.left);
+										$('#coordY').val(position.top);
 
 										$('#coordenadas').text(
 												"left: " + position.left
@@ -202,7 +198,7 @@
 							id = null;
 							$.post("saveAulaDinamica",formulario, function(data) {
 								console.log("recepcion");
-								console.log(data);
+// 								console.log(data);
 							});
 
 						});
@@ -212,6 +208,7 @@
 		<p></p>
 		<!-- Resgistros de la tabla -->
 		<div class="row" style="display: none;">
+<!-- 		<div class="row"> -->
 			<div class="col-lg-12">
 
 				<div class="table-responsive">
@@ -229,9 +226,9 @@
 								<tr>
 									<td>${lista.idAulaDinamica}</td>
 									<%-- 									<td>${lista.curso}</td> --%>
-									<td>${lista.x}</td>
-									<td>${lista.y}</td>
-									<td>${lista.color}</td>
+									<td>${lista.coordX}</td>
+									<td>${lista.coordY}</td>
+									<td>${lista.colorFondo}</td>
 									<td style="text-align: center" width="100px"><a
 										class="btn btn-sm btn-warning btn-sm"
 										href="editAlumno?id=${lista.idAulaDinamica}"><i
