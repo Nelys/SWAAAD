@@ -31,10 +31,12 @@ public class AulaDinamica implements Serializable {
 	@Column(name="COORD_Y")
 	private int coordY;
 
-	private byte estado;
+	private Object estado;
 
-	@Column(name="ID_CURSO_ALUMNO")
-	private int idCursoAlumno;
+	//bi-directional many-to-one association to CursoAlumno
+	@ManyToOne
+	@JoinColumn(name="ID_CURSO_ALUMNO")
+	private CursoAlumno cursoAlumno;
 
 	public AulaDinamica() {
 	}
@@ -79,20 +81,20 @@ public class AulaDinamica implements Serializable {
 		this.coordY = coordY;
 	}
 
-	public byte getEstado() {
+	public Object getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(byte estado) {
+	public void setEstado(Object estado) {
 		this.estado = estado;
 	}
 
-	public int getIdCursoAlumno() {
-		return this.idCursoAlumno;
+	public CursoAlumno getCursoAlumno() {
+		return this.cursoAlumno;
 	}
 
-	public void setIdCursoAlumno(int idCursoAlumno) {
-		this.idCursoAlumno = idCursoAlumno;
+	public void setCursoAlumno(CursoAlumno cursoAlumno) {
+		this.cursoAlumno = cursoAlumno;
 	}
 
 }

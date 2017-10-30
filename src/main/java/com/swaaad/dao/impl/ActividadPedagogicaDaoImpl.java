@@ -36,7 +36,7 @@ public class ActividadPedagogicaDaoImpl implements ActividadPedagogicaDao {
 
 		try {
 
-			String queryActividad = "From Docente where ID_ACTIVIDAD=:idActividad ";
+			String queryActividad = "SELECT ap where ActividadPedagogica ap.idActividad =:idActividad ";
 			Query query = sSesion.createQuery(queryActividad);
 			query.setInteger("idDocente", idActividad);
 			actividad = (ActividadPedagogica) query.uniqueResult();

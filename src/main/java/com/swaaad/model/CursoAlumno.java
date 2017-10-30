@@ -28,6 +28,10 @@ public class CursoAlumno implements Serializable {
 	@OneToMany(mappedBy="cursoAlumno")
 	private List<Asistencia> asistencias;
 
+	//bi-directional many-to-one association to AulaDinamica
+	@OneToMany(mappedBy="cursoAlumno")
+	private List<AulaDinamica> aulaDinamicas;
+
 	//bi-directional many-to-one association to Alumno
 	@ManyToOne
 	@JoinColumn(name="ID_ALUMNO")
@@ -91,6 +95,28 @@ public class CursoAlumno implements Serializable {
 		asistencia.setCursoAlumno(null);
 
 		return asistencia;
+	}
+
+	public List<AulaDinamica> getAulaDinamicas() {
+		return this.aulaDinamicas;
+	}
+
+	public void setAulaDinamicas(List<AulaDinamica> aulaDinamicas) {
+		this.aulaDinamicas = aulaDinamicas;
+	}
+
+	public AulaDinamica addAulaDinamica(AulaDinamica aulaDinamica) {
+		getAulaDinamicas().add(aulaDinamica);
+		aulaDinamica.setCursoAlumno(this);
+
+		return aulaDinamica;
+	}
+
+	public AulaDinamica removeAulaDinamica(AulaDinamica aulaDinamica) {
+		getAulaDinamicas().remove(aulaDinamica);
+		aulaDinamica.setCursoAlumno(null);
+
+		return aulaDinamica;
 	}
 
 	public Alumno getAlumno() {
