@@ -55,15 +55,16 @@
 
 <body>
 
-	<div id="wrapper">
+	<div id="row">
+		<!-- Insertar Menu -->
+		<tiles:insertAttribute name="header" />
 
-		
 		<div id="page-wrapper">
 
-			<div class="container-fluid">
+<!-- 			<div class="container-fluid"> -->
 				<!-- Insertar Cuerpo -->
 				<tiles:insertAttribute name="body" />
-			</div>
+<!-- 			</div> -->
 		</div>
 	</div>
 
