@@ -8,32 +8,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Hello World</title>
+<title>Importar Alumnos</title>
 </head>
 <body>
 	<h1>${message}</h1>
 	<h1>${error}</h1>
 
-	<form:form action="processExcel" method="post"
-		enctype="multipart/form-data">
-		<div>Excel File 2003:</div>
-		<input name="excelfile" type="file">
-		<input type="submit" value="processExcel">
-	</form:form>
-	<hr>
+<%-- 	<form:form action="processExcel" method="post" --%>
+<%-- 		enctype="multipart/form-data"> --%>
+<!-- 		<div>Excel File 2003:</div> -->
+<!-- 		<input name="excelfile" type="file"> -->
+<!-- 		<input type="submit" value="processExcel"> -->
+<%-- 	</form:form> --%>
+<!-- 	<hr> -->
 	<form:form action="hello" method="post" enctype="multipart/form-data">
 		<div>Excel File 2007:</div>
 		<input name="excelfile2007" type="file">
-		<input type="submit" value="processExcel2007">
+		<input type="submit" value="Generar">
 	</form:form>
 	<hr>
-	<h3>Users List</h3>
+	<h3>Lista Alumnos</h3>
 	<c:if test="${!empty lstUser}">
 		<table class="tg">
 			<tr>
-				<th width="80">User ID</th>
-				<th width="120">UserName</th>
-				<th width="120">Input Date</th>
+				<th width="80">ID</th>
+				<th width="120">Nombres</th>
+				<th width="120">Apellidos</th>
 			</tr>
 			<c:forEach items="${lstUser}" var="user">
 				<tr>
