@@ -5,20 +5,13 @@
 <div id="page-wrapper">
 
 	<div class="container-fluid">
-		<!-- Titulo -->
-		<div class='row'>
-			<div class="col-md-12">
-				<h2>Lista Cursos</h2>
-			</div>
-		</div>
 
 		<!-- Opcion de la tabla -->
 		
 		<div class='row'>
 			<div class="col-md-5">
 				<a class="btn btn-success" href="newCurso"><i class="fa fa-plus"></i>
-					Nuevo</a> <a class="btn btn-default" href="#"><i
-					class="fa fa-upload"></i> Importar</a>
+					Nuevo</a> 
 			</div>
 
 			<!-- 			<div class="col-md-4"> -->
