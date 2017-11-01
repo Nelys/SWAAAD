@@ -129,11 +129,11 @@
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="0" width="140" height="21" uuid="4676758d-5af0-4bf2-94f3-6e2b9642e3fa"/>
+				<reportElement x="190" y="0" width="130" height="21" uuid="4676758d-5af0-4bf2-94f3-6e2b9642e3fa"/>
 				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="30" y="0" width="150" height="21" uuid="7246a76b-0fcd-4535-9b98-88a2f92d56ed"/>
+				<reportElement x="40" y="0" width="140" height="21" uuid="7246a76b-0fcd-4535-9b98-88a2f92d56ed"/>
 				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 			</textField>
 		</band>

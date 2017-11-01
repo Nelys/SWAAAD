@@ -19,11 +19,14 @@
 		
 		
 
-		 Map<String,Object> parameters=new HashMap<String,Object>();
-// 		 parameters.put("titulo","este es el titulo");
-
+		Map<String,Object> parameters=new HashMap<String,Object>();
+		parameters.put("titulo","este es el titulo");
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrDataSource);
-
+		
+// 		String jrxFile2 = session.getServletContext().getRealPath("/resources/reports/AlumnoReport.jasper");
+		
+// 		String printFileName = JasperFillManager.fillReportToFile(jrxFile2, parameters, jrDataSource);
+// 		JasperExportManager.exportReportToPdfFile(printFileName, "C://sample_report.pdf");
 
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 		response.getOutputStream().flush();

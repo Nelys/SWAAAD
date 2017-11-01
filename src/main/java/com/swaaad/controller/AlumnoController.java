@@ -1,13 +1,20 @@
 package com.swaaad.controller;
 
+import java.io.InputStream;
+import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.swaaad.model.Alumno;
 import com.swaaad.reports.AlumnoReport;
 import com.swaaad.service.AlumnosService;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 @Controller
 public class AlumnoController {
@@ -104,5 +120,36 @@ public class AlumnoController {
         modelMap.put("listaAlumnos", ar.findAllAlumnos(listaAlumnosCursos));
         
         return "pages/alumno/alumno-report";
+    }
+	
+	@RequestMapping("/xls1")
+    public void PrepareReport(HttpServletRequest request) throws Exception {
+        try{
+            String reportName ="/resources/reports/AlumnoReport.jasper";
+            InputStream st = getClass().getResourceAsStream(reportName);
+            JasperReport jr= (JasperReport) JRLoader.loadObject(st); 
+            Map parameters = new HashMap();
+            JasperPrint jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource((ResultSet) objAlumnoService.getAllAlumnosByIdCurso(request)));
+            
+            JasperExportManager.exportReportToPdf(jp);     
+            JasperViewer jv=new JasperViewer(jp,false);
+            jv.setTitle("Challan");
+            jv.setVisible(true);
+        
+        } catch(JRException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+	
+//	@RequestMapping("/xls")
+//    public void generarXls(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	    AlumnoXlsView a = new AlumnoXlsView();
+//	    model.addAttribute("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
+//	    a.buildExcelDocument((Map<String, Object>) model, null, request, response);
+//    }
+	
+	@ModelAttribute("ListAlumnos")
+    public List<Alumno> getCustomerList(HttpServletRequest request) throws Exception {
+        return objAlumnoService.getAllAlumnosByIdCurso(request);
     }
 }
