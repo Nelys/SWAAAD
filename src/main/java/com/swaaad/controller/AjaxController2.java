@@ -57,7 +57,7 @@ public class AjaxController2 {
 	public void prepararNota(@RequestParam("idNota") int idNota, @RequestParam("idAlumno") int idAlumno,
 			@RequestParam("idEvaluacion") int idEvaluacion, @RequestParam("notaEvaluativa") int notaEvaluativa)
 			throws Exception {
-
+	    System.out.println("*****************prepararNota ");
 		Evaluacion evaluacion = new Evaluacion();
 		evaluacion.setIdEvaluacion(idEvaluacion);
 
@@ -70,13 +70,17 @@ public class AjaxController2 {
 
 		try {
 			if (nota.getIdNota() == 0) {
+			    System.out.println("guardara "+nota.getIdNota());
 				objNotaService.addNota(nota);
 			} else {
+			    System.out.println("actualizara "+nota.getIdNota());
 				objNotaService.updateNota(nota);
 			}
 
 		} catch (Exception e) {
+		    System.out.println("error");
 			e.getStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 		System.out.println("Datos: " + idAlumno);

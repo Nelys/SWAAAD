@@ -102,15 +102,15 @@ table tr .rows {
 
 }
 </style>
-<div id="page-wrapper">
+<!-- <div id="page-wrapper"> -->
 
-	<div class="container-fluid">
+<!-- 	<div class="container-fluid"> -->
 		<!-- Titulo -->
-		<div class='row'>
-			<div class="col-md-12">
-				<h2>Lista Notas</h2>
-			</div>
-		</div>
+<!-- 		<div class='row'> -->
+<!-- 			<div class="col-md-12"> -->
+<!-- 				<h2>Lista Notas</h2> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!-- Opcion de la tabla -->
 				<div class='row'>
@@ -134,7 +134,7 @@ table tr .rows {
 				</div>
 			</div>
 		</div>
-		
+		<br>
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -143,7 +143,7 @@ table tr .rows {
 					<c:if test="${!empty listAlumnos}">
 						<table id="fixTable"
 							class="table table-bordered table-hover table-striped">
-
+<!-- 							<thead> -->
 							<tr>
 								<td><div class="contenedor">
 										<span class='alignvertical'>Alumno</span>
@@ -157,7 +157,8 @@ table tr .rows {
 											class='rotate'>${lista.nombre}</div></td>
 								</c:forEach>
 							</tr>
-
+<!-- 							</thead> -->
+<!-- 							<tbody> -->
 
 							<c:forEach var="listaAlumno" items="${listAlumnos}">
 								<tr id="${listaAlumno.idAlumno}">
@@ -172,7 +173,7 @@ table tr .rows {
 									</c:forEach>
 								</tr>
 							</c:forEach>
-
+<!-- 							</tbody> -->
 						</table>
 					</c:if>
 
@@ -235,6 +236,14 @@ table tr .rows {
 
 		
 		$(function() {
+			
+// 			$('#fixTable').DataTable( {
+// 				dom: 'Bfrtip',
+// 				buttons: [
+// 					'copy', 'csv', 'excel', 'pdf', 'print'
+// 				]
+// 			});
+			
 			$('#notaEvaluativa').bootstrapNumber({
 				upClass: 'success',
 				downClass: 'danger'
@@ -390,8 +399,8 @@ table tr .rows {
 		});
 
     </script>
-	</div>
+<!-- 	</div> -->
 	<!-- /.container-fluid -->
 
-</div>
+<!-- </div> -->
 <!-- /#page-wrapper -->
