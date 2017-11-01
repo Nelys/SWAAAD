@@ -50,7 +50,9 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="<c:url value='/resources/template/js/jquery.js' />"></script>
+<%-- <script src="<c:url value='/resources/template/js/jquery.js' />"></script> --%>
+<script src="<c:url value='/resources/js/jquery-3.2.1.js' />"></script>
+<script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value='/resources/template/js/bootstrap.min.js' />"></script>
