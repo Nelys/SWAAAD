@@ -109,7 +109,7 @@
 		<form:form action="saveAulaDinamica" method="post"
 			modelAttribute="aulaDinamica">
 			<form:input path="idAulaDinamica" />
-			<form:input path="cursoAlumno.idCursoAlumno" />
+<%-- 			<form:input path="cursoAlumno.idCursoAlumno" /> --%>
 			<form:input path="coordX" />
 			<form:input path="coordY" />
 			<form:input path="colorFondo" />
@@ -124,8 +124,8 @@
 					<div id="alumno_${lista.idAulaDinamica}" class="principal"
 						style="left:${lista.coordX}px; top:${lista.coordY}px; width:60px; height:80px; background:#${lista.colorFondo}; position: absolute; border-radius: 4px 4px 4px 4px">
 						<!-- Datos del Alumno -->
-						<div id="idAulaDinamica" style="display: none;">${lista.cursoAlumno.idCursoAlumno}</div>
-						<div style="color: white; text-align: center; font-size: 100%;">${lista.idAulaDinamica}</div>
+<%-- 						<div id="idAulaDinamica" style="display: none;">${lista.cursoAlumno.idCursoAlumno}</div> --%>
+						<div id="idAula" style="color: white; text-align: center; font-size: 100%;">${lista.idAulaDinamica}</div>
 						<div style="color: white; text-align: center; font-size: 100%;">${lista.cursoAlumno.alumno.nombres}, ${lista.cursoAlumno.alumno.apellidos}</div>
 					</div>
 				</c:forEach>
@@ -168,8 +168,8 @@
 									hexc($('#' + id).css("backgroundColor"));
 
 									$('#colorFondo').val(color);
-									$('#cursoAlumno.idCursoAlumno').val($('#idAulaDinamica').text());
-									console.log(($('#idAulaDinamica').text());
+									$('#cursoAlumno.idCursoAlumno').val($('#idAula').text());
+									console.log($( '#idAula' ).text());
 								});
 
 						$('#aula').mousemove(
@@ -187,16 +187,16 @@
 									}
 								});
 
-						$('#aulaDinamica').submit(function(event) {
-							console.log("enviara y dentendra");
-							// 							event.preventDefault();
-						});
+// 						$('#aulaDinamica').submit(function(event) {
+// 							console.log("enviara y dentendra");
+// 							// 							event.preventDefault();
+// 						});
 						$('div.principal').mouseup(function() {
-// 														$ ('#aulaDinamica').submit();
-
+														console.log("ssss");
 							var formulario = $("#aulaDinamica").serialize();
+
 							id = null;
-							$.post("saveAulaDinamica",formulario, function(data) {
+							$.post("saveAulaDinamica2",formulario, function(data) {
 								console.log("recepcion");
 // 								console.log(data);
 							});

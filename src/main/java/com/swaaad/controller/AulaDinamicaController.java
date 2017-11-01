@@ -2,7 +2,9 @@ package com.swaaad.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +14,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.AlumnoDTO;
+import com.swaaad.dto.AulaDinamicaDTO;
 import com.swaaad.model.AulaDinamica;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AulaDinamicaService;
+import com.swaaad.service.CursoAlumnoService;
 @CrossOrigin
 @Controller
 public class AulaDinamicaController {
@@ -26,6 +32,9 @@ public class AulaDinamicaController {
 	
 	@Autowired
 	private AlumnosService objAlumnoService;
+	
+//	@Autowired
+//	private CursoAlumnoService objCursoAlumnoService;
 	
 
 	@RequestMapping(value = { "aula-dinamica" }, method = RequestMethod.GET)
@@ -48,18 +57,71 @@ public class AulaDinamicaController {
 		return model;
 	}
 
+	
+	
+	@RequestMapping(value = "/saveAulaDinamica2", method = RequestMethod.POST)
+	@ResponseBody
+    public AlumnoDTO saveAulaDinamica2(@ModelAttribute AulaDinamicaDTO aulaDinamica, HttpServletRequest request) throws Exception {
+
+        logger.info("saveAulaDinamica "+aulaDinamica.getIdAulaDinamica());
+        System.out.println("sdsdasd  " +aulaDinamica.getIdAulaDinamica());
+
+        AulaDinamica aDinamica2= objAulaDinamicaService.getAulaDinamicaById(aulaDinamica.getIdAulaDinamica());
+        
+        HttpServletRequest request1 = (HttpServletRequest)request;
+        HttpSession session = request1.getSession(false);
+        
+        int iIdCurso = (Integer) session.getAttribute("idCurso");
+        int iIdAlumno = (Integer) session.getAttribute("idAlumno");
+        
+        
+        aDinamica2.setCoordX(aulaDinamica.getCoordX());
+        aDinamica2.setCoordY(aulaDinamica.getCoordY());
+        aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
+        aDinamica2.setColorTexto(aulaDinamica.getColorTexto());
+//      aDinamica2.setEstado(aulaDinamica.getEstado());
+        
+        System.out.println("saveAulaDinamica");
+        try {
+            if (aulaDinamica.getIdAulaDinamica() == 0) {
+                System.out.println("addAulaDinamica");
+//                aDinamica2.setCursoAlumno(objCursoAlumnoService.getCursoAlumnoByIdAlumnoIdCurso(iIdCurso, iIdAlumno));
+                objAulaDinamicaService.addAulaDinamica(aDinamica2);
+            } else {
+                System.out.println("updateAulaDinamica");
+                objAulaDinamicaService.updateAulaDinamica(aDinamica2);
+            }
+
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        return new AlumnoDTO();
+    }
+	
+	
 	@RequestMapping(value = "/saveAulaDinamica", method = RequestMethod.POST)
-	public ModelAndView saveAulaDinamica(@ModelAttribute("aulaDinamica") AulaDinamica aulaDinamica) throws Exception {
+	public ModelAndView saveAulaDinamica(@ModelAttribute AulaDinamicaDTO aulaDinamica, HttpServletRequest request) throws Exception {
 
-		logger.info("saveAulaDinamica");
+		logger.info("saveAulaDinamica "+aulaDinamica.getIdAulaDinamica());
+		System.out.println("sdsdasd  " +aulaDinamica.getIdAulaDinamica());
 
+		AulaDinamica aDinamica2= objAulaDinamicaService.getAulaDinamicaById(aulaDinamica.getIdAulaDinamica());
+		
+		aDinamica2.setCoordX(aulaDinamica.getCoordX());
+        aDinamica2.setCoordY(aulaDinamica.getCoordY());
+		aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
+		aDinamica2.setColorTexto(aulaDinamica.getColorTexto());
+//		aDinamica2.setEstado(aulaDinamica.getEstado());
 		
 		System.out.println("saveAulaDinamica");
 		try {
 			if (aulaDinamica.getIdAulaDinamica() == 0) {
-				objAulaDinamicaService.addAulaDinamica(aulaDinamica);
+			    System.out.println("addAulaDinamica");
+			    
+				objAulaDinamicaService.addAulaDinamica(aDinamica2);
 			} else {
-				objAulaDinamicaService.updateAulaDinamica(aulaDinamica);
+			    System.out.println("updateAulaDinamica");
+				objAulaDinamicaService.updateAulaDinamica(aDinamica2);
 			}
 
 		} catch (Exception e) {
