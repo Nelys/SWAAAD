@@ -1,12 +1,13 @@
 package com.swaaad.controller;
 
-import java.sql.Date;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import java.util.HashMap;
 
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.AlumnoDTO;
+import com.swaaad.dto.ResponseDTO;
 import com.swaaad.exceptions.AsistenciaException;
 import com.swaaad.model.Asistencia;
 import com.swaaad.model.CursoAlumno;
@@ -56,9 +58,20 @@ public class AsistenciaController {
 
 	@Autowired
 	ServletContext context;
+	
+	
 	@RequestMapping("")
-//	@RequestMapping(value = { "asistencias" }, method = RequestMethod.GET)
-	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request) throws Exception {
+	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request,
+			@RequestParam(value = "mes", required = false, defaultValue = "0") String mes) throws Exception {
+
+		String mesLetra = mes;
+		System.out.println("sss" + mesLetra);
+		if (mes.equals("0")) {
+			Date date = new Date();
+			DateFormat hourdateFormat = new SimpleDateFormat("MM");
+			mesLetra = hourdateFormat.format(date);
+			System.out.println("dee " + mesLetra);
+		}
 
 		logger.info("asistenciaPage");
 		try {
@@ -68,23 +81,47 @@ public class AsistenciaController {
 			int idCurso = (Integer) session.getAttribute("idCurso");
 
 			List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
-			List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso, 10);
-			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso);
-			logger.info("paso1"+idCurso);
+			List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso,
+					Integer.valueOf(mesLetra));
+			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso,
+					Integer.valueOf(mesLetra));
+			logger.info("paso1" + idCurso);
 			System.out.println("mensaje de los cambios");
+			model.addObject("idCurso", idCurso);
 			model.addObject("listAlumnos", listaAlumnosCursos);
 			model.addObject("listarDiasMes", listaDiaPorMes);
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
+			model.addObject("mes_actual", mesLetra);
 			logger.info("paso2");
 			model.setViewName("asistencia");
 			logger.info("paso");
 		} catch (Exception e) {
-			//model.setViewName("redirect:/cursos");
+			// model.setViewName("redirect:/cursos");
 			logger.info("problemas con curso no se ");
-			
+
 		}
 		return model;
 	}
+	
+	// para mostart el formulario
+	@RequestMapping("/generarAsistencia/{curso}/{fecha}")
+	@ResponseBody
+	public ResponseDTO HelloW(@PathVariable("curso") int curso, @PathVariable("fecha") String fecha) throws Exception {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+		Date date = sdf.parse(fecha);
+
+		objAsistenciaService.generarAsistencia(date, curso);
+
+		ResponseDTO dto = new ResponseDTO();
+		dto.setMessage("Genero");
+		dto.setResponse(true);
+
+		return dto;
+
+	}
+	
 	// para mostart el formulario
 	@RequestMapping("/mes/{id}")
 	public String HelloWorld2(Model model, @PathVariable("id") int id) {

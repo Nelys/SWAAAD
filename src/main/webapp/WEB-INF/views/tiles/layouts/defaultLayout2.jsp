@@ -50,9 +50,8 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<%-- <script src="<c:url value='/resources/template/js/jquery.js' />"></script> --%>
-<script src="<c:url value='/resources/js/jquery-3.2.1.js' />"></script>
-<script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
+<script src="<c:url value='/resources/template/js/jquery.js' />"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value='/resources/template/js/bootstrap.min.js' />"></script>
 
@@ -94,6 +93,10 @@
 <script
 	src="<c:url value='/resources/template/js/datatables/buttons.print.min.js' />"></script>
 
+
+<!-- jquery datepicker JS -->
+<script src="<c:url value='/resources/js/datapicker/bootstrap-datepicker.js' />"></script>
+<script src="<c:url value='/resources/js/datapicker/es.js' />"></script>
 
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>

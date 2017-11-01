@@ -34,5 +34,5 @@ public interface AsistenciaDao {
 
 	List<Integer> getDayOfAlumnosByCurso(int idCurso, int mes) throws Exception;
 
-	List<Asistencia> getEstadoByAlumnoCurso(int idCurso) throws Exception;
+	List<Asistencia> getEstadoByAlumnoCurso(int idCurso, int mes) throws Exception;
 }

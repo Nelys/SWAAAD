@@ -132,15 +132,16 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Asistencia> getEstadoByAlumnoCurso(int idCurso) throws Exception {
+	public List<Asistencia> getEstadoByAlumnoCurso(int idCurso, int mes) throws Exception {
 		sSession = sessionFactory.openSession();
 		List<Asistencia> listarDiaPorMes = null;
 		try {
 //			
-			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso  ";		
+			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND month(a.fecha)=:mes";		
 			// GROUP BY day(a.fecha)
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
+			query.setInteger("mes", mes);
 			listarDiaPorMes =(List<Asistencia>) query.list();
 			
 			for (Asistencia objeto : listarDiaPorMes) {
