@@ -11,7 +11,7 @@
 
 <script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
-
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
 <style>
 @import
 	url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700")
@@ -192,6 +192,9 @@ legend.scheduler-border {
 							</div>
 
 							<br />
+							<div class="form-group">
+								<div class="g-recaptcha" data-sitekey="6LcRzjYUAAAAAAEJw0dlJJMtFyKtbcvk-1hkK2vR"></div>
+							</div>
 							<div class="form-group ">
 								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Entra</button>
 							</div>
