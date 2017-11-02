@@ -10,14 +10,17 @@
 	<http pattern="/resources/**" security="none"/>
 	
 	<http use-expressions="true">
-		<intercept-url pattern="/" access="isAnonymous()" />
+<!-- 		<intercept-url pattern="/" access="isAnonymous()" /> -->
+<!-- 		<intercept-url pattern="/**" access="isAnonymous()"/> -->
 		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/home**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/perfil**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/cursos**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/alumnos**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/evaluaciones**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/evaluaciones**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/asistencias/registro**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/asistencias/registro/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/asistencias/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/asistencias**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/actividades-pedagogicas**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/aula-dinamica**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/participacion**" access="hasRole('ROLE_ADMIN')" />
