@@ -4,7 +4,7 @@
 <tiles-definitions>
 	<!-- Base Definition -->
 	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> -->
-	<definition name="base-definition2" template="WEB-INF/views/tiles/layouts/defaultLayout2.jsp">
+	<definition name="base-definition2" template="/WEB-INF/views/tiles/layouts/defaultLayout2.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/views/tiles/template/menu2.jsp" />
 		<put-attribute name="current" value="" />
@@ -12,7 +12,7 @@
 
 	<!-- Base Definition -->
 	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> -->
-	<definition name="base-definition" template="WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+	<definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />
@@ -20,7 +20,7 @@
 		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" /> -->
 	</definition>
 
-	<definition name="base-definition3" template="WEB-INF/views/tiles/layouts/defaultLayout3.jsp">
+	<definition name="base-definition3" template="/WEB-INF/views/tiles/layouts/defaultLayout3.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
 
@@ -69,6 +69,12 @@
 	<definition name="asistencia" extends="base-definition2">
 		<put-attribute name="title" value="Asistencias" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/asistencia/asistencias.jsp" />
+		<put-attribute name="current" value="asistencias" />
+	</definition>
+		<!-- Pagina Asistencias -->
+	<definition name="asisten" extends="base-definition2">
+		<put-attribute name="title" value="Asistencias" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/asistencia/asistencias_formulario.jsp" />
 		<put-attribute name="current" value="asistencias" />
 	</definition>
 
