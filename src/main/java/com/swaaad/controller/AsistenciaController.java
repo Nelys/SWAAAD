@@ -93,6 +93,51 @@ public class AsistenciaController {
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
 			model.addObject("mes_actual", mesLetra);
 			logger.info("paso2");
+//			model.setViewName("asisten");
+			model.setViewName("asistencia");
+			logger.info("paso");
+		} catch (Exception e) {
+			// model.setViewName("redirect:/cursos");
+			logger.info("problemas con curso no se ");
+
+		}
+		return model;
+	}
+	
+	@RequestMapping("/registro")
+	public ModelAndView asistenciaPage2(ModelAndView model, HttpServletRequest request,
+			@RequestParam(value = "mes", required = false, defaultValue = "0") String mes) throws Exception {
+
+		String mesLetra = mes;
+		System.out.println("sss" + mesLetra);
+		if (mes.equals("0")) {
+			Date date = new Date();
+			DateFormat hourdateFormat = new SimpleDateFormat("MM");
+			mesLetra = hourdateFormat.format(date);
+			System.out.println("dee " + mesLetra);
+		}
+
+		logger.info("asistenciaPage");
+		try {
+			HttpServletRequest request1 = (HttpServletRequest) request;
+			HttpSession session = request1.getSession(false);
+
+			int idCurso = (Integer) session.getAttribute("idCurso");
+
+			List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
+			List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso,
+					Integer.valueOf(mesLetra));
+			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso,
+					Integer.valueOf(mesLetra));
+			logger.info("paso1" + idCurso);
+			System.out.println("mensaje de los cambios");
+			model.addObject("idCurso", idCurso);
+			model.addObject("listAlumnos", listaAlumnosCursos);
+			model.addObject("listarDiasMes", listaDiaPorMes);
+			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
+			model.addObject("mes_actual", mesLetra);
+			logger.info("paso2");
+//			model.setViewName("asisten");
 			model.setViewName("asistencia");
 			logger.info("paso");
 		} catch (Exception e) {

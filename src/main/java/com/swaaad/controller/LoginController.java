@@ -69,6 +69,23 @@ public class LoginController {
 		return model;
 
 	}
+	@RequestMapping(value = "/registro", method = RequestMethod.GET)
+	public ModelAndView registro(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Usuario o contraseña invalida!");
+		}
+
+		if (logout != null) {
+			model.addObject("msg", "Sesión cerrada satisfactoriamente.");
+		}
+		model.setViewName("pages/registro");
+
+		return model;
+
+	}
 	
 	//for 403 access denied page
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
