@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="SWAAAD">
+		<class>com.swaaad.model.Evaluacion</class>
 		<class>com.swaaad.model.ActividadPedagogica</class>
 		<class>com.swaaad.model.Alumno</class>
 		<class>com.swaaad.model.Asistencia</class>
@@ -8,8 +9,8 @@
 		<class>com.swaaad.model.Curso</class>
 		<class>com.swaaad.model.CursoAlumno</class>
 		<class>com.swaaad.model.Docente</class>
-		<class>com.swaaad.model.Evaluacion</class>
 		<class>com.swaaad.model.Horario</class>
 		<class>com.swaaad.model.Nota</class>
+		<class>com.swaaad.model.Usuario</class>
 	</persistence-unit>
 </persistence>
