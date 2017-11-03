@@ -24,8 +24,6 @@ public class Alumno implements Serializable {
 	@Column(name="APELLIDOS_APODERADO")
 	private String apellidosApoderado;
 
-	private String contrasena;
-
 	private String email;
 
 	@Column(name="EMAIL_APODERADO")
@@ -33,15 +31,15 @@ public class Alumno implements Serializable {
 
 	private String genero;
 
-	private String imagen;
-
 	private String nombres;
 
 	@Column(name="NOMBRES_APODERADO")
 	private String nombresApoderado;
 
-	@Column(name="NRO_ORDEN")
-	private int nroOrden;
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="ID_USUARIO")
+	private Usuario usuario;
 
 	//bi-directional many-to-one association to CursoAlumno
 	@OneToMany(mappedBy="alumno")
@@ -78,14 +76,6 @@ public class Alumno implements Serializable {
 		this.apellidosApoderado = apellidosApoderado;
 	}
 
-	public String getContrasena() {
-		return this.contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
 	public String getEmail() {
 		return this.email;
 	}
@@ -110,14 +100,6 @@ public class Alumno implements Serializable {
 		this.genero = genero;
 	}
 
-	public String getImagen() {
-		return this.imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
 	public String getNombres() {
 		return this.nombres;
 	}
@@ -134,12 +116,12 @@ public class Alumno implements Serializable {
 		this.nombresApoderado = nombresApoderado;
 	}
 
-	public int getNroOrden() {
-		return this.nroOrden;
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
-	public void setNroOrden(int nroOrden) {
-		this.nroOrden = nroOrden;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public List<CursoAlumno> getCursoAlumnos() {

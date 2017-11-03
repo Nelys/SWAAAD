@@ -21,21 +21,20 @@ public class Docente implements Serializable {
 
 	private String apellidos;
 
-	private String contrasena;
-
 	private String email;
-
-	private String foto;
 
 	private String genero;
 
 	private String nombre;
 
-	private String usuario;
-
 	//bi-directional many-to-one association to Curso
 	@OneToMany(mappedBy="docente")
 	private List<Curso> cursos;
+
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="ID_USUARIO")
+	private Usuario usuario;
 
 	public Docente() {
 	}
@@ -56,28 +55,12 @@ public class Docente implements Serializable {
 		this.apellidos = apellidos;
 	}
 
-	public String getContrasena() {
-		return this.contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
 	public String getEmail() {
 		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getFoto() {
-		return this.foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	public String getGenero() {
@@ -94,14 +77,6 @@ public class Docente implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
 	}
 
 	public List<Curso> getCursos() {
@@ -124,6 +99,14 @@ public class Docente implements Serializable {
 		curso.setDocente(null);
 
 		return curso;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
