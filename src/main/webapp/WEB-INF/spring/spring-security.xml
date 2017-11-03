@@ -12,6 +12,8 @@
 	<http use-expressions="true">
 <!-- 		<intercept-url pattern="/" access="isAnonymous()" /> -->
 <!-- 		<intercept-url pattern="/**" access="isAnonymous()"/> -->
+
+<intercept-url pattern="/registarUsuario**" access="permitAll" />
 		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/home**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/perfil**" access="hasRole('ROLE_ADMIN')" />

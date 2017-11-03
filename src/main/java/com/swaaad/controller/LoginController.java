@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.swaaad.dto.ResponseDTO;
 
 @Controller
 public class LoginController {
@@ -85,6 +88,14 @@ public class LoginController {
 
 		return model;
 
+	}
+	
+	@RequestMapping(value = "/registarUsuario", method = RequestMethod.POST) // POST,produces
+	@ResponseBody
+	public ResponseDTO registrarUsuario() {
+			
+		
+		return new ResponseDTO("hola",true,null);
 	}
 	
 	//for 403 access denied page

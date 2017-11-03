@@ -130,33 +130,34 @@ body {
 	background: #2daee1;
 	border-color: #2882e7;
 }
+
 legend.scheduler-border {
-    width:inherit; /* Or auto */
-    padding:0 10px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
+	width: inherit; /* Or auto */
+	padding: 0 10px; /* To give a bit of padding on the left and right */
+	border-bottom: none;
 }
 </style>
 </head>
 
-<body onload='document.loginForm.username.focus();'>
+<body onload=''>
 
 	<div class="login-body">
 		<article class="container-login center-block">
 			<section>
 				<ul id="top-bar" class="nav nav-tabs nav-justified">
-					<li ><a href="login">Acceso</a></li>
+					<li><a href="login">Acceso</a></li>
 					<li class="active"><a href="#menu1">Registro</a></li>
 
 				</ul>
 				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
 					<div id="login-access" class="tab-pane fade active in">
-					
+
 						<!-- Formulario de Acceso -->
 						<h2>
 							<i class="glyphicon glyphicon-log-in"></i> Registro
 						</h2>
-
-						<form name='registroForm' method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+						<!-- 	<form name='RegistrarForm' id='RegistrarForm' action="javascript:alert( 'success!' );"  method="post" role="form" class="form-horizontal"> -->
+						<form name='registroForm' id='registroForm' action="registarUsuario" method="post" role="form" class="form-horizontal">
 
 							<div class="form-group ">
 								<label for="login" class="sr-only">Nombre</label> <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres"
@@ -178,25 +179,32 @@ legend.scheduler-border {
 							</div>
 
 							<div class="form-group ">
-								<label for="login" class="sr-only">Email</label> <input type="text" class="form-control" name="Email" id="Email" placeholder="Email"
+								<label for="login" class="sr-only">Email</label> <input type="email" class="form-control" name="Email" id="Email" placeholder="Email"
 									tabindex="1" value="" required="required" />
 							</div>
 
 							<div class="form-group ">
 								<label for="password" class="sr-only">Password</label> <input type="password" class="form-control" name="password" id="password"
-									placeholder="Password" value="" tabindex="2" required="required" />
+									placeholder="Password" value=""  required="required" />
 							</div>
 							<div class="form-group ">
 								<label for="password" class="sr-only">Password</label> <input type="password" class="form-control" name="password2" id="password2"
-									placeholder="Confirmar Password" value="" tabindex="2" required="required" />
+									placeholder="Confirmar Password" value=""  required="required" />
 							</div>
-
-							<br />
 							<div class="form-group">
-								<div class="g-recaptcha" data-sitekey="6LcRzjYUAAAAAAEJw0dlJJMtFyKtbcvk-1hkK2vR"></div>
+								<label class="col-lg-3 control-label" id="captchaOperation"></label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control" name="captcha" />
+								</div>
 							</div>
 							<div class="form-group ">
-								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Entra</button>
+								<button type="submit" name="signup"  class="btn btn-primary" disabled="disabled">Registrar</button>
+								
+								
+							</div>
+							<div class="form-group ">
+								
+								<button type="button" class="btn btn-danger" id="resetBtn">Reset form</button>
 							</div>
 						</form>
 					</div>
@@ -204,9 +212,7 @@ legend.scheduler-border {
 
 					<!-- Registrar Usuario -->
 
-					<div id="menu1" class="tab-pane fade">
-
-					</div>
+					<div id="menu1" class="tab-pane fade"></div>
 
 					<!-- 					Fin registro -->
 				</div>
@@ -215,12 +221,76 @@ legend.scheduler-border {
 		</article>
 	</div>
 	<script>
-		$(document).ready(function() {
-			$(".nav-tabs a").click(function() {
-				$(this).tab('show');
-			});
+		$(document)
+				.ready(
+						function() {
+							 function randomNumber(min, max) {
+							        return Math.floor(Math.random() * (max - min + 1) + min);
+							    };
+							    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+							$('#registroForm')
+									.bootstrapValidator(
+											{
+												message : 'Este valor es invalido',
+												feedbackIcons : {
+													valid : 'fa fa-check',
+													invalid : 'fa fa-times',
+													validating : 'fa fa-refresh'
+												},
+												fields : {
+													nombres : {
+														message : 'no es valido',
+														validators : {
+															notEmpty : {
+																message : 'Dato necesario'
+															},
+															stringLength : {
+																min : 2,
+																max : 50,
+																message : 'Minimo 2 - maximo 50 caracteres'
+															},
+															regexp : {
+																regexp : /^[a-zA-Z ]+$/,
+																// regexp:
+																// /^[a-zA-Z0-9_\.]+$/,
+																message : 'el nombre puede contener solo letras de la A-Z'
+															}
+														}
+													},
 
-		});
+													apellidos : {
+														message : 'no es valido',
+														validators : {
+															notEmpty : {
+																message : 'Dato necesario'
+															},
+															stringLength : {
+																min : 2,
+																max : 50,
+																message : 'Minimo 2 - maximo 50 caracteres'
+															},
+															regexp : {
+																regexp : /^[a-zA-Z ]+$/,
+																message : 'el nombre puede contener solo letras de la A-Z'
+															}
+														}
+													},
+													 captcha: {
+											                validators: {
+											                    callback: {
+											                        message: 'Respuesta Incorrecta',
+											                        callback: function(value, validator) {
+											                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+											                            return value == sum;
+											                        }
+											                    }
+											                }
+											            }
+
+												}
+
+											});
+						});
 	</script>
 </body>
 </html>
