@@ -16,7 +16,7 @@
 <meta name="keywords"
 	content="Admin, Dashboard, Bootstrap3, Sass, transform, CSS3, HTML5, Web design, UI Design, Responsive Dashboard, Responsive Admin, Admin Theme, Best Admin UI, Bootstrap Theme, Wrapbootstrap, Bootstrap" />
 <meta name="author" content="Bootstrap Gallery" />
-<link rel="shortcut icon" href="img/favicon.ico">
+<link rel="shortcut icon" href="<c:url value='/resources/template/img/favicon.ico' />">
 <title><tiles:getAsString name="title" /></title>
 
 

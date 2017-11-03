@@ -23,4 +23,8 @@ public interface AsistenciaService {
 	List<Asistencia> getEstadoByAlumnoCurso(int idCurso, int mes) throws Exception;
 	
 	void generarAsistencia(Date fecha,int idCurso) throws Exception;
+	
+	List<Asistencia> getByDay(int idCurso,Date fecha) throws Exception;
+	
+	Asistencia getById(int idAsistencia) throws Exception;
 }

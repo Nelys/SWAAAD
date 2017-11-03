@@ -11,10 +11,10 @@
 <div class='row'>
 	<div class="col-md-4 col-lg-3">
 		<button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-			<i class="fa fa-plus"></i> Nueva Asistencia
+			<i class="fa fa-plus"></i> Ir Asistencia
 		</button>
 
-		<a id="aaaa" class="btn btn-success"> asd asd </a>
+	
 	</div>
 	<div class="col-lg-4 text-right">
 		<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i> PDF</a> <a class="btn btn-primary" href="#"><i class="fa fa-file-excel-o"></i>
@@ -134,7 +134,8 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<a class="btn btn-success" href="${pageContext.request.contextPath}/asistencias/registrarAsistencia/${idCurso}/30-11-2017">Ir a registro</a>
+				<a class="btn btn-success" id="linkEnvio" href="">Ir a
+					registro</a>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -166,19 +167,28 @@
 
 	});
 
-	$('#btnNuevo').click(
-			function() {
+	$('#btnNuevo')
+			.click(
+					function() {
 
-				$('#exampleModal').modal('hide');
+						$('#exampleModal').modal('hide');
 
-				$.get(
-						"${pageContext.request.contextPath}/asistencias/generarAsistencia/${idCurso}/"
-								+ $("#txtFecha").val() + "", {}).done(
-						function(data) {
-							$('#mensajeModal').modal('show');
+						$
+								.get(
+										"${pageContext.request.contextPath}/asistencias/generarAsistencia/${idCurso}/"
+												+ $("#txtFecha").val() + "", {})
+								.done(
+										function(data) {
+											$('#mensajeModal').modal('show');
+											var fecha = $('.datepicker').val();
+											$('#linkEnvio')
+													.attr(
+															'href',
+															"${pageContext.request.contextPath}/asistencias/registrarAsistencia/${idCurso}/"
+																	+ fecha);
 
-						});
-			});
+										});
+					});
 
 	$("#cbxMeses").change(function() {
 		location.href = "?mes=" + $("#cbxMeses").val();

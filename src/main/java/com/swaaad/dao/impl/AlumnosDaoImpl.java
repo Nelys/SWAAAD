@@ -27,7 +27,7 @@ import com.swaaad.model.Alumno;
  */
 public class AlumnosDaoImpl implements AlumnosDao {
     
-    private static final Logger logger = LoggerFactory.getLogger(Alumno.class);
+    private static final Logger logger = LoggerFactory.getLogger(AlumnosDaoImpl.class);
 
 	/* implementa la interface AlumnoDAO */
 

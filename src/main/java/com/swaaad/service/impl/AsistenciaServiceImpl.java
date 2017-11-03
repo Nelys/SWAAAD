@@ -1,6 +1,7 @@
 package com.swaaad.service.impl;
 
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -71,6 +72,18 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 			asistencia.setFecha(fecha);
 			objAsistenciaDao.addAsistencia(asistencia);
 		}
+	}
+
+	@Override
+	public List<Asistencia> getByDay(int idCurso, Date fecha) throws Exception {
+		// TODO Auto-generated method stub
+		return objAsistenciaDao.getByDay(idCurso, fecha);
+	}
+
+	@Override
+	public Asistencia getById(int idAsistencia) throws Exception {
+		
+		return objAsistenciaDao.getById(idAsistencia);
 	}
 
 }

@@ -1,13 +1,10 @@
 package com.swaaad.controller;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.AlumnoDTO;
+import com.swaaad.dto.AsistenciaFechaDTO;
 import com.swaaad.dto.ResponseDTO;
 import com.swaaad.exceptions.AsistenciaException;
 import com.swaaad.model.Asistencia;
@@ -45,7 +43,7 @@ import com.swaaad.service.CursoAlumnoService;
 @Controller
 @RequestMapping("asistencias")
 public class AsistenciaController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AsistenciaController.class);
 
 	@Autowired
@@ -58,8 +56,8 @@ public class AsistenciaController {
 
 	@Autowired
 	ServletContext context;
-	
-	
+
+	// VISTA principal
 	@RequestMapping("")
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request,
 			@RequestParam(value = "mes", required = false, defaultValue = "0") String mes) throws Exception {
@@ -93,7 +91,7 @@ public class AsistenciaController {
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
 			model.addObject("mes_actual", mesLetra);
 			logger.info("paso2");
-//			model.setViewName("asisten");
+			// model.setViewName("asisten");
 			model.setViewName("asistencia");
 			logger.info("paso");
 		} catch (Exception e) {
@@ -103,52 +101,28 @@ public class AsistenciaController {
 		}
 		return model;
 	}
-	
-	@RequestMapping("/registro")
-	public ModelAndView asistenciaPage2(ModelAndView model, HttpServletRequest request,
-			@RequestParam(value = "mes", required = false, defaultValue = "0") String mes) throws Exception {
 
-		String mesLetra = mes;
-		System.out.println("sss" + mesLetra);
-		if (mes.equals("0")) {
-			Date date = new Date();
-			DateFormat hourdateFormat = new SimpleDateFormat("MM");
-			mesLetra = hourdateFormat.format(date);
-			System.out.println("dee " + mesLetra);
-		}
+	// VISTA para registrar asistencia
+	@RequestMapping("registrarAsistencia/{curso}/{fecha}")
+	public String registrarAsistencia(Model model, @PathVariable("curso") int curso,
+			@PathVariable("fecha") String fecha) throws Exception {
 
-		logger.info("asistenciaPage");
-		try {
-			HttpServletRequest request1 = (HttpServletRequest) request;
-			HttpSession session = request1.getSession(false);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = sdf.parse(fecha);
 
-			int idCurso = (Integer) session.getAttribute("idCurso");
+		
+		//recuperar asistencia Alumno}
+		List<Asistencia> listaAsistencia = objAsistenciaService.getByDay(curso, date);
+//		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(curso);
+		
 
-			List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(idCurso);
-			List<Integer> listaDiaPorMes = objAsistenciaService.getDayOfAlumnosByCurso(idCurso,
-					Integer.valueOf(mesLetra));
-			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso,
-					Integer.valueOf(mesLetra));
-			logger.info("paso1" + idCurso);
-			System.out.println("mensaje de los cambios");
-			model.addObject("idCurso", idCurso);
-			model.addObject("listAlumnos", listaAlumnosCursos);
-			model.addObject("listarDiasMes", listaDiaPorMes);
-			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
-			model.addObject("mes_actual", mesLetra);
-			logger.info("paso2");
-//			model.setViewName("asisten");
-			model.setViewName("asistencia");
-			logger.info("paso");
-		} catch (Exception e) {
-			// model.setViewName("redirect:/cursos");
-			logger.info("problemas con curso no se ");
-
-		}
-		return model;
+		model.addAttribute("idCurso", curso);
+		model.addAttribute("listAlumnos", listaAsistencia);
+		model.addAttribute("fecha", fecha);
+		return "registrar_asistencia";
 	}
-	
-	// para mostart el formulario
+
+	// genera asistencias por fecha
 	@RequestMapping("/generarAsistencia/{curso}/{fecha}")
 	@ResponseBody
 	public ResponseDTO HelloW(@PathVariable("curso") int curso, @PathVariable("fecha") String fecha) throws Exception {
@@ -157,6 +131,8 @@ public class AsistenciaController {
 
 		Date date = sdf.parse(fecha);
 
+		
+		//verificar si se generara o se recuperara
 		objAsistenciaService.generarAsistencia(date, curso);
 
 		ResponseDTO dto = new ResponseDTO();
@@ -166,15 +142,28 @@ public class AsistenciaController {
 		return dto;
 
 	}
+
+	/**
+	 * Controlador JSON Alumno por Id
+	 * 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/guardarAsistenciaAlumno", method = RequestMethod.POST) // POST,produces
+	@ResponseBody
+	// recibe parametros de una peticion del navegador
+	public ResponseDTO guardarAsistenciaAlumno(@ModelAttribute AsistenciaFechaDTO asistenciaFechaDTO) throws Exception {
+		ResponseDTO dto = new ResponseDTO();
+
+		Asistencia asistencia= objAsistenciaService.getById(asistenciaFechaDTO.getIdAsistencia());
+		asistencia.setEstado(asistenciaFechaDTO.getEstado());
+		
 	
-	// para mostart el formulario
-	@RequestMapping("/mes/{id}")
-	public String HelloWorld2(Model model, @PathVariable("id") int id) {
-		// model.addAttribute("lstUser", lstUser);
-		model.addAttribute("message", "Welcome to Spring MVC"+id);
-		return "hello";
+		
+		objAsistenciaService.updateAsistencia(asistencia);
+		dto.setMessage("id "+asistenciaFechaDTO.getIdAsistencia());
+		dto.setResponse(true);
+		return dto;
 	}
-	
 
 	@ExceptionHandler(AsistenciaException.class)
 	public ModelAndView handleUsuarioNoEncontradoException(HttpServletRequest request, Exception ex) {
@@ -188,18 +177,6 @@ public class AsistenciaController {
 
 		modelAndView.setViewName("error");
 		return modelAndView;
-	}
-	
-
-
-	
-	
-	// para mostart el formulario
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String HelloWorld(Model model) {
-		// model.addAttribute("lstUser", lstUser);
-		model.addAttribute("message", "Welcome to Spring MVC");
-		return "hello";
 	}
 
 	// para capturar el envio del formulario
@@ -249,52 +226,6 @@ public class AsistenciaController {
 		modelMap.put("listaAlumnos", ar.findAllAlumnos(listaAlumnosCursos));
 
 		return "asistencia_reporte";
-	}
-
-	@RequestMapping(value = "/saveAsistencia", method = RequestMethod.POST)
-	public ModelAndView saveAsistencia(@ModelAttribute Asistencia asistencia) throws Exception {
-
-		logger.info("saveAsistencia");
-
-		try {
-			if (asistencia.getIdAsistencia() == 0) {
-				objAsistenciaService.addAsistencia(asistencia);
-			} else {
-				objAsistenciaService.updateAsistencia(asistencia);
-			}
-
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-		return new ModelAndView("redirect:/asistencias");
-	}
-
-	@RequestMapping(value = "/newAsistencia", method = RequestMethod.GET)
-	public ModelAndView newAsistencia(ModelAndView model) throws Exception {
-		logger.info("newAsistencia");
-		Asistencia asistencia = new Asistencia();
-		model.addObject("asistencia", asistencia);
-		model.setViewName("form-asistencia");
-		return model;
-	}
-
-	/**
-	 * Controlador JSON Alumno por Id
-	 * 
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/guardarAsistenciaAlumno", method = RequestMethod.GET) // POST,produces
-	@ResponseBody
-	// recibe parametros de una peticion del navegador
-	public AlumnoDTO getAlumnoById(@RequestParam("tipo") String tipo, @RequestParam("idAlumnoCurso") int idAlumnoCurso)
-			throws Exception {
-		// declaro un variable cursoAlumno de tipo CursoAlumno el cualguadara
-		CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(idAlumnoCurso);
-		Asistencia asistencia = new Asistencia();
-		System.out.println(tipo + " " + idAlumnoCurso);
-		objAsistenciaService.addAsistencia(asistencia);
-		// METODO PARA GUARDAR ASISTENCIA
-		return null;
 	}
 
 }
