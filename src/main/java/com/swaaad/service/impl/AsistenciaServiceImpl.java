@@ -63,6 +63,10 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	public void generarAsistencia(Date fecha, int idCurso) throws Exception {
 		
 		// recuperar todos los cursoAlumnos
+		
+		
+		//verificar si registros
+		
 		List<CursoAlumno> listaAlumnos = objCursoAlumnoDao.getAllAlumnosByCurso(idCurso);
 
 		for (CursoAlumno cursoAlumno : listaAlumnos) {
