@@ -14,7 +14,7 @@
 			<i class="fa fa-plus"></i> Ir Asistencia
 		</button>
 
-	
+
 	</div>
 	<div class="col-lg-4 text-right">
 		<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i> PDF</a> <a class="btn btn-primary" href="#"><i class="fa fa-file-excel-o"></i>
@@ -100,7 +100,7 @@
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Fecha de asistencia</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Seleccionar Fecha de Asistencia</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -118,8 +118,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button id="btnNuevo" type="button" class="btn btn-primary">Save changes</button>
+				<button id="btnNuevo" type="button" class="btn btn-primary">Cargar DAtos</button>
 			</div>
 		</div>
 	</div>
@@ -128,19 +127,15 @@
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="mensajeModalLabel">Modal title</h5>
+				<h5 class="modal-title" id="mensajeModalLabel">Asistencia</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<a class="btn btn-success" id="linkEnvio" href="">Ir a
-					registro</a>
+				<a class="btn btn-success" id="linkEnvio" href="">Ir a registro</a>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				<button id="btnNuevo" type="button" class="btn btn-primary">Generar Asistencia</button>
-			</div>
+
 		</div>
 	</div>
 </div>

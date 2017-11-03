@@ -9,7 +9,9 @@
 <!-- Opcion de la tabla -->
 
 <div class='row'>
-	<div class="col-md-4 col-lg-3"></div>
+	<div class="col-md-4 col-lg-3">
+	 <a class="btn btn-primary" href="${pageContext.request.contextPath}/asistencias?mes=${mes}">Regresar</a>
+	</div>
 
 
 </div>
@@ -39,11 +41,11 @@
 										<td>${lista.cursoAlumno.alumno.nroOrden}</td>
 										<td>${lista.cursoAlumno.alumno.apellidos},${lista.cursoAlumno.alumno.nombres}</td>
 										<td style="" width="100px"><select onchange="enviarAsistencia(this,${lista.idAsistencia})">
-												<option value="A">Asistio
-												<option value="F">Falta
-												<option value="T">Tarde
-												<option value="FJ">Falta Justificada
-												<option value="TJ">Tardanza Justificada
+												<option value="A" ${lista.estado=="A"? " selected='selected'":"" }>Asistio
+												<option value="F" ${lista.estado=="F"? " selected='selected'":"" }>Falta
+												<option value="T" ${lista.estado=="T"? " selected='selected'":"" }>Tarde
+												<option value="FJ" ${lista.estado=="FJ"? " selected='selected'":"" }>Falta Justificada
+												<option value="TJ" ${lista.estado=="TJ"? " selected='selected'":"" }>Tardanza Justificada
 										</select></td>
 										<!-- fin estado-->
 									</tr>
@@ -72,7 +74,7 @@
 			 estado : tipoAsistencias,
 			 idAsistencia : id_asistencia,
 			 fecha:'${fecha}'},function( data ) {	
-				 alert(data.message)		 
+				// alert(data.message)		 
 			});
 
 	}

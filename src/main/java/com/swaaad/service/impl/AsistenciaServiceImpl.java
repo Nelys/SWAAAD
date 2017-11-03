@@ -1,7 +1,5 @@
 package com.swaaad.service.impl;
 
-
-
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +14,6 @@ import com.swaaad.service.AsistenciaService;
 
 @Service
 public class AsistenciaServiceImpl implements AsistenciaService {
-
 
 	@Autowired
 	AsistenciaDao objAsistenciaDao;
@@ -56,26 +53,31 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	@Override
 	public List<Asistencia> getEstadoByAlumnoCurso(int idCurso, int mes) throws Exception {
 		// TODO Auto-generated method stub
-		return objAsistenciaDao.getEstadoByAlumnoCurso(idCurso,  mes);
+		return objAsistenciaDao.getEstadoByAlumnoCurso(idCurso, mes);
 	}
 
 	@Override
 	public void generarAsistencia(Date fecha, int idCurso) throws Exception {
-		
-		// recuperar todos los cursoAlumnos
-		
-		
-		//verificar si registros
-		
-		List<CursoAlumno> listaAlumnos = objCursoAlumnoDao.getAllAlumnosByCurso(idCurso);
 
-		for (CursoAlumno cursoAlumno : listaAlumnos) {
-			Asistencia asistencia=new Asistencia();
-			asistencia.setCursoAlumno(cursoAlumno);
-			asistencia.setEstado("A");
-			asistencia.setFecha(fecha);
-			objAsistenciaDao.addAsistencia(asistencia);
+		// recuperar todos los cursoAlumnos
+
+		// verificar si registros
+		if (objAsistenciaDao.getByDay(idCurso, fecha).size()==0) {
+			System.out.println("no hay registros");	
+			List<CursoAlumno> listaAlumnos = objCursoAlumnoDao.getAllAlumnosByCurso(idCurso);
+
+			for (CursoAlumno cursoAlumno : listaAlumnos) {
+				Asistencia asistencia = new Asistencia();
+				asistencia.setCursoAlumno(cursoAlumno);
+				asistencia.setEstado("A");
+				asistencia.setFecha(fecha);
+				objAsistenciaDao.addAsistencia(asistencia);
+			}
+		}else
+		{
+			System.out.println("existen registros");	
 		}
+
 	}
 
 	@Override
@@ -86,7 +88,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 
 	@Override
 	public Asistencia getById(int idAsistencia) throws Exception {
-		
+
 		return objAsistenciaDao.getById(idAsistencia);
 	}
 

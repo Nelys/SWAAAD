@@ -119,6 +119,7 @@ public class AsistenciaController {
 		model.addAttribute("idCurso", curso);
 		model.addAttribute("listAlumnos", listaAsistencia);
 		model.addAttribute("fecha", fecha);
+		model.addAttribute("mes", date.getMonth()+1);
 		return "registrar_asistencia";
 	}
 
