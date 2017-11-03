@@ -53,7 +53,7 @@
 								<th>Alumno</th>
 								<th>G</th>
 								<th>Email</th>
-								<th>No</th>
+<!-- 								<th>No</th> -->
 								<th>Nombres Apoderado</th>
 								<th>Apellidos Apoderado</th>
 								<th>Email Apoderado</th>
@@ -67,7 +67,7 @@
 									<td>${lista.nombres},${lista.apellidos}</td>
 									<td>${lista.genero}</td>
 									<td>${lista.email}</td>
-									<td>${lista.nroOrden}</td>
+<%-- 									<td>${lista.nroOrden}</td> --%>
 									<td>${lista.nombresApoderado}</td>
 									<td>${lista.apellidosApoderado}</td>
 									<td>${lista.emailApoderado}</td>
@@ -95,7 +95,7 @@
 			$('#miTable').DataTable( {
 				dom: 'Bfrtip',
 				buttons: [
-					'copy', 'csv', 'excel', 'pdf', 'print'
+					'excel', 'pdf', 'print'
 				]
 			});
 		});
