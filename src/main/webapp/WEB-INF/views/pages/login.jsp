@@ -144,14 +144,14 @@ legend.scheduler-border {
 		<article class="container-login center-block">
 			<section>
 				<ul id="top-bar" class="nav nav-tabs nav-justified">
-					<li class="active"><a href="#login-access">Acceso</a></li>
-					<li><a href="registro">Registro</a></li>
+					<li class="active"><a href="#login-access">Ingresar</a></li>
+					<li><a href="registro">Crear Cuenta</a></li>
 
 				</ul>
 				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
 					<div id="login-access" class="tab-pane fade active in">
 						<h2>
-							<i class="glyphicon glyphicon-log-in"></i> Acceso
+							<i class="glyphicon glyphicon-log-in"></i> Ingresar
 						</h2>
 						<!-- Formulario de Acceso -->
 						<form name='loginForm' method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
@@ -177,7 +177,7 @@ legend.scheduler-border {
 
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> <br />
 							<div class="form-group ">
-								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Entra</button>
+								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Ingresar</button>
 							</div>
 						</form>
 					</div>
