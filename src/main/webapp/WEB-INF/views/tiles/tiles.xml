@@ -21,9 +21,9 @@
 		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" /> -->
 	</definition>
 
-	<definition name="base-definition3" template="/WEB-INF/views/tiles/layouts/defaultLayout3.jsp">
+	<definition name="base-definition3" template="/WEB-INF/views/tiles/layouts/defaultLayout4.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" />
 
 		<put-attribute name="body" value="" />
 		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" /> -->
@@ -47,7 +47,7 @@
 	</definition>
 
 	<!-- Pagina Cursos -->
-	<definition name="cursos" extends="base-definition2">
+	<definition name="cursos" extends="base-definition3">
 		<put-attribute name="title" value="Cursos" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/curso/cursos.jsp" />
 		<put-attribute name="current" value="cursos" />
