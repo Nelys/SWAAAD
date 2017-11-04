@@ -29,7 +29,7 @@
 						<table id="miTable" class="table table-bordered table-hover table-striped">
 							<thead>
 								<tr>
-									<th>No</th>
+								
 									<th>Alumno</th>
 									<th>Opcion</th>
 								</tr>
@@ -38,7 +38,7 @@
 								<!-- ListaAlumnos -->
 								<c:forEach var="lista" items="${listAlumnos}">
 									<tr>
-										<td>${lista.cursoAlumno.alumno.nroOrden}</td>
+									
 										<td>${lista.cursoAlumno.alumno.apellidos},${lista.cursoAlumno.alumno.nombres}</td>
 										<td style="" width="100px"><select onchange="enviarAsistencia(this,${lista.idAsistencia})">
 												<option value="A" ${lista.estado=="A"? " selected='selected'":"" }>Asistio

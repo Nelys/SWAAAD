@@ -157,7 +157,7 @@ legend.scheduler-border {
 							<i class="glyphicon glyphicon-log-in"></i> Registro
 						</h2>
 						<!-- 	<form name='RegistrarForm' id='RegistrarForm' action="javascript:alert( 'success!' );"  method="post" role="form" class="form-horizontal"> -->
-						<form name='registroForm' id='registroForm' action="registarUsuario" method="post" role="form" class="form-horizontal">
+						<form name='registroForm' id='registroForm' action="registrarUsuario" method="post" role="form" class="form-horizontal">
 
 							<div class="form-group ">
 								<label for="login" class="sr-only">Nombre</label> <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Nombres"
@@ -179,17 +179,17 @@ legend.scheduler-border {
 							</div>
 
 							<div class="form-group ">
-								<label for="login" class="sr-only">Email</label> <input type="email" class="form-control" name="Email" id="Email" placeholder="Email"
-									tabindex="1" value="" required="required" />
+								<label for="login" class="sr-only">Email</label> <input type="email" class="form-control" name="email" id="email" placeholder="Email" value=""
+									required="required" />
 							</div>
 
 							<div class="form-group ">
 								<label for="password" class="sr-only">Password</label> <input type="password" class="form-control" name="password" id="password"
-									placeholder="Password" value=""  required="required" />
+									placeholder="Password" value="" required="required" />
 							</div>
 							<div class="form-group ">
 								<label for="password" class="sr-only">Password</label> <input type="password" class="form-control" name="password2" id="password2"
-									placeholder="Confirmar Password" value=""  required="required" />
+									placeholder="Confirmar Password" value="" required="required" />
 							</div>
 							<div class="form-group">
 								<label class="col-lg-3 control-label" id="captchaOperation"></label>
@@ -198,13 +198,13 @@ legend.scheduler-border {
 								</div>
 							</div>
 							<div class="form-group ">
-								<button type="submit" name="signup"  class="btn btn-primary" disabled="disabled">Registrar</button>
-								
-								
+								<button type="submit" name="signup" class="btn btn-primary" disabled="disabled">Registrar</button>
+
+
 							</div>
 							<div class="form-group ">
-								
-								<button type="button" class="btn btn-danger" id="resetBtn">Reset form</button>
+
+								<button type="reset" class="btn btn-danger" id="resetBtn">Reset form</button>
 							</div>
 						</form>
 					</div>
@@ -224,10 +224,15 @@ legend.scheduler-border {
 		$(document)
 				.ready(
 						function() {
-							 function randomNumber(min, max) {
-							        return Math.floor(Math.random() * (max - min + 1) + min);
-							    };
-							    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+							function randomNumber(min, max) {
+								return Math.floor(Math.random()
+										* (max - min + 1) + min);
+							}
+							;
+							$('#captchaOperation').html(
+									[ randomNumber(1, 100), '+',
+											randomNumber(1, 200), '=' ]
+											.join(' '));
 							$('#registroForm')
 									.bootstrapValidator(
 											{
@@ -275,20 +280,54 @@ legend.scheduler-border {
 															}
 														}
 													},
-													 captcha: {
-											                validators: {
-											                    callback: {
-											                        message: 'Respuesta Incorrecta',
-											                        callback: function(value, validator) {
-											                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-											                            return value == sum;
-											                        }
-											                    }
-											                }
-											            }
+													captcha : {
+														validators : {
+															callback : {
+																message : 'Respuesta Incorrecta',
+																callback : function(
+																		value,
+																		validator) {
+																	var items = $(
+																			'#captchaOperation')
+																			.html()
+																			.split(
+																					' '), sum = parseInt(items[0])
+																			+ parseInt(items[2]);
+																	return value == sum;
+																}
+															}
+														}
+													}
 
 												}
+											})
+									.on(
+											'success.form.bv',
+											function(e) {
+												// Prevent form submission
+												e.preventDefault();
 
+												// Get the form instance
+												var $form = $(e.target);
+
+												// Get the BootstrapValidator instance
+												var bv = $form
+														.data('bootstrapValidator');
+
+												// Use Ajax to submit form data
+												$
+														.post(
+																$form
+																		.attr('action'),
+																$form
+																		.serialize(),
+																function(result) {
+																	console
+																			.log(result);
+
+																	alert(result.message);
+
+																}, 'json');
 											});
 						});
 	</script>

@@ -27,18 +27,19 @@ public class CursoController {
 	public ModelAndView cursosPage(ModelAndView model) throws Exception {
 
 		logger.info("cursosPage");
-		//
+//		//
 		List<Curso> ListarCurso = null;
-
+//
 		ListarCurso = objCursoService.getAllCurso();
-
+//
 		Curso curso = new Curso();
-
+//
 		model.addObject("curso", curso);
 		model.addObject("listCursos", ListarCurso);
-
+//
 //		model.setViewName("pages/cursos/cursos");
 		model.setViewName("cursos");
+//		model.setViewName("hello");
 
 		return model;
 	}

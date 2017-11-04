@@ -58,7 +58,7 @@
 						<table id="miTable" class="table table-bordered table-hover table-striped">
 							<thead>
 								<tr>
-<!-- 									<th>No</th> -->
+
 									<th>Alumno</th>
 									<c:forEach var="listaDia" items="${listarDiasMes}">
 										<th>${listaDia}</th>
@@ -69,7 +69,7 @@
 								<!-- ListaAlumnos -->
 								<c:forEach var="lista" items="${listAlumnos}">
 									<tr>
-<%-- 										<td>${lista.alumno.nroOrden}</td> --%>
+
 										<td>${lista.alumno.apellidos},${lista.alumno.nombres}</td>
 										<c:forEach var="listaEstado" items="${listaEstadoPorCurso}">
 											<fmt:formatDate var="dia" value="${listaEstado.fecha}" pattern="dd" />

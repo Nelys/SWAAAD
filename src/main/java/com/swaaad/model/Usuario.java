@@ -122,4 +122,11 @@ public class Usuario implements Serializable {
 		return docente;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", enabled=" + enabled + ", password=" + password + ", role=" + role
+				+ ", username=" + username + ", alumnos=" + alumnos + ", docentes=" + docentes + "]";
+	}
+	
+
 }
