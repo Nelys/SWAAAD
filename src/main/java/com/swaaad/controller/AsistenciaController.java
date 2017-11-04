@@ -90,6 +90,8 @@ public class AsistenciaController {
 			model.addObject("listarDiasMes", listaDiaPorMes);
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
 			model.addObject("mes_actual", mesLetra);
+			model.addObject("users", "luis");
+			
 			logger.info("paso2");
 			// model.setViewName("asisten");
 			model.setViewName("asistencia");
@@ -116,10 +118,12 @@ public class AsistenciaController {
 //		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(curso);
 		
 
+	
 		model.addAttribute("idCurso", curso);
 		model.addAttribute("listAlumnos", listaAsistencia);
 		model.addAttribute("fecha", fecha);
 		model.addAttribute("mes", date.getMonth()+1);
+		model.addAttribute("users", "luis");
 		return "registrar_asistencia";
 	}
 
