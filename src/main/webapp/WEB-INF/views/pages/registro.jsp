@@ -145,8 +145,8 @@ legend.scheduler-border {
 		<article class="container-login center-block">
 			<section>
 				<ul id="top-bar" class="nav nav-tabs nav-justified">
-					<li><a href="login">Acceso</a></li>
-					<li class="active"><a href="#menu1">Registro</a></li>
+					<li><a href="login">Ingresar</a></li>
+					<li class="active"><a href="#menu1">Crear Cuenta</a></li>
 
 				</ul>
 				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
@@ -154,7 +154,7 @@ legend.scheduler-border {
 
 						<!-- Formulario de Acceso -->
 						<h2>
-							<i class="glyphicon glyphicon-log-in"></i> Registro
+							<i class="glyphicon glyphicon-log-in"></i> Crear Cuenta
 						</h2>
 						<!-- 	<form name='RegistrarForm' id='RegistrarForm' action="javascript:alert( 'success!' );"  method="post" role="form" class="form-horizontal"> -->
 						<form name='registroForm' id='registroForm' action="registrarUsuario" method="post" role="form" class="form-horizontal">
@@ -204,7 +204,7 @@ legend.scheduler-border {
 							</div>
 							<div class="form-group ">
 
-								<button type="reset" class="btn btn-danger" id="resetBtn">Reset form</button>
+								<button type="reset" class="btn btn-danger" id="resetBtn">Limpiar</button>
 							</div>
 						</form>
 					</div>
