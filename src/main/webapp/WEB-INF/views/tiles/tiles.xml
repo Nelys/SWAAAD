@@ -6,7 +6,6 @@
 	<!-- <definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> -->
 	<definition name="base-definition2" template="/WEB-INF/views/tiles/layouts/defaultLayout2.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/template/menu2.jsp" />
 		<put-attribute name="current" value="" />
 		<put-attribute name="usuario" value="" />
 	</definition>
@@ -23,9 +22,10 @@
 
 	<definition name="base-definition3" template="/WEB-INF/views/tiles/layouts/defaultLayout4.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" />
+<!-- 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" /> -->
 
 		<put-attribute name="body" value="" />
+		<put-attribute name="usuario" value="" />
 		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" /> -->
 	</definition>
 
@@ -43,7 +43,7 @@
 		<put-attribute name="title" value="Perfil" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/perfil.jsp" />
 		<put-attribute name="current" value="perfil" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Cursos -->
@@ -51,7 +51,7 @@
 		<put-attribute name="title" value="Cursos" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/curso/cursos.jsp" />
 		<put-attribute name="current" value="cursos" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 
@@ -60,7 +60,7 @@
 		<put-attribute name="title" value="Alumnos" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumnos.jsp" />
 		<put-attribute name="current" value="alumnos" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Evaluaciones -->
@@ -68,7 +68,7 @@
 		<put-attribute name="title" value="Evaluaciones" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/nota/nota-lista2.jsp" />
 		<put-attribute name="current" value="listNota" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Asistencias -->
@@ -76,14 +76,14 @@
 		<put-attribute name="title" value="Asistencias" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/asistencia/asistencias.jsp" />
 		<put-attribute name="current" value="asistencias" />
-		<put-attribute name="usuario" expression="${mes_actual}" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Pagina Asistencias -->
 	<definition name="registrar_asistencia" extends="base-definition2" >
 		<put-attribute name="title" value="Asistencias" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/asistencia/asistencias_formulario.jsp" />
 		<put-attribute name="current" value="asistencias" />
-		<put-attribute name="usuario" expression="${fecha}" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Actividades Pedagogicas -->
@@ -92,7 +92,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/actividad-pedagogica/actividades-pedagogicas.jsp" />
 		<put-attribute name="current" value="actividades-pedagogicas" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Aula Dinamica -->
@@ -100,7 +100,7 @@
 		<put-attribute name="title" value="Aula Dinamicas" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/aula-dinamica/aula-dinamica.jsp" />
 		<put-attribute name="current" value="aula-dinamica" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Participacion -->
@@ -108,7 +108,7 @@
 		<put-attribute name="title" value="Participacion" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/participacion/participacion.jsp" />
 		<put-attribute name="current" value="participacion" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 	<!-- Pagina Grupos -->
@@ -116,14 +116,14 @@
 		<put-attribute name="title" value="Grupos" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/grupo/grupos.jsp" />
 		<put-attribute name="current" value="grupos" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Alumno Formulario -->
 	<definition name="form-alumno" extends="base-definition2">
 		<put-attribute name="title" value="Alumno Formulario" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumno-formulario.jsp" />
 		<put-attribute name="current" value="form-alumno" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Actividad Pedagogica Formulario -->
 	<definition name="form-actividadPedagogica" extends="base-definition2">
@@ -131,41 +131,41 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/actividad-pedagogica/actividad-pedagogica-formulario.jsp" />
 		<put-attribute name="current" value="form-actividadPedagogica" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Curso Formulario -->
 	<definition name="form-curso" extends="base-definition2">
 		<put-attribute name="title" value="Curso Formulario" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-formulario.jsp" />
 		<put-attribute name="current" value="form-curso" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Horario Formulario -->
 	<definition name="form-horario" extends="base-definition2">
 		<put-attribute name="title" value="Horario del Curso" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-horario.jsp" />
 		<put-attribute name="current" value="form-horario" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Evaluacion Formulario -->
 	<definition name="form-evaluacion" extends="base-definition2">
 		<put-attribute name="title" value="Nota del Curso por Alumno" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/nota/nota-formulario.jsp" />
 		<put-attribute name="current" value="form-evaluacion" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Alumno Reporte -->
 	<definition name="report-alumnos" extends="base-definition2">
 		<put-attribute name="title" value="Reporte de Alumnos" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumno-report.jsp" />
 		<put-attribute name="current" value="report-alumnos" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<definition name="reporte" extends="base-definition2">
 		<put-attribute name="title" value="Reporte de Alumnos" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/alumno-report.jsp" />
 		<put-attribute name="current" value="reporte" />
-		<put-attribute name="usuario" value="home" />
+		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 
 </tiles-definitions>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,18 +17,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Curso;
+import com.swaaad.model.Docente;
+import com.swaaad.model.Usuario;
 import com.swaaad.service.CursoService;
+import com.swaaad.service.UsuarioService;
 
 @Controller
 public class CursoController {
 	private static final Logger logger = LoggerFactory.getLogger(CursoController.class);
 	@Autowired
 	CursoService objCursoService;
-
+	
+	@Autowired
+	UsuarioService objUsuarioService;
+	
 	@RequestMapping(value = { "cursos" }, method = RequestMethod.GET)
 	public ModelAndView cursosPage(ModelAndView model) throws Exception {
 
 		logger.info("cursosPage");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
+		
+		
 //		//
 		List<Curso> ListarCurso = null;
 //
@@ -74,6 +94,18 @@ public class CursoController {
 	@RequestMapping(value = "/newHorario", method = RequestMethod.GET)
 	public ModelAndView newHorario(ModelAndView model) throws Exception {
 		logger.info("newCurso");
+		
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+		
 //		Curso curso = new Curso();
 //		model.addObject("curso", curso);
 		model.setViewName("form-horario");
@@ -82,6 +114,17 @@ public class CursoController {
 
 	@RequestMapping(value = "/editCurso", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
+		ModelAndView model = new ModelAndView("form-curso");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
 		
 		int cursoId = Integer.parseInt(request.getParameter("id"));
 		logger.info("editCurso "+cursoId);
@@ -91,7 +134,7 @@ public class CursoController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ModelAndView model = new ModelAndView("form-curso");
+		
 		model.addObject("curso", curso);
 
 		return model;

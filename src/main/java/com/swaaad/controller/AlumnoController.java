@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,8 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Alumno;
+import com.swaaad.model.Docente;
+import com.swaaad.model.Usuario;
 import com.swaaad.reports.AlumnoReport;
 import com.swaaad.service.AlumnosService;
+import com.swaaad.service.UsuarioService;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
@@ -39,10 +44,22 @@ public class AlumnoController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
 	AlumnosService objAlumnoService;
-
+	@Autowired
+	UsuarioService objUsuarioService;
 	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
 	public ModelAndView alumnosPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
+		
+		
 		logger.info("alumnosPage");
 		
 		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
@@ -73,6 +90,17 @@ public class AlumnoController {
 	@RequestMapping(value = "/newAlumno", method = RequestMethod.GET)
 	public ModelAndView newAlumno(ModelAndView model) throws Exception {
 		logger.info("newAlumno");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+		
 		Alumno alumno = new Alumno();
 		model.addObject("alumno", alumno);
 		model.setViewName("form-alumno");
@@ -82,6 +110,20 @@ public class AlumnoController {
 	@RequestMapping(value = "/editAlumno", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
 		
+		ModelAndView model = new ModelAndView("form-alumno");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+		
+		
+		
 		int alumnoId = Integer.parseInt(request.getParameter("id"));
 		logger.info("editAlumno ", alumnoId);
 		Alumno alumno = null;
@@ -90,7 +132,7 @@ public class AlumnoController {
 		} catch (Exception e) {
 		    logger.info("Excepcion en edicion: ", e);
 		}
-		ModelAndView model = new ModelAndView("form-alumno");
+
 		model.addObject("alumno", alumno);
 
 		return model;

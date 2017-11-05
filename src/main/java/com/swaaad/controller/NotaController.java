@@ -8,23 +8,31 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.model.Docente;
 import com.swaaad.model.Evaluacion;
 import com.swaaad.model.Nota;
+import com.swaaad.model.Usuario;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.EvaluacionService;
 import com.swaaad.service.NotaService;
+import com.swaaad.service.UsuarioService;
 
 
 @Controller
 //@SessionAttributes("sessionCurso")
 public class NotaController {
 	private static final Logger logger = LoggerFactory.getLogger(NotaController.class);
+	
+	@Autowired
+	UsuarioService objUsuarioService;
 	
 	@Autowired
 	NotaService objNotaService;
@@ -39,6 +47,18 @@ public class NotaController {
 	public ModelAndView notasPage(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception {
 
 		logger.info("notasPage");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
+		
+		
 		
 		List<Nota> ListarNota = null;
 		
@@ -92,6 +112,18 @@ public class NotaController {
 	@RequestMapping(value = "/newNota", method = RequestMethod.GET)
 	public ModelAndView newNota(ModelAndView model) throws Exception {
 		logger.info("newNota");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+    	
+		
 		Nota nota = new Nota();
 		model.addObject("nota", nota);
 		model.setViewName("form-nota");
@@ -100,6 +132,18 @@ public class NotaController {
 	
 	@RequestMapping(value = "/editNota", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
+		ModelAndView model = new ModelAndView("form-nota");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+    	
 		
 		int notaId = Integer.parseInt(request.getParameter("id"));
 		logger.info("editNota "+notaId);
@@ -109,7 +153,7 @@ public class NotaController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ModelAndView model = new ModelAndView("form-nota");
+	
 		model.addObject("nota", nota);
 
 		return model;

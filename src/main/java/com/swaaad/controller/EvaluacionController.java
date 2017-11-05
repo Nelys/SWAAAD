@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Alumno;
+import com.swaaad.model.Docente;
 import com.swaaad.model.Evaluacion;
+import com.swaaad.model.Usuario;
 import com.swaaad.service.EvaluacionService;
+import com.swaaad.service.UsuarioService;
 
 @Controller
 public class EvaluacionController {
@@ -22,10 +27,24 @@ public class EvaluacionController {
 
     @Autowired
     EvaluacionService objEvaluacionService;
-    
+	
+	@Autowired
+	UsuarioService objUsuarioService;
+	
     @RequestMapping(value = "/newEvaluacion", method = RequestMethod.GET)
     public ModelAndView newEvaluacion(ModelAndView model, HttpServletRequest request) throws Exception {
         logger.info("newEvaluacion");
+        
+    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
+        
         Evaluacion evaluacion = new Evaluacion();
         model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(request));
         model.addObject("evaluacion", evaluacion);
@@ -55,6 +74,19 @@ public class EvaluacionController {
     @RequestMapping(value = "/editEvaluacion", method = RequestMethod.GET)
     public ModelAndView editContact(HttpServletRequest request) throws Exception {
         
+        ModelAndView model = new ModelAndView("form-evaluacion");
+    	
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+    	
+    	
         int idEvaluacion = Integer.parseInt(request.getParameter("id"));
         logger.info("editEvaluacion ", idEvaluacion);
         Evaluacion evaluacion= null;
@@ -63,7 +95,7 @@ public class EvaluacionController {
         } catch (Exception e) {
             logger.info("Excepcion en edicion: ", e);
         }
-        ModelAndView model = new ModelAndView("form-evaluacion");
+
         model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(request));
         model.addObject("evaluacion", evaluacion);
 

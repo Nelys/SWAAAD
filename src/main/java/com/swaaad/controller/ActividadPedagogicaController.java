@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +18,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.ActividadPedagogica;
+import com.swaaad.model.Docente;
+import com.swaaad.model.Usuario;
 import com.swaaad.service.ActividadPedagogicaService;
+import com.swaaad.service.UsuarioService;
 
 @Controller
 public class ActividadPedagogicaController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
 	ActividadPedagogicaService objActividadPedagogicaService;
-
+	
+	@Autowired
+	UsuarioService objUsuarioService;
+	
 	@RequestMapping(value = { "actividades-pedagogicas" }, method = RequestMethod.GET)
 	public ModelAndView listActividadPedagogica(ModelAndView model, HttpSession sess, HttpServletRequest request) throws Exception {
 
 		logger.info("actividadPedagogicaPage");
+		
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
 		
 		sess = request.getSession(false);
 		

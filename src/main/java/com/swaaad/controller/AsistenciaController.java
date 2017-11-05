@@ -83,7 +83,7 @@ public class AsistenciaController {
 		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
-		
+		model.addObject("user", userName);
 
 		
 		String mesLetra = mes;
@@ -112,7 +112,7 @@ public class AsistenciaController {
 			model.addObject("listarDiasMes", listaDiaPorMes);
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
 			model.addObject("mes_actual", mesLetra);
-			model.addObject("user", userName);
+		
 
 			model.setViewName("asistencia");
 
