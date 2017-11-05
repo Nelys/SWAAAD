@@ -6,12 +6,16 @@
 <script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
 
+<style>
+	.im-centered{margin: auto; max-width: 600px;}
+</style>
+
 <div id="page-wrapper">
 
 	<div class="container-fluid">
-
+		<div class="im-centered">
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-12">
 				<h1>Formulario Curso</h1>
 				
 				<form:form action="saveCurso" method="post" modelAttribute="curso"
@@ -102,8 +106,9 @@
 				</form:form>
 			</div>
 		</div>
+		</div>
 		<!-- /.row -->
-
+	
 	</div>
 	<!-- /.container-fluid -->
 

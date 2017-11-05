@@ -53,6 +53,8 @@
 <!-- Data Tables -->
 <script src="<c:url value='/resources/template/js/datatables/dataTables.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/dataTables.bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/dataTables.buttons.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/buttons.bootstrap.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/dataTables.tableTools.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/autoFill.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/autoFill.bootstrap.min.js' />"></script>
@@ -65,7 +67,9 @@
 <script src="<c:url value='/resources/template/js/datatables/pdfmake.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/vfs_fonts.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/html5.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/buttons.html5.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/buttons.print.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/buttons.colVis.min.js' />"></script>
 
 
 <!-- jquery datepicker JS -->

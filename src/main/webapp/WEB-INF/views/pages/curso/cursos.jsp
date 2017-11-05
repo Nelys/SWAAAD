@@ -85,7 +85,8 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			
-			$('#miTable').DataTable( {
+			var table = $('#miTable').DataTable( {
+
 				"language": {
 	                "emplyTable":"No hay datos disponible en la tabla.",
 	                "lengthMenu": "Mostrar _MENU_ registros",
@@ -108,15 +109,44 @@
 		                action: function ( e, dt, node, config ) {
 							window.location.href = 'newCurso';
 		                }
-		            }, 'excel','pdf', 'print',
+		            },
+		            {
+		                extend:    'excelHtml5',
+		                text:      '<i class="fa fa-file-excel-o"></i> Excel',
+		                titleAttr: 'Excel',
+		                exportOptions: {
+		                    columns: [ 0, 1, 2, 3, 4, 5 ]
+		                }
+		            },
+		            {
+		                extend:    'pdfHtml5',
+		                text:      '<i class="fa fa-file-pdf-o"></i> PDF',
+		                titleAttr: 'PDF',
+		                exportOptions: {
+		                    columns: [ 0, 1, 2, 3, 4, 5 ]
+		                }
+		            },
+		            {
+		                extend:    'print',
+		                text:      '<i class="fa fa-print"></i> Print',
+		                titleAttr: 'print',
+		                exportOptions: {
+		                    columns: [ 0, 1, 2, 3, 4, 5 ]
+		                }
+		            },
 					{
-		        		text: 'Imprimir',
+		        		text: '<i class="fa fa-print"></i> Imprimir',
 		                action: function ( e, dt, node, config ) {
 							window.location.href = '#';
 		                }
 		            }
 				]
 		    } );
+			
+			$('#miTable_wrapper a:eq(0)').removeClass("btn-default").addClass("btn-success");
+			$('#miTable_wrapper a:eq(1)').removeClass("btn-default").addClass("btn-primary");
+			$('#miTable_wrapper a:eq(2)').removeClass("btn-default").addClass("btn-primary");
+			
 		});
 		</script>
 	</div>
