@@ -8,31 +8,26 @@
 
 		<!-- Opcion de la tabla -->
 		
-		<div class='row'>
-			<div class="col-md-5">
-				<a class="btn btn-success" href="newCurso"><i class="fa fa-plus"></i>
-					Nuevo</a> 
-			</div>
+<!-- 		<div class='row'> -->
+<!-- 			<div class="col-md-5"> -->
+<!-- 				<a class="btn btn-success" href="newCurso"><i class="fa fa-plus"></i> -->
+<!-- 					Nuevo</a>  -->
+<!-- 			</div> -->
+<!-- 			<div class="col-lg-4 text-right"> -->
+<!-- 				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i> -->
+<!-- 					PDF</a> <a class="btn btn-primary" href="#"><i -->
+<!-- 					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default" -->
+<!-- 					href="#"><i class="fa fa-print"></i> Imprimir</a> -->
 
-			<!-- 			<div class="col-md-4"> -->
-
-			<!-- 			</div> -->
-
-			<div class="col-lg-4 text-right">
-				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i>
-					PDF</a> <a class="btn btn-primary" href="#"><i
-					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default"
-					href="#"><i class="fa fa-print"></i> Imprimir</a>
-
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2"><i
-						class="fa fa-search"></i></span> <input type="text" class="form-control"
-						placeholder="Buscar ..." aria-describedby="sizing-addon2">
-				</div>
-			</div>
-		</div>
+<!-- 			</div> -->
+<!-- 			<div class="col-md-3"> -->
+<!-- 				<div class="input-group"> -->
+<!-- 					<span class="input-group-addon" id="sizing-addon2"><i -->
+<!-- 						class="fa fa-search"></i></span> <input type="text" class="form-control" -->
+<!-- 						placeholder="Buscar ..." aria-describedby="sizing-addon2"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<br> <br>
 		<!-- Resgistros de la tabla -->
 		<div class="row">
@@ -40,7 +35,8 @@
 
 				<div class="table-responsive">
 					<c:if test="${!empty listCursos}">
-						<table class="table table-bordered table-hover table-striped">
+						<table id="miTable" class="table table-bordered table-hover table-striped">
+						<thead>
 							<tr>
 								<th>ID</th>
 								<th>Curso</th>
@@ -53,6 +49,8 @@
 
 								<th>ACCION</th>
 							</tr>
+						</thead>
+						<tbody>
 							<c:forEach var="lista" items="${listCursos}">
 								<tr>
 									<td>${lista.idCurso}</td>
@@ -75,14 +73,52 @@
 											class="fa fa-trash-o"></i></a></td>
 								</tr>
 							</c:forEach>
+						</tbody>
 						</table>
+						
 					</c:if>
 				</div>
 
 			</div>
 		</div>
 		<!-- /.row -->
-
+		<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$('#miTable').DataTable( {
+				"language": {
+	                "emplyTable":"No hay datos disponible en la tabla.",
+	                "lengthMenu": "Mostrar _MENU_ registros",
+	                "info": "Pagina _PAGE_ de _PAGES_",
+	                "infoEmpty": "No hay registros disponibles.",
+	                "infoFiltered": "(Busqueda de _MAX_ Registros)",
+	                "loadingRecords": "Cargando...",
+	                "processing": "Prosesando...",
+	                "search": "Buscar:",
+	                "zeroRecords": "No hay registros de busqueda.",
+	                "paginate": {
+	                    "previous":"Anterior",
+	                    "next":"Siguiente"
+	                }
+	            },
+				dom: 'Bfrtip',
+		        buttons: [
+		        	{
+		        		text: '<i class="fa fa-plus"></i> Nuevo',
+		                action: function ( e, dt, node, config ) {
+							window.location.href = 'newCurso';
+		                }
+		            }, 'excel','pdf', 'print',
+					{
+		        		text: 'Imprimir',
+		                action: function ( e, dt, node, config ) {
+							window.location.href = '#';
+		                }
+		            }
+				]
+		    } );
+		});
+		</script>
 	</div>
 	<!-- /.container-fluid -->
 
