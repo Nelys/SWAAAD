@@ -57,13 +57,13 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="contrasena">Contraseña:</label>
-						<div class="col-sm-10">
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-sm-2" for="contrasena">Contraseña:</label> -->
+<!-- 						<div class="col-sm-10"> -->
 
-							<form:input path="contrasena" cssClass="form-control" />
-						</div>
-					</div>
+<%-- 							<form:input path="contrasena" cssClass="form-control" /> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
 
 
 					<div class="form-group">
