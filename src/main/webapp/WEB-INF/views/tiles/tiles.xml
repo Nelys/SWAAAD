@@ -134,7 +134,7 @@
 		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 	<!-- Curso Formulario -->
-	<definition name="form-curso" extends="base-definition2">
+	<definition name="form-curso" extends="base-definition3">
 		<put-attribute name="title" value="Curso Formulario" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-formulario.jsp" />
 		<put-attribute name="current" value="form-curso" />
