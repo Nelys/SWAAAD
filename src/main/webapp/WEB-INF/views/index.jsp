@@ -50,7 +50,7 @@
         <p>Pagina gratuita destinada a los docentes.</p>
         <p align="center">
           <a class="btn btn-lg btn-primary" href="${pageContext.request.contextPath}/login" role="button">Ingresar</a>
-          <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/registro" role="button">Crear Cuenta</a>
+<%--           <a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/registro" role="button">Crear Cuenta</a> --%>
         </p>
       </div>
 

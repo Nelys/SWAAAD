@@ -75,7 +75,9 @@
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>
 </head>
-
+<style>
+body {background-color: white;}
+</style>
 <body>
 
 	<!-- Header Start -->
@@ -83,47 +85,17 @@
 		<tiles:insertAttribute name="header" />
 	</header>
 
-
-	<!-- Left sidebar starts -->
-	<aside id="sidebar">
-		<div id='menu'>
-			<ul>
-<%-- 				<li class="${current == 'cursos' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/cursos"> <i --%>
-<%-- 						class="fa fa-desktop"></i> <span>Cursos</span> ${current == 'cursos' ? '<span	class="current-page"></span>' : '' } --%>
-<!-- 				</a></li> -->
-
-				<li class="${current == 'alumnos' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/alumnos"> <i
-						class="fa fa-user"></i> <span>Alumno</span> ${current == 'alumnos' ? '<span	class="current-page"></span>' : '' }
-				</a></li>
-				<li class="${current == 'listNota' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/listNota"> <i
-						class="fa fa-file"></i> <span>Notas</span> ${current == 'listNota' ? '<span	class="current-page"></span>' : '' }
-				</a></li>
-				<li class="${current == 'asistencias' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/asistencias"> <i
-						class="fa fa-list"></i> <span>Asistencias</span> ${current == 'asistencias' ? '<span	class="current-page"></span>' : '' }
-				</a></li>
-
-				<li class="${current == 'actividades-pedagogicas' ? ' highlight active' : '' }"><a
-					href="${pageContext.request.contextPath}/actividades-pedagogicas"> <i class="fa fa-pencil"></i> <span>Act. Pedagogicas</span> ${current == 'actividades-pedagogicas' ? '<span	class="current-page"></span>' : '' }
-				</a></li>
-				<li class="${current == 'aula-dinamica' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/aula-dinamica"> <i
-						class="fa fa-pencil"></i> <span>Aula Dinamica</span> ${current == 'aula-dinamica' ? '<span	class="current-page"></span>' : '' }
-				</a></li>
-			</ul>
-		</div>
-
-	</aside>
-
 	<!-- Dashboard Wrapper starts -->
-	<div class="dashboard-wrapper">
+<!-- 	<div class="dashboard-wrapper"> -->
 
 		<!-- Top Bar starts -->
-		<div class="top-bar">
-			<div class="page-title">
-				${usuario}
-				<tiles:getAsString name="title" />
-			</div>
+<!-- 		<div class="top-bar"> -->
+<!-- 			<div class="page-title"> -->
+<%-- 				${usuario} --%>
+<%-- 				<tiles:getAsString name="title" /> --%>
+<!-- 			</div> -->
 
-		</div>
+<!-- 		</div> -->
 		<!-- Main Container starts -->
 		<div class="main-container">
 
@@ -139,7 +111,7 @@
 
 		</div>
 
-	</div>
+<!-- 	</div> -->
 	<!-- Main Container ends -->
 	<!-- Footer starts -->
 	<footer> Copyright SWAAAD 2017. </footer>
