@@ -147,6 +147,10 @@
 			$('#miTable_wrapper a:eq(1)').removeClass("btn-default").addClass("btn-primary");
 			$('#miTable_wrapper a:eq(2)').removeClass("btn-default").addClass("btn-primary");
 			
+			$("#miTable_wrapper a:eq(0)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(1)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(2)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(3)").css({"margin-right": "4px"});
 		});
 		</script>
 	</div>

@@ -117,6 +117,12 @@
 		                }
 		            },
 		            {
+		        		text: '<i class="fa fa-upload"></i> Importar',
+		                action: function ( e, dt, node, config ) {
+							window.location.href = 'hello';
+		                }
+		            },
+		            {
 		                extend:    'excelHtml5',
 		                text:      '<i class="fa fa-file-excel-o"></i> Excel',
 		                titleAttr: 'Excel',
@@ -150,8 +156,14 @@
 		    } );
 			
 			$('#miTable_wrapper a:eq(0)').removeClass("btn-default").addClass("btn-success");
-			$('#miTable_wrapper a:eq(1)').removeClass("btn-default").addClass("btn-primary");
 			$('#miTable_wrapper a:eq(2)').removeClass("btn-default").addClass("btn-primary");
+			$('#miTable_wrapper a:eq(3)').removeClass("btn-default").addClass("btn-primary");
+			
+			$("#miTable_wrapper a:eq(0)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(1)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(2)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(3)").css({"margin-right": "4px"});
+			$("#miTable_wrapper a:eq(4)").css({"margin-right": "4px"});
 			
 		});
 		</script>
