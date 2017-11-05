@@ -16,6 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -35,10 +37,15 @@ import com.swaaad.dto.ResponseDTO;
 import com.swaaad.exceptions.AsistenciaException;
 import com.swaaad.model.Asistencia;
 import com.swaaad.model.CursoAlumno;
+import com.swaaad.model.Docente;
+import com.swaaad.model.Usuario;
 import com.swaaad.reports.CursoAlumnoReport;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AsistenciaService;
 import com.swaaad.service.CursoAlumnoService;
+import com.swaaad.service.CursoService;
+import com.swaaad.service.UsuarioService;
+import com.swaaad.service.impl.UsuarioServiceImpl;
 
 @Controller
 @RequestMapping("asistencias")
@@ -47,12 +54,18 @@ public class AsistenciaController {
 	private static final Logger logger = LoggerFactory.getLogger(AsistenciaController.class);
 
 	@Autowired
+	UsuarioService objUsuarioService;
+
+	@Autowired
 	AsistenciaService objAsistenciaService;
 	@Autowired
 	AlumnosService objAlumnoService;
 
 	@Autowired
 	CursoAlumnoService objCursoAlumnoService;
+	
+	@Autowired
+	CursoService objCursoService;
 
 	@Autowired
 	ServletContext context;
@@ -62,13 +75,23 @@ public class AsistenciaController {
 	public ModelAndView asistenciaPage(ModelAndView model, HttpServletRequest request,
 			@RequestParam(value = "mes", required = false, defaultValue = "0") String mes) throws Exception {
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		
+
+		
 		String mesLetra = mes;
-		System.out.println("sss" + mesLetra);
+
 		if (mes.equals("0")) {
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("MM");
 			mesLetra = hourdateFormat.format(date);
-			System.out.println("dee " + mesLetra);
 		}
 
 		logger.info("asistenciaPage");
@@ -83,22 +106,19 @@ public class AsistenciaController {
 					Integer.valueOf(mesLetra));
 			List<Asistencia> listaEstadoPorCurso = objAsistenciaService.getEstadoByAlumnoCurso(idCurso,
 					Integer.valueOf(mesLetra));
-			logger.info("paso1" + idCurso);
-			System.out.println("mensaje de los cambios");
+
 			model.addObject("idCurso", idCurso);
 			model.addObject("listAlumnos", listaAlumnosCursos);
 			model.addObject("listarDiasMes", listaDiaPorMes);
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
 			model.addObject("mes_actual", mesLetra);
-			model.addObject("users", "luis");
-			
-			logger.info("paso2");
-			// model.setViewName("asisten");
+			model.addObject("user", userName);
+
 			model.setViewName("asistencia");
-			logger.info("paso");
+
 		} catch (Exception e) {
-			// model.setViewName("redirect:/cursos");
-			logger.info("problemas con curso no se ");
+
+			logger.error("problemas con curso no se ");
 
 		}
 		return model;
@@ -109,21 +129,27 @@ public class AsistenciaController {
 	public String registrarAsistencia(Model model, @PathVariable("curso") int curso,
 			@PathVariable("fecha") String fecha) throws Exception {
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		
+		
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = sdf.parse(fecha);
 
-		
-		//recuperar asistencia Alumno}
 		List<Asistencia> listaAsistencia = objAsistenciaService.getByDay(curso, date);
-//		List<CursoAlumno> listaAlumnosCursos = objCursoAlumnoService.getAllAlumnosByCurso(curso);
-		
 
-	
 		model.addAttribute("idCurso", curso);
 		model.addAttribute("listAlumnos", listaAsistencia);
 		model.addAttribute("fecha", fecha);
-		model.addAttribute("mes", date.getMonth()+1);
-		model.addAttribute("users", "luis");
+		model.addAttribute("mes", date.getMonth() + 1);
+		model.addAttribute("user", userName);
 		return "registrar_asistencia";
 	}
 
@@ -136,8 +162,6 @@ public class AsistenciaController {
 
 		Date date = sdf.parse(fecha);
 
-		
-		//verificar si se generara o se recuperara
 		objAsistenciaService.generarAsistencia(date, curso);
 
 		ResponseDTO dto = new ResponseDTO();
@@ -159,13 +183,11 @@ public class AsistenciaController {
 	public ResponseDTO guardarAsistenciaAlumno(@ModelAttribute AsistenciaFechaDTO asistenciaFechaDTO) throws Exception {
 		ResponseDTO dto = new ResponseDTO();
 
-		Asistencia asistencia= objAsistenciaService.getById(asistenciaFechaDTO.getIdAsistencia());
+		Asistencia asistencia = objAsistenciaService.getById(asistenciaFechaDTO.getIdAsistencia());
 		asistencia.setEstado(asistenciaFechaDTO.getEstado());
-		
-	
-		
+
 		objAsistenciaService.updateAsistencia(asistencia);
-		dto.setMessage("id "+asistenciaFechaDTO.getIdAsistencia());
+		dto.setMessage("id " + asistenciaFechaDTO.getIdAsistencia());
 		dto.setResponse(true);
 		return dto;
 	}

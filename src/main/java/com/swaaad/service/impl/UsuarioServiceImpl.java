@@ -55,5 +55,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 
 	}
+	@Override
+	public Usuario getUsuarioById(int idUsiario) throws Exception {
+		// TODO Auto-generated method stub
+		return objUsuarioDao.getUsuarioById(idUsiario);
+	}
 
 }
