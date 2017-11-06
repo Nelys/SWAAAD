@@ -300,30 +300,62 @@
 									password: {
 										validators: {
 											notEmpty: {
-												message: 'La contraseña es obligatoria y no puede estar vacía'
+												message: 'El password es obligatorio y no puede estar vacía'
 											},
 											identical: {
 												field: 'password2',
-												message: 'La contraseña y su confirmación no son iguales'
+												message: 'El password y su confirmación no son iguales'
 											},
 											different: {
 												field: 'username',
-												message: 'La contraseña no puede ser igual que el nombre de usuario'
+												message: 'El password no puede ser igual que el nombre de usuario'
+											},
+											callback: {
+												callback: function(value, validator) {
+													// Check the password strength
+													if (value.length < 6) {
+														return {
+															valid: false,
+															message: 'El password debe tener más de 6 caracteres'
+														}
+													}
+						
+													if (value === value.toLowerCase()) {
+														return {
+															valid: false,
+															message: 'El password debe contener al menos un carácter en mayúscula'
+														}
+													}
+													if (value === value.toUpperCase()) {
+														return {
+															valid: false,
+															message: 'El password debe contener al menos un carácter en minúscula'
+														}
+													}
+													if (value.search(/[0-9]/) < 0) {
+														return {
+															valid: false,
+															message: 'El password debe contener al menos un dígito'
+														}
+													}
+						
+													return true;
+												}
 											}
 										}
 									},
 									password2: {
 										validators: {
 											notEmpty: {
-												message: 'La contraseña de confirmación es obligatoria y no puede estar vacía'
+												message: 'El password de confirmación es obligatoria y no puede estar vacía'
 											},
 											identical: {
 												field: 'password',
-												message: 'La contraseña y su confirmación no son iguales'
+												message: 'El password y su confirmación no son iguales'
 											},
 											different: {
 												field: 'username',
-												message: 'La contraseña no puede ser igual que el nombre de usuario'
+												message: 'El password no puede ser igual que el nombre de usuario'
 											}
 										}
 									},
@@ -374,9 +406,9 @@
 
 										alert(result.message);
 
-										setTimeout(function(){ location.href ='login'; }, 2000);
-										
-										
+										setTimeout(function () { location.href = 'login'; }, 2000);
+
+
 									}, 'json');
 							});
 					});
