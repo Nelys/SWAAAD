@@ -11,7 +11,7 @@ import com.swaaad.service.DocenteService;
 public class DocenteServiceImpl implements DocenteService {
 	
 	@Autowired
-	DocenteDao objDocente;
+	private DocenteDao objDocente;
 
 	@Override
 	public void addDocente(Docente docente) throws Exception {

@@ -27,16 +27,17 @@ import com.swaaad.service.EvaluacionService;
 public class EvaluacionServiceImpl implements EvaluacionService {
 
     @Autowired
-    EvaluacionDao objEvaluacionDao;
+    private EvaluacionDao objEvaluacionDao;
     
     @Autowired
-    AlumnosDao objAlumnoDao;
+    private AlumnosDao objAlumnoDao;
     
     @Autowired
-    NotaDao objNotaDao;
+    private NotaDao objNotaDao;
 
     @Autowired
-    CursoDao objCurso;
+    private CursoDao objCurso;
+    
     @Override
     public void addEvaluacion(Evaluacion evaluacion, ServletRequest request) throws Exception {
 

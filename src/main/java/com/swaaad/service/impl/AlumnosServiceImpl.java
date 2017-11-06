@@ -24,14 +24,14 @@ import com.swaaad.service.CursoAlumnoService;
 public class AlumnosServiceImpl implements AlumnosService {
 
 	@Autowired
-	AlumnosDao objAlumnoDao;
+	private AlumnosDao objAlumnoDao;
 	
 	@Autowired
-	CursoAlumnoDao objCursoAlumnoDao;
+	private CursoAlumnoDao objCursoAlumnoDao;
 
-	
 	@Autowired
-	CursoDao objCurso;
+	private CursoDao objCurso;
+	
 	@Override
 	public void addAlumno(Alumno alumno, ServletRequest request) throws IOException, ServletException, Exception {
 

@@ -13,7 +13,7 @@ import com.swaaad.service.CursoService;
 public class CursoServiceImpl implements CursoService {
 
 	@Autowired
-	CursoDao objCursoDao;
+	private CursoDao objCursoDao;
 
 	@Override
 	public void addCurso(Curso curso) throws Exception {

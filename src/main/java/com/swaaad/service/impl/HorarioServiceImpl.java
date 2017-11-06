@@ -9,8 +9,9 @@ import com.swaaad.service.HorarioService;
 
 @Service
 public class HorarioServiceImpl implements HorarioService {
-	@Autowired
-	HorarioDao objHorarioDao;
+	
+    @Autowired
+    private HorarioDao objHorarioDao;
 
 	@Override
 	public void addHorario(Horario horario) throws Exception {
