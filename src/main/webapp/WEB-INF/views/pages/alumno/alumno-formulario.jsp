@@ -12,7 +12,6 @@
 
 		<div class="row">
 			<div class="col-lg-6">
-				<h1>Formulario Alumnos</h1>
 				<form:form action="saveAlumno" method="post" modelAttribute="alumno"
 					cssClass="form-horizontal">
 					<div class="form-group">
@@ -56,15 +55,6 @@
 							<form:input path="email" cssClass="form-control" />
 						</div>
 					</div>
-
-<!-- 					<div class="form-group"> -->
-<!-- 						<label class="control-label col-sm-2" for="contrasena">Contraseña:</label> -->
-<!-- 						<div class="col-sm-10"> -->
-
-<%-- 							<form:input path="contrasena" cssClass="form-control" /> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-
 
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="nombresApoderado">Nombres Apoderado:</label>

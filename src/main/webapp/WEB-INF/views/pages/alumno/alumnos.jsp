@@ -5,41 +5,7 @@
 <div id="page-wrapper">
 
 	<div class="container-fluid">
-		<!-- Titulo -->
-<!-- 		<div class='row'> -->
-<!-- 			<div class="col-md-12"> -->
-<!-- 				<h2>Lista Alumnos</h2> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
 
-		<!-- Opcion de la tabla -->
-<!-- 		<div class='row'> -->
-<!-- 			<div class="col-md-1"> -->
-<!-- 				<a class="btn btn-success" href="newAlumno"><i -->
-<!-- 					class="fa fa-plus"></i> Nuevo</a> -->
-<!-- 			</div> -->
-
-<!-- 			<div class="col-md-4"> -->
-<!-- 				<a class="btn btn-default" href="hello"><i -->
-<!-- 					class="fa fa-upload"></i> Importar</a> -->
-<!-- 			</div> -->
-
-<!-- 			<div class="col-lg-4 text-right"> -->
-<!-- 				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i> -->
-<!-- 					PDF</a> <a class="btn btn-primary" href="xls"><i -->
-<!-- 					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default" -->
-<!-- 					href="AlumnoReporte"><i class="fa fa-print"></i> Imprimir</a> -->
-
-<!-- 			</div> -->
-<!-- 			<div class="col-md-3"> -->
-<!-- 				<div class="input-group"> -->
-<!-- 					<span class="input-group-addon" id="sizing-addon2"><i -->
-<!-- 						class="fa fa-search"></i></span> <input type="text" class="form-control" -->
-<!-- 						placeholder="Buscar ..." aria-describedby="sizing-addon2"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<br> -->
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -89,10 +55,9 @@
 		</div>
 		<!-- /.row -->
 		<script type="text/javascript">
-			$(document).ready(function() {
+		$(document).ready(function() {
 			
 			var table = $('#miTable').DataTable( {
-
 				"language": {
 	                "emplyTable":"No hay datos disponible en la tabla.",
 	                "lengthMenu": "Mostrar _MENU_ registros",
@@ -149,7 +114,7 @@
 					{
 		        		text: '<i class="fa fa-print"></i> Imprimir',
 		                action: function ( e, dt, node, config ) {
-							window.location.href = '#';
+							window.location.href = 'AlumnoReporte';
 		                }
 		            }
 				]
