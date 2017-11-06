@@ -60,7 +60,7 @@ h2 {
 
 		<div class="row">
 			<div class="col-lg-6">
-				<h1>Formulario Evaluación</h1>
+<!-- 				<h1>Formulario Evaluación</h1> -->
 				<form:form action="saveEvaluacion" method="post"
 					modelAttribute="evaluacion" cssClass="form-horizontal" role="form"
 					data-toggle="validator">
@@ -139,8 +139,11 @@ h2 {
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<a class="btn btn-default" href="listNota">Cancelar</a>
-							<button class="btn btn-success" type="submit">Guardar</button>
+							<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Eliminar</button>
+							<div class="pull-right">
+								<a class="btn btn-default" href="listNota">Cancelar</a>
+								<button class="btn btn-success" type="submit">Guardar</button>
+							</div>
 						</div>
 					</div>
 
