@@ -112,7 +112,7 @@ public class LoginController {
 		String mensaje = "";
 		Boolean flag = false;
 		if (objUsuarioServiceImpl.registrarUsuario(registroDTO)) {
-			mensaje = "Se registro Correctamente";
+			mensaje = "Se registro Correctamente verifique su bandeja de Correo";
 			flag = true;
 		} else {
 			mensaje = "El correo ya se encuentra registrado";

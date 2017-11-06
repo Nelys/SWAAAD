@@ -64,7 +64,7 @@ body {
 
 .container-login .nav-tabs.nav-justified>li>a, .container-login .nav-tabs.nav-justified>li>a:hover,
 	.container-login .nav-tabs.nav-justified>li>a:focus {
-	background: #2d88e1;
+	background: #12a5a0;
 	border: medium none;
 	color: #ffffff;
 	margin-bottom: 0;
@@ -91,7 +91,7 @@ body {
 }
 
 .container-login h2 {
-	color: #2d88e1;
+	color: #12a5a0;
 }
 
 .form-control {
@@ -116,7 +116,7 @@ body {
 }
 
 .container-login button {
-	background-color: #2d88e1;
+	background-color: #12a5a0;
 	border-color: #2882e7;
 	color: #ffffff;
 	border-radius: 0;
