@@ -16,10 +16,10 @@ import com.swaaad.service.AsistenciaService;
 public class AsistenciaServiceImpl implements AsistenciaService {
 
 	@Autowired
-	AsistenciaDao objAsistenciaDao;
+	private AsistenciaDao objAsistenciaDao;
 
 	@Autowired
-	CursoAlumnoDao objCursoAlumnoDao;
+	private CursoAlumnoDao objCursoAlumnoDao;
 
 	@Override
 	public void addAsistencia(Asistencia asistencia) throws Exception {

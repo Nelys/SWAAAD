@@ -12,7 +12,7 @@ import com.swaaad.service.ActividadPedagogicaService;
 @Service
 public class ActividadPedagogicaServiceImpl implements ActividadPedagogicaService {
 	@Autowired
-	ActividadPedagogicaDao objActividadDao;
+	private ActividadPedagogicaDao objActividadDao;
 
 	@Override
 	public void addActividad(ActividadPedagogica actividad) throws Exception {

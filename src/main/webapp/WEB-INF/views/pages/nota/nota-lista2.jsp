@@ -2,163 +2,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
+<link href="<c:url value='/resources/template/css/datatables/jquery.dataTables.min.css' />" rel="stylesheet" />
+<%-- <link href="<c:url value='/resources/template/css/datatables/dataTables.bootstrap.min.css' />" rel="stylesheet" /> --%>
+<link href="<c:url value='/resources/template/css/datatables/fixedColumns.dataTables.min.css' />" rel="stylesheet" />
+
 <style>
-/*.btn {
-		    border: none;
-		    color: white;
-		    padding: 6px 12px;
-		    font-size: 14px;
-		    cursor: pointer;
-		}*/
-td {
-	width: 40px;
-	text-align: center;
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-bottom: 0px;
-	padding-right: 0px;
-	cursor: pointer;
-}
 
-.asd {
-	background-color: #4CAF50;
-} /* Green */
-.asd:hover {
-	background-color: #46a049;
-}
-
-
-		thead th {
-	height: 25px;
-	width: 100px;
-	padding-left: 5px;
-	padding-right: 5px;
-	line-height: 25px;
-}
-
-/* Primera Columna*/
-thead th:first-child {
-	width: 300px;
-}
-
-/* Celdas de la tabla*/
-tbody td {
-	word-break: break-all;
-	/*padding: 5px;*/
-	border: 0;
-	width: 50px; /* 100px; */
-	vertical-align: top;
-}
-
-tbody td:first-child {
-	width: 300px;
-}
-
-div.fTHLC-outer-wrapper {
-	/*border: 1px solid #000000;*/
-	/*margin: 50px auto;*/
+	th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+/*         width: 800px; */
+        margin: 0 auto;
+    }
 	
-}
-
-div.fTHLC-inner-wrapper {
-	/*border: 1px dotted #000000;*/
-	
-}
-
-div.fTHLC-outer-corner {
-	/*background-color: #ffffff;*/
-	/*border-right: 1px solid #000000;
-		  border-bottom: 1px solid #000000;*/
-	
-}
-
-table tr .cols {
-	background-color: #FFE4E1;
-}
-
-table tr .rows {
-	background-color: #E0FFFF;
-}
-
-/* texto Vertical */
-.contenedor {
-	position: relative;
-	min-height: 105px;
-}
-
-.alignvertical {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-}
-
-.rotate .celda {
-	width: 50px; /* 100px; */
-	height: 100px;
-	padding-top: 16px;
-	padding-left: 16px;
-	padding-right: 16px;
-	padding-bottom: 16px;
-
-}
+	td {
+		width: 40px;
+		text-align: center;
+		cursor: pointer;
+	}
 </style>
-<!-- <div id="page-wrapper"> -->
 
-<!-- 	<div class="container-fluid"> -->
-		<!-- Titulo -->
-<!-- 		<div class='row'> -->
-<!-- 			<div class="col-md-12"> -->
-<!-- 				<h2>Lista Notas</h2> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-
-		<!-- Opcion de la tabla -->
-				<div class='row'>
-			<div class="col-md-2">
-				<a class="btn btn-success" href="newEvaluacion"><i
-					class="fa fa-plus"></i> Nueva Evaluación</a>
-			</div>
-
-			<div class="col-md-5 text-right">
-				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i>
-					PDF</a> <a class="btn btn-primary" href="#"><i
-					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default"
-					href="#"><i class="fa fa-print"></i> Imprimir</a>
-
-			</div>
-			<div class="col-md-3">
-				<div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2"><i
-						class="fa fa-search"></i></span> <input type="text" class="form-control"
-						placeholder="Buscar ..." aria-describedby="sizing-addon2">
-				</div>
-			</div>
-		</div>
-		<br>
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
 
 				<div id="parent" class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
-						<table id="fixTable"
-							class="table table-bordered table-hover table-striped">
-<!-- 							<thead> -->
+<!-- 						<table id="miTable" class="table table-bordered table-hover table-striped"> -->
+<!-- 						<table id="miTable" class="stripe row-border order-column"> -->
+						<table id="fixTable" class="stripe row-border order-column" cellspacing="0" width="100%">
+<!-- 						<table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%"> -->
+							<thead>
 							<tr>
-								<td><div class="contenedor">
+								<th><div class="contenedor">
 										<span class='alignvertical'>Alumno</span>
-									</div></td>
+									</div></th>
 
 								<c:set var="primero" value="${1}" />
 								<c:forEach var="lista" items="${listEvaluaciones}">
 
-									<td id="${lista.idEvaluacion}" class="tdEvaluacion"
+									<th id="${lista.idEvaluacion}" class="tdEvaluacion"
 										style="background-color:${lista.color};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;"><div
-											class='rotate'>${lista.nombre}</div></td>
+										>${lista.nombre}</div></th>
 								</c:forEach>
 							</tr>
-<!-- 							</thead> -->
-<!-- 							<tbody> -->
+							</thead>
+							<tbody>
 
 							<c:forEach var="listaAlumno" items="${listAlumnos}">
 								<tr id="${listaAlumno.idAlumno}">
@@ -173,7 +61,8 @@ table tr .rows {
 									</c:forEach>
 								</tr>
 							</c:forEach>
-<!-- 							</tbody> -->
+							
+							</tbody>
 						</table>
 					</c:if>
 
@@ -232,34 +121,86 @@ table tr .rows {
 			</div>
 		</div>
 		<!-- /.row -->
+		<script src="<c:url value='/resources/js/bootstrap-number-input.js' />"></script>
 		<script>
 
 		
 		$(function() {
 			
-// 			$('#fixTable').DataTable( {
-// 				dom: 'Bfrtip',
-// 				buttons: [
-// 					'copy', 'csv', 'excel', 'pdf', 'print'
-// 				]
-// 			});
-			
 			$('#notaEvaluativa').bootstrapNumber({
 				upClass: 'success',
 				downClass: 'danger'
 			});
-		  $('table').fixedTblHdrLftCol({
-		    scroll: {
-		      height: '100%',
-		      width: '100%'
-		    }
-		  });
 		});
 	
 		/**
 		 * Funciones de la pagina cargada
 		 */
 		$(document).ready(function() {
+			
+			$('#fixTable').DataTable( {
+				scrollY:        "800px",
+		        scrollX:        true,
+		        scrollCollapse: true,
+		        paging:         true,
+		        fixedColumns:   true,
+				"language": {
+	                "emplyTable":"No hay datos disponible en la tabla.",
+	                "lengthMenu": "Mostrar _MENU_ registros",
+	                "info": "Pagina _PAGE_ de _PAGES_",
+	                "infoEmpty": "No hay registros disponibles.",
+	                "infoFiltered": "(Busqueda de _MAX_ Registros)",
+	                "loadingRecords": "Cargando...",
+	                "processing": "Prosesando...",
+	                "search": "Buscar:",
+	                "zeroRecords": "No hay registros de busqueda.",
+	                "paginate": {
+	                    "previous":"Anterior",
+	                    "next":"Siguiente"
+	                }
+	            },
+				dom: 'Bfrtip',
+		        buttons: [
+		        	{
+		        		text: '<i class="fa fa-plus"></i> Nueva Evaluación',
+		                action: function ( e, dt, node, config ) {
+							window.location.href = 'newEvaluacion';
+		                }
+		            },
+		            {
+		                extend:    'excelHtml5',
+		                text:      '<i class="fa fa-file-excel-o"></i> Excel',
+		                titleAttr: 'Excel'
+		            },
+		            {
+		                extend:    'pdfHtml5',
+		                text:      '<i class="fa fa-file-pdf-o"></i> PDF',
+		                titleAttr: 'PDF'
+		            },
+		            {
+		                extend:    'print',
+		                text:      '<i class="fa fa-print"></i> Print',
+		                titleAttr: 'print'
+		            }
+// 		            ,
+// 					{
+// 		        		text: '<i class="fa fa-print"></i> Imprimir',
+// 		                action: function ( e, dt, node, config ) {
+// 							window.location.href = '#';
+// 		                }
+// 		            }
+				]
+		    } );
+			
+			$('#fixTable_wrapper a:eq(0)').removeClass("btn-default").addClass("btn-success");
+			$('#fixTable_wrapper a:eq(1)').removeClass("btn-default").addClass("btn-primary");
+			$('#fixTable_wrapper a:eq(2)').removeClass("btn-default").addClass("btn-primary");
+			
+			$("#fixTable_wrapper a:eq(0)").css({"margin-right": "4px"});
+			$("#fixTable_wrapper a:eq(1)").css({"margin-right": "4px"});
+			$("#fixTable_wrapper a:eq(2)").css({"margin-right": "4px"});
+			$("#fixTable_wrapper a:eq(3)").css({"margin-right": "4px"});
+			
 			
 			/**
 			 * Funcion AJAX donde se establece la nota por alumno y evaluacion
@@ -272,7 +213,7 @@ table tr .rows {
 		        	var id ='#idAlumno_' + item.idAlumno + '-idEvaluacion_' + item.idEvaluacion;
 		        	
 		        	// Formato de 2 digitos a item.notaEvaluativa
-		        	$( id ).html(("0" + item.notaEvaluativa).slice(-2));
+		        	$( id ).text(("0" + item.notaEvaluativa).slice(-2));
 		        	
 		    	});
 		    });

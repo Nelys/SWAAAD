@@ -13,7 +13,7 @@ import com.swaaad.service.AulaDinamicaService;
 public class AulaDinamicaServiceImpl implements AulaDinamicaService{
 
 	@Autowired
-	AulaDinamicaDao objAulaDinamicaDao;
+	private AulaDinamicaDao objAulaDinamicaDao;
 	
 	@Override
 	public void addAulaDinamica(AulaDinamica aulaDinamica) throws Exception {
