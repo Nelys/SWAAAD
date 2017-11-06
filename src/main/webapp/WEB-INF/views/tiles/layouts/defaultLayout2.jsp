@@ -23,13 +23,15 @@
 <link href="<c:url value='/resources/template/css/animate.css' />" rel="stylesheet" type="text/css">
 <link href="<c:url value='/resources/template/css/main.css' />" rel="stylesheet" type="text/css">
 <link href="<c:url value='/resources/template/fonts/font-awesome.min.css' />" rel="stylesheet" type="text/css">
-
+<link href="<c:url value='/resources/css/bootstrap-colorpicker.min.css' />" rel="stylesheet" type="text/css">
 
 <!-- Data Tables -->
 <link href="<c:url value='/resources/template/css/datatables/dataTables.bs.min.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/autoFill.bs.min.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/fixedHeader.bs.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/buttons.bs.css' />" rel="stylesheet" />
+<%-- <link href="<c:url value='/resources/template/css/datatables/jquery.dataTables.min.css' />" rel="stylesheet" /> --%>
+<%-- <link href="<c:url value='/resources/template/css/datatables/fixedColumns.dataTables.min.css' />" rel="stylesheet" /> --%>
 
 
 
@@ -38,6 +40,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <%-- <script src="<c:url value='/resources/template/js/jquery.js' />"></script> --%>
 <script src="<c:url value='/resources/js/jquery-3.2.1.js' />"></script>
+<%-- <script src="<c:url value='/resources/js/jquery-1.12.4.js' />"></script> --%>
 <script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -53,12 +56,14 @@
 <!-- Data Tables -->
 <script src="<c:url value='/resources/template/js/datatables/dataTables.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/dataTables.bootstrap.min.js' />"></script>
-<script src="<c:url value='/resources/template/js/datatables/dataTables.tableTools.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/dataTables.buttons.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/buttons.bootstrap.min.js' />"></script>
+<script src="<c:url value='/resources/template/js/datatables/dataTables.tableTools.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/autoFill.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/autoFill.bootstrap.min.js' />"></script>
 <script src="<c:url value='/resources/template/js/datatables/fixedHeader.min.js' />"></script>
+<%-- <script src="<c:url value='/resources/template/js/datatables/jquery.dataTables.min.js' />"></script> --%>
+<script src="<c:url value='/resources/template/js/datatables/dataTables.fixedColumns.min.js' />"></script>
 
 <!-- Download / CSV / Copy / Print -->
 <script src="<c:url value='/resources/template/js/datatables/buttons.min.js' />"></script>
@@ -75,6 +80,8 @@
 <!-- jquery datepicker JS -->
 <script src="<c:url value='/resources/js/datapicker/bootstrap-datepicker.js' />"></script>
 <script src="<c:url value='/resources/js/datapicker/es.js' />"></script>
+
+<script src="<c:url value='/resources/js/bootstrap-colorpicker.min.js' />"></script>
 
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>
