@@ -21,10 +21,10 @@ import com.swaaad.service.NotaService;
 public class NotaServiceImpl implements NotaService{
     
 	@Autowired
-	NotaDao objNotaDao;
+	private NotaDao objNotaDao;
 	
 	@Autowired
-    EvaluacionDao objEvaluacionDao;
+	private EvaluacionDao objEvaluacionDao;
 
 	@Override
 	public void addNota(Nota nota) throws Exception {
