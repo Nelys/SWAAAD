@@ -149,7 +149,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             		"html");
 
             // Enviamos el correo
-//            Transport.send(mensaje);
+            Transport.send(mensaje);
 			
 			return true;
 		}
