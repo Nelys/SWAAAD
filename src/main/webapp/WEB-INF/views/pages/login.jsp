@@ -80,7 +80,7 @@ body {
 
 .container-login .nav-tabs.nav-justified>li>a:hover, .container-login .nav-tabs.nav-justified>li>a:focus
 	{
-	background: #2daee1;
+	background: #14adad;
 }
 
 .tabs-login {
@@ -117,7 +117,7 @@ body {
 
 .container-login button {
 	background-color: #12a5a0;
-	border-color: #2882e7;
+	border-color: #067465;
 	color: #ffffff;
 	border-radius: 0;
 	font-size: 18px;
@@ -127,8 +127,8 @@ body {
 }
 
 .container-login button:hover, .container-login button:focus {
-	background: #2daee1;
-	border-color: #2882e7;
+	background: #12a5a0;
+	border-color: #067465;
 }
 legend.scheduler-border {
     width:inherit; /* Or auto */

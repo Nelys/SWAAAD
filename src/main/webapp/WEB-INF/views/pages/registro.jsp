@@ -33,37 +33,36 @@
 					margin-top: 40px;
 					padding: 0;
 				}
-
+				
 				.center-block {
 					display: block;
 					margin-left: auto;
 					margin-right: auto;
 				}
-
+				
 				.container-login>section {
 					margin-left: 0;
 					margin-right: 0;
 					padding-bottom: 10px;
 				}
-
+				
 				#top-bar {
 					display: inherit;
 				}
-
+				
 				.nav-tabs.nav-justified {
 					border-bottom: 0 none;
 					width: 100%;
 				}
-
+				
 				.nav-tabs.nav-justified>li {
 					display: table-cell;
 					width: 1%;
 					float: none;
 				}
-
-				.container-login .nav-tabs.nav-justified>li>a,
-				.container-login .nav-tabs.nav-justified>li>a:hover,
-				.container-login .nav-tabs.nav-justified>li>a:focus {
+				
+				.container-login .nav-tabs.nav-justified>li>a, .container-login .nav-tabs.nav-justified>li>a:hover,
+					.container-login .nav-tabs.nav-justified>li>a:focus {
 					background: #12a5a0;
 					border: medium none;
 					color: #ffffff;
@@ -71,30 +70,29 @@
 					margin-right: 0;
 					border-radius: 0;
 				}
-
-				.container-login .nav-tabs.nav-justified>.active>a,
-				.container-login .nav-tabs.nav-justified>.active>a:hover,
-				.container-login .nav-tabs.nav-justified>.active>a:focus {
+				
+				.container-login .nav-tabs.nav-justified>.active>a, .container-login .nav-tabs.nav-justified>.active>a:hover,
+					.container-login .nav-tabs.nav-justified>.active>a:focus {
 					background: #ffffff;
 					color: #333333;
 				}
-
-				.container-login .nav-tabs.nav-justified>li>a:hover,
-				.container-login .nav-tabs.nav-justified>li>a:focus {
-					background: #2daee1;
+				
+				.container-login .nav-tabs.nav-justified>li>a:hover, .container-login .nav-tabs.nav-justified>li>a:focus
+					{
+					background: #14adad;
 				}
-
+				
 				.tabs-login {
 					background: #ffffff;
 					border: medium none;
 					margin-top: -1px;
 					padding: 10px 30px;
 				}
-
+				
 				.container-login h2 {
 					color: #12a5a0;
 				}
-
+				
 				.form-control {
 					background-color: #ffffff;
 					background-image: none;
@@ -107,17 +105,18 @@
 					height: 34px;
 					line-height: 1.42857;
 					padding: 6px 12px;
-					transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+					transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s
+						ease-in-out 0s;
 					width: 100%;
 				}
-
+				
 				.container-login .checkbox {
 					margin-top: -15px;
 				}
-
+				
 				.container-login button {
-					background-color: #12a5a0;
-					border-color: #2882e7;
+					background-color: #09837e;
+					border-color: #067465;
 					color: #ffffff;
 					border-radius: 0;
 					font-size: 18px;
@@ -125,19 +124,15 @@
 					padding: 10px 16px;
 					width: 100%;
 				}
-
-				.container-login button:hover,
-				.container-login button:focus {
-					background: #2daee1;
-					border-color: #2882e7;
+				
+				.container-login button:hover, .container-login button:focus {
+					background: #12a5a0;
+					border-color: #067465;
 				}
-
 				legend.scheduler-border {
-					width: inherit;
-					/* Or auto */
-					padding: 0 10px;
-					/* To give a bit of padding on the left and right */
-					border-bottom: none;
+					width:inherit; /* Or auto */
+					padding:0 10px; /* To give a bit of padding on the left and right */
+					border-bottom:none;
 				}
 			</style>
 		</head>
