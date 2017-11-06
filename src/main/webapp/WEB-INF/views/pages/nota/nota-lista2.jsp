@@ -7,13 +7,7 @@
 <link href="<c:url value='/resources/template/css/datatables/fixedColumns.dataTables.min.css' />" rel="stylesheet" />
 
 <style>
-/*.btn {
-		    border: none;
-		    color: white;
-		    padding: 6px 12px;
-		    font-size: 14px;
-		    cursor: pointer;
-		}*/
+
 	th, td { white-space: nowrap; }
     div.dataTables_wrapper {
 /*         width: 800px; */
