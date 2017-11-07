@@ -16,7 +16,7 @@
 		<div class="im-centered">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1>Perfil</h1>
+				<h1>Cambiar Contraseña</h1>
 				<form name='docenteForm' id='docenteForm' action="registrarUsuario" method="post" role="form" class="form-horizontal">
 					<div class="form-group ">
 						<label for="password" class="sr-only">Password</label>
