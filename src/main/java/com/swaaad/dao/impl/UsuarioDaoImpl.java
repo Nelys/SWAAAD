@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.swaaad.dao.UsuarioDao;
-import com.swaaad.model.Alumno;
 import com.swaaad.model.Usuario;
 
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -86,6 +85,29 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 
 		return usuario;
+	}
+
+	@Override
+	public void habilitarUsuario(Usuario usuario) throws Exception {
+		sSession = sessionFactory.openSession();
+		try {
+			tTransaction = sSession.beginTransaction();
+			sSession.update(usuario);
+			tTransaction.commit();
+			logger.info("se actualizo");
+		} catch (RuntimeException e) {
+
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
+				tTransaction.rollback();// desase e
+
+			}
+			logger.info("UsuarioDaoImpl habilitarUsuario: ", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+
+		
 	}
 
 }

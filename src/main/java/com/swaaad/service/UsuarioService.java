@@ -10,4 +10,5 @@ public interface UsuarioService {
 	Boolean registrarUsuario(RegistroDTO usuario) throws Exception;
 		
 	Usuario getUsuarioById(int idUsiario) throws Exception;
+	void habilitarUsuario(Usuario usuario)throws Exception;;
 }

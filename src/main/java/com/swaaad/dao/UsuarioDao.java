@@ -9,4 +9,6 @@ public interface UsuarioDao {
 	Usuario verificarEmail(String email) throws Exception;
 
 	Usuario getUsuarioById(int id) throws Exception;
+	
+	void habilitarUsuario(Usuario usuario) throws Exception;
 }

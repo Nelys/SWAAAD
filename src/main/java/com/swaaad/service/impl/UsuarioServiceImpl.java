@@ -58,10 +58,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 			
 			objDocenteServiceImpl.addDocente(docente);
 			
-			String ruta_servidor="#";
-			String ruta_recuperacion="#";
-			String ruta_confirmacion="#";
-			String ruta_terminos="#";
+						
+			String emmap = pe.encode(docente.getEmail()+docente.getApellidos());
+			String nombre = pe.encode(docente.getNombre());
+			String pass = _usuario.getPassword();
+
+			
+			
+			System.out.println("?no=" + nombre + "&pa=" + pass + "&em=" +emmap+"&i="+newUsuario.getIdUsuario());
+			
+						
+			String ruta_servidor="http://localhost:8080/swaaad/";
+			String ruta_recuperacion=ruta_servidor+"#";
+			String ruta_confirmacion=ruta_servidor+"confirmarRegistro?no=" + nombre + "&pa=" + pass + "&em=" +emmap+"&i="+newUsuario.getIdUsuario();
+			String ruta_terminos=ruta_servidor+"#";
 			
 			//enviar correo
 			
@@ -158,8 +168,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	@Override
 	public Usuario getUsuarioById(int idUsiario) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return objUsuarioDao.getUsuarioById(idUsiario);
+	}
+	@Override
+	public void habilitarUsuario(Usuario usuario) throws Exception {
+		
+		objUsuarioDao.habilitarUsuario(usuario);
 	}
 
 }
