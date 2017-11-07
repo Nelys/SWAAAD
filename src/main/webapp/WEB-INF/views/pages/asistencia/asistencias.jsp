@@ -9,21 +9,9 @@
 <!-- Opcion de la tabla -->
 
 <div class='row'>
-	<div class="col-md-4 col-lg-3">
-		<button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-			<i class="fa fa-plus"></i> Ir Asistencia
-		</button>
-
-
-	</div>
-	<div class="col-lg-4 text-right">
-		<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i> PDF</a> <a class="btn btn-primary" href="#"><i class="fa fa-file-excel-o"></i>
-			Excel</a> <a class="btn btn-default" href="#"><i class="fa fa-print"></i> Imprimir</a>
-	</div>
-
-	<div class="col-md-4 form-horizontal">
+	<div class="col-md-4 form-horizontal pull-right">
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Mes :</label>
+			<label class="col-sm-3 control-label">Mes:</label>
 			<div class="col-sm-5">
 				<select class="form-control" id="cbxMeses">
 					<option value="1" ${mes_actual=='1'?'selected="selected"':''}>Enero</option>
@@ -42,16 +30,13 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <!-- Resgistros de la tabla -->
 <div class="row gutter">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="panel panel-light">
-			<div class="panel-heading">
-				<h4>Scroll Table</h4>
-			</div>
+
 			<div class="panel-body">
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
@@ -100,10 +85,11 @@
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Seleccionar Fecha de Asistencia</h5>
+<!-- 				<h5 class="modal-title" id="exampleModalLabel">Seleccionar Fecha de Asistencia</h5> -->
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
+				<h4 class="modal-title">Seleccionar Fecha</h4>
 			</div>
 			<div class="modal-body">
 
@@ -118,7 +104,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<button id="btnNuevo" type="button" class="btn btn-primary">Cargar DAtos</button>
+				<button id="btnNuevo" type="button" class="btn btn-success">Aceptar</button>
 			</div>
 		</div>
 	</div>
@@ -146,10 +132,60 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$('#miTable').DataTable({
-			dom : 'Bfrtip',
-			buttons : [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
-		});
+	$('#miTable').DataTable( {
+			"language": {
+                "emplyTable":"No hay datos disponible en la tabla.",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "info": "Pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles.",
+                "infoFiltered": "(Busqueda de _MAX_ Registros)",
+                "loadingRecords": "Cargando...",
+                "processing": "Prosesando...",
+                "search": "Buscar:",
+                "zeroRecords": "No hay registros de busqueda.",
+                "paginate": {
+                    "previous":"Anterior",
+                    "next":"Siguiente"
+                }
+            },
+			dom: 'Bfrtip',
+	        buttons: [
+	        	{
+	        		text: 'Asistencia',
+	                action: function ( e, dt, node, config ) {
+	                }
+	            },
+	            {
+	                extend:    'excelHtml5',
+	                text:      '<i class="fa fa-file-excel-o"></i> Excel',
+	                titleAttr: 'Excel'
+	            },
+	            {
+	                extend:    'pdfHtml5',
+	                text:      '<i class="fa fa-file-pdf-o"></i> PDF',
+	                titleAttr: 'PDF'
+	            },
+	            {
+	                extend:    'print',
+	                text:      '<i class="fa fa-print"></i> Imprimir',
+	                titleAttr: 'print'
+	            }
+			]
+	    } );
+		
+		$('#miTable_wrapper a:eq(0)').removeClass("btn-default").addClass("btn-success");
+		$('#miTable_wrapper a:eq(1)').removeClass("btn-default").addClass("btn-primary");
+		$('#miTable_wrapper a:eq(2)').removeClass("btn-default").addClass("btn-primary");
+		
+		$("#miTable_wrapper a:eq(0)").css({"margin-right": "4px"});
+		$("#miTable_wrapper a:eq(1)").css({"margin-right": "4px"});
+		$("#miTable_wrapper a:eq(2)").css({"margin-right": "4px"});
+		$("#miTable_wrapper a:eq(3)").css({"margin-right": "4px"});
+		
+		// Agregar atributos
+		$('#miTable_wrapper a:eq(0)').attr('data-toggle', 'modal');
+		$('#miTable_wrapper a:eq(0)').attr('data-target', '#exampleModal');
+			
 		$('.datepicker').datepicker({
 			format : 'dd-mm-yyyy',
 			language : 'es',
@@ -174,18 +210,20 @@
 												+ $("#txtFecha").val() + "", {})
 								.done(
 										function(data) {
-											$('#mensajeModal').modal('show');
+// 											$('#mensajeModal').modal('show');
 											var fecha = $('.datepicker').val();
-											$('#linkEnvio')
-													.attr(
-															'href',
-															"${pageContext.request.contextPath}/asistencias/registrarAsistencia/${idCurso}/"
-																	+ fecha);
+											window.location.href = '${pageContext.request.contextPath}/asistencias/registrarAsistencia/${idCurso}/' + fecha;
+// 											$('#linkEnvio')
+// 													.attr(
+// 															'href',
+// 															"${pageContext.request.contextPath}/asistencias/registrarAsistencia/${idCurso}/"
+// 																	+ fecha);
 
 										});
 					});
 
 	$("#cbxMeses").change(function() {
 		location.href = "?mes=" + $("#cbxMeses").val();
+		console.log("asdfasdf");
 	});
 </script>

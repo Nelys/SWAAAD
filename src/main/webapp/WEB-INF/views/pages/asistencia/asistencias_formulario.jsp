@@ -8,21 +8,15 @@
 
 <!-- Opcion de la tabla -->
 
-<div class='row'>
-	<div class="col-md-4 col-lg-3">
-	 <a class="btn btn-primary" href="${pageContext.request.contextPath}/asistencias?mes=${mes}">Regresar</a>
-	</div>
 
-
-</div>
 
 <!-- Registros de la tabla -->
 <div class="row gutter">
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 		<div class="panel panel-light">
-			<div class="panel-heading">
-				<h4>Registro Asistencia</h4>
-			</div>
+<!-- 			<div class="panel-heading"> -->
+<!-- 				<h4>Registro Asistencia</h4> -->
+<!-- 			</div> -->
 			<div class="panel-body">
 				<div class="table-responsive">
 					<c:if test="${!empty listAlumnos}">
@@ -60,6 +54,11 @@
 </div>
 <!-- /.row -->
 
+<div class='row'>
+	<div class="col-md-4 col-lg-3">
+	 <a class="btn btn-primary pull-right" href="${pageContext.request.contextPath}/asistencias?mes=${mes}">Guardar</a>
+	</div>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function() {
