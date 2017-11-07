@@ -18,10 +18,10 @@ public class AppController {
 		return "home";
 	}
 
-	@RequestMapping(value = { "/perfil" }, method = RequestMethod.GET)
-	public String perfilPage(ModelMap model) {
-		return "perfil";
-	}
+//	@RequestMapping(value = { "/perfil" }, method = RequestMethod.GET)
+//	public String perfilPage(ModelMap model) {
+//		return "perfil";
+//	}
 
 //	@RequestMapping(value = { "/cursos" }, method = RequestMethod.GET)
 //	public String cursosPage(ModelMap model) {

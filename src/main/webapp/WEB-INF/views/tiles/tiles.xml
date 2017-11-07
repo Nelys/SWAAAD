@@ -39,10 +39,16 @@
 	</definition>
 
 	<!-- Pagina del perfil del Docente -->
-	<definition name="perfil" extends="base-definition2">
+	<definition name="perfil" extends="base-definition3">
 		<put-attribute name="title" value="Perfil" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/perfil.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/personal/perfil.jsp" />
 		<put-attribute name="current" value="perfil" />
+		<put-attribute name="usuario" expression="${user}" />
+	</definition>
+	<definition name="cambiar" extends="base-definition3">
+		<put-attribute name="title" value="Cambiar contraseña" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/personal/cambiar-contrasena.jsp" />
+		<put-attribute name="current" value="cambiar" />
 		<put-attribute name="usuario" expression="${user}" />
 	</definition>
 

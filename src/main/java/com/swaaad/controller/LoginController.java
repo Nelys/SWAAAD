@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -151,4 +152,24 @@ public class LoginController {
 		return "redirect:/login?logout";// You can redirect wherever you want, but generally it's a good idea to show
 										// login screen again.
 	}
+	
+	@RequestMapping(value = "/recupera", method = RequestMethod.GET)
+    public String recuperaPage() {
+        return "pages/personal/recupera-cuenta";
+    }
+	
+	@RequestMapping(value = "/recuperaMensaje", method = RequestMethod.GET)
+    public String recuperaMensajePage() {
+        return "pages/personal/recupera-mensaje";
+    }
+	
+	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
+    public String cambiarPage(ModelMap model) {
+        return "cambiar";
+    }
+	
+	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public String perfilPage(ModelMap model) {
+        return "perfil";
+    }
 }

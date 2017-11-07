@@ -80,7 +80,7 @@ body {
 
 .container-login .nav-tabs.nav-justified>li>a:hover, .container-login .nav-tabs.nav-justified>li>a:focus
 	{
-	background: #14adad;
+	background: #2daee1;
 }
 
 .tabs-login {
@@ -117,7 +117,7 @@ body {
 
 .container-login button {
 	background-color: #12a5a0;
-	border-color: #067465;
+	border-color: #2882e7;
 	color: #ffffff;
 	border-radius: 0;
 	font-size: 18px;
@@ -127,8 +127,8 @@ body {
 }
 
 .container-login button:hover, .container-login button:focus {
-	background: #12a5a0;
-	border-color: #067465;
+	background: #2daee1;
+	border-color: #2882e7;
 }
 legend.scheduler-border {
     width:inherit; /* Or auto */
@@ -143,49 +143,27 @@ legend.scheduler-border {
 	<div class="login-body">
 		<article class="container-login center-block">
 			<section>
-				<ul id="top-bar" class="nav nav-tabs nav-justified">
-					<li class="active"><a href="#login-access">Ingresar</a></li>
-					<li><a href="registro">Crear Cuenta</a></li>
-
-				</ul>
 				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
 					<div id="login-access" class="tab-pane fade active in">
 						<h2>
-							<i class="glyphicon glyphicon-log-in"></i> Ingresar
+							<i class="glyphicon glyphicon-log-in"></i> Correo de Recuperacion
 						</h2>
 						<!-- Formulario de Acceso -->
 						<form name='loginForm' method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
 
 							<!-- usuario -->
 							<div class="form-group ">
-								<label for="login" class="sr-only">Usuario</label> <input type="text" class="form-control" name="username" id="username" placeholder="Email"
+								<label for="login" class="sr-only">Correo de Recuperacion</label> <input type="text" class="form-control" name="username" id="username" placeholder="Email"
 									tabindex="1" value="" />
 							</div>
 
-							<!-- PassWord -->
 							<div class="form-group ">
-								<label for="password" class="sr-only">Password</label> <input type="password" class="form-control" name="password" id="password"
-									placeholder="Password" value="" tabindex="2" />
-							</div>
-
-							<div class="form-group ">
-								<a href="recupera">¿Has olvidado tu contraseña?</a>
-							</div>
-							
-							<c:if test="${not empty error}">
-								<div class="error">${error}</div>
-							</c:if>
-							<c:if test="${not empty msg}">
-								<div class="msg">${msg}</div>
-							</c:if>
-
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> <br />
-							<div class="form-group ">
-								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Ingresar</button>
+<!-- 								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Enviar</button> -->
+								<a href="recuperaMensaje" class="btn btn-lg btn-primary">Enviar</a>
 							</div>
 						</form>
 					</div>
-
+				</div>
 			</section>
 		</article>
 	</div>
