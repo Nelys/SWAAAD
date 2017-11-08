@@ -34,23 +34,10 @@
 							</div>
 						</div>
 					</div>
-					
-					<div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Recordar</label>
-                        <div class="col-sm-10">
-	                        <label class="radio-inline">
-<%-- 	                        	<form:radiobutton path="recordar" value="Si"/>Si --%>
-	                        </label>
-	                        
-	                        <label class="radio-inline">
-<%-- 	                        	<form:radiobutton path="recordar" value="No" />No --%>
-	                        </label>
-                        </div>
-                    </div>
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<a class="btn btn-default" href="actividades-pedagogicas">Cancelar</a>
+							<a class="btn btn-default" href="calendarioActividadPedagogica">Cancelar</a>
 							<button class="btn btn-success" type="submit" >Guardar</button>
 						</div>
 					</div>

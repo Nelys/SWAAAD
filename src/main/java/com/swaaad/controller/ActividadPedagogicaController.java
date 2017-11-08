@@ -125,4 +125,13 @@ public class ActividadPedagogicaController {
 		//
 		return new ModelAndView("redirect:/actividades-pedagogicas");
 	}
+	
+	@RequestMapping(value = "/calendarioActividadPedagogica", method = RequestMethod.GET)
+    public ModelAndView calendarioActividadPedagogica(ModelAndView model) throws Exception {
+        logger.info("actividadPedagogicaPage");
+        ActividadPedagogica actividadPedagogica = new ActividadPedagogica();
+        model.addObject("actividadPedagogica", actividadPedagogica);
+        model.setViewName("actividades-pedagogicas-calendario");
+        return model;
+    }
 }

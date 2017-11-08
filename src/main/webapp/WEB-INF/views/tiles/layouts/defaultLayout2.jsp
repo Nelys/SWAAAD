@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx"%>
@@ -30,6 +30,14 @@
 <link href="<c:url value='/resources/template/css/datatables/autoFill.bs.min.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/fixedHeader.bs.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/buttons.bs.css' />" rel="stylesheet" />
+
+<%-- <link href="<c:url value='/resources/template/css/fullcalendar.css' />" rel="stylesheet" /> --%>
+
+<link href="<c:url value='/resources/template/css/calendar/fullcalendar.css' />" rel="stylesheet" />
+<%-- <link href="<c:url value='/resources/template/css/calendar/fullcalendar.min.css' />" rel="stylesheet" /> --%>
+<%-- <link href="<c:url value='/resources/template/css/calendar/fullcalendar.print.css' />" rel="stylesheet" /> --%>
+<%-- <link href="<c:url value='/resources/template/css/calendar/fullcalendar.print.min.css' />" rel="stylesheet" /> --%>
+
 <%-- <link href="<c:url value='/resources/template/css/datatables/jquery.dataTables.min.css' />" rel="stylesheet" /> --%>
 <%-- <link href="<c:url value='/resources/template/css/datatables/fixedColumns.dataTables.min.css' />" rel="stylesheet" /> --%>
 
@@ -83,6 +91,17 @@
 
 <script src="<c:url value='/resources/js/bootstrap-colorpicker.min.js' />"></script>
 
+<script src="<c:url value='/resources/template/js/moment.min.js' />"></script>
+<%-- <script src="<c:url value='/resources/template/js/calendar/fullcalendar.v3.6.2.js' />"></script> --%>
+<script src="<c:url value='/resources/template/js/calendar/fullcalendar.min.v3.6.2.js' />"></script>
+<script src="<c:url value='/resources/template/js/calendar/es.js' />"></script>
+
+<%-- <script src="<c:url value='/resources/template/js/moment.min.js' />"></script> --%>
+<%-- <script src="<c:url value='/resources/template/js/calendar/fullcalendar.js' />"></script> --%>
+<%-- <script src="<c:url value='/resources/template/js/calendar/fullcalendar.min.js' />"></script> --%>
+<%-- <script src="<c:url value='/resources/template/js/calendar/es.js' />"></script> --%>
+<%-- <script src="<c:url value='/resources/template/js/calendar/locale-all.js' />"></script> --%>
+
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>
 
@@ -127,7 +146,7 @@
 					<ul class="dropdown-menu sm user-settings">
 						<li><a href="perfil"><i class="fa fa-meh-o"></i> Perfil</a></li>
 						<hr class="less-margin">
-<!-- 						<li><a href="cambiar"> <i class="fa fa-sun-o"></i> Cambiar Contraseña</a></li> -->
+<!-- 						<li><a href="cambiar"> <i class="fa fa-sun-o"></i> Cambiar ContraseÃ±a</a></li> -->
 						<li><a href="login.html"> <i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>
 					</ul>
 				</li>
@@ -154,8 +173,8 @@
 						class="fa fa-list"></i> <span>Asistencias</span> ${current == 'asistencias' ? '<span	class="current-page"></span>' : '' }
 				</a></li>
 
-				<li class="${current == 'actividades-pedagogicas' ? ' highlight active' : '' }"><a
-					href="${pageContext.request.contextPath}/actividades-pedagogicas"> <i class="fa fa-pencil"></i> <span>Act. Pedagogicas</span> ${current == 'actividades-pedagogicas' ? '<span	class="current-page"></span>' : '' }
+				<li class="${current == 'calendarioActividadPedagogica' ? ' highlight active' : '' }"><a
+					href="${pageContext.request.contextPath}/calendarioActividadPedagogica"> <i class="fa fa-pencil"></i> <span>Act. Pedagogicas</span> ${current == 'calendarioActividadPedagogica' ? '<span	class="current-page"></span>' : '' }
 				</a></li>
 				<li class="${current == 'aula-dinamica' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/aula-dinamica"> <i
 						class="fa fa-pencil"></i> <span>Aula Dinamica</span> ${current == 'aula-dinamica' ? '<span	class="current-page"></span>' : '' }

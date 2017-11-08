@@ -3,6 +3,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
 
+<style>
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
 
 <!-- <div id="page-wrapper"> -->
 
@@ -10,11 +18,12 @@
 
 		<!-- Opcion de la tabla -->
 
-<!-- 		<div class='row'> -->
-<!-- 			<div class="col-md-12"> -->
-<!-- 				<a class="btn btn-success" href="newActividadPedagogica"><i class="fa fa-plus"></i> Nuevo</a> -->
-<!-- 				<button id="btnImprimir" class="btn btn-default pull-right"><i class="fa fa-print"></i> Imprimir</button> -->
-<!-- 			</div> -->
+		<div class='row'>
+			<div class="col-md-12">
+				<a class="btn btn-success" href="newActividadPedagogica"><i class="fa fa-plus"></i> Nuevo</a>
+				<a class="btn btn-default" href="actividades-pedagogicas"><i class="fa fa-list"></i> Listado</a>
+				<button id="btnImprimir" class="btn btn-default pull-right"><i class="fa fa-print"></i> Imprimir</button>
+			</div>
 			
 <!-- 			<div class="col-md-4"> -->
 <!-- 				<button type="button" class="btn btn-info btn-lg" -->
@@ -35,8 +44,13 @@
 <!-- 						placeholder="Buscar ..." aria-describedby="sizing-addon2"> -->
 <!-- 				</div> -->
 <!-- 			</div> -->
-<!-- 		</div> -->
-
+		</div>
+		<br>
+		<div class='row'>
+			<div id="calendarBox" class="col-md-12">
+				<div id='calendar'></div>
+			</div>
+		</div>
 
 		<!-- Resgistros de la tabla -->
 		<div class="row">
@@ -217,6 +231,18 @@
 			
 			$(document).ready(function() {
 				
+				$('#btnImprimir').click(function() {
+					
+					var myStyle = ''
+						+ '<link href=<c:url value="/resources/template/css/bootstrap.min.css" /> rel="stylesheet" > '
+						+ '<link href=<c:url value="/resources/template/css/calendar/fullcalendar.css" /> rel="stylesheet" /> '
+						;
+					var w=window.open(null, 'Print_Page', 'scrollbars=yes');        
+				    w.document.write(myStyle + '<div style="width: 800px;" >' + $('#calendarBox').html() + '</div>' );
+				    w.document.close();
+				    w.print();
+				});
+				
 				var table = $('#miTable').DataTable( {
 
 					"language": {
@@ -237,9 +263,9 @@
 					dom: 'Bfrtip',
 			        buttons: [
 			        	{
-			        		text: '<i class="fa fa-chevron-left"></i> Regresar',
+			        		text: '<i class="fa fa-plus"></i> Nuevo',
 			                action: function ( e, dt, node, config ) {
-								window.location.href = 'calendarioActividadPedagogica';
+								window.location.href = 'newActividadPedagogica';
 			                }
 			            },
 			            {

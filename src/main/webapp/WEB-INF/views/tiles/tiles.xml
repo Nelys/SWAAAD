@@ -100,6 +100,15 @@
 		<put-attribute name="current" value="actividades-pedagogicas" />
 		<put-attribute name="usuario" expression="${user}" />
 	</definition>
+	
+	<!-- Pagina Actividades Pedagogicas -->
+	<definition name="actividades-pedagogicas-calendario" extends="base-definition2"  >
+		<put-attribute name="title" value="Actividades Pedagogicas" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/actividad-pedagogica/actividad-pedagogica-calendario.jsp" />
+		<put-attribute name="current" value="actividades-pedagogicas" />
+		<put-attribute name="usuario" expression="${user}" />
+	</definition>
 
 	<!-- Pagina Aula Dinamica -->
 	<definition name="aula-dinamica" extends="base-definition2">
