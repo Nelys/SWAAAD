@@ -1,6 +1,10 @@
 package com.swaaad.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -18,5 +22,7 @@ public interface CursoService {
 	void updateCurso(Curso curso) throws Exception;
 
 	void deleteCurso(int idCurso) throws Exception;
+	
+	List<Curso> listCursoByDocente(int idDocente) throws Exception;
 
 }

@@ -131,4 +131,31 @@ public class CursoDaoImpl implements CursoDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Curso> listCursoByDocente(int idDocente) throws Exception {
+		
+		sSession = sessionFactory.openSession();
+		List<Curso> listarcurso = null;
+		try {
+			String queryCurso = "SELECT c FROM Curso c WHERE c.docente.idDocente=:idDocente";
+			Query query = sSession.createQuery(queryCurso);
+			query.setInteger("idDocente", idDocente);
+			listarcurso=(List<Curso>) query.list();
+			
+			for (Curso objeto : listarcurso) {
+//				
+				 System.out.println(objeto.getNombreCurso());
+//				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		return listarcurso;
+	}
+
 }

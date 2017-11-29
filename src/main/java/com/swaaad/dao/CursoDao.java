@@ -55,4 +55,7 @@ public interface CursoDao {
 	 */
 	void deleteCurso(int idCurso) throws Exception;
 	
+	List<Curso> listCursoByDocente(int idDocente) throws Exception;
+	
 }
+ 

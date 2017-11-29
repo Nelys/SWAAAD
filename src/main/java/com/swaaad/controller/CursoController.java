@@ -27,50 +27,61 @@ public class CursoController {
 	private static final Logger logger = LoggerFactory.getLogger(CursoController.class);
 	@Autowired
 	CursoService objCursoService;
-	
+
 	@Autowired
 	UsuarioService objUsuarioService;
-	
+
 	@RequestMapping(value = { "cursos" }, method = RequestMethod.GET)
 	public ModelAndView cursosPage(ModelAndView model) throws Exception {
 
 		logger.info("cursosPage");
-		
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
 			userDetails = (UserDetails) principal;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
-		
-		
-//		//
+
 		List<Curso> ListarCurso = null;
-//
-		ListarCurso = objCursoService.getAllCurso();
-//
+		ListarCurso = objCursoService.listCursoByDocente(docente.getIdDocente());
+
+		// for (Curso objeto : ListarCurso) {
+		// System.out.println(objeto.getNombreCurso());
+		// }
 		Curso curso = new Curso();
-//
+
 		model.addObject("curso", curso);
 		model.addObject("listCursos", ListarCurso);
-//
-//		model.setViewName("pages/cursos/cursos");
 		model.setViewName("cursos");
-//		model.setViewName("hello");
-
 		return model;
 	}
 
 	@RequestMapping(value = "/saveCurso", method = RequestMethod.POST)
 	public ModelAndView saveCurso(@ModelAttribute Curso curso) throws Exception {
-
 		logger.info("saveCurso");
-
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+		Docente docente = usuario.getDocentes().get(0);
 		try {
 			if (curso.getIdCurso() == 0) {
+
+				Curso curso_nuevo = new Curso();
+
+				curso_nuevo.setAnio(curso.getAnio());
+				;
+				curso_nuevo.setDocente(docente);
+				curso_nuevo.setGrado(curso.getGrado());
+				curso_nuevo.setInstitucion(curso.getInstitucion());
+				curso_nuevo.setNombreCurso(curso.getNombreCurso());
+				curso_nuevo.setSeccion(curso.getSeccion());
 				objCursoService.addCurso(curso);
 			} else {
 				objCursoService.updateCurso(curso);
@@ -90,24 +101,23 @@ public class CursoController {
 		model.setViewName("form-curso");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/newHorario", method = RequestMethod.GET)
 	public ModelAndView newHorario(ModelAndView model) throws Exception {
 		logger.info("newCurso");
-		
-		
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
 			userDetails = (UserDetails) principal;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente2 = usuario.getDocentes().get(0);
 		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
 		model.addObject("user", userName);
-		
-//		Curso curso = new Curso();
-//		model.addObject("curso", curso);
+
+		// Curso curso = new Curso();
+		// model.addObject("curso", curso);
 		model.setViewName("form-horario");
 		return model;
 	}
@@ -115,26 +125,26 @@ public class CursoController {
 	@RequestMapping(value = "/editCurso", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
 		ModelAndView model = new ModelAndView("form-curso");
-		
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
 			userDetails = (UserDetails) principal;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente2 = usuario.getDocentes().get(0);
 		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
 		model.addObject("user", userName);
-		
+
 		int cursoId = Integer.parseInt(request.getParameter("id"));
-		logger.info("editCurso "+cursoId);
+		logger.info("editCurso " + cursoId);
 		Curso curso = null;
 		try {
 			curso = objCursoService.getCursoById(cursoId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		model.addObject("curso", curso);
 
 		return model;
@@ -144,26 +154,40 @@ public class CursoController {
 	public ModelAndView deleteCurso(HttpServletRequest request) throws Exception {
 		int cursoId = Integer.parseInt(request.getParameter("id"));
 		logger.info("deleteCurso " + cursoId);
-		 try {
-		objCursoService.deleteCurso(cursoId);
-		 } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		 e.printStackTrace();
-		 }
-		//
+		try {
+			objCursoService.deleteCurso(cursoId);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
 		return new ModelAndView("redirect:/cursos");
 	}
-	
+
 	@RequestMapping(value = "/selectCurso", method = RequestMethod.GET)
-	public ModelAndView selectCurso(ModelAndView model, HttpServletRequest request, HttpSession session ) throws Exception {
-		
+	public ModelAndView selectCurso(ModelAndView model, HttpServletRequest request, HttpSession session)
+			throws Exception {
+
 		logger.info("alumnosPage");
-		
+
 		int idCurso = Integer.parseInt(request.getParameter("id"));
 		session = request.getSession();
 		session.setAttribute("idDocente", 1);
 		session.setAttribute("idCurso", idCurso);
-		
+
 		return new ModelAndView("redirect:/alumnos");
 	}
+
+	@RequestMapping(value = "docenteCurso", method = RequestMethod.GET)
+	public ModelAndView cursoDocente(ModelAndView model, HttpServletRequest request, HttpSession session)
+			throws Exception {
+		// int idCurso = Integer.parseInt(request.getParameter(""));
+		List<Curso> listCurso = objCursoService.listCursoByDocente(1);
+		// session = request.getSession();
+		// session.setAttribute("listCurso", listCurso);
+
+		return null;
+
+	}
+
 }

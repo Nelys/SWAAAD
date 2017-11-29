@@ -2,11 +2,13 @@ package com.swaaad.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swaaad.dao.CursoDao;
 import com.swaaad.model.Curso;
+
 import com.swaaad.service.CursoService;
 
 @Service
@@ -18,7 +20,6 @@ public class CursoServiceImpl implements CursoService {
 	@Override
 	public void addCurso(Curso curso) throws Exception {
 		objCursoDao.addCurso(curso);
-
 	}
 
 	@Override
@@ -40,7 +41,11 @@ public class CursoServiceImpl implements CursoService {
 	@Override
 	public void deleteCurso(int idCurso) throws Exception {
 		objCursoDao.deleteCurso(idCurso);
+	}
 
+	@Override
+	public List<Curso> listCursoByDocente(int idDocente) throws Exception {
+		return objCursoDao.listCursoByDocente(idDocente);
 	}
 
 }
