@@ -22,12 +22,12 @@ public class Nota implements Serializable {
 	private int notaEvaluativa;
 
 	//bi-directional many-to-one association to Alumno
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_ALUMNO")
 	private Alumno alumno;
 
 	//bi-directional many-to-one association to Evaluacion
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_EVALUACION")
 	private Evaluacion evaluacion;
 

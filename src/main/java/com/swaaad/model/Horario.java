@@ -30,7 +30,7 @@ public class Horario implements Serializable {
 	private Time horaInicio;
 
 	//bi-directional many-to-one association to Curso
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 

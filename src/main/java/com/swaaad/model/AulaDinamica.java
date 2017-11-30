@@ -34,7 +34,7 @@ public class AulaDinamica implements Serializable {
 	private byte estado;
 
 	//bi-directional many-to-one association to CursoAlumno
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_CURSO_ALUMNO")
 	private CursoAlumno cursoAlumno;
 

@@ -32,7 +32,7 @@ public class Docente implements Serializable {
 	private List<Curso> cursos;
 
 	//bi-directional many-to-one association to Usuario
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_USUARIO")
 	private Usuario usuario;
 

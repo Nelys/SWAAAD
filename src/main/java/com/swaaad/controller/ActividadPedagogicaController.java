@@ -1,8 +1,10 @@
- package com.swaaad.controller;
+package com.swaaad.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +23,8 @@ import com.swaaad.model.ActividadPedagogica;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
 import com.swaaad.service.ActividadPedagogicaService;
+import com.swaaad.service.CursoAlumnoService;
+import com.swaaad.service.CursoService;
 import com.swaaad.service.UsuarioService;
 
 @Controller
@@ -28,33 +32,35 @@ public class ActividadPedagogicaController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
 	ActividadPedagogicaService objActividadPedagogicaService;
-	
+
 	@Autowired
 	UsuarioService objUsuarioService;
-	
+
+	@Autowired
+	CursoService objCursoService;
+
 	@RequestMapping(value = { "actividades-pedagogicas" }, method = RequestMethod.GET)
-	public ModelAndView listActividadPedagogica(ModelAndView model, HttpSession sess, HttpServletRequest request) throws Exception {
+	public ModelAndView listActividadPedagogica(ModelAndView model, HttpSession sess, HttpServletRequest request)
+			throws Exception {
 
 		logger.info("actividadPedagogicaPage");
-		
-		
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
 			userDetails = (UserDetails) principal;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
-		
+
 		sess = request.getSession(false);
-		
+
 		int a = (Integer) sess.getAttribute("idCurso");
-		
+
 		System.out.println(a + " desde actividad academica");
-		
-		
+
 		List<ActividadPedagogica> ListarActividadPedagogica = null;
 
 		ListarActividadPedagogica = objActividadPedagogicaService.getAllActividad();
@@ -63,16 +69,24 @@ public class ActividadPedagogicaController {
 
 		model.addObject("actividadPedagogica", actividadPedagogica);
 		model.addObject("listActividadPedagogica", ListarActividadPedagogica);
-		
+
 		model.setViewName("actividades-pedagogicas");
 
 		return model;
 	}
 
 	@RequestMapping(value = "/saveActividadPedagogica", method = RequestMethod.POST)
-	public ModelAndView saveActividadPedagogica(@ModelAttribute ActividadPedagogica actividadPedagogica) throws Exception {
+	public ModelAndView saveActividadPedagogica(@ModelAttribute ActividadPedagogica actividadPedagogica,
+			HttpServletRequest request) throws IOException, ServletException, Exception {
 
 		logger.info("saveActividadPedagogica");
+
+		// curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
+
+		HttpSession session = request.getSession(false);
+
+		int idCurso = (Integer) session.getAttribute("idCurso");
+		actividadPedagogica.setCurso(objCursoService.getCursoById(idCurso));
 
 		try {
 			if (actividadPedagogica.getIdActividad() == 0) {
@@ -98,12 +112,12 @@ public class ActividadPedagogicaController {
 
 	@RequestMapping(value = "/editActividadPedagogica", method = RequestMethod.GET)
 	public ModelAndView editActividadPedagogica(HttpServletRequest request) throws Exception {
-		
+
 		int alumnoId = Integer.parseInt(request.getParameter("id"));
-		logger.info("editActividadPedagogica "+alumnoId);
+		logger.info("editActividadPedagogica " + alumnoId);
 		ActividadPedagogica actividadPedagogica = null;
 		try {
-			actividadPedagogica = null;//objAlumnoService.getAlumnoById(alumnoId);
+			actividadPedagogica = null;// objAlumnoService.getAlumnoById(alumnoId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,13 +139,13 @@ public class ActividadPedagogicaController {
 		//
 		return new ModelAndView("redirect:/actividades-pedagogicas");
 	}
-	
+
 	@RequestMapping(value = "/calendarioActividadPedagogica", method = RequestMethod.GET)
-    public ModelAndView calendarioActividadPedagogica(ModelAndView model) throws Exception {
-        logger.info("actividadPedagogicaPage");
-        ActividadPedagogica actividadPedagogica = new ActividadPedagogica();
-        model.addObject("actividadPedagogica", actividadPedagogica);
-        model.setViewName("actividades-pedagogicas-calendario");
-        return model;
-    }
+	public ModelAndView calendarioActividadPedagogica(ModelAndView model) throws Exception {
+		logger.info("actividadPedagogicaPage");
+		ActividadPedagogica actividadPedagogica = new ActividadPedagogica();
+		model.addObject("actividadPedagogica", actividadPedagogica);
+		model.setViewName("actividades-pedagogicas-calendario");
+		return model;
+	}
 }

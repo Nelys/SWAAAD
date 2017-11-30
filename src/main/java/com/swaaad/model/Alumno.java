@@ -37,7 +37,7 @@ public class Alumno implements Serializable {
 	private String nombresApoderado;
 
 	//bi-directional many-to-one association to Usuario
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_USUARIO")
 	private Usuario usuario;
 

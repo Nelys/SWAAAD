@@ -30,8 +30,12 @@ public class Curso implements Serializable {
 
 	private String seccion;
 
+	//bi-directional many-to-one association to ActividadPedagogica
+	@OneToMany(mappedBy="curso")
+	private List<ActividadPedagogica> actividadPedagogicas;
+
 	//bi-directional many-to-one association to Docente
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ID_DOCENTE")
 	private Docente docente;
 
@@ -96,6 +100,28 @@ public class Curso implements Serializable {
 
 	public void setSeccion(String seccion) {
 		this.seccion = seccion;
+	}
+
+	public List<ActividadPedagogica> getActividadPedagogicas() {
+		return this.actividadPedagogicas;
+	}
+
+	public void setActividadPedagogicas(List<ActividadPedagogica> actividadPedagogicas) {
+		this.actividadPedagogicas = actividadPedagogicas;
+	}
+
+	public ActividadPedagogica addActividadPedagogica(ActividadPedagogica actividadPedagogica) {
+		getActividadPedagogicas().add(actividadPedagogica);
+		actividadPedagogica.setCurso(this);
+
+		return actividadPedagogica;
+	}
+
+	public ActividadPedagogica removeActividadPedagogica(ActividadPedagogica actividadPedagogica) {
+		getActividadPedagogicas().remove(actividadPedagogica);
+		actividadPedagogica.setCurso(null);
+
+		return actividadPedagogica;
 	}
 
 	public Docente getDocente() {
