@@ -12,14 +12,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Curso;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
 import com.swaaad.service.CursoService;
+import com.swaaad.service.DocenteService;
 import com.swaaad.service.UsuarioService;
 
 @Controller
@@ -30,12 +33,13 @@ public class CursoController {
 
 	@Autowired
 	UsuarioService objUsuarioService;
-
+	
+	@Autowired
+	DocenteService objDocenteService;
+	
 	@RequestMapping(value = { "cursos" }, method = RequestMethod.GET)
 	public ModelAndView cursosPage(ModelAndView model) throws Exception {
-
 		logger.info("cursosPage");
-
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -45,24 +49,23 @@ public class CursoController {
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
-
 		List<Curso> ListarCurso = null;
 		ListarCurso = objCursoService.listCursoByDocente(docente.getIdDocente());
-
-		// for (Curso objeto : ListarCurso) {
-		// System.out.println(objeto.getNombreCurso());
-		// }
+		
 		Curso curso = new Curso();
 
 		model.addObject("curso", curso);
+		model.addObject("idDocente", docente.getIdDocente());
 		model.addObject("listCursos", ListarCurso);
 		model.setViewName("cursos");
 		return model;
 	}
 
+
 	@RequestMapping(value = "/saveCurso", method = RequestMethod.POST)
 	public ModelAndView saveCurso(@ModelAttribute Curso curso) throws Exception {
 		logger.info("saveCurso");
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -70,23 +73,16 @@ public class CursoController {
 		}
 		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		
+		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
+		
 		try {
 			if (curso.getIdCurso() == 0) {
-
-				Curso curso_nuevo = new Curso();
-
-				curso_nuevo.setAnio(curso.getAnio());
-				;
-				curso_nuevo.setDocente(docente);
-				curso_nuevo.setGrado(curso.getGrado());
-				curso_nuevo.setInstitucion(curso.getInstitucion());
-				curso_nuevo.setNombreCurso(curso.getNombreCurso());
-				curso_nuevo.setSeccion(curso.getSeccion());
 				objCursoService.addCurso(curso);
 			} else {
 				objCursoService.updateCurso(curso);
 			}
-
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -116,8 +112,6 @@ public class CursoController {
 		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
 		model.addObject("user", userName);
 
-		// Curso curso = new Curso();
-		// model.addObject("curso", curso);
 		model.setViewName("form-horario");
 		return model;
 	}
@@ -178,13 +172,15 @@ public class CursoController {
 		return new ModelAndView("redirect:/alumnos");
 	}
 
-	@RequestMapping(value = "docenteCurso", method = RequestMethod.GET)
-	public ModelAndView cursoDocente(ModelAndView model, HttpServletRequest request, HttpSession session)
+	@RequestMapping(value = "docenteCurso/{idDocente}", method = RequestMethod.GET)
+	public ModelAndView cursoDocente(ModelAndView model, @PathVariable int idDocente, HttpServletRequest request, HttpSession session)
 			throws Exception {
 		// int idCurso = Integer.parseInt(request.getParameter(""));
 		List<Curso> listCurso = objCursoService.listCursoByDocente(1);
 		// session = request.getSession();
 		// session.setAttribute("listCurso", listCurso);
+		
+		System.out.println("este es la id del docente: "+idDocente);
 
 		return null;
 
