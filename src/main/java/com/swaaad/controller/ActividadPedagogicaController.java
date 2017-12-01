@@ -77,11 +77,10 @@ public class ActividadPedagogicaController {
 
 	@RequestMapping(value = "/saveActividadPedagogica", method = RequestMethod.POST)
 	public ModelAndView saveActividadPedagogica(@ModelAttribute ActividadPedagogica actividadPedagogica,
-			HttpServletRequest request) throws IOException, ServletException, Exception {
+			HttpServletRequest request) throws Exception {
 
 		logger.info("saveActividadPedagogica");
 
-		// curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
 
 		HttpSession session = request.getSession(false);
 
@@ -117,13 +116,19 @@ public class ActividadPedagogicaController {
 		logger.info("editActividadPedagogica " + alumnoId);
 		ActividadPedagogica actividadPedagogica = null;
 		try {
-			actividadPedagogica = null;// objAlumnoService.getAlumnoById(alumnoId);
+			actividadPedagogica = objActividadPedagogicaService.getActividadById(alumnoId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		System.out.println(actividadPedagogica.getIdActividad());
+		System.out.println(actividadPedagogica.getDescripcion());
+		System.out.println(actividadPedagogica.getFecha());
+
 		ModelAndView model = new ModelAndView("form-actividadPedagogica");
 		model.addObject("actividadPedagogica", actividadPedagogica);
-
+		
 		return model;
 	}
 

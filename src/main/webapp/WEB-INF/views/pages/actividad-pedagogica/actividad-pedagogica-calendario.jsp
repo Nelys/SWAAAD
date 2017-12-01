@@ -79,7 +79,7 @@
 									<%-- 									<td>${lista.recordar}</td> --%>
 									<td style="text-align: center" width="100px"><a
 										class="btn btn-sm btn-warning btn-sm"
-										href="editAlumno?id=${lista.idActividad}"><i
+										href="editActividadPedagogica?id=${lista.idActividad}"><i
 											class="fa fa-pencil-square-o"></i></a> <a
 										class="btn btn-sm btn-danger btn-sm"
 										href="deleteAlumno?id=${lista.idActividad}"><i

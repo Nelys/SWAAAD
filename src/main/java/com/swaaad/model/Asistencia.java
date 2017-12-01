@@ -25,7 +25,7 @@ public class Asistencia implements Serializable {
 	private Date fecha;
 
 	//bi-directional many-to-one association to CursoAlumno
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="ID_CURSO_ALUMNO")
 	private CursoAlumno cursoAlumno;
 

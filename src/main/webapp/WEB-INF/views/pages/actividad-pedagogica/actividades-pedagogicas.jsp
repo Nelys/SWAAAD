@@ -3,41 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
 
-
-<!-- <div id="page-wrapper"> -->
-
-<!-- 	<div class="container-fluid"> -->
-
-		<!-- Opcion de la tabla -->
-
-<!-- 		<div class='row'> -->
-<!-- 			<div class="col-md-12"> -->
-<!-- 				<a class="btn btn-success" href="newActividadPedagogica"><i class="fa fa-plus"></i> Nuevo</a> -->
-<!-- 				<button id="btnImprimir" class="btn btn-default pull-right"><i class="fa fa-print"></i> Imprimir</button> -->
-<!-- 			</div> -->
-			
-<!-- 			<div class="col-md-4"> -->
-<!-- 				<button type="button" class="btn btn-info btn-lg" -->
-<!-- 					data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-<!-- 			</div> -->
-
-<!-- 			<div class="col-lg-4 text-right"> -->
-<!-- 				<a class="btn btn-primary" href="#"><i class="fa fa-file-pdf-o"></i> -->
-<!-- 					PDF</a> <a class="btn btn-primary" href="#"><i -->
-<!-- 					class="fa fa-file-excel-o"></i> Excel</a> <a class="btn btn-default" -->
-<!-- 					href="#"><i class="fa fa-print"></i> Imprimir</a> -->
-
-<!-- 			</div> -->
-<!-- 			<div class="col-md-3"> -->
-<!-- 				<div class="input-group"> -->
-<!-- 					<span class="input-group-addon" id="sizing-addon2"><i -->
-<!-- 						class="fa fa-search"></i></span> <input type="text" class="form-control" -->
-<!-- 						placeholder="Buscar ..." aria-describedby="sizing-addon2"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-
-
 		<!-- Resgistros de la tabla -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -65,7 +30,7 @@
 									<%-- 									<td>${lista.recordar}</td> --%>
 									<td style="text-align: center" width="100px"><a
 										class="btn btn-sm btn-warning btn-sm"
-										href="editAlumno?id=${lista.idActividad}"><i
+										href="editActividadPedagogica?id=${lista.idActividad}"><i
 											class="fa fa-pencil-square-o"></i></a> <a
 										class="btn btn-sm btn-danger btn-sm"
 										href="deleteAlumno?id=${lista.idActividad}"><i
