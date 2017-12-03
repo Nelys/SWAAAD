@@ -1,6 +1,5 @@
 package com.swaaad.dao.impl;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import com.swaaad.model.Asistencia;
 import com.swaaad.model.CursoAlumno;
 
 public class AsistenciaDaoImpl implements AsistenciaDao {
-    private static final Logger logger = LoggerFactory.getLogger(AsistenciaDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(AsistenciaDaoImpl.class);
 	private SessionFactory sessionFactory;
 	Session sSession = null;
 	Transaction tTransaction = null;
@@ -44,12 +43,9 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 			tTransaction = sSession.beginTransaction();
 			sSession.update(asistencia);
 			tTransaction.commit();
-
 		} catch (RuntimeException e) {
-
 			if (tTransaction != null) {
 				tTransaction.rollback();
-
 			}
 			e.printStackTrace();
 		} finally {
@@ -68,14 +64,12 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca WHERE ca.curso.idCurso=:idCurso";
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
-			listaAsistencia =(List<Asistencia>) query.list();
-
+			listaAsistencia = (List<Asistencia>) query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
 		return listaAsistencia;
 	}
@@ -90,14 +84,12 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
 			query.setInteger("Mes", Mes);
-			diasMes =(List<Integer>) query.list();
-
+			diasMes = (List<Integer>) query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
 		return diasMes;
 	}
@@ -108,27 +100,16 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 		sSession = sessionFactory.openSession();
 		List<Integer> listarDiaPorMes = null;
 		try {
-//			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca WHERE ca.curso.idCurso=:idCurso";
 			String queryAsistencia = "SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND month(a.fecha)=:mes GROUP BY day(a.fecha)";
-//			SELECT  day(a.fecha) FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=1 AND month(a.fecha)=10 GROUP BY day(a.fecha)
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
 			query.setInteger("mes", mes);
-			listarDiaPorMes =(List<Integer>) query.list();
-
-			for (Integer objeto : listarDiaPorMes) {
-//				System.out.println(objeto);
-				 System.out.println(objeto);
-//				System.out.println(objeto);
-			}
-			
-			
+			listarDiaPorMes = (List<Integer>) query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
 		return listarDiaPorMes;
 	}
@@ -139,57 +120,38 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 		sSession = sessionFactory.openSession();
 		List<Asistencia> listarDiaPorMes = null;
 		try {
-//			
-			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND month(a.fecha)=:mes";		
+			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND month(a.fecha)=:mes";
 			// GROUP BY day(a.fecha)
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
 			query.setInteger("mes", mes);
-			listarDiaPorMes =(List<Asistencia>) query.list();
-			
-			for (Asistencia objeto : listarDiaPorMes) {
-//				System.out.println(objeto);
-				 System.out.println(objeto.getFecha() +" - "+objeto.getEstado());
-//				System.out.println(objeto);
-			}
-			
+			listarDiaPorMes = (List<Asistencia>) query.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
 		return listarDiaPorMes;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Asistencia> getByDay(int idCurso, Date fecha) {
 		sSession = sessionFactory.openSession();
 		List<Asistencia> listarDiaPorMes = null;
 		try {
-//			
-			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND a.fecha=:mes";		
-
+			String queryAsistencia = "SELECT a FROM Asistencia a JOIN a.cursoAlumno ca where ca.curso.idCurso=:idCurso AND a.fecha=:mes";
 			Query query = sSession.createQuery(queryAsistencia);
 			query.setInteger("idCurso", idCurso);
 			query.setDate("mes", fecha);
-			listarDiaPorMes =(List<Asistencia>) query.list();
-			
-			for (Asistencia objeto : listarDiaPorMes) {
-//				System.out.println(objeto);
-				 System.out.println(objeto.getFecha() +" - "+objeto.getEstado());
-//				System.out.println(objeto);
-			}
-			
-
+			listarDiaPorMes = (List<Asistencia>) query.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
 		return listarDiaPorMes;
 	}
@@ -203,18 +165,33 @@ public class AsistenciaDaoImpl implements AsistenciaDao {
 			Query query = sSession.createQuery(queryAlumno);
 			query.setInteger("idAsistencia", idAsistencia);
 			asistencia = (Asistencia) query.uniqueResult();
-
 		} catch (Exception e) {
-		    logger.info("AsistenciaDaoImpl getAlumnoById: ", e);
+			logger.info("AsistenciaDaoImpl getAlumnoById: ", e);
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
-
 		return asistencia;
 	}
 
-
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getTotalEstadoByAlumno() throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Integer> listarTotalPorEstado = null;
+		try {
+			String queryAsistencia = "SELECT COUNT(a.estado) FROM Asistencia a JOIN a.cursoAlumno ca WHERE a.cursoAlumno.idCursoAlumno=ca.idCursoAlumno GROUP BY a.cursoAlumno.idCursoAlumno, a.estado";
+			Query query = sSession.createQuery(queryAsistencia);
+			listarTotalPorEstado = (List<Integer>) query.list();
+			for (Object objeto : listarTotalPorEstado) {
+				System.out.println(objeto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		return listarTotalPorEstado;
+	}
 }

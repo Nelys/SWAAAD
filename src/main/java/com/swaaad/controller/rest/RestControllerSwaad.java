@@ -31,10 +31,7 @@ public class RestControllerSwaad {
 	}
 	@PostMapping("/alumno")
 	public ResponseEntity<?> getAlumno2(RequestEntity<AlumnoDTO> alum) {
-				//por que cerraste el chat guarda y hacs correr
-				//bueno creo que no estas entonces segure sin explicar 
-		
-		
+	
 		AlumnoDTO alumnoDTO = alum.getBody();
 		
 		return new ResponseEntity<AlumnoDTO>(alumnoDTO,HttpStatus.CREATED);

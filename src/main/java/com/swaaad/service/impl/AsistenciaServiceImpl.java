@@ -62,8 +62,8 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 		// recuperar todos los cursoAlumnos
 
 		// verificar si registros
-		if (objAsistenciaDao.getByDay(idCurso, fecha).size()==0) {
-			System.out.println("no hay registros");	
+		if (objAsistenciaDao.getByDay(idCurso, fecha).size() == 0) {
+			System.out.println("no hay registros");
 			List<CursoAlumno> listaAlumnos = objCursoAlumnoDao.getAllAlumnosByCurso(idCurso);
 
 			for (CursoAlumno cursoAlumno : listaAlumnos) {
@@ -73,9 +73,8 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 				asistencia.setFecha(fecha);
 				objAsistenciaDao.addAsistencia(asistencia);
 			}
-		}else
-		{
-			System.out.println("existen registros");	
+		} else {
+			System.out.println("existen registros");
 		}
 
 	}
@@ -90,6 +89,12 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	public Asistencia getById(int idAsistencia) throws Exception {
 
 		return objAsistenciaDao.getById(idAsistencia);
+	}
+
+	@Override
+	public List<Integer> getTotalEstadoByAlumno() throws Exception {
+
+		return objAsistenciaDao.getTotalEstadoByAlumno();
 	}
 
 }

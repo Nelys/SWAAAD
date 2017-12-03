@@ -36,6 +36,7 @@ import com.swaaad.dto.AsistenciaFechaDTO;
 import com.swaaad.dto.ResponseDTO;
 import com.swaaad.exceptions.AsistenciaException;
 import com.swaaad.model.Asistencia;
+import com.swaaad.model.Curso;
 import com.swaaad.model.CursoAlumno;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
@@ -63,7 +64,7 @@ public class AsistenciaController {
 
 	@Autowired
 	CursoAlumnoService objCursoAlumnoService;
-	
+
 	@Autowired
 	CursoService objCursoService;
 
@@ -80,12 +81,11 @@ public class AsistenciaController {
 		if (principal instanceof UserDetails) {
 			userDetails = (UserDetails) principal;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
 
-		
 		String mesLetra = mes;
 
 		if (mes.equals("0")) {
@@ -112,7 +112,6 @@ public class AsistenciaController {
 			model.addObject("listarDiasMes", listaDiaPorMes);
 			model.addObject("listaEstadoPorCurso", listaEstadoPorCurso);
 			model.addObject("mes_actual", mesLetra);
-		
 
 			model.setViewName("asistencia");
 
@@ -134,12 +133,10 @@ public class AsistenciaController {
 		if (principal instanceof UserDetails) {
 			userDetails = (UserDetails) principal;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
-		
-		
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = sdf.parse(fecha);
 
@@ -157,17 +154,12 @@ public class AsistenciaController {
 	@RequestMapping("/generarAsistencia/{curso}/{fecha}")
 	@ResponseBody
 	public ResponseDTO HelloW(@PathVariable("curso") int curso, @PathVariable("fecha") String fecha) throws Exception {
-
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-
 		Date date = sdf.parse(fecha);
-
 		objAsistenciaService.generarAsistencia(date, curso);
-
 		ResponseDTO dto = new ResponseDTO();
 		dto.setMessage("Genero");
 		dto.setResponse(true);
-
 		return dto;
 
 	}
@@ -185,7 +177,6 @@ public class AsistenciaController {
 
 		Asistencia asistencia = objAsistenciaService.getById(asistenciaFechaDTO.getIdAsistencia());
 		asistencia.setEstado(asistenciaFechaDTO.getEstado());
-
 		objAsistenciaService.updateAsistencia(asistencia);
 		dto.setMessage("id " + asistenciaFechaDTO.getIdAsistencia());
 		dto.setResponse(true);
@@ -253,6 +244,19 @@ public class AsistenciaController {
 		modelMap.put("listaAlumnos", ar.findAllAlumnos(listaAlumnosCursos));
 
 		return "asistencia_reporte";
+	}
+
+	@RequestMapping(value = "/resumenAsistencia", method = RequestMethod.GET)
+	public ModelAndView cursoDocente(ModelAndView model, HttpServletRequest request, HttpSession session)
+			throws Exception {
+
+		List<Integer> listarTotalPorEstado = objAsistenciaService.getTotalEstadoByAlumno();
+		
+		// for (Integer objeto : listarTotalPorEstado) {
+		// System.out.println(objeto);
+		// }
+
+		return model;
 	}
 
 }

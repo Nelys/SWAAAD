@@ -1,6 +1,5 @@
 package com.swaaad.service;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -21,10 +20,12 @@ public interface AsistenciaService {
 	List<Integer> getDayOfAlumnosByCurso(int idCurso, int mes) throws Exception;
 
 	List<Asistencia> getEstadoByAlumnoCurso(int idCurso, int mes) throws Exception;
-	
-	void generarAsistencia(Date fecha,int idCurso) throws Exception;
-	
-	List<Asistencia> getByDay(int idCurso,Date fecha) throws Exception;
-	
+
+	void generarAsistencia(Date fecha, int idCurso) throws Exception;
+
+	List<Asistencia> getByDay(int idCurso, Date fecha) throws Exception;
+
 	Asistencia getById(int idAsistencia) throws Exception;
+
+	List<Integer> getTotalEstadoByAlumno() throws Exception;
 }

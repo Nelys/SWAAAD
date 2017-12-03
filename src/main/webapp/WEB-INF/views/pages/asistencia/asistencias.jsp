@@ -169,6 +169,12 @@
 	                extend:    'print',
 	                text:      '<i class="fa fa-print"></i> Imprimir',
 	                titleAttr: 'print'
+	            },
+	            {
+	        		text: '<i class="fa fa-plus"></i> Resumen',
+	                action: function ( e, dt, node, config ) {
+						window.location.href = 'newCurso';
+	                }
 	            }
 			]
 	    } );

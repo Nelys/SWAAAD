@@ -142,13 +142,6 @@ public class CursoDaoImpl implements CursoDao {
 			Query query = sSession.createQuery(queryCurso);
 			query.setInteger("idDocente", idDocente);
 			listarcurso=(List<Curso>) query.list();
-			
-			for (Curso objeto : listarcurso) {
-//				
-				 System.out.println(objeto.getNombreCurso());
-//				
-			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

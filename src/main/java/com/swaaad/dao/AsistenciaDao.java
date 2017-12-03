@@ -1,11 +1,9 @@
 package com.swaaad.dao;
 
-
 import java.util.Date;
 import java.util.List;
 
 import com.swaaad.model.Asistencia;
-
 
 /**
  * @author Nelys
@@ -30,7 +28,7 @@ public interface AsistenciaDao {
 	void upddateAsistencia(Asistencia asistencia) throws Exception;
 
 	Asistencia getById(int idAsistencia) throws Exception;
-	
+
 	List<Asistencia> getAllAlumnosByCursoMes(int idCurso) throws Exception;
 
 	List<Integer> asistenciaMes(int Mes, int idCurso) throws Exception;
@@ -38,6 +36,8 @@ public interface AsistenciaDao {
 	List<Integer> getDayOfAlumnosByCurso(int idCurso, int mes) throws Exception;
 
 	List<Asistencia> getEstadoByAlumnoCurso(int idCurso, int mes) throws Exception;
-	
-	List<Asistencia> getByDay(int idCurso,Date fecha);
+
+	List<Asistencia> getByDay(int idCurso, Date fecha);
+
+	List<Integer> getTotalEstadoByAlumno() throws Exception;
 }

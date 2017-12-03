@@ -38,7 +38,6 @@ public interface AlumnosDao {
 	 * Recupera un Alumno de la base de datos
 	 * 
 	 * @param idAlumno
-	 *            : id que identifica al alumno
 	 * @return : Un Alumno
 	 * @throws Exception
 	 */
@@ -61,5 +60,6 @@ public interface AlumnosDao {
 	 * @throws Exception
 	 */
 	void deleteAlumno(int idAlumno) throws Exception;
+
 
 }

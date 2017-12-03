@@ -74,7 +74,6 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		List<Alumno> listarAlumnos = sSession.createCriteria(Alumno.class).list();
 		sSession.close();
 		return listarAlumnos;
-		
 	}
 
 	/**
@@ -86,22 +85,16 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		sSession = sessionFactory.openSession();
 		List<Alumno> listarAlumnos =null;
 		try {
-		    
 		    String queryAlumno = "SELECT ca.alumno FROM CursoAlumno ca JOIN ca.curso c WHERE c.idCurso = :id";
 			Query query = sSession.createQuery(queryAlumno);
 			query.setInteger("id", idCurso);
-			
 			listarAlumnos = (List<Alumno>) query.list();
-			
-
 		} catch (Exception e) {
 		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);
 		} finally {
 			sSession.flush();
 			sSession.close();
-
 		}
-		
 		return listarAlumnos;
 	}
 	/**
@@ -185,5 +178,7 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		}
 
 	}
+
+
 
 }
