@@ -48,22 +48,16 @@ public class AulaDinamicaController {
 		List<AulaDinamica> ListarAulaDinamica = null;
 
 		ListarAulaDinamica = objAulaDinamicaService.getAllAulasDinamicas();
-//		ListarAulaDinamica = objAulaDinamicaService.getAllAulasDinamicas();
-	
-//		HttpServletRequest request = (HttpServletRequest)request;
 		HttpSession session = request.getSession(false);
-		
+
 		int iIdCurso = (Integer) session.getAttribute("idCurso");
-		
+
 		int idCurso = 1;
 		AulaDinamica aulaDinamica = new AulaDinamica();
 
 		model.addObject("aulaDinamica", aulaDinamica);
 		model.addObject("listAulaDinamica", ListarAulaDinamica);
 		model.addObject("listAlumnos", objCursoAlumnoService.getAllAlumnosByCurso(iIdCurso));
-		// model.addObject("listAlumnos",
-//		 objAlumnoService.getAllAlumnosByIdCurso(request));
-		// model.setViewName("pages/aulaDinamicas/aulaDinamicas");
 		model.setViewName("aula-dinamica");
 
 		return model;
@@ -76,20 +70,12 @@ public class AulaDinamicaController {
 
 		logger.info("saveAulaDinamica " + aulaDinamica.getIdAulaDinamica());
 		System.out.println("sdsdasd  " + aulaDinamica.getIdAulaDinamica());
-//		System.out.println("saveAulaDinamica");
 		try {
 			if (aulaDinamica.getIdAulaDinamica() == 0) {
 				System.out.println("saveAulaDinamica");
 				AulaDinamica aDinamica2 = new AulaDinamica();
-
-				// HttpServletRequest request1 = (HttpServletRequest)request;
-				// HttpSession session = request1.getSession(false);
-
-				// int iIdCurso = (Integer) session.getAttribute("idCurso");
-				// int iIdAlumno = (Integer) session.getAttribute("idAlumno");
-
 				CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(aulaDinamica.getCursoAlumno());
-				System.out.println("esta es el ID "+cursoAlumno.getIdCursoAlumno());
+				System.out.println("esta es el ID " + cursoAlumno.getIdCursoAlumno());
 				aDinamica2.setCoordX(aulaDinamica.getCoordX());
 				aDinamica2.setCoordY(aulaDinamica.getCoordY());
 				aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
@@ -97,10 +83,8 @@ public class AulaDinamicaController {
 				aDinamica2.setCursoAlumno(cursoAlumno);
 
 				System.out.println("saveAulaDinamica");
-
 				System.out.println("addAulaDinamica");
-				// aDinamica2.setCursoAlumno(objCursoAlumnoService.getCursoAlumnoByIdAlumnoIdCurso(iIdCurso,
-				// iIdAlumno));
+
 				objAulaDinamicaService.addAulaDinamica(aDinamica2);
 			} else {
 				System.out.println("updateAlaDinamica");
@@ -108,8 +92,6 @@ public class AulaDinamicaController {
 
 				aDinamica2.setCoordX(aulaDinamica.getCoordX());
 				aDinamica2.setCoordY(aulaDinamica.getCoordY());
-//				aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
-//				aDinamica2.setColorTexto(aulaDinamica.getColorTexto());
 				System.out.println("updateAulaDinamica");
 				objAulaDinamicaService.updateAulaDinamica(aDinamica2);
 			}
@@ -133,7 +115,6 @@ public class AulaDinamicaController {
 		aDinamica2.setCoordY(aulaDinamica.getCoordY());
 		aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
 		aDinamica2.setColorTexto(aulaDinamica.getColorTexto());
-		// aDinamica2.setEstado(aulaDinamica.getEstado());
 
 		System.out.println("saveAulaDinamica");
 		try {
@@ -185,10 +166,9 @@ public class AulaDinamicaController {
 		try {
 			objAulaDinamicaService.deleteAulaDinamica(aulaDinamicaId);
 		} catch (Exception e) {
-			// // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//
+
 		return new ModelAndView("redirect:/aulaDinamicas");
 	}
 }
