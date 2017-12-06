@@ -74,7 +74,7 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 		sSession = sessionFactory.openSession();
 		AulaDinamica aulaDinamica = null;
 		try {
-			String queryAulaDinamica = "From Aula_Dinamica Where ID_AULA_DINAMICA= :idAulaDinamica";
+			String queryAulaDinamica = "From AulaDinamica a Where ID_AULA_DINAMICA= :idAulaDinamica";
 			Query query = sSession.createQuery(queryAulaDinamica);
 			query.setInteger("idAulaDinamica", idAulaDinamica);
 			aulaDinamica = (AulaDinamica) query.uniqueResult();

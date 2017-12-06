@@ -34,7 +34,7 @@
 			<div class="col-lg-12">
 
 				<div class="table-responsive">
-					<c:if test="${!empty listCursos}">
+					
 						<table id="miTable" class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
@@ -50,6 +50,7 @@
 								<th>ACCION</th>
 							</tr>
 						</thead>
+						<c:if test="${!empty listCursos}">
 						<tbody>
 							<c:forEach var="lista" items="${listCursos}">
 								<tr>
@@ -74,9 +75,10 @@
 								</tr>
 							</c:forEach>
 						</tbody>
+						</c:if>
 						</table>
 						
-					</c:if>
+					
 				</div>
 
 			</div>

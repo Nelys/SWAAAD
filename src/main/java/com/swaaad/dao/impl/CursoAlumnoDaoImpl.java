@@ -48,7 +48,10 @@ public class CursoAlumnoDaoImpl implements CursoAlumnoDao {
 		sSession = sessionFactory.openSession();
 		CursoAlumno cursoAlumno = null;
 		try {
+
 			String queryCursoAlumno = "From CursoAlumno Where ID_CURSO_ALUMNO= :idCursoAlumno";
+			// String queryCursoAlumno = "From CursoAlumno Where
+			// ID_CURSO_ALUMNO= :idCursoAlumno";
 			Query query = sSession.createQuery(queryCursoAlumno);
 			query.setInteger("idCursoAlumno", idCursoAlumno);
 			cursoAlumno = (CursoAlumno) query.uniqueResult();

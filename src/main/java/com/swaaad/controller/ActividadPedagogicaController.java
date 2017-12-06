@@ -40,11 +40,11 @@ public class ActividadPedagogicaController {
 	CursoService objCursoService;
 
 	@RequestMapping(value = { "actividades-pedagogicas" }, method = RequestMethod.GET)
-	public ModelAndView listActividadPedagogica(ModelAndView model, HttpSession sess, HttpServletRequest request)
-			throws Exception {
-
+	public ModelAndView listActividadPedagogica(ModelAndView model, HttpServletRequest request) throws Exception {
+		HttpSession sess;
+		sess = request.getSession(false);
+		int a = (Integer) sess.getAttribute("idCurso");
 		logger.info("actividadPedagogicaPage");
-
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -54,22 +54,12 @@ public class ActividadPedagogicaController {
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
-
-		sess = request.getSession(false);
-
-		int a = (Integer) sess.getAttribute("idCurso");
-
 		System.out.println(a + " desde actividad academica");
-
 		List<ActividadPedagogica> ListarActividadPedagogica = null;
-
 		ListarActividadPedagogica = objActividadPedagogicaService.getAllActividad();
-
 		ActividadPedagogica actividadPedagogica = new ActividadPedagogica();
-
 		model.addObject("actividadPedagogica", actividadPedagogica);
 		model.addObject("listActividadPedagogica", ListarActividadPedagogica);
-
 		model.setViewName("actividades-pedagogicas");
 
 		return model;
@@ -80,13 +70,9 @@ public class ActividadPedagogicaController {
 			HttpServletRequest request) throws Exception {
 
 		logger.info("saveActividadPedagogica");
-
-
 		HttpSession session = request.getSession(false);
-
 		int idCurso = (Integer) session.getAttribute("idCurso");
 		actividadPedagogica.setCurso(objCursoService.getCursoById(idCurso));
-
 		try {
 			if (actividadPedagogica.getIdActividad() == 0) {
 				objActividadPedagogicaService.addActividad(actividadPedagogica);
@@ -120,15 +106,14 @@ public class ActividadPedagogicaController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		System.out.println(actividadPedagogica.getIdActividad());
 		System.out.println(actividadPedagogica.getDescripcion());
 		System.out.println(actividadPedagogica.getFecha());
 
 		ModelAndView model = new ModelAndView("form-actividadPedagogica");
 		model.addObject("actividadPedagogica", actividadPedagogica);
-		
+
 		return model;
 	}
 

@@ -220,7 +220,7 @@ public class NotaDaoImpl implements NotaDao {
 	}
 
 	/**
-     * @see NotaDao#deleteNota()
+     * @see NotaDao#deleteNota() - no esta siendo utilizado
      */
 	@Override
 	public void deleteNota(int idNota) throws Exception {

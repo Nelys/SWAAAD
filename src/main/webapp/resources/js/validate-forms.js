@@ -160,9 +160,7 @@ $(document)
 														message : 'Minimo 2 - maximo 50 caracteres'
 													},
 													regexp : {
-														regexp : /^[a-zA-Z ]+$/,
-														// regexp:
-														// /^[a-zA-Z0-9_\.]+$/,
+														regexp : /^[a-zA-Z ñÑ]+$/,
 														message : 'el nombre puede contener solo letras de la A-Z'
 													}
 												}
@@ -295,7 +293,7 @@ $(document)
 														message : 'Minimo 2 - maximo 50 caracteres'
 													},
 													regexp : {
-														regexp : /^[a-zA-Z ]+$/,
+														regexp : /^[a-zA-Z ñ Ñ]+$/,
 														// regexp:
 														// /^[a-zA-Z0-9_\.]+$/,
 														message : 'el nombre puede contener solo letras de la A-Z'

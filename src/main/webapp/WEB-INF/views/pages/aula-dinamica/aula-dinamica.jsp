@@ -65,11 +65,11 @@
 													style="height: 180px; overflow-y: scroll;">
 													<c:forEach var="listaAlumnos" items="${listAlumnos}">
 														<button
-															id="btnIdAlumno_${listaAlumnos.idAlumno}"
+															id="btnIdAlumno_${listaAlumnos.idCursoAlumno}"
 															class="btn btn-default"
 															style="text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;" 
 																			style="background-color:${listaEvaluacion.color}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;">
-															${listaAlumnos.apellidos}, ${listaAlumnos.nombres}
+															${listaAlumnos.alumno.apellidos}, ${listaAlumnos.alumno.nombres}
 														</button>
 													</c:forEach>
 												</div>
@@ -138,7 +138,7 @@
 			modelAttribute="aulaDinamica">
 			<form:input path="idAulaDinamica" />
 <%-- 			<form:input path="idAlumno" /> --%>
-<%-- 			<form:input path="cursoAlumno.idCursoAlumno" /> --%>
+			<form:input path="cursoAlumno.idCursoAlumno" id="idCursoAlumno" />
 			<form:input path="coordX" />
 			<form:input path="coordY" />
 			<form:input path="colorFondo" />
@@ -155,8 +155,8 @@
 						<!-- Datos del Alumno -->
 <%-- 						<div id="idAulaDinamica" style="display: none;">${lista.cursoAlumno.idCursoAlumno}</div> --%>
 						<a style="left: 50px; top: -1px; color: ${lista.idAulaDinamica};" href='#' class='xicon' title='Quitar'>&times;</a>
-						<div id="${lista.idAulaDinamica}" style="color: white; text-align: center; font-size: 12px;">${lista.idAulaDinamica}</div>
-						<div id="${lista.idAulaDinamica}" style="color: white; text-align: center; font-size: 12px;">${lista.cursoAlumno.alumno.nombres}, ${lista.cursoAlumno.alumno.apellidos}</div>
+						<div id="${lista.idAulaDinamica}" style='color:#${lista.colorTexto}; text-align: center; font-size: 12px;'>${lista.idAulaDinamica}</div>
+						<div id="${lista.idAulaDinamica}" style='color:#${lista.colorTexto}; text-align: center; font-size: 12px;'>${lista.cursoAlumno.alumno.nombres}, ${lista.cursoAlumno.alumno.apellidos}</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -247,30 +247,51 @@
 							$('#' + idAlumno ).toggle("slide");
 							
 							idAlumno = idAlumno.replace('btnIdAlumno_', '');
+							console.log(idAlumno);
+							
+							
+							var colorTexto= hexc($('#divColorTexto i' ).css('background-color'));
+							var colorFondo= hexc($('#divColorFondo i').css('background-color'));
+							 console.log(colorTexto);
+							 console.log(colorFondo);
+							 
 							
 							$( '#aula' ).html($( '#aula' ).html() + 
 									"<div " + "id='alumno_" +  idAlumno + "' class='principal ui-draggable ui-draggable-handle' " +
-										"style='left:5px; top:5px; width:60px; height:85px; background:#" + hexc(iColor) + "; position: absolute; border-radius: 4px 4px 4px 4px' >" +
-										"<div style='color: white; text-align: center; font-size: 12px;'>" + idAlumno + "</div>" + 
-										"<div style='color: white; text-align: center; font-size: 12px;'>" + $(this).html() + "</div>" +
+										"style='left:5px; top:5px; width:60px; height:85px; background:#" + colorFondo + "; color:#"+colorTexto+"; position: absolute; border-radius: 4px 4px 4px 4px' >" +
+										"<div style='color: #"+colorTexto+"; text-align: center; font-size: 12px;'>" + idAlumno + "</div>" + 
+										"<div style='color:#"+colorTexto+"; text-align: center; font-size: 12px;'>" + $(this).html() + "</div>" +
 									"</div>");
 							
-							console.log($( '#aula' ).html());
+// 							console.log($( '#aula' ).html());
+							
+							
+							
+							
 							
 							
 							// Estableciendo propiedades
 							
 							$('#idAulaDinamica').val(0);
-							$('#cursoAlumno.idCursoAlumno').val($('#idAula').text());
+							$('#cursoAlumno.idCursoAlumno').val(idAlumno);
 							$('#coordX').val(5);
 							$('#coordY').val(5);
 							$('#colorFondo').val(hexc(iColor));
+					
+							var datos={
+								idAulaDinamica:0,
+								cursoAlumno:idAlumno,
+								coordX:5,
+								coordY:5,
+								colorFondo:colorFondo,
+								colorTexto:colorTexto
+							};
 							
 							// Guardando Datos
 							var formulario = $("#aulaDinamica").serialize();
 
 							id = null;
-							$.post("saveAulaDinamica2",formulario, function(data) {
+							$.post("saveAulaDinamica2",datos, function(data) {
 								console.log("recepcion");
 							});
 							

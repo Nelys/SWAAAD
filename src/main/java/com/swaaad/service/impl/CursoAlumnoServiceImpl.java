@@ -23,7 +23,7 @@ public class CursoAlumnoServiceImpl implements CursoAlumnoService {
 	@Override
 	public CursoAlumno getCursoAlumnoById(int idCursoAlumno) throws Exception {
 
-		return null;
+		return objCursoAlumnoDao.getCursoAlumnoById(idCursoAlumno);
 	}
 
 	@Override
