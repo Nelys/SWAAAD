@@ -147,7 +147,6 @@
 					<ul class="dropdown-menu sm user-settings">
 						<li><a href="perfil"><i class="fa fa-meh-o"></i> Perfil</a></li>
 						<hr class="less-margin">
-<!-- 						<li><a href="cambiar"> <i class="fa fa-sun-o"></i> Cambiar Contraseña</a></li> -->
 						<li><a href="login.html"> <i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>
 					</ul>
 				</li>
@@ -160,9 +159,7 @@
 	<aside id="sidebar">
 		<div id='menu'>
 			<ul>
-<%-- 				<li class="${current == 'cursos' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/cursos"> <i --%>
-<%-- 						class="fa fa-desktop"></i> <span>Cursos</span> ${current == 'cursos' ? '<span	class="current-page"></span>' : '' } --%>
-<!-- 				</a></li> -->
+
 
 				<li class="${current == 'alumnos' ? ' highlight active' : '' }"><a href="${pageContext.request.contextPath}/alumnos"> <i
 						class="fa fa-user"></i> <span>Alumno</span> ${current == 'alumnos' ? '<span	class="current-page"></span>' : '' }

@@ -216,8 +216,8 @@ public class LoginController {
 		return "cambiar";
 	}
 
-	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
-	public String perfilPage(ModelMap model) {
-		return "perfil";
-	}
+//	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
+//	public String perfilPage(ModelMap model) {
+//		return "perfil";
+//	}
 }

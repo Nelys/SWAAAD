@@ -45,6 +45,7 @@ public class ActividadPedagogicaController {
 		sess = request.getSession(false);
 		int a = (Integer) sess.getAttribute("idCurso");
 		logger.info("actividadPedagogicaPage");
+		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -54,6 +55,8 @@ public class ActividadPedagogicaController {
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
+		
+		
 		System.out.println(a + " desde actividad academica");
 		List<ActividadPedagogica> ListarActividadPedagogica = null;
 		ListarActividadPedagogica = objActividadPedagogicaService.getAllActividad();
