@@ -136,6 +136,17 @@ public class ActividadPedagogicaController {
 	@RequestMapping(value = "/calendarioActividadPedagogica", method = RequestMethod.GET)
 	public ModelAndView calendarioActividadPedagogica(ModelAndView model) throws Exception {
 		logger.info("actividadPedagogicaPage");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
+		
 		ActividadPedagogica actividadPedagogica = new ActividadPedagogica();
 		model.addObject("actividadPedagogica", actividadPedagogica);
 		model.setViewName("actividades-pedagogicas-calendario");

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,9 +23,12 @@ import com.swaaad.dto.AlumnoDTO;
 import com.swaaad.dto.AulaDinamicaDTO;
 import com.swaaad.model.AulaDinamica;
 import com.swaaad.model.CursoAlumno;
+import com.swaaad.model.Docente;
+import com.swaaad.model.Usuario;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.AulaDinamicaService;
 import com.swaaad.service.CursoAlumnoService;
+import com.swaaad.service.UsuarioService;
 
 @CrossOrigin
 @Controller
@@ -33,7 +38,7 @@ public class AulaDinamicaController {
 	private AulaDinamicaService objAulaDinamicaService;
 
 	@Autowired
-	private AlumnosService objAlumnoService;
+	UsuarioService objUsuarioService;
 
 	@Autowired
 	private CursoAlumnoService objCursoAlumnoService;
@@ -42,6 +47,19 @@ public class AulaDinamicaController {
 	public ModelAndView aulaDinamicasPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		logger.info("aulaDinamicasPage");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));	
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+		
+		
+		
 		//
 
 		// aulas dinamicas por curso

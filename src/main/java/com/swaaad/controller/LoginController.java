@@ -34,8 +34,7 @@ public class LoginController {
 	@Autowired
 	private UsuarioServiceImpl objUsuarioServiceImpl;
 
-	@Autowired
-	private DocenteServiceImpl objDocenteService;
+
 
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
@@ -77,6 +76,7 @@ public class LoginController {
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
+
 		if (error != null) {
 			model.addObject("error", "Usuario o contraseña invalida!");
 		}
@@ -197,7 +197,9 @@ public class LoginController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/login?logout";// You can redirect wherever you want, but generally it's a good idea to show
+		return "redirect:/login?logout";// You can redirect wherever you want,
+										// but generally it's a good idea to
+										// show
 										// login screen again.
 	}
 
@@ -216,8 +218,8 @@ public class LoginController {
 		return "cambiar";
 	}
 
-//	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
-//	public String perfilPage(ModelMap model) {
-//		return "perfil";
-//	}
+	// @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+	// public String perfilPage(ModelMap model) {
+	// return "perfil";
+	// }
 }
