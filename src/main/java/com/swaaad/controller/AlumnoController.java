@@ -2,14 +2,19 @@ package com.swaaad.controller;
 
 import java.io.InputStream;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +26,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.AlumnoDTO;
 import com.swaaad.model.Alumno;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
@@ -40,13 +48,15 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 @Controller
+@RequestMapping("alumnos")
 public class AlumnoController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
 	AlumnosService objAlumnoService;
 	@Autowired
 	UsuarioService objUsuarioService;
-	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
+//	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
+	@RequestMapping("")
 	public ModelAndView alumnosPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -62,7 +72,10 @@ public class AlumnoController {
 		
 		logger.info("alumnosPage");
 		
-		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
+        HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
+		model.addObject("listAlumnos",	 objAlumnoService.getAllAlumnosByIdCurso(idCurso));
 
 		model.setViewName("alumnos");
 
@@ -72,11 +85,14 @@ public class AlumnoController {
 	@RequestMapping(value = "/saveAlumno", method = RequestMethod.POST)
 	public ModelAndView saveAlumno(@ModelAttribute Alumno alumno, HttpServletRequest request) throws Exception {
 
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
 		logger.info("saveAlumno");
 
 		try {
 			if (alumno.getIdAlumno() == 0) {
-				objAlumnoService.addAlumno(alumno, request);
+				objAlumnoService.addAlumno(alumno, idCurso);
 			} else {
 				objAlumnoService.updateAlumno(alumno);
 			}
@@ -154,7 +170,10 @@ public class AlumnoController {
 	@RequestMapping(value = "/AlumnoReporte", method = RequestMethod.GET)
     public String alumnoReporte(ModelMap modelMap, HttpServletRequest request) throws Exception {
 
-        List<Alumno> listaAlumnosCursos = objAlumnoService.getAllAlumnosByIdCurso(request);
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+		
+        List<Alumno> listaAlumnosCursos = objAlumnoService.getAllAlumnosByIdCurso(idCurso);
         
         AlumnoReport ar = new AlumnoReport();
 //        modelMap.addAttribute("format", "xls");
@@ -166,12 +185,16 @@ public class AlumnoController {
 	
 	@RequestMapping("/xls1")
     public void PrepareReport(HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
         try{
             String reportName ="/resources/reports/AlumnoReport.jasper";
             InputStream st = getClass().getResourceAsStream(reportName);
             JasperReport jr= (JasperReport) JRLoader.loadObject(st); 
             Map parameters = new HashMap();
-            JasperPrint jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource((ResultSet) objAlumnoService.getAllAlumnosByIdCurso(request)));
+            JasperPrint jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource((ResultSet) objAlumnoService.getAllAlumnosByIdCurso(idCurso)));
             
             JasperExportManager.exportReportToPdf(jp);     
             JasperViewer jv=new JasperViewer(jp,false);
@@ -183,6 +206,55 @@ public class AlumnoController {
         }
     }
 	
+	@RequestMapping(value = "/importAlumno", method = RequestMethod.POST)
+	public ModelAndView processExcel2007(Model model, @RequestParam("excelfile2007") MultipartFile excelfile, HttpServletRequest request) {
+		System.out.println("hello subir archivos");
+		
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+		
+		try {
+//			List<AlumnoDTO> lstUser = new ArrayList<>();
+			List<Alumno> lstUser = new ArrayList<>();
+
+			System.out.println("hello subir archivos try");
+			int i = 2;
+			// Creates a workbook object from the uploaded excelfile
+			XSSFWorkbook workbook = new XSSFWorkbook(excelfile.getInputStream());
+			// Creates a worksheet object representing the first sheet
+			XSSFSheet worksheet = workbook.getSheetAt(0);
+			// Reads the data in excel file until last row is encountered
+			System.out.println("hello subir archivos while");
+			while (i <= worksheet.getLastRowNum()) {
+				// Creates an object for the UserInfo Model
+//				AlumnoDTO user = new AlumnoDTO();
+				Alumno user = new Alumno();
+				// Creates an object representing a single row in excel
+				XSSFRow row = worksheet.getRow(i++);
+				// Sets the Read data to the model class
+//				user.setIdAlumno((int) row.getCell(0).getNumericCellValue());
+				user.setApellidos(row.getCell(1).getStringCellValue());
+				user.setNombres(row.getCell(2).getStringCellValue());
+				user.setGenero((row.getCell(3)== null) ? "": row.getCell(3).getStringCellValue());
+				user.setEmail((row.getCell(4)== null) ? "": row.getCell(4).getStringCellValue());
+				user.setNombresApoderado((row.getCell(5)== null) ? "": row.getCell(5).getStringCellValue());
+				user.setApellidosApoderado((row.getCell(6)== null) ? "": row.getCell(6).getStringCellValue());
+				user.setEmailApoderado((row.getCell(7)== null) ? "": row.getCell(7).getStringCellValue());
+				// persist data into database in here
+				lstUser.add(user);
+				objAlumnoService.addAlumno(user, idCurso);
+
+			}
+			workbook.close();
+			model.addAttribute("lstUser", lstUser);
+			model.addAttribute("msg", "Importacion Exitosa!");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println("hello subir archivos hello");
+		return new ModelAndView("redirect:/alumnos");
+	}
+	
 //	@RequestMapping("/xls")
 //    public void generarXls(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 //	    AlumnoXlsView a = new AlumnoXlsView();
@@ -190,8 +262,10 @@ public class AlumnoController {
 //	    a.buildExcelDocument((Map<String, Object>) model, null, request, response);
 //    }
 	
-	@ModelAttribute("ListAlumnos")
-    public List<Alumno> getCustomerList(HttpServletRequest request) throws Exception {
-        return objAlumnoService.getAllAlumnosByIdCurso(request);
-    }
+//	@ModelAttribute("ListAlumnos")
+//    public List<Alumno> getCustomerList(HttpServletRequest request) throws Exception {
+//		HttpSession session = request.getSession(false);
+//        int idCurso = (Integer) session.getAttribute("idCurso");
+//        return objAlumnoService.getAllAlumnosByIdCurso(idCurso);
+//    }
 }

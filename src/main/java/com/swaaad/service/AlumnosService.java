@@ -27,7 +27,7 @@ public interface AlumnosService {
 	 * 
 	 * @throws Exception
 	 */
-	void addAlumno(Alumno alumno, ServletRequest request) throws IOException, ServletException, Exception;
+	void addAlumno(Alumno alumno, int idCurso) throws IOException, ServletException, Exception;
 
 	/**
 	 * Utiliza el metodo getAllAlumnos() de la AlumnosDao
@@ -43,7 +43,7 @@ public interface AlumnosService {
 	 * @return : Lista de Alumnos por curso
 	 * @throws IOException, ServletException,Exception
 	 */
-	List<Alumno> getAllAlumnosByIdCurso(ServletRequest request) throws IOException, ServletException, Exception;
+	List<Alumno> getAllAlumnosByIdCurso(int idCurso) throws Exception;
 	/**
 	 * Utiliza el metodo getAlumnoById(int idAlumno) de la clase AlumnosDao
 	 * 

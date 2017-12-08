@@ -33,18 +33,18 @@ public class AlumnosServiceImpl implements AlumnosService {
 	private CursoDao objCurso;
 	
 	@Override
-	public void addAlumno(Alumno alumno, ServletRequest request) throws IOException, ServletException, Exception {
+	public void addAlumno(Alumno alumno, int idCurso) throws IOException, ServletException, Exception {
 
-	    HttpServletRequest request1 = (HttpServletRequest)request;
-        HttpSession session = request1.getSession(false);
+//	    HttpServletRequest request1 = (HttpServletRequest)request;
+//        HttpSession session = request1.getSession(false);
         
-        int iIdCurso = (Integer) session.getAttribute("idCurso");
+//        int iIdCurso = (Integer) session.getAttribute("idCurso");
 	    
 		objAlumnoDao.addAlumno(alumno);
 		
 		
 		//recuperar al curso
-		Curso curso= objCurso.getCursoById(iIdCurso);
+		Curso curso= objCurso.getCursoById(idCurso);
 		
 		CursoAlumno cursoAlumno=new CursoAlumno();
 		cursoAlumno.setAlumno(alumno);
@@ -62,14 +62,14 @@ public class AlumnosServiceImpl implements AlumnosService {
 	}
 	
 	@Override
-	public List<Alumno> getAllAlumnosByIdCurso(ServletRequest request) throws IOException, ServletException, Exception {
+	public List<Alumno> getAllAlumnosByIdCurso(int idCurso) throws Exception {
 		
-		HttpServletRequest request1 = (HttpServletRequest)request;
-		HttpSession session = request1.getSession(false);
+//		HttpServletRequest request1 = (HttpServletRequest)request;
+//		HttpSession session = request1.getSession(false);
+//		
+//		int iIdCurso = (Integer) session.getAttribute("idCurso");
 		
-		int iIdCurso = (Integer) session.getAttribute("idCurso");
-		
-		return objAlumnoDao.getAllAlumnosByIdCurso(iIdCurso);
+		return objAlumnoDao.getAllAlumnosByIdCurso(idCurso);
 	}
 
 	@Override
