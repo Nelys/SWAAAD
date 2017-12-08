@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -147,8 +148,11 @@ public class AjaxController2 {
 	@ResponseBody
 	public Nota4Wrapper json4Page(HttpServletRequest request) throws Exception {
 
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
 		List<NotasAlumno> result = new ArrayList<NotasAlumno>();
-		for (Nota nota : objNotaService.getAllNotasByIdCurso(request)) {
+		for (Nota nota : objNotaService.getAllNotasByIdCurso(idCurso)) {
 			result.add(new NotasAlumno(nota.getIdNota(), nota.getAlumno().getIdAlumno(), nota.getEvaluacion().getIdEvaluacion(),
 					nota.getNotaEvaluativa()));
 		}
@@ -173,8 +177,11 @@ public class AjaxController2 {
 	@ResponseBody
 	public Nota2Wrapper json3Page(HttpServletRequest request) throws Exception {
 
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
 		List<NotaDTO> result = new ArrayList<NotaDTO>();
-		for (Nota nota : objNotaService.getAllNotasByIdCurso(request)) {
+		for (Nota nota : objNotaService.getAllNotasByIdCurso(idCurso)) {
 			result.add(new NotaDTO(nota.getIdNota(), nota.getAlumno().getIdAlumno(), nota.getNotaEvaluativa()));
 		}
 
@@ -185,17 +192,15 @@ public class AjaxController2 {
 	@ResponseBody
 	public NotaWrapper json2Page(HttpServletRequest request) throws Exception {
 
-		// notas.getNotas();
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
 		List<String> result = new ArrayList<String>();
-		// result.add(new Nota(1,1,12));
-		// result.add(new Nota(2,1,12));
-		// result.add(new Nota(3,1,12));
-		for (Nota nota : objNotaService.getAllNotasByIdCurso(request)) {
+		for (Nota nota : objNotaService.getAllNotasByIdCurso(idCurso)) {
 			result.add(String.valueOf(nota.getIdNota()));
 		}
 		System.out.println("hola");
 
-		// return result;
 		return new NotaWrapper(result);
 	}
 
@@ -204,9 +209,12 @@ public class AjaxController2 {
 	public NotaWrapper jsonWPage(@RequestBody NotaWrapper notas, HttpServletRequest request) throws Exception {
 
 		System.out.println("hola");
+		
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
 
 		List<String> result = new ArrayList<String>();
-		for (Nota nota : objNotaService.getAllNotasByIdCurso(request)) {
+		for (Nota nota : objNotaService.getAllNotasByIdCurso(idCurso)) {
 			result.add(String.valueOf(nota.getIdNota()));// new
 															// Nota(nota.getIdNota(),nota.getIdAlumno(),nota.getNotaEvaluativa()));
 		}
@@ -218,8 +226,11 @@ public class AjaxController2 {
 	@ResponseBody
 	public List<Nota> jsonPage(HttpServletRequest request) throws Exception {
 
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
 		List<Nota> result = new ArrayList<Nota>();
-		for (Nota nota : objNotaService.getAllNotasByIdCurso(request)) {
+		for (Nota nota : objNotaService.getAllNotasByIdCurso(idCurso)) {
 			// result.add(new Nota(nota.getIdNota(),nota.getIdAlumno(),
 			// nota.getIdEvaluacion(),nota.getNotaEvaluativa()));
 		}

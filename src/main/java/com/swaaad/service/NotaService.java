@@ -43,7 +43,7 @@ public interface NotaService {
      * @return : Lista de Notas por curso
      * @throws Exception
      */
-    List<Nota> getAllNotasByIdCurso(ServletRequest request) throws  Exception;
+    List<Nota> getAllNotasByIdCurso(int idCurso) throws  Exception;
     
     /**
      * Utiliza el metodo getNotaById(int idNota) de la clase NotasDao

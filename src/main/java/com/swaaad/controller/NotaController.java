@@ -44,8 +44,11 @@ public class NotaController {
 	EvaluacionService objEvaluacionService;
 
 	@RequestMapping(value = { "listNota" }, method = RequestMethod.GET)
-	public ModelAndView notasPage(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception {
+	public ModelAndView notasPage(ModelAndView model, HttpServletRequest request) throws Exception {
 
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+		
 		logger.info("notasPage");
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -62,7 +65,7 @@ public class NotaController {
 		
 		List<Nota> ListarNota = null;
 		
-		ListarNota = objNotaService.getAllNotasByIdCurso(request);
+		ListarNota = objNotaService.getAllNotasByIdCurso(idCurso);
 		
 	    //System.out.println(ListarNota.size());
         
@@ -78,11 +81,11 @@ public class NotaController {
 		
         model.addObject("evaluacion", evaluacion);
 
-		model.addObject("listNotas", objNotaService.getAllNotasByIdCurso(request));
+		model.addObject("listNotas", objNotaService.getAllNotasByIdCurso(idCurso));
 		
-		model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(request));
+		model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
 		
-		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(request));
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(idCurso));
 		
 		String vista="listNota";
 		System.out.println("********************"+vista);

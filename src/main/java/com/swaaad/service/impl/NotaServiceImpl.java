@@ -39,12 +39,9 @@ public class NotaServiceImpl implements NotaService{
     }
 
     @Override
-    public List<Nota> getAllNotasByIdCurso(ServletRequest request) throws Exception {
-        
-        HttpServletRequest request1 = (HttpServletRequest)request;
-        HttpSession session = request1.getSession(false);
+    public List<Nota> getAllNotasByIdCurso(int idCurso) throws Exception {
 
-        return objNotaDao.getAllNotasByIdCurso((Integer) session.getAttribute("idCurso"));
+        return objNotaDao.getAllNotasByIdCurso(idCurso);
     }
     
 	@Override

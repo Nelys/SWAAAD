@@ -39,13 +39,10 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     private CursoDao objCurso;
     
     @Override
-    public void addEvaluacion(Evaluacion evaluacion, ServletRequest request) throws Exception {
-
-        HttpServletRequest request1 = (HttpServletRequest)request;
-        HttpSession session = request1.getSession(false);
+    public void addEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception {
 
         
-        Curso curso=objCurso.getCursoById((Integer) session.getAttribute("idCurso"));
+        Curso curso=objCurso.getCursoById(idCurso);
         evaluacion.setCurso(curso); 
 //      evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso")));
         
@@ -60,12 +57,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
     
     @Override
-    public List<Evaluacion> getAllEvaluacionesByIdCurso(ServletRequest request) throws Exception {
-        
-        HttpServletRequest request1 = (HttpServletRequest)request;
-        HttpSession session = request1.getSession(false);
+    public List<Evaluacion> getAllEvaluacionesByIdCurso(int idCurso) throws Exception {
 
-        return objEvaluacionDao.getAllEvaluacionesByIdCurso((Integer) session.getAttribute("idCurso"));
+        return objEvaluacionDao.getAllEvaluacionesByIdCurso(idCurso);
     }
 
     @Override
@@ -75,15 +69,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public void updateEvaluacion(Evaluacion evaluacion, ServletRequest request) throws Exception {
-        
-        HttpServletRequest request1 = (HttpServletRequest)request;
-        HttpSession session = request1.getSession(false);
-        
-        
-        Curso curso=objCurso.getCursoById((Integer) session.getAttribute("idCurso"));
+    public void updateEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception {
+        Curso curso=objCurso.getCursoById(idCurso);
         evaluacion.setCurso(curso); 
-//        evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso"))); 
         
         objEvaluacionDao.updateEvaluacion(evaluacion);
         

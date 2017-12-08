@@ -1,6 +1,7 @@
 package com.swaaad.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,10 @@ public class EvaluacionController {
 	
     @RequestMapping(value = "/newEvaluacion", method = RequestMethod.GET)
     public ModelAndView newEvaluacion(ModelAndView model, HttpServletRequest request) throws Exception {
+    	
+    	HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+    	
         logger.info("newEvaluacion");
         
     	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -46,7 +51,7 @@ public class EvaluacionController {
 		model.addObject("user", userName);
         
         Evaluacion evaluacion = new Evaluacion();
-        model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(request));
+        model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
         model.addObject("evaluacion", evaluacion);
         model.setViewName("form-evaluacion");
         return model;
@@ -57,12 +62,14 @@ public class EvaluacionController {
 
         logger.info("saveEvaluacion");
 
-//        System.out.println("hola desde saveEvaluacion");
+        HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
         try {
             if (evaluacion.getIdEvaluacion() == 0) {
-                objEvaluacionService.addEvaluacion(evaluacion, request);
+                objEvaluacionService.addEvaluacion(evaluacion, idCurso);
             } else {
-                objEvaluacionService.updateEvaluacion(evaluacion, request);
+                objEvaluacionService.updateEvaluacion(evaluacion, idCurso);
             }
 
         } catch (Exception e) {
@@ -86,7 +93,9 @@ public class EvaluacionController {
 		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
 		model.addObject("user", userName);
     	
-    	
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+		
         int idEvaluacion = Integer.parseInt(request.getParameter("id"));
         logger.info("editEvaluacion ", idEvaluacion);
         Evaluacion evaluacion= null;
@@ -96,7 +105,7 @@ public class EvaluacionController {
             logger.info("Excepcion en edicion: ", e);
         }
 
-        model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(request));
+        model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
         model.addObject("evaluacion", evaluacion);
 
         return model;

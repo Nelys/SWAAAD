@@ -24,7 +24,7 @@ public interface EvaluacionService {
      * 
      * @throws Exception
      */
-    void addEvaluacion(Evaluacion evaluacion, ServletRequest request) throws Exception;
+    void addEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception;
 
     /**
      * Utiliza el metodo getAllEvaluaciones() de la EvaluacionesDao
@@ -40,7 +40,7 @@ public interface EvaluacionService {
      * @return : Lista de Evaluaciones por curso
      * @throws Exception
      */
-    List<Evaluacion> getAllEvaluacionesByIdCurso(ServletRequest request) throws  Exception;
+    List<Evaluacion> getAllEvaluacionesByIdCurso(int idCurso) throws  Exception;
     
     /**
      * Utiliza el metodo getEvaluacionById(int idEvaluacion) de la clase EvaluacionesDao
@@ -59,7 +59,7 @@ public interface EvaluacionService {
      *            : evaluacion a actualizar con nuevos valores
      * @throws Exception
      */
-    void updateEvaluacion(Evaluacion evaluacion, ServletRequest request) throws Exception;
+    void updateEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception;
 
     /**
      * Implementa el metodo deleteEvaluacion(Evaluacion evaluacion) de la clase EvaluacionDao
