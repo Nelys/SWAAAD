@@ -25,6 +25,7 @@
 <link href="<c:url value='/resources/template/css/main.css' />" rel="stylesheet" type="text/css">
 <link href="<c:url value='/resources/template/fonts/font-awesome.min.css' />" rel="stylesheet" type="text/css">
 <link href="<c:url value='/resources/css/bootstrap-colorpicker.min.css' />" rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/css/jquery-filestyle.css' />" rel="stylesheet" type="text/css">
 
 <!-- Data Tables -->
 <link href="<c:url value='/resources/template/css/datatables/dataTables.bs.min.css' />" rel="stylesheet" />
@@ -96,6 +97,7 @@
 <%-- <script src="<c:url value='/resources/template/js/calendar/fullcalendar.v3.6.2.js' />"></script> --%>
 <script src="<c:url value='/resources/template/js/calendar/fullcalendar.min.v3.6.2.js' />"></script>
 <script src="<c:url value='/resources/template/js/calendar/es.js' />"></script>
+<script src="<c:url value='/resources/js/jquery-filestyle.js' />"></script>
 
 <%-- <script src="<c:url value='/resources/template/js/moment.min.js' />"></script> --%>
 <%-- <script src="<c:url value='/resources/template/js/calendar/fullcalendar.js' />"></script> --%>
