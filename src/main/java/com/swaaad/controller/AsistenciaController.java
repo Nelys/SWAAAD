@@ -197,44 +197,6 @@ public class AsistenciaController {
 		return modelAndView;
 	}
 
-	// para capturar el envio del formulario
-	@RequestMapping(value = "/hello", method = RequestMethod.POST)
-	public String processExcel2007(Model model, @RequestParam("excelfile2007") MultipartFile excelfile) {
-		System.out.println("hello subir archivos");
-		try {
-			List<AlumnoDTO> lstUser = new ArrayList<>();
-
-			System.out.println("hello subir archivos try");
-			int i = 0;
-			// Creates a workbook object from the uploaded excelfile
-			XSSFWorkbook workbook = new XSSFWorkbook(excelfile.getInputStream());
-			// Creates a worksheet object representing the first sheet
-			XSSFSheet worksheet = workbook.getSheetAt(0);
-			// Reads the data in excel file until last row is encountered
-			System.out.println("hello subir archivos while");
-			while (i <= worksheet.getLastRowNum()) {
-				// Creates an object for the UserInfo Model
-				AlumnoDTO user = new AlumnoDTO();
-				// Creates an object representing a single row in excel
-				XSSFRow row = worksheet.getRow(i++);
-				// Sets the Read data to the model class
-				user.setIdAlumno((int) row.getCell(0).getNumericCellValue());
-				user.setApellidos(row.getCell(1).getStringCellValue());
-				// user.setNombres(row.getCell(2).getDateCellValue());
-				user.setNombres(row.getCell(2).getStringCellValue());
-				// persist data into database in here
-				lstUser.add(user);
-
-			}
-			workbook.close();
-			model.addAttribute("lstUser", lstUser);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("hello subir archivos hello");
-		return "hello";
-	}
-
 	@RequestMapping(value = "/pdf", method = RequestMethod.GET)
 	public String generatePdfReports(ModelMap modelMap) throws Exception {
 
