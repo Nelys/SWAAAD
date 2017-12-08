@@ -1,4 +1,4 @@
-/********************************************************************************
+﻿/********************************************************************************
 *Descripción           : Creacion de la base de datos (SWAAAD) y tablas         *
 *Fecha Creación        : 09/08/2017                                             *
 *Parámetros            :                                                        *
@@ -51,7 +51,7 @@ CREATE TABLE `alumno` (
   `ID_USUARIO` INT(11) DEFAULT NULL,
   PRIMARY KEY (`ID_ALUMNO`),
   CONSTRAINT `fk_alumno_usuario` FOREIGN KEY (`ID_USUARIO`) REFERENCES `usuario` (`ID_USUARIO`)
-) 
+);
 
 DROP TABLE IF EXISTS `curso`;
 
@@ -65,7 +65,7 @@ CREATE TABLE `curso` (
   `ID_DOCENTE` INT(11) NOT NULL,
   PRIMARY KEY (`ID_CURSO`),
   CONSTRAINT `fk_CURSO_DOCENTE1` FOREIGN KEY (`ID_DOCENTE`) REFERENCES `docente` (`ID_DOCENTE`)
-) 
+);
 
 DROP TABLE IF EXISTS `actividad_pedagogica`;
 
@@ -98,7 +98,7 @@ CREATE TABLE `curso_alumno` (
   PRIMARY KEY (`ID_CURSO_ALUMNO`),
   CONSTRAINT `fk_CURSO_ALUMNO_ALUMNO1` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `fk_CURSO_ALUMNO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) 
+);
 
 DROP TABLE IF EXISTS `aula_dinamica`;
 
@@ -112,7 +112,7 @@ CREATE TABLE `aula_dinamica` (
   `ID_CURSO_ALUMNO` INT(11) NOT NULL,
   PRIMARY KEY (`ID_AULA_DINAMICA`),
   CONSTRAINT `fk_AULA_DINAMICA_CURSOALUMNO` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
-) 
+);
 
 DROP TABLE IF EXISTS `asistencia`;
 
@@ -123,7 +123,7 @@ CREATE TABLE `asistencia` (
   `ID_CURSO_ALUMNO` INT(11) DEFAULT NULL,
   PRIMARY KEY (`ID_ASISTENCIA`),
   CONSTRAINT `FK_CURSOALUMNO_ASISTENCIA` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
-) 
+);
 
 
 
@@ -142,7 +142,7 @@ CREATE TABLE `evaluacion` (
   `ES_FORMULA` BIT(1) NOT NULL,
   PRIMARY KEY (`ID_EVALUACION`),
    CONSTRAINT `fk_EVALUACION_PERIODO1` FOREIGN KEY (`ID_PERIODO`) REFERENCES `PERIODO` (`ID_PERIODO`)
-) 
+);
 
 DROP TABLE IF EXISTS `horario`;
 
@@ -154,7 +154,7 @@ CREATE TABLE `horario` (
   `ID_CURSO` INT(11) NOT NULL,
   PRIMARY KEY (`ID_HORARIO`),
   CONSTRAINT `fk_HORARIO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
-) 
+);
 
 
 DROP TABLE IF EXISTS `nota`;
@@ -167,7 +167,7 @@ CREATE TABLE `nota` (
   PRIMARY KEY (`ID_NOTA`),
   CONSTRAINT `FK_ALUMNO_NOTA` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `FK_EVALUACION_NOTA` FOREIGN KEY (`ID_EVALUACION`) REFERENCES `evaluacion` (`ID_EVALUACION`)
-) 
+);
 
 
 
