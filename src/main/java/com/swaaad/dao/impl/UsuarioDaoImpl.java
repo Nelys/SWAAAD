@@ -58,7 +58,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 		} catch (Exception e) {
 			logger.info("UsuarioDaoImpl verificarEmail: ", e);
-			
+
 		} finally {
 			sSession.flush();
 			sSession.close();
@@ -107,7 +107,27 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			sSession.close();
 		}
 
-		
+	}
+
+	@Override
+	public void CambiarPassword(Usuario usuario) throws Exception {
+		sSession = sessionFactory.openSession();
+		try {
+			tTransaction = sSession.beginTransaction();
+			sSession.update(usuario);
+			tTransaction.commit();
+			logger.info("se actualizo");
+		} catch (RuntimeException e) {
+
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
+				tTransaction.rollback();// desase e
+
+			}
+			logger.info("AlumnosDaoimpl updateAlumno: ", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
 	}
 
 }

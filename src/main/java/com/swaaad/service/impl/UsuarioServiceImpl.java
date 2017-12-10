@@ -50,8 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			Usuario newUsuario=objUsuarioDao.addUsuario(_usuario);
 			
 			Docente docente= new Docente();
-			
-			
+						
 			docente.setApellidos(usuario.getApellidos());
 			docente.setEmail(usuario.getEmail());
 			docente.setGenero(usuario.getOptradio());
@@ -60,15 +59,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 			docente.setUsuario(newUsuario);
 			
 			objDocenteServiceImpl.addDocente(docente);
-			
-						
+									
 			String emmap = pe.encode(docente.getEmail()+docente.getApellidos());
 			String nombre = pe.encode(docente.getNombre());
 			String pass = _usuario.getPassword();
-
-			
-			
-			System.out.println("?no=" + nombre + "&pa=" + pass + "&em=" +emmap+"&i="+newUsuario.getIdUsuario());
+					
+//			System.out.println("?no=" + nombre + "&pa=" + pass + "&em=" +emmap+"&i="+newUsuario.getIdUsuario());
 			
 //			String ruta_servidor="https://salty-escarpment-54865.herokuapp.com/";
 			String ruta_servidor="http://localhost:8080/swaaad/";
@@ -187,6 +183,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void habilitarUsuario(Usuario usuario) throws Exception {
 		
 		objUsuarioDao.habilitarUsuario(usuario);
+	}
+	@Override
+	public void CambiarPassword(Usuario usuario) throws Exception {
+		
+		objUsuarioDao.CambiarPassword(usuario);
 	}
 
 }

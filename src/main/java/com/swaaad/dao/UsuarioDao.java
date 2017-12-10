@@ -11,4 +11,9 @@ public interface UsuarioDao {
 	Usuario getUsuarioById(int id) throws Exception;
 	
 	void habilitarUsuario(Usuario usuario) throws Exception;
+	
+	void CambiarPassword(Usuario usuario ) throws Exception;
+	
+//	Usuario getUsuario
 }
+ 

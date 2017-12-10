@@ -20,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.swaaad.dto.AsistenciaFechaDTO;
 import com.swaaad.dto.RegistroDTO;
 import com.swaaad.dto.ResponseDTO;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
-import com.swaaad.service.impl.DocenteServiceImpl;
 import com.swaaad.service.impl.UsuarioServiceImpl;
 
 @Controller
@@ -197,7 +195,7 @@ public class LoginController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/login?logout";// You can redirect wherever you want,
+		return "redirect:/";// You can redirect wherever you want,
 										// but generally it's a good idea to
 										// show
 										// login screen again.
