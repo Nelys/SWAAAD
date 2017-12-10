@@ -79,7 +79,7 @@
 							<hr class="less-margin">
 							<li><a href="#"> <i class="fa fa-sun-o"></i> Configuración
 							</a></li>
-							<li><a href="login.html"> <i class="fa fa-sign-out"></i> Cerrar Sesion
+							<li><a href="<c:url value="/logout" />"> <i class="fa fa-sign-out"></i> Cerrar Sesion
 							</a></li>
 						</ul></li>
 				</ul>

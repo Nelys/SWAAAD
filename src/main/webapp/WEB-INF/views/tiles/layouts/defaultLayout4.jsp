@@ -114,7 +114,7 @@ body {background-color: white;}
 						<li><a href="perfil"><i class="fa fa-meh-o"></i> Perfil</a></li>
 						<hr class="less-margin">
 <!-- 						<li><a href="cambiar"> <i class="fa fa-sun-o"></i> Cambiar Contraseña</a></li> -->
-						<li><a href="login.html"> <i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>
+						<li><a href="<c:url value="/logout" />"> <i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>
 					</ul>
 				</li>
 			</ul>

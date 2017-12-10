@@ -4,12 +4,14 @@
 <head>
 <title>Login Page</title>
 <!-- Bootstrap Core CSS -->
-<link href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet">
+<link href="<c:url value='/resources/css/bootstrap.min.css' />"
+	rel="stylesheet">
 
 <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script>
 <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
 
-<script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
 
 <style>
@@ -130,10 +132,11 @@ body {
 	background: #12a5a0;
 	border-color: #067465;
 }
+
 legend.scheduler-border {
-    width:inherit; /* Or auto */
-    padding:0 10px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
+	width: inherit; /* Or auto */
+	padding: 0 10px; /* To give a bit of padding on the left and right */
+	border-bottom: none;
 }
 </style>
 </head>
@@ -148,30 +151,34 @@ legend.scheduler-border {
 					<li><a href="registro">Crear Cuenta</a></li>
 
 				</ul>
-				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+				<div
+					class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
 					<div id="login-access" class="tab-pane fade active in">
 						<h2>
 							<i class="glyphicon glyphicon-log-in"></i> Ingresar
 						</h2>
 						<!-- Formulario de Acceso -->
-						<form name='loginForm' method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+						<form name='loginForm' method="post" accept-charset="utf-8"
+							autocomplete="off" role="form" class="form-horizontal">
 
 							<!-- usuario -->
 							<div class="form-group ">
-								<label for="login" class="sr-only">Usuario</label> <input type="text" class="form-control" name="username" id="username" placeholder="Email"
-									tabindex="1" value="" />
+								<label for="login" class="sr-only">Usuario</label> <input
+									type="text" class="form-control" name="username" id="username"
+									placeholder="Email" tabindex="1" value="" />
 							</div>
 
 							<!-- PassWord -->
 							<div class="form-group ">
-								<label for="password" class="sr-only">Password</label> <input type="password" class="form-control" name="password" id="password"
-									placeholder="Password" value="" tabindex="2" />
+								<label for="password" class="sr-only">Password</label> <input
+									type="password" class="form-control" name="password"
+									id="password" placeholder="Password" value="" tabindex="2" />
 							</div>
 
 							<div class="form-group ">
 								<a href="recupera">¿Has olvidado tu contraseña?</a>
 							</div>
-							
+
 							<c:if test="${not empty error}">
 								<div class="error">${error}</div>
 							</c:if>
@@ -179,12 +186,16 @@ legend.scheduler-border {
 								<div class="msg">${msg}</div>
 							</c:if>
 
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> <br />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <br />
 							<div class="form-group ">
-								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Ingresar</button>
+								<button type="submit" name="log-me-in" id="submit" tabindex="5"
+									class="btn btn-lg btn-primary">Ingresar</button>
 							</div>
 						</form>
+
 					</div>
+				</div>
 
 			</section>
 		</article>
