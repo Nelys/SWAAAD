@@ -91,44 +91,4 @@ public class DocenteController {
 		return model;
 	}
 
-	@RequestMapping(value = "/editContrasenaDocente", method = RequestMethod.GET)
-	public ModelAndView editContraseñaDocente(ModelAndView model) throws Exception {
-
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = null;
-
-		if (principal instanceof UserDetails) {
-			userDetails = (UserDetails) principal;
-		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
-		Docente docente2 = usuario.getDocentes().get(0);
-		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
-		model.addObject("user", userName);
-
-		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
-
-		String password_actual = "Manzanilla";
-
-		String password_nuevo = "Admin9";
-
-		objUsuarioService.CambiarPassword(usuario);
-		if (pe.matches(password_actual, usuario.getPassword())) {
-			// actualizar contraseña
-			String encode_nuevo = pe.encode(password_nuevo);
-
-			usuario.setPassword(encode_nuevo);
-			objUsuarioService.CambiarPassword(usuario);
-			System.out.println("La contraseña ha sido cambiado exitosamente");
-		} else {
-			// mostrar error no es la contraseña actual
-			System.out.println("la contraseña actual es incorrecta");
-		}
-
-		// model.addObject("encode_actual", encode_actual);
-		// model.addObject("encode_actual", encode_nuevo);
-		model.setViewName("cambiar");
-
-		return model;
-	}
-
 }

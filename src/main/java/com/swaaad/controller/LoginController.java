@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.AsistenciaFechaDTO;
+import com.swaaad.dto.CambiarContrasenaDTO;
 import com.swaaad.dto.RegistroDTO;
 import com.swaaad.dto.ResponseDTO;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
+import com.swaaad.service.UsuarioService;
 import com.swaaad.service.impl.UsuarioServiceImpl;
 
 @Controller
@@ -32,7 +35,8 @@ public class LoginController {
 	@Autowired
 	private UsuarioServiceImpl objUsuarioServiceImpl;
 
-
+	@Autowired
+	UsuarioService objUsuarioService;
 
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
@@ -196,9 +200,9 @@ public class LoginController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		return "redirect:/";// You can redirect wherever you want,
-										// but generally it's a good idea to
-										// show
-										// login screen again.
+							// but generally it's a good idea to
+							// show
+							// login screen again.
 	}
 
 	@RequestMapping(value = "/recupera", method = RequestMethod.GET)
@@ -212,8 +216,68 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
-	public String cambiarPage(ModelMap model) {
-		return "cambiar";
+	public ModelAndView cambiarPage(ModelAndView model) throws Exception {
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+		model.addObject("user", userName);
+
+		model.setViewName("cambiar");
+
+		return model;
+	}
+
+	@RequestMapping(value = "/cambiarPassword",  method = RequestMethod.POST)
+	@ResponseBody
+//	@ModelAttribute AsistenciaFechaDTO asistenciaFechaDTO
+	public ResponseDTO cambiarPassword(@ModelAttribute CambiarContrasenaDTO cambiarContrasenaDTO) throws Exception {
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+		Docente docente2 = usuario.getDocentes().get(0);
+		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+
+		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+
+		String password_actual =cambiarContrasenaDTO.getPassword();
+
+		String password_nuevo = cambiarContrasenaDTO.getNuevoPassword();
+
+		objUsuarioService.CambiarPassword(usuario);
+		ResponseDTO response = new ResponseDTO();
+		if (pe.matches(password_actual, usuario.getPassword())) {
+			// actualizar contraseña
+			String encode_nuevo = pe.encode(password_nuevo);
+
+			usuario.setPassword(encode_nuevo);
+			objUsuarioService.CambiarPassword(usuario);
+			response.setMessage("Se cambio la contraseña exitosamente");
+			response.setResponse(true);
+			System.out.println("La contraseña ha sido cambiado exitosamente");
+			
+		} else {
+			// mostrar error no es la contraseña actual
+			System.out.println("la contraseña actual es incorrecta");
+			response.setMessage("la contraseña actual es incorrecta");
+			response.setResponse(false);
+		}
+
+	
+		
+
+		return response;
 	}
 
 	// @RequestMapping(value = "/perfil", method = RequestMethod.GET)
