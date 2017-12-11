@@ -32,6 +32,7 @@
 				<value>com.swaaad.model.Horario</value>
 				<value>com.swaaad.model.Nota</value>
 				<value>com.swaaad.model.Evaluacion</value>
+				<value>com.swaaad.model.Periodo</value>
 				<value>com.swaaad.model.Usuario</value>
 
 			</list>

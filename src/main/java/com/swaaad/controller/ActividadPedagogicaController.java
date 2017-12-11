@@ -23,7 +23,6 @@ import com.swaaad.model.ActividadPedagogica;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
 import com.swaaad.service.ActividadPedagogicaService;
-import com.swaaad.service.CursoAlumnoService;
 import com.swaaad.service.CursoService;
 import com.swaaad.service.UsuarioService;
 

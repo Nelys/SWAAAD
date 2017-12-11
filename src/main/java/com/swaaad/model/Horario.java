@@ -3,7 +3,6 @@ package com.swaaad.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Date;
 
 
 /**
@@ -20,8 +19,7 @@ public class Horario implements Serializable {
 	@Column(name="ID_HORARIO")
 	private int idHorario;
 
-	@Temporal(TemporalType.DATE)
-	private Date dia;
+	private String dia;
 
 	@Column(name="HORA_FIN")
 	private Time horaFin;
@@ -45,11 +43,11 @@ public class Horario implements Serializable {
 		this.idHorario = idHorario;
 	}
 
-	public Date getDia() {
+	public String getDia() {
 		return this.dia;
 	}
 
-	public void setDia(Date dia) {
+	public void setDia(String dia) {
 		this.dia = dia;
 	}
 

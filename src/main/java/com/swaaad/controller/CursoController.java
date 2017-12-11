@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +34,10 @@ public class CursoController {
 
 	@Autowired
 	UsuarioService objUsuarioService;
-	
+
 	@Autowired
 	DocenteService objDocenteService;
-	
+
 	@RequestMapping(value = { "cursos" }, method = RequestMethod.GET)
 	public ModelAndView cursosPage(ModelAndView model) throws Exception {
 		logger.info("cursosPage");
@@ -51,7 +52,7 @@ public class CursoController {
 		model.addObject("user", userName);
 		List<Curso> ListarCurso = null;
 		ListarCurso = objCursoService.listCursoByDocente(docente.getIdDocente());
-		
+
 		Curso curso = new Curso();
 
 		model.addObject("curso", curso);
@@ -61,11 +62,11 @@ public class CursoController {
 		return model;
 	}
 
-
 	@RequestMapping(value = "/saveCurso", method = RequestMethod.POST)
 	public ModelAndView saveCurso(@ModelAttribute Curso curso) throws Exception {
 		logger.info("saveCurso");
 
+		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -74,6 +75,7 @@ public class CursoController {
 		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
+//		model.addObject("user", userName);
 		
 		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
 		
@@ -95,24 +97,6 @@ public class CursoController {
 		Curso curso = new Curso();
 		model.addObject("curso", curso);
 		model.setViewName("form-curso");
-		return model;
-	}
-
-	@RequestMapping(value = "/newHorario", method = RequestMethod.GET)
-	public ModelAndView newHorario(ModelAndView model) throws Exception {
-		logger.info("newCurso");
-
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = null;
-		if (principal instanceof UserDetails) {
-			userDetails = (UserDetails) principal;
-		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
-		Docente docente2 = usuario.getDocentes().get(0);
-		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
-		model.addObject("user", userName);
-
-		model.setViewName("form-horario");
 		return model;
 	}
 
@@ -170,20 +154,6 @@ public class CursoController {
 		session.setAttribute("idCurso", idCurso);
 
 		return new ModelAndView("redirect:/alumnos");
-	}
-
-	@RequestMapping(value = "docenteCurso/{idDocente}", method = RequestMethod.GET)
-	public ModelAndView cursoDocente(ModelAndView model, @PathVariable int idDocente, HttpServletRequest request, HttpSession session)
-			throws Exception {
-		// int idCurso = Integer.parseInt(request.getParameter(""));
-		List<Curso> listCurso = objCursoService.listCursoByDocente(1);
-		// session = request.getSession();
-		// session.setAttribute("listCurso", listCurso);
-		
-		System.out.println("este es la id del docente: "+idDocente);
-
-		return null;
-
 	}
 
 }

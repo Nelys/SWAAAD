@@ -43,13 +43,13 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy="curso")
 	private List<CursoAlumno> cursoAlumnos;
 
-	//bi-directional many-to-one association to Evaluacion
-	@OneToMany(mappedBy="curso")
-	private List<Evaluacion> evaluacions;
-
 	//bi-directional many-to-one association to Horario
 	@OneToMany(mappedBy="curso")
 	private List<Horario> horarios;
+
+	//bi-directional many-to-one association to Periodo
+	@OneToMany(mappedBy="curso")
+	private List<Periodo> periodos;
 
 	public Curso() {
 	}
@@ -154,28 +154,6 @@ public class Curso implements Serializable {
 		return cursoAlumno;
 	}
 
-	public List<Evaluacion> getEvaluacions() {
-		return this.evaluacions;
-	}
-
-	public void setEvaluacions(List<Evaluacion> evaluacions) {
-		this.evaluacions = evaluacions;
-	}
-
-	public Evaluacion addEvaluacion(Evaluacion evaluacion) {
-		getEvaluacions().add(evaluacion);
-		evaluacion.setCurso(this);
-
-		return evaluacion;
-	}
-
-	public Evaluacion removeEvaluacion(Evaluacion evaluacion) {
-		getEvaluacions().remove(evaluacion);
-		evaluacion.setCurso(null);
-
-		return evaluacion;
-	}
-
 	public List<Horario> getHorarios() {
 		return this.horarios;
 	}
@@ -196,6 +174,28 @@ public class Curso implements Serializable {
 		horario.setCurso(null);
 
 		return horario;
+	}
+
+	public List<Periodo> getPeriodos() {
+		return this.periodos;
+	}
+
+	public void setPeriodos(List<Periodo> periodos) {
+		this.periodos = periodos;
+	}
+
+	public Periodo addPeriodo(Periodo periodo) {
+		getPeriodos().add(periodo);
+		periodo.setCurso(this);
+
+		return periodo;
+	}
+
+	public Periodo removePeriodo(Periodo periodo) {
+		getPeriodos().remove(periodo);
+		periodo.setCurso(null);
+
+		return periodo;
 	}
 
 }
