@@ -42,6 +42,7 @@
 										<td style="text-align: center" width="100px"><a
 											class="btn btn-sm btn-warning btn-sm"
 											href="editCurso?id=${lista.idCurso}"><i
+											
 												class="fa fa-pencil-square-o"></i></a> <a
 											class="btn btn-sm btn-danger btn-sm"
 											href="deleteCurso?id=${lista.idCurso}"><i
