@@ -69,7 +69,7 @@ CREATE TABLE `asistencia` (
   PRIMARY KEY (`ID_ASISTENCIA`),
   KEY `FK_CURSOALUMNO_ASISTENCIA` (`ID_CURSO_ALUMNO`),
   CONSTRAINT `FK_CURSOALUMNO_ASISTENCIA` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `asistencia` */
 
@@ -92,7 +92,7 @@ CREATE TABLE `aula_dinamica` (
 
 /*Data for the table `aula_dinamica` */
 
-insert  into `aula_dinamica`(`ID_AULA_DINAMICA`,`COORD_X`,`COORD_Y`,`COLOR_TEXTO`,`COLOR_FONDO`,`ESTADO`,`ID_CURSO_ALUMNO`) values (16,55,133,'dd0707','fff200','\0',2),(17,21,36,'55e569','5111aa','\0',1);
+insert  into `aula_dinamica`(`ID_AULA_DINAMICA`,`COORD_X`,`COORD_Y`,`COLOR_TEXTO`,`COLOR_FONDO`,`ESTADO`,`ID_CURSO_ALUMNO`) values (16,19,27,'dd0707','fff200','\0',2),(17,90,26,'55e569','5111aa','\0',1);
 
 /*Table structure for table `curso` */
 
@@ -160,7 +160,6 @@ DROP TABLE IF EXISTS `evaluacion`;
 
 CREATE TABLE `evaluacion` (
   `ID_EVALUACION` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_CURSO` int(11) NOT NULL,
   `ID_EVALUACION_DEPENDENCIA` int(11) DEFAULT NULL,
   `ID_PERIODO` int(11) NOT NULL,
   `NOMBRE` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -182,16 +181,18 @@ DROP TABLE IF EXISTS `horario`;
 
 CREATE TABLE `horario` (
   `ID_HORARIO` int(11) NOT NULL AUTO_INCREMENT,
-  `DIA` date DEFAULT NULL,
+  `DIA` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `HORA_INICIO` time(6) DEFAULT NULL,
   `HORA_FIN` time(6) DEFAULT NULL,
   `ID_CURSO` int(11) NOT NULL,
   PRIMARY KEY (`ID_HORARIO`),
   KEY `fk_HORARIO_CURSO` (`ID_CURSO`),
   CONSTRAINT `fk_HORARIO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `horario` */
+
+insert  into `horario`(`ID_HORARIO`,`DIA`,`HORA_INICIO`,`HORA_FIN`,`ID_CURSO`) values (1,'Lunes','09:50:00.000000','11:50:00.000000',1),(2,'Lunes','09:50:00.000000','11:50:00.000000',1),(3,'Lunes','09:50:00.000000','11:50:00.000000',1);
 
 /*Table structure for table `nota` */
 
@@ -242,7 +243,7 @@ CREATE TABLE `usuario` (
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`id_usuario`,`username`,`password`,`enabled`,`role`) values (1,'nelys.mp@gmail.com','$2a$10$ZbhthVXA705wmYo6KE4oVOvL1GIOPUJGcFT.a0/RlhwA3lMYPfG/i',1,'ROLE_ADMIN'),(2,'christian.vilcaq@gmail.com','$2a$10$RFRiE6D8WnX0YhnKHkDyqe0yNjXuymXqm2oMk4gAuh7nLHT5X4tW2',0,'ROLE_ADMIN');
+insert  into `usuario`(`id_usuario`,`username`,`password`,`enabled`,`role`) values (1,'nelys.mp@gmail.com','$2a$10$Qat9D7Zn5r83gTG7zu7dVOv0azSvbzVc4N8rHNbs2Ewp8ya1i62XO',1,'ROLE_ADMIN'),(2,'christian.vilcaq@gmail.com','$2a$10$RFRiE6D8WnX0YhnKHkDyqe0yNjXuymXqm2oMk4gAuh7nLHT5X4tW2',0,'ROLE_ADMIN');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
