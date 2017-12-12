@@ -90,6 +90,9 @@
 	<bean id="EvaluacionDao" class="com.swaaad.dao.impl.EvaluacionDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	<bean id="PeriodoDao" class="com.swaaad.dao.impl.PeriodoDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
 	<bean id="UsuarioDao" class="com.swaaad.dao.impl.UsuarioDaoImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>

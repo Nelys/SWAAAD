@@ -123,7 +123,7 @@ public class AjaxController2 {
 		Evaluacion evaluacion = new Evaluacion();
 		evaluacion = objEvaluacionService.getEvaluacionById(idEvaluacion);
 		return new EvaluacionDTO(evaluacion.getIdEvaluacion(), evaluacion.getNombre(), evaluacion.getDescripcion(),
-				evaluacion.getColor());
+				evaluacion.getColorFondo());
 	}
 
 	/**

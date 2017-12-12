@@ -17,10 +17,12 @@ import com.swaaad.dao.AlumnosDao;
 import com.swaaad.dao.CursoDao;
 import com.swaaad.dao.EvaluacionDao;
 import com.swaaad.dao.NotaDao;
+import com.swaaad.dao.PeriodoDao;
 import com.swaaad.model.Alumno;
 import com.swaaad.model.Curso;
 import com.swaaad.model.Evaluacion;
 import com.swaaad.model.Nota;
+import com.swaaad.model.Periodo;
 import com.swaaad.service.EvaluacionService;
 
 @Service
@@ -37,13 +39,23 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
     @Autowired
     private CursoDao objCurso;
+
+    @Autowired
+    private PeriodoDao objPeriodo;
     
     @Override
     public void addEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception {
 
         
         Curso curso=objCurso.getCursoById(idCurso);
-        evaluacion.setCurso(curso); 
+//        evaluacion.setCurso(curso); 
+    	
+        
+        Periodo periodo = new Periodo();
+        periodo.setCurso(curso);
+        evaluacion.setPeriodo(periodo);
+        
+        
 //      evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso")));
         
         objEvaluacionDao.addEvaluacion(evaluacion);
@@ -71,7 +83,10 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     @Override
     public void updateEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception {
         Curso curso=objCurso.getCursoById(idCurso);
-        evaluacion.setCurso(curso); 
+//        evaluacion.setCurso(curso);
+        Periodo periodo = new Periodo();
+		periodo.setCurso(curso);
+		evaluacion.setPeriodo(periodo);
         
         objEvaluacionDao.updateEvaluacion(evaluacion);
         
@@ -121,7 +136,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
         int iRedondeo=0;
         
         // Generar y guardar solucion de la formula
-        for (Alumno alumno : objAlumnoDao.getAllAlumnosByIdCurso(evaluacion.getCurso().getIdCurso())){ // session.getAttribute("idCurso"))) {
+        for (Alumno alumno : objAlumnoDao.getAllAlumnosByIdCurso(evaluacion.getPeriodo().getCurso().getIdCurso())){ // session.getAttribute("idCurso"))) {
             for (Integer integer : intListIdEvaluciones) {
                 
                 // Actualizar el campo ID_EVALUACION_DEPENDENCIA de la tabla Evaluacion
