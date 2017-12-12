@@ -30,6 +30,7 @@
 <link href="<c:url value='/resources/template/css/datatables/autoFill.bs.min.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/fixedHeader.bs.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/template/css/datatables/buttons.bs.css' />" rel="stylesheet" />
+<link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" />
 
 
 
@@ -75,6 +76,7 @@
 <!-- jquery datepicker JS -->
 <script src="<c:url value='/resources/js/datapicker/bootstrap-datepicker.js' />"></script>
 <script src="<c:url value='/resources/js/datapicker/es.js' />"></script>
+<script src="<c:url value='/resources/js/bootstrap-timepicker.min.js' />"></script>
 
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>
@@ -100,7 +102,11 @@ body {background-color: white;}
 				<i class="fa fa-desktop"></i> Cursos
 			</a>
 		</div>
-		
+			<div class="navbar-header">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/horario">
+				<i class="fa fa-clock-o"></i> Horario
+			</a>
+		</div>
 		<!-- Custom Search Ends -->
 
 		<!-- Mini right nav starts -->
@@ -113,7 +119,6 @@ body {background-color: white;}
 					<ul class="dropdown-menu sm user-settings">
 						<li><a href="perfil"><i class="fa fa-meh-o"></i> Perfil</a></li>
 						<hr class="less-margin">
-<!-- 						<li><a href="cambiar"> <i class="fa fa-sun-o"></i> Cambiar Contraseña</a></li> -->
 						<li><a href="<c:url value="/logout" />"> <i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>
 					</ul>
 				</li>
@@ -121,18 +126,7 @@ body {background-color: white;}
 		</div>
 	</header>
 
-	<!-- Dashboard Wrapper starts -->
-<!-- 	<div class="dashboard-wrapper"> -->
 
-		<!-- Top Bar starts -->
-<!-- 		<div class="top-bar"> -->
-<!-- 			<div class="page-title"> -->
-<%-- 				${usuario} --%>
-<%-- 				<tiles:getAsString name="title" /> --%>
-<!-- 			</div> -->
-
-<!-- 		</div> -->
-		<!-- Main Container starts -->
 		<div class="main-container">
 
 			<!-- Container fluid Starts -->
@@ -147,13 +141,9 @@ body {background-color: white;}
 
 		</div>
 
-<!-- 	</div> -->
-	<!-- Main Container ends -->
 	<!-- Footer starts -->
 	<footer> Copyright SWAAAD 2017. </footer>
 	<!-- Footer ends -->
-
-
 	<!-- Dashboard Wrapper ends -->
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.swaaad.controller;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,58 +55,64 @@ public class HorarioController {
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
 
+		//obtiene la lista de cursos por docente
+		List<Curso> listaCursos = objCursoService.listCursoByDocente(docente.getIdDocente());
+		//Guarda la lista de cursos enla variable listaCursos
+		model.addObject("listaCursos", listaCursos);
+		//se envia a la vista
+		model.setViewName("horarios");
 		return model;
 	}
 
 	@RequestMapping(value = "/saveHorario", method = RequestMethod.GET)
-	public ModelAndView saveHorario(@ModelAttribute Horario horario, HttpServletRequest request)
-			throws Exception {
-//		
+	public ModelAndView saveHorario(@ModelAttribute Horario horario, ModelAndView model) throws Exception {
+
 		logger.info("saveHorario");
-		HttpSession session = request.getSession(false);
-		int idCurso = (Integer) session.getAttribute("idCurso");
-		horario.setCurso(objCursoService.getCursoById(idCurso));
-		System.out.println("esta es el id del curso para el horario: " + idCurso);
-//		String horaInicio = "09:09:21";
-//		String horaFin  = "11:12:32";
-		
-		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-//		Date datei = format.parse(horaInicio);
-		
-//		DateTime dtInit = new DateTime(datei);
-//		DateTime dtEnd = new DateTime(horaFin);
-		
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+
+
 		@SuppressWarnings("deprecation")
-		Time dtInit= new Time(9, 50, 00);
+		Time dtInit = new Time(9, 50, 00);
 		@SuppressWarnings("deprecation")
-		Time dtEnd= new Time(11, 50, 00);
-		
-		Curso curso= new Curso();
+		Time dtEnd = new Time(11, 50, 00);
+		Curso curso = objCursoService.getCursoById(1);
 		
 		try {
 			if (horario.getIdHorario() == 0) {
-				objHorarioService.addHorario(horario);
+
 				horario.setDia("Lunes");
 				horario.setHoraInicio(dtInit);
 				horario.setHoraFin(dtEnd);
-				horario.setCurso(objCursoService.getCursoById(idCurso));
+				horario.setCurso(curso);
+				objHorarioService.addHorario(horario);
 				System.out.println("El registro fue exitoso");
-				
+
 			} else {
 				objHorarioService.updateHorario(horario);
 				System.out.println("El actualizacion fue exitoso");
 			}
 
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			e.getStackTrace();
 		}
-//		return new ModelAndView("redirect:/horario");
-		return null;
+		
+		model.setViewName("horario");
+		return model;
 	}
 
 	@RequestMapping(value = "/newHorario", method = RequestMethod.GET)
 	public ModelAndView newHorario(ModelAndView model) throws Exception {
-		
+
 		logger.info("newCurso");
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -122,34 +129,5 @@ public class HorarioController {
 		return model;
 	}
 
-	@RequestMapping(value = "/editHorario", method = RequestMethod.GET)
-	public ModelAndView editActividadPedagogica1(HttpServletRequest request) throws Exception {
 
-		int idHorario = Integer.parseInt(request.getParameter("id"));
-		// logger.info("editActividadPedagogica " + alumnoId);
-		Horario horario = null;
-		try {
-			horario = objHorarioService.getHorarioById(idHorario);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		ModelAndView model = new ModelAndView("form-actividadPedagogica");
-		// model.addObject("actividadPedagogica", actividadPedagogica);
-
-		return model;
-	}
-
-	@RequestMapping(value = "/deleteActividadPedagogica1", method = RequestMethod.GET)
-	public ModelAndView deleteActividadPedagogica1(HttpServletRequest request) throws Exception {
-		int idHorario = Integer.parseInt(request.getParameter("id"));
-		// logger.info("deleteactividadPedagogica " + actividadPedagogicaId);
-		try {
-			objHorarioService.deleteHorario(idHorario);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		//
-		return new ModelAndView("redirect:/actividades-pedagogicas");
-	}
 }

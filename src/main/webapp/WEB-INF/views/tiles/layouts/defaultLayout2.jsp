@@ -44,7 +44,7 @@
 <%-- <link href="<c:url value='/resources/template/css/datatables/fixedColumns.dataTables.min.css' />" rel="stylesheet" /> --%>
 
 
-
+<link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" />
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -90,6 +90,8 @@
 <!-- jquery datepicker JS -->
 <script src="<c:url value='/resources/js/datapicker/bootstrap-datepicker.js' />"></script>
 <script src="<c:url value='/resources/js/datapicker/es.js' />"></script>
+<script src="<c:url value='/resources/js/bootstrap-timepicker.min.js' />"></script>
+
 
 <script src="<c:url value='/resources/js/bootstrap-colorpicker.min.js' />"></script>
 
@@ -134,6 +136,11 @@
 		<div class="navbar-header">
 			<a class="btn btn-primary" href="${pageContext.request.contextPath}/cursos">
 				<i class="fa fa-desktop"></i> Cursos
+			</a>
+		</div>
+		<div class="navbar-header">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/horario">
+				<i class="fa fa-clock-o"></i> Horario
 			</a>
 		</div>
 		

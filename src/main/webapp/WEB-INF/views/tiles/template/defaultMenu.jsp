@@ -53,6 +53,8 @@
 				href="${pageContext.request.contextPath}/cursos" data-target="#demo"><i
 					class="fa fa-fw fa-table"></i> Cursos</a>
 				<ul id="demo">
+				
+				
 
 					<li><a href="${pageContext.request.contextPath}/alumnos">Alumnos</a>
 					</li>
