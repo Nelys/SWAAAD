@@ -24,6 +24,11 @@ public class PeriodoServiceImpl implements PeriodoService {
 	public List<Periodo> getAllPeriodo() throws Exception {
 		return objPeriodoDao.getAllPeriodo();
 	}
+	
+	@Override
+	public List<Periodo> getAllPeriodoByIdCurso(int idCurso) throws Exception {
+		return objPeriodoDao.getAllPeriodoByIdCurso(idCurso);
+	}
 
 	@Override
 	public Periodo getPeriodoById(int idPeriodo) throws Exception {

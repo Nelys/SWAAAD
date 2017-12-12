@@ -28,6 +28,14 @@ public interface PeriodoDao {
 	List<Periodo> getAllPeriodo() throws Exception;
 
 	/**
+	 * Recupera una lista de periodos de la base de datos
+	 * 
+	 * @return : Lista de Periodos
+	 * @throws Exception
+	 */
+	List<Periodo> getAllPeriodoByIdCurso(int idCurso) throws Exception;
+	
+	/**
 	 * Recupera un Periodo de la base de datos
 	 * 
 	 * @param idPeriodo

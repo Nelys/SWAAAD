@@ -12,6 +12,8 @@ public interface PeriodoService {
 	void addPeriodo(Periodo Periodo) throws Exception;
 
 	List<Periodo> getAllPeriodo() throws Exception;
+	
+	List<Periodo> getAllPeriodoByIdCurso(int idCurso) throws Exception;
 
 	Periodo getPeriodoById(int idPeriodo) throws Exception;
 

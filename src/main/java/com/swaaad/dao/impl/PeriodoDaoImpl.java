@@ -6,9 +6,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.swaaad.dao.PeriodoDao;
 import com.swaaad.dao.PeriodoDao;
+import com.swaaad.model.Nota;
 import com.swaaad.model.Periodo;
 
 /**
@@ -20,6 +23,8 @@ import com.swaaad.model.Periodo;
  */
 public class PeriodoDaoImpl implements PeriodoDao {
 
+	private static final Logger logger = LoggerFactory.getLogger(Nota.class);
+	
 	/* implementa la interface PeriodoDao */
 
 	/**
@@ -57,6 +62,28 @@ public class PeriodoDaoImpl implements PeriodoDao {
 		List<Periodo> listarPeriodos = sSession.createCriteria(Periodo.class).list();
 		sSession.close();
 		return listarPeriodos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Periodo> getAllPeriodoByIdCurso(int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+        List<Periodo> listarPeriodos =null;
+        try {
+            String queryNota = "SELECT p FROM Periodo p JOIN p.curso c WHERE c.idCurso = :id";
+            
+            Query query = sSession.createQuery(queryNota);
+            query.setInteger("id", idCurso);
+            
+            listarPeriodos = (List<Periodo>) query.list();
+
+        } catch (Exception e) {
+            logger.info("Metodo getAllPeriodoByIdCurso: ", e);
+        } finally {
+            sSession.flush();
+            sSession.close();
+        }
+        return listarPeriodos;
 	}
 
 	@Override

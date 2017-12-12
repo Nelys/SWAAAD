@@ -87,7 +87,7 @@ public class NotaDaoImpl implements NotaDao {
         List<Nota> listarNotas =null;
         try {
             //String queryNota = "SELECT e FROM Nota e JOIN e.curso c  WHERE c.idCurso = :id";
-            String queryNota = "SELECT n FROM Nota n JOIN n.evaluacion e JOIN e.curso c WHERE c.idCurso = :id";
+            String queryNota = "SELECT n FROM Nota n JOIN n.evaluacion e JOIN e.periodo p JOIN p.curso c WHERE c.idCurso = :id";
             //String queryNota = "SELECT a.idAlumno, a.apellidos, a.nombres, c.idCurso, c.nombreCurso, e.idEvaluacion, e.nombre, n.idNota, n.notaEvaluativa"
             //        + "FROM Nota n JOIN n.evaluacion e JOIN n.alumno a JOIN e.curso c  WHERE c.idCurso = :id ORDER BY e";
             

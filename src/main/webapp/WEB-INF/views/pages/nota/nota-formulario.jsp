@@ -94,8 +94,8 @@ h2 {
 							Fondo:</label>
 						<div class="col-sm-10">
 							<div id="divColorFondo" class="input-group colorpicker-component">
-								<input id="color" name="color" class="form-control"
-									value='<c:out value="${evaluacion.color}"></c:out>'
+								<input id="colorFondo" name="colorFondo" class="form-control"
+									value='<c:out value="${evaluacion.colorFondo}"></c:out>'
 									readonly="readonly" required> <span
 									class="input-group-addon"><i></i></span>
 							</div>

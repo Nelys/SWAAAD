@@ -23,6 +23,7 @@ import com.swaaad.model.Usuario;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.EvaluacionService;
 import com.swaaad.service.NotaService;
+import com.swaaad.service.PeriodoService;
 import com.swaaad.service.UsuarioService;
 
 
@@ -32,16 +33,19 @@ public class NotaController {
 	private static final Logger logger = LoggerFactory.getLogger(NotaController.class);
 	
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 	
 	@Autowired
-	NotaService objNotaService;
+	private NotaService objNotaService;
 	
 	@Autowired
-	AlumnosService objAlumnoService;
+	private AlumnosService objAlumnoService;
 	
 	@Autowired
-	EvaluacionService objEvaluacionService;
+	private EvaluacionService objEvaluacionService;
+	
+	@Autowired
+	private PeriodoService objPeriodoService;
 
 	@RequestMapping(value = { "listNota" }, method = RequestMethod.GET)
 	public ModelAndView notasPage(ModelAndView model, HttpServletRequest request) throws Exception {
@@ -86,6 +90,8 @@ public class NotaController {
 		model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
 		
 		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(idCurso));
+		
+		model.addObject("listPeriodos", objPeriodoService.getAllPeriodoByIdCurso(idCurso));
 		
 		String vista="listNota";
 		System.out.println("********************"+vista);

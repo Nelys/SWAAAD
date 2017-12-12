@@ -20,6 +20,22 @@
 		cursor: pointer;
 	}
 </style>
+<!-- 	<div class="container"> -->
+		<div class='row'>
+			<div class="col-sm-3">
+				<div class="input-group">
+					<span class="input-group-addon">Periodo</span>
+					<select class="form-control" id="cbxPeriodo">
+						<c:forEach var="listaPeriodo" items="${listPeriodos}">
+							<option value="">Seleccionar Periodo</option>
+							<option value="${listaPeriodo.curso.idCurso}" >${listaPeriodo.curso.idCurso}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+		</div>
+<!-- 	</div> -->
+		<br />
 
 		<!-- Resgistros de la tabla -->
 		<div class="row">
