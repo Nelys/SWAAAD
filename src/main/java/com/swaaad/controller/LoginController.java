@@ -50,7 +50,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/cursos**", method = RequestMethod.GET)
-	public ModelAndView cursosPage() {
+	public ModelAndView vireCursos() {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Spring Security Login Form - Database Authentication");
@@ -74,7 +74,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+	public ModelAndView viewLogin(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
@@ -93,7 +93,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
-	public ModelAndView registro(@RequestParam(value = "error", required = false) String error,
+	public ModelAndView viewRegistro(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
@@ -111,7 +111,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/confirmarRegistro", method = RequestMethod.GET)
-	public String confirmarRegistro(Model model, @RequestParam(value = "pa") String pa,
+	public String viewConfirmarRegistro(Model model, @RequestParam(value = "pa") String pa,
 			@RequestParam(value = "no") String no, @RequestParam(value = "em") String em,
 			@RequestParam(value = "i") String id) throws Exception {
 
@@ -174,7 +174,7 @@ public class LoginController {
 
 	// for 403 access denied page
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
-	public ModelAndView accesssDenied() {
+	public ModelAndView viewAccessDenied() {
 
 		ModelAndView model = new ModelAndView();
 
@@ -194,7 +194,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+	public String viewLogout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
@@ -206,17 +206,17 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/recupera", method = RequestMethod.GET)
-	public String recuperaPage() {
+	public String viewRecuperarCuenta() {
 		return "pages/personal/recupera-cuenta";
 	}
 
 	@RequestMapping(value = "/recuperaMensaje", method = RequestMethod.GET)
-	public String recuperaMensajePage() {
+	public String viewRecuperarMensaje() {
 		return "pages/personal/recupera-mensaje";
 	}
 
 	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
-	public ModelAndView cambiarPage(ModelAndView model) throws Exception {
+	public ModelAndView viewCambiarPassword(ModelAndView model) throws Exception {
 
 		try {
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
