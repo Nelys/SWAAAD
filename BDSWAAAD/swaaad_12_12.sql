@@ -69,7 +69,7 @@ CREATE TABLE `asistencia` (
   PRIMARY KEY (`ID_ASISTENCIA`),
   KEY `FK_CURSOALUMNO_ASISTENCIA` (`ID_CURSO_ALUMNO`),
   CONSTRAINT `FK_CURSOALUMNO_ASISTENCIA` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `asistencia` */
 
@@ -106,6 +106,7 @@ CREATE TABLE `curso` (
   `SECCION` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ANIO` int(4) DEFAULT NULL,
   `ID_DOCENTE` int(11) NOT NULL,
+  `ESTADO` bit(1) DEFAULT b'1',
   PRIMARY KEY (`ID_CURSO`),
   KEY `fk_CURSO_DOCENTE1` (`ID_DOCENTE`),
   CONSTRAINT `fk_CURSO_DOCENTE1` FOREIGN KEY (`ID_DOCENTE`) REFERENCES `docente` (`ID_DOCENTE`)
@@ -113,7 +114,7 @@ CREATE TABLE `curso` (
 
 /*Data for the table `curso` */
 
-insert  into `curso`(`ID_CURSO`,`NOMBRE_CURSO`,`INSTITUCION`,`GRADO`,`SECCION`,`ANIO`,`ID_DOCENTE`) values (1,'Matematica','Arequipa',5,'E',2017,1),(2,'Aritmetica','Mendel',3,'A',2017,1),(3,'Seguridad informática','San Martin',4,'F',2017,1);
+insert  into `curso`(`ID_CURSO`,`NOMBRE_CURSO`,`INSTITUCION`,`GRADO`,`SECCION`,`ANIO`,`ID_DOCENTE`,`ESTADO`) values (1,'Matematica','Arequipa',5,'E',2017,1,''),(2,'Aritmetica','Mendel',3,'A',2017,1,''),(3,'Seguridad informática','San Martin',4,'F',2017,1,'');
 
 /*Table structure for table `curso_alumno` */
 
