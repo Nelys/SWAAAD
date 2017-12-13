@@ -159,7 +159,9 @@ legend.scheduler-border {
 
 							<div class="form-group ">
 <!-- 								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Enviar</button> -->
-								<a href="recuperaMensaje" class="btn btn-lg btn-primary">Enviar</a>
+								<a href="login" class="btn btn-sm btn-danger">Cancelar</a>
+								<a href="recuperaMensaje" class="btn btn-sm btn-success text-right">Enviar</a>
+								
 							</div>
 						</form>
 					</div>
@@ -172,7 +174,6 @@ legend.scheduler-border {
 			$(".nav-tabs a").click(function() {
 				$(this).tab('show');
 			});
-
 		});
 	</script>
 </body>

@@ -218,20 +218,26 @@ public class LoginController {
 	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
 	public ModelAndView cambiarPage(ModelAndView model) throws Exception {
 
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = null;
+		try {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			UserDetails userDetails = null;
 
-		if (principal instanceof UserDetails) {
-			userDetails = (UserDetails) principal;
+			if (principal instanceof UserDetails) {
+				userDetails = (UserDetails) principal;
+			}
+			Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+			Docente docente2 = usuario.getDocentes().get(0);
+			String userName = docente2.getApellidos() + " ," + docente2.getNombre();
+			model.addObject("user", userName);
+
+			model.setViewName("cambiar");
+
+			return model;
+		} catch (Exception e) {
+			model.setViewName("redirect:/");
+//			return "redirect:/";
+			return model;
 		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
-		Docente docente2 = usuario.getDocentes().get(0);
-		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
-		model.addObject("user", userName);
-
-		model.setViewName("cambiar");
-
-		return model;
 	}
 
 	@RequestMapping(value = "/cambiarPassword",  method = RequestMethod.POST)
