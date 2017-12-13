@@ -21,6 +21,8 @@ public class Curso implements Serializable {
 
 	private int anio;
 
+	private byte estado;
+
 	private int grado;
 
 	private String institucion;
@@ -68,6 +70,14 @@ public class Curso implements Serializable {
 
 	public void setAnio(int anio) {
 		this.anio = anio;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
 	}
 
 	public int getGrado() {
