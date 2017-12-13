@@ -81,7 +81,7 @@ public class EvaluacionDaoImpl implements EvaluacionDao {
         sSession = sessionFactory.openSession();
         List<Evaluacion> listarEvaluaciones =null;
         try {
-            String queryEvaluacion = "SELECT e FROM Evaluacion e JOIN e.curso c  WHERE c.idCurso = :id";
+            String queryEvaluacion = "SELECT e FROM Evaluacion e JOIN e.periodo p JOIN p.curso c  WHERE c.idCurso = :id";
             
             Query query = sSession.createQuery(queryEvaluacion);
             query.setInteger("id", idCurso);

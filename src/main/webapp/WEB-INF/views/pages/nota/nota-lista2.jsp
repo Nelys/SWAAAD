@@ -25,10 +25,10 @@
 			<div class="col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon">Periodo</span>
-					<select class="form-control" id="cbxPeriodo">
+					<select class="form-control" id="cbxPeriodo"  onchange="ChangecatList()" >
+						<option value="0">Seleccionar Periodo</option>
 						<c:forEach var="listaPeriodo" items="${listPeriodos}">
-							<option value="">Seleccionar Periodo</option>
-							<option value="${listaPeriodo.curso.idCurso}" >${listaPeriodo.curso.idCurso}</option>
+							<option value="${listaPeriodo.idPeriodo}" >${listaPeriodo.idPeriodo}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -38,7 +38,7 @@
 		<br />
 
 		<!-- Resgistros de la tabla -->
-		<div class="row">
+		<div id="divNotas" class="row">
 			<div class="col-lg-12">
 
 				<div id="parent" class="table-responsive">
@@ -57,7 +57,7 @@
 								<c:forEach var="lista" items="${listEvaluaciones}">
 
 									<th id="${lista.idEvaluacion}" class="tdEvaluacion"
-										style="background-color:${lista.color};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;"><div
+										style="background-color:${lista.colorFondo};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;"><div
 										>${lista.nombre}</div></th>
 								</c:forEach>
 							</tr>
@@ -71,7 +71,7 @@
 									<c:forEach var="listaEvaluacion" items="${listEvaluaciones}">
 										<td
 											id="idAlumno_${listaAlumno.idAlumno}-idEvaluacion_${listaEvaluacion.idEvaluacion}"
-											style="background-color:${listaEvaluacion.color};color:${listaEvaluacion.colorTexto};"
+											style="background-color:${listaEvaluacion.colorFondo};color:${listaEvaluacion.colorTexto};"
 											class="tdNota" data-toggle="modal"
 											data-target=".bs-example-modal-sm">00</td>
 									</c:forEach>
@@ -148,11 +148,33 @@
 				downClass: 'danger'
 			});
 		});
+		
+		function ChangecatList() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/selectPeriodo',
+				data: { idPeriodo:  $( '#cbxPeriodo' ).val()
+						},
+				
+				success: function(result){
+					location.reload();
+				},
+				error: function(x,e){
+					toastr.error('Debe ingresar una nota', 'Error');
+				} 
+			});
 	
+			if($('#cbxPeriodo').val()==0){
+				$("#divNotas").hide();
+			} else {
+				$("#divNotas").show();
+			}
+		}
 		/**
 		 * Funciones de la pagina cargada
 		 */
 		$(document).ready(function() {
+			
+			
 			
 			$('#fixTable').DataTable( {
 				scrollY:        "800px",
@@ -328,7 +350,7 @@
 						//$( '#result2' ).html(result);
 						location.reload();
 					},
-					error: function(x,e){
+					error: function(x,e){	
 						toastr.error('Debe ingresar una nota', 'Error');
 // 					    alert("error occur");
 					} 
@@ -353,6 +375,8 @@
 				});
 			});
 			
+			$('#cbxPeriodo').val(${idPeriodo});
+			ChangecatList();
 		});
 
     </script>

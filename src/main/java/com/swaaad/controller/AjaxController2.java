@@ -29,16 +29,16 @@ import com.swaaad.service.NotaService;
 public class AjaxController2 {
 
 	@Autowired
-	AlumnosService objAlumno;
+	private AlumnosService objAlumno;
 
 	@Autowired
-	NotaService objNotaService;
+	private NotaService objNotaService;
 
 	@Autowired
-	AlumnosService objAlumnoService;
+	private AlumnosService objAlumnoService;
 
 	@Autowired
-	EvaluacionService objEvaluacionService;
+	private EvaluacionService objEvaluacionService;
 
 	@RequestMapping(value = "/demo1", method = RequestMethod.GET)
 	@ResponseBody

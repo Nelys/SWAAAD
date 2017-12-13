@@ -230,7 +230,7 @@ h2 {
 														<button
 															id="btnIdEvaluacion_${listaEvaluacion.idEvaluacion}"
 															class="btn btn-default"
-															style="background-color:${listaEvaluacion.color}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;">
+															style="background-color:${listaEvaluacion.colorFondo}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;">
 															<b>${listaEvaluacion.nombre}</b><span
 																style="font-size: 12px;">:
 																${listaEvaluacion.descripcion}</span>

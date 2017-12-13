@@ -49,17 +49,11 @@ public class EvaluacionServiceImpl implements EvaluacionService {
         
         Curso curso=objCurso.getCursoById(idCurso);
 //        evaluacion.setCurso(curso); 
-    	
-        
-        Periodo periodo = new Periodo();
-        periodo.setCurso(curso);
-        evaluacion.setPeriodo(periodo);
-        
         
 //      evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso")));
         
         objEvaluacionDao.addEvaluacion(evaluacion);
-
+        
         this.obtenerFormula(evaluacion);
     }
 

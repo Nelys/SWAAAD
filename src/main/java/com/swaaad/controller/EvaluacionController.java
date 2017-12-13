@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import com.swaaad.model.Docente;
 import com.swaaad.model.Evaluacion;
 import com.swaaad.model.Usuario;
 import com.swaaad.service.EvaluacionService;
+import com.swaaad.service.PeriodoService;
 import com.swaaad.service.UsuarioService;
 
 @Controller
@@ -27,10 +29,13 @@ public class EvaluacionController {
     private static final Logger logger = LoggerFactory.getLogger(NotaController.class);
 
     @Autowired
-    EvaluacionService objEvaluacionService;
+    private EvaluacionService objEvaluacionService;
 	
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
+	
+	@Autowired
+	private PeriodoService objPeriodoService;
 	
     @RequestMapping(value = "/newEvaluacion", method = RequestMethod.GET)
     public ModelAndView newEvaluacion(ModelAndView model, HttpServletRequest request) throws Exception {
@@ -64,6 +69,9 @@ public class EvaluacionController {
 
         HttpSession session = request.getSession(false);
         int idCurso = (Integer) session.getAttribute("idCurso");
+        int idPeriodo = (Integer) session.getAttribute("idPeriodo");
+        
+        evaluacion.setPeriodo(objPeriodoService.getPeriodoById(idPeriodo));
         
         try {
             if (evaluacion.getIdEvaluacion() == 0) {
@@ -73,6 +81,7 @@ public class EvaluacionController {
             }
 
         } catch (Exception e) {
+        	System.out.println(e);
             e.getStackTrace();
         }
         return new ModelAndView("redirect:/listNota");

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Docente;
@@ -52,7 +53,11 @@ public class NotaController {
 
 		HttpSession session = request.getSession(false);
         int idCurso = (Integer) session.getAttribute("idCurso");
-		
+        int idPeriodo = 0;
+        if(session.getAttribute("idPeriodo")!=null){
+        	idPeriodo = (Integer) session.getAttribute("idPeriodo");
+        }
+        
 		logger.info("notasPage");
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -82,6 +87,8 @@ public class NotaController {
 		Evaluacion evaluacion = new Evaluacion();
 		
 		model.addObject("nota", nota);
+		
+		model.addObject("idPeriodo", idPeriodo);
 		
         model.addObject("evaluacion", evaluacion);
 
@@ -179,5 +186,16 @@ public class NotaController {
 		 }
 		//
 		return new ModelAndView("redirect:/notas");
+	}
+	
+
+	@RequestMapping(value = "/selectPeriodo", method = RequestMethod.GET)
+	public void selectPeriodo(HttpServletRequest request, HttpSession session, @RequestParam("idPeriodo") int idPeriodo)
+			throws Exception {
+
+		logger.info("selectPeriodo");
+		
+		session = request.getSession();
+		session.setAttribute("idPeriodo", idPeriodo);
 	}
 }
