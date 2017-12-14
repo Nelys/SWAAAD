@@ -12,4 +12,7 @@ public interface UsuarioService {
 	void habilitarUsuario(Usuario usuario) throws Exception;
 
 	void CambiarPassword(Usuario Usuario) throws Exception;
+	Boolean correoRecuperacion(Usuario usuario) throws Exception;
+	
+	Usuario getUsuarioByEmail(String email) throws Exception;
 }

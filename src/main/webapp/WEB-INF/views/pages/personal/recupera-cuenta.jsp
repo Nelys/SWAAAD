@@ -130,10 +130,11 @@ body {
 	background: #2daee1;
 	border-color: #2882e7;
 }
+
 legend.scheduler-border {
-    width:inherit; /* Or auto */
-    padding:0 10px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
+	width: inherit; /* Or auto */
+	padding: 0 10px; /* To give a bit of padding on the left and right */
+	border-bottom: none;
 }
 </style>
 </head>
@@ -149,19 +150,17 @@ legend.scheduler-border {
 							<i class="glyphicon glyphicon-log-in"></i> Correo de Recuperacion
 						</h2>
 						<!-- Formulario de Acceso -->
-						<form name='loginForm' method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+						<form name='recuperar' action="recuperaMensaje" method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
 
 							<!-- usuario -->
 							<div class="form-group ">
-								<label for="login" class="sr-only">Correo de Recuperacion</label> <input type="text" class="form-control" name="username" id="username" placeholder="Email"
-									tabindex="1" value="" />
+								<label for="login" class="sr-only">Correo de Recuperacion</label> <input type="text" class="form-control" name="email" id="email"
+									placeholder="Email" tabindex="1" value="" />
 							</div>
 
 							<div class="form-group ">
-<!-- 								<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Enviar</button> -->
 								<a href="login" class="btn btn-sm btn-danger">Cancelar</a>
-								<a href="recuperaMensaje" class="btn btn-sm btn-success text-right">Enviar</a>
-								
+								<input type="submit" class="btn btn-sm btn-success " value="Enviar">
 							</div>
 						</form>
 					</div>
@@ -170,11 +169,11 @@ legend.scheduler-border {
 		</article>
 	</div>
 	<script>
-		$(document).ready(function() {
-			$(".nav-tabs a").click(function() {
-				$(this).tab('show');
-			});
-		});
-	</script>
+	$(document).ready(function() {
+	    $(".nav-tabs a").click(function() {
+		$(this).tab('show');
+	    });
+	});
+    </script>
 </body>
 </html>

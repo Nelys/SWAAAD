@@ -210,9 +210,63 @@ public class LoginController {
 		return "pages/personal/recupera-cuenta";
 	}
 
-	@RequestMapping(value = "/recuperaMensaje", method = RequestMethod.GET)
-	public String viewRecuperarMensaje() {
-		return "pages/personal/recupera-mensaje";
+	@RequestMapping(value = "/recuperarCuenta", method = RequestMethod.GET)
+	public String viewRecuperarCuentaForm(Model model, @RequestParam(value = "pa") String pa,
+			@RequestParam(value = "no") String no, @RequestParam(value = "em") String em,
+			@RequestParam(value = "i") String id) {
+		String mensaje = "";
+		try {
+			Usuario usuario = objUsuarioServiceImpl.getUsuarioById(Integer.valueOf(id));
+
+			System.out.println("el usuario no esta registrado");
+			BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+			Docente docente = usuario.getDocentes().get(0);
+
+			String pass = docente.getUsuario().getPassword();
+
+			if (pe.matches(docente.getNombre(), no) && pass.equals(pa)
+					&& pe.matches(docente.getEmail() + docente.getApellidos(), em)) {
+
+				mensaje = "Felicitaciones su cuenta fue habilitada";
+//				usuario.setEnabled((byte) 1);
+//				objUsuarioServiceImpl.habilitarUsuario(usuario);
+			} else {
+				mensaje = "Lo sentimos no se puede procesar la informacion";
+
+			}
+
+		} catch (Exception e) {
+			mensaje = "Problemas al procesar informacion";
+
+		}
+
+		model.addAttribute("mensaje", mensaje);
+		return "pages/personal/confirmar-password";
+
+	}
+
+	@RequestMapping(value = "/recuperaMensaje", method = RequestMethod.POST)
+	public ModelAndView viewRecuperarMensaje(@ModelAttribute("email") String email) throws Exception {
+		ModelAndView model = new ModelAndView();
+
+		String mensaje = "";
+		String correo = email;
+
+		Usuario usuario = objUsuarioServiceImpl.getUsuarioByEmail(correo);
+
+		if (usuario != null) {// enviar correo
+
+			// metodo q envia el correo
+			mensaje = "Se envio un mensaje a su correo, con el enlace para reestablecer la contraseña";
+			objUsuarioServiceImpl.correoRecuperacion(usuario);
+		} else {// muesta mensaje de correo no registrado
+
+			mensaje = "El correo no se encuentra registrado.";
+		}
+
+		model.addObject("mensaje", mensaje);
+		model.setViewName("pages/personal/recupera-mensaje");
+		return model;
 	}
 
 	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
@@ -235,14 +289,14 @@ public class LoginController {
 			return model;
 		} catch (Exception e) {
 			model.setViewName("redirect:/");
-//			return "redirect:/";
+			// return "redirect:/";
 			return model;
 		}
 	}
 
-	@RequestMapping(value = "/cambiarPassword",  method = RequestMethod.POST)
+	@RequestMapping(value = "/cambiarPassword", method = RequestMethod.POST)
 	@ResponseBody
-//	@ModelAttribute AsistenciaFechaDTO asistenciaFechaDTO
+	// @ModelAttribute AsistenciaFechaDTO asistenciaFechaDTO
 	public ResponseDTO cambiarPassword(@ModelAttribute CambiarContrasenaDTO cambiarContrasenaDTO) throws Exception {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -257,7 +311,7 @@ public class LoginController {
 
 		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
 
-		String password_actual =cambiarContrasenaDTO.getPassword();
+		String password_actual = cambiarContrasenaDTO.getPassword();
 
 		String password_nuevo = cambiarContrasenaDTO.getNuevoPassword();
 
@@ -272,16 +326,13 @@ public class LoginController {
 			response.setMessage("Se cambio la contraseña exitosamente");
 			response.setResponse(true);
 			System.out.println("La contraseña ha sido cambiado exitosamente");
-			
+
 		} else {
 			// mostrar error no es la contraseña actual
 			System.out.println("la contraseña actual es incorrecta");
 			response.setMessage("la contraseña actual es incorrecta");
 			response.setResponse(false);
 		}
-
-	
-		
 
 		return response;
 	}

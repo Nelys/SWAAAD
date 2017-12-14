@@ -14,6 +14,7 @@ public interface UsuarioDao {
 	
 	void CambiarPassword(Usuario usuario ) throws Exception;
 	
+
 //	Usuario getUsuario
 }
  

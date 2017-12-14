@@ -130,10 +130,11 @@ body {
 	background: #2daee1;
 	border-color: #2882e7;
 }
+
 legend.scheduler-border {
-    width:inherit; /* Or auto */
-    padding:0 10px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
+	width: inherit; /* Or auto */
+	padding: 0 10px; /* To give a bit of padding on the left and right */
+	border-bottom: none;
 }
 </style>
 </head>
@@ -146,29 +147,37 @@ legend.scheduler-border {
 				<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
 					<div id="login-access" class="tab-pane fade active in">
 						<h2>
-							<i class="glyphicon glyphicon-log-in"></i> Mensaje
+							<i class="glyphicon glyphicon-log-in"></i> Ingrese Contraseña
 						</h2>
 						<!-- Formulario de Acceso -->
-						<div class="form-group ">
-							<p>${mensaje}.</p>
-						</div>
-						<div class="form-group ">
-<!-- 							<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-primary">Regresar</button> -->
-							<a href="recupera" class="btn btn-sm btn-primary">Regresar</a>
-						</div>
-					</div>
+						<form name='comfirmar-mensaje' action="recuperaMensaje" method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
 
+							<!-- usuario -->
+							<div class="form-group ">
+								<label for="login" class="sr-only">Constraseña</label> <input type="text" class="form-control" name="password" id="password"
+									placeholder="Constraseña" tabindex="1" value="" />
+							</div>
+								<div class="form-group ">
+								<label for="login" class="sr-only">Confirmar contraseña</label> <input type="text" class="form-control" name="password2" id="password2"
+									placeholder="Confirmar contraseña" tabindex="2" value="" />
+							</div>
+
+							<div class="form-group ">
+								<a href="login" class="btn btn-sm btn-danger">Cancelar</a>
+								<input type="submit" class="btn btn-sm btn-success " value="Enviar">
+							</div>
+						</form>
+					</div>
 				</div>
 			</section>
 		</article>
 	</div>
 	<script>
-		$(document).ready(function() {
-			$(".nav-tabs a").click(function() {
-				$(this).tab('show');
-			});
-
-		});
-	</script>
+	$(document).ready(function() {
+	    $(".nav-tabs a").click(function() {
+		$(this).tab('show');
+	    });
+	});
+    </script>
 </body>
 </html>
