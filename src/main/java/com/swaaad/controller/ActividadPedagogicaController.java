@@ -205,11 +205,14 @@ public class ActividadPedagogicaController {
 
 	@RequestMapping(value = "/getActividades/{id_acurso}", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseDTO getActividades(@PathVariable("id_acurso") int idCurso) throws Exception {
-
+	public ResponseDTO getActividades(@PathVariable("id_acurso") int idCurso,
+			HttpServletRequest request) throws Exception {
+		HttpSession sess;
+		sess = request.getSession(false);
+		int a = (Integer) sess.getAttribute("idCurso");
 		ResponseDTO responseDTO = new ResponseDTO();
 
-		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getAllActividadByCurso(idCurso);
+		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getAllActividadByCurso(a);
 
 		List<ActividadPedagogicaDTO> lista = new ArrayList<ActividadPedagogicaDTO>();
 
