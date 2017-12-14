@@ -92,6 +92,7 @@ public class LoginController {
 
 	}
 
+	//vista q muestra el formulario de registro
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
 	public ModelAndView viewRegistro(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
@@ -110,6 +111,7 @@ public class LoginController {
 
 	}
 
+//	vista q verifica la url y habilita el usuario
 	@RequestMapping(value = "/confirmarRegistro", method = RequestMethod.GET)
 	public String viewConfirmarRegistro(Model model, @RequestParam(value = "pa") String pa,
 			@RequestParam(value = "no") String no, @RequestParam(value = "em") String em,
@@ -150,6 +152,7 @@ public class LoginController {
 
 	}
 
+	//metodo q registra al usuario y  envia el correo
 	@RequestMapping(value = "/registrarUsuario", method = RequestMethod.POST) // POST,produces
 	@ResponseBody
 	public ResponseDTO registrarUsuario(@ModelAttribute RegistroDTO registroDTO) throws Exception {
@@ -205,15 +208,19 @@ public class LoginController {
 							// login screen again.
 	}
 
+	// vista que muestra el formulario para indicar el correo a recuperar
 	@RequestMapping(value = "/recupera", method = RequestMethod.GET)
 	public String viewRecuperarCuenta() {
 		return "pages/personal/recupera-cuenta";
 	}
 
+	// vista que valida la url y muestra el formulario para recuperacion de contraseña
 	@RequestMapping(value = "/recuperarCuenta", method = RequestMethod.GET)
-	public String viewRecuperarCuentaForm(Model model, @RequestParam(value = "pa") String pa,
+	public ModelAndView viewRecuperarCuentaForm(@RequestParam(value = "pa") String pa,
 			@RequestParam(value = "no") String no, @RequestParam(value = "em") String em,
 			@RequestParam(value = "i") String id) {
+		ModelAndView model = new ModelAndView();
+
 		String mensaje = "";
 		try {
 			Usuario usuario = objUsuarioServiceImpl.getUsuarioById(Integer.valueOf(id));
@@ -228,23 +235,25 @@ public class LoginController {
 					&& pe.matches(docente.getEmail() + docente.getApellidos(), em)) {
 
 				mensaje = "Felicitaciones su cuenta fue habilitada";
-//				usuario.setEnabled((byte) 1);
-//				objUsuarioServiceImpl.habilitarUsuario(usuario);
+				model.addObject("mensaje", mensaje);
+				model.addObject("id_usuario", usuario.getIdUsuario());
+				model.setViewName("pages/personal/confirmar-password");
 			} else {
-				mensaje = "Lo sentimos no se puede procesar la informacion";
-
+				mensaje = "Problemas al leer la ruta parece que no se encuentra disponible";
+				model.addObject("mensaje", mensaje);
+				model.setViewName("pages/personal/recupera-mensaje");
 			}
 
 		} catch (Exception e) {
-			mensaje = "Problemas al procesar informacion";
-
+			mensaje = "Problemas al leer la ruta parece que no se encuentra disponible";
+			model.addObject("mensaje", mensaje);
+			model.setViewName("pages/personal/recupera-mensaje");
 		}
 
-		model.addAttribute("mensaje", mensaje);
-		return "pages/personal/confirmar-password";
-
+		return model;
 	}
 
+	// vista q enviar el correo y muestra mensaje
 	@RequestMapping(value = "/recuperaMensaje", method = RequestMethod.POST)
 	public ModelAndView viewRecuperarMensaje(@ModelAttribute("email") String email) throws Exception {
 		ModelAndView model = new ModelAndView();
@@ -269,6 +278,39 @@ public class LoginController {
 		return model;
 	}
 
+	// vista que recibe las contraseñas y cambiar password mostrar mensaje
+	@RequestMapping(value = "/passwordRecuperar", method = RequestMethod.POST)
+	public ModelAndView viewPasswordRecuperar(@ModelAttribute("usuario") int idUsuario,@ModelAttribute("password") String password) throws Exception {
+		ModelAndView model = new ModelAndView();
+
+		String mensaje = "";
+
+
+		Usuario usuario = objUsuarioServiceImpl.getUsuarioById(idUsuario);
+		if (usuario != null) {// enviar correo
+
+			// metodo q envia el correo
+			mensaje = "Se cambio la contraseña corrrectamente";
+			BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+			
+			String pass =pe.encode(password);
+			usuario.setPassword(pass);
+			
+			objUsuarioServiceImpl.updateUsuario(usuario);
+			
+		} else {// muesta mensaje de correo no registrado
+
+			mensaje = "error no se pudo cambiar la contraseña.";
+		}
+		model.addObject("mensaje", mensaje);
+//		model.addObject("mensaje", idUsuario+" - "+password);
+
+		model.setViewName("pages/personal/recupera-mensaje");
+		return model;
+	}
+	
+	
+	// vista que muestra formulario para q usuario cambie de contraseña
 	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
 	public ModelAndView viewCambiarPassword(ModelAndView model) throws Exception {
 
@@ -294,6 +336,7 @@ public class LoginController {
 		}
 	}
 
+	// metodo que cambia la contraseña de usuario
 	@RequestMapping(value = "/cambiarPassword", method = RequestMethod.POST)
 	@ResponseBody
 	// @ModelAttribute AsistenciaFechaDTO asistenciaFechaDTO
@@ -337,8 +380,5 @@ public class LoginController {
 		return response;
 	}
 
-	// @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-	// public String perfilPage(ModelMap model) {
-	// return "perfil";
-	// }
+
 }

@@ -159,7 +159,7 @@ legend.scheduler-border {
 							</div>
 
 							<div class="form-group ">
-								<a href="login" class="btn btn-sm btn-danger">Cancelar</a>
+								<a href="login" class="btn btn-sm btn-danger">Regresar</a>
 								<input type="submit" class="btn btn-sm btn-success " value="Enviar">
 							</div>
 						</form>

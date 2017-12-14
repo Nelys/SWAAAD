@@ -312,4 +312,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	}
 
+	@Override
+	public void updateUsuario(Usuario usuario) throws Exception {
+		// TODO Auto-generated method stub
+		objUsuarioDao.updateUsuario(usuario);
+	}
+
 }

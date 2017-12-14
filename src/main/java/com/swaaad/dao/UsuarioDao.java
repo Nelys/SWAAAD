@@ -1,5 +1,6 @@
 package com.swaaad.dao;
 
+import com.swaaad.model.Nota;
 import com.swaaad.model.Usuario;
 
 public interface UsuarioDao {
@@ -14,7 +15,7 @@ public interface UsuarioDao {
 	
 	void CambiarPassword(Usuario usuario ) throws Exception;
 	
-
+	void updateUsuario(Usuario usuario) throws Exception;
 //	Usuario getUsuario
 }
  

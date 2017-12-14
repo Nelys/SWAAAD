@@ -130,4 +130,26 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 	}
 
+	@Override
+	public void updateUsuario(Usuario usuario) throws Exception {
+		sSession = sessionFactory.openSession();
+		try {
+			tTransaction = sSession.beginTransaction();
+			sSession.update(usuario);
+			tTransaction.commit();
+			logger.info("Se actualizo");
+		} catch (RuntimeException e) {
+
+			if (tTransaction != null) {// verifica hubosi un cambio en caso
+				tTransaction.rollback();// desase e
+
+			}
+			logger.info("Metodo updateUsuario: ", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		
+	}
+
 }

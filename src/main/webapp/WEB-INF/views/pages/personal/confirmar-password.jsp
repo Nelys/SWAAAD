@@ -150,20 +150,22 @@ legend.scheduler-border {
 							<i class="glyphicon glyphicon-log-in"></i> Ingrese Contraseña
 						</h2>
 						<!-- Formulario de Acceso -->
-						<form name='comfirmar-mensaje' action="recuperaMensaje" method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+						<form name='formulario' id='formulario' action="passwordRecuperar" method="post" accept-charset="utf-8" autocomplete="off" role="form"
+							class="form-horizontal">
 
+							<input type="text" value="${id_usuario}" name="usuario" id="usuario">
 							<!-- usuario -->
 							<div class="form-group ">
-								<label for="login" class="sr-only">Constraseña</label> <input type="text" class="form-control" name="password" id="password"
+								<label for="login" class="sr-only">Constraseña</label> <input type="password" class="form-control" name="password" id="password"
 									placeholder="Constraseña" tabindex="1" value="" />
 							</div>
-								<div class="form-group ">
-								<label for="login" class="sr-only">Confirmar contraseña</label> <input type="text" class="form-control" name="password2" id="password2"
+							<div class="form-group ">
+								<label for="login" class="sr-only">Confirmar contraseña</label> <input type="password" class="form-control" name="password2" id="password2"
 									placeholder="Confirmar contraseña" tabindex="2" value="" />
 							</div>
 
 							<div class="form-group ">
-								<a href="login" class="btn btn-sm btn-danger">Cancelar</a>
+								<a href="login" class="btn btn-sm btn-danger">Regresar</a> 
 								<input type="submit" class="btn btn-sm btn-success " value="Enviar">
 							</div>
 						</form>
@@ -174,9 +176,80 @@ legend.scheduler-border {
 	</div>
 	<script>
 	$(document).ready(function() {
-	    $(".nav-tabs a").click(function() {
-		$(this).tab('show');
-	    });
+	    $('#formulario')
+		.bootstrapValidator(
+		{
+			message: 'Este valor es invalido',
+			feedbackIcons: {
+				valid: 'fa fa-check',
+				invalid: 'fa fa-times',
+				validating: 'fa fa-refresh'
+			},
+			fields: {
+				password: {
+					validators: {
+						notEmpty: {
+							message: 'El password es obligatorio y no puede estar vacia'
+						},
+						identical: {
+							field: 'password2',
+							message: 'El password y su confirmacion no son iguales'
+						},
+						different: {
+							field: 'username',
+							message: 'El password no puede ser igual que el nombre de usuario'
+						},
+						callback: {
+							callback: function(value, validator) {
+								// Check the password strength
+								if (value.length < 6) {
+									return {
+										valid: false,
+										message: 'El password debe tener mas de 6 caracteres'
+									}
+								}
+	
+								if (value === value.toLowerCase()) {
+									return {
+										valid: false,
+										message: 'El password debe contener al menos un caracter en mayÃºscula'
+									}
+								}
+								if (value === value.toUpperCase()) {
+									return {
+										valid: false,
+										message: 'El password debe contener al menos un caracter en minuscula'
+									}
+								}
+								if (value.search(/[0-9]/) < 0) {
+									return {
+										valid: false,
+										message: 'El password debe contener al menos un digito'
+									}
+								}
+	
+								return true;
+							}
+						}
+					}
+				},
+				password2: {
+					validators: {
+						notEmpty: {
+							message: 'El password de confirmacion es obligatoria y no puede estar vacia'
+						},
+						identical: {
+							field: 'password',
+							message: 'El password y su confirmacion no son iguales'
+						},
+						different: {
+							field: 'username',
+							message: 'El password no puede ser igual que el nombre de usuario'
+						}
+					}
+				}
+			}
+		});
 	});
     </script>
 </body>

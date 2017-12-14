@@ -1,6 +1,7 @@
 package com.swaaad.service;
 
 import com.swaaad.dto.RegistroDTO;
+import com.swaaad.model.Nota;
 import com.swaaad.model.Usuario;
 
 public interface UsuarioService {
@@ -15,4 +16,6 @@ public interface UsuarioService {
 	Boolean correoRecuperacion(Usuario usuario) throws Exception;
 	
 	Usuario getUsuarioByEmail(String email) throws Exception;
+	
+	  void updateUsuario(Usuario usuario) throws Exception;
 }
