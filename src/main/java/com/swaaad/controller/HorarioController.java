@@ -69,7 +69,7 @@ public class HorarioController {
 
 	@RequestMapping(value = "/saveHorario", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseDTO saveHorario(@ModelAttribute HorarioDTO horario) throws Exception {
+	public ResponseDTO saveHorario(@ModelAttribute HorarioDTO horarioDTO) throws Exception {
 
 		logger.info("saveHorario");
 
@@ -83,60 +83,98 @@ public class HorarioController {
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 
 		@SuppressWarnings("deprecation")
-		Time dtInit = new Time(horario.getHour()[0], horario.getMinute()[0], 00);
+		Time dtInit = new Time(horarioDTO.getHour()[0], horarioDTO.getMinute()[0], 00);
 		@SuppressWarnings("deprecation")
-		Time dtEnd = new Time(horario.getHour()[1], horario.getMinute()[1], 00);
-		Curso curso = objCursoService.getCursoById(horario.getCbxCursos());
+		Time dtEnd = new Time(horarioDTO.getHour()[1], horarioDTO.getMinute()[1], 00);
+		Curso curso = objCursoService.getCursoById(horarioDTO.getCbxCursos());
+		
 
-		if (horario.getCheckbox1() != null) {
-			// horario.setDia("Lunes");
-			// horario.setHoraInicio(dtInit);
-			// horario.setHoraFin(dtEnd);
-			// horario.setCurso(curso);
-//			objHorarioService.addHorario(horario);
-			System.out.println("El registro fue exitoso");
+		if (horarioDTO.getCheckbox1() != null) {
+			Horario horario=new Horario();
+			horario.setDia("1");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
 		}
-		if (horario.getCheckbox2() != null) {
-
-		}
-		if (horario.getCheckbox3() != null) {
-
-		}
-		if (horario.getCheckbox4() != null) {
-
-		}
-		if (horario.getCheckbox5() != null) {
-
-		}
-		if (horario.getCheckbox6() != null) {
+		
+		if (horarioDTO.getCheckbox2() != null) {
+			Horario horario=new Horario();
+			horario.setDia("2");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
 
 		}
-		if (horario.getCheckbox7() != null) {
+		if (horarioDTO.getCheckbox3() != null) {
+			Horario horario=new Horario();
+			horario.setDia("3");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
 
 		}
-//		try {
-//			if (horario.getIdHorario() == 0) {
-//				// horario.setDia("Lunes");
-//				// horario.setHoraInicio(dtInit);
-//				// horario.setHoraFin(dtEnd);
-//				// horario.setCurso(curso);
-//				objHorarioService.addHorario(horario);
-//				System.out.println("El registro fue exitoso");
-//
-//			} else {
-//				objHorarioService.updateHorario(horario);
-//				System.out.println("El actualizacion fue exitoso");
-//			}
-//
-//		} catch (
-//
-//		Exception e) {
-//			e.getStackTrace();
-//		}
+		if (horarioDTO.getCheckbox4() != null) {
+			Horario horario=new Horario();
+			horario.setDia("4");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
 
-		System.out.println(horario);
+		}
+		if (horarioDTO.getCheckbox5() != null) {
+			Horario horario=new Horario();
+			horario.setDia("5");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
+
+		}
+		if (horarioDTO.getCheckbox6() != null) {
+			Horario horario=new Horario();
+			horario.setDia("6");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
+
+		}
+		if (horarioDTO.getCheckbox7() != null) {
+			Horario horario=new Horario();
+			horario.setDia("7");
+			horario.setHoraInicio(dtInit);
+			horario.setHoraFin(dtEnd);
+			horario.setCurso(curso);
+			 objHorarioService.addHorario(horario);
+
+		}
+		// try {
+		// if (horario.getIdHorario() == 0) {
+		// // horario.setDia("Lunes");
+		// // horario.setHoraInicio(dtInit);
+		// // horario.setHoraFin(dtEnd);
+		// // horario.setCurso(curso);
+		// objHorarioService.addHorario(horario);
+		// System.out.println("El registro fue exitoso");
+		//
+		// } else {
+		// objHorarioService.updateHorario(horario);
+		// System.out.println("El actualizacion fue exitoso");
+		// }
+		//
+		// } catch (
+		//
+		// Exception e) {
+		// e.getStackTrace();
+		// }
+
+//		System.out.println(horario);
 		ResponseDTO response = new ResponseDTO();
-		response.setMessage("s" + horario.getCbxCursos());
+//		response.setMessage("s" + horario.getCbxCursos());
 
 		return response;
 	}
