@@ -53,4 +53,6 @@ public interface ActividadPedagogicaDao {
 
 	
 	List<ActividadPedagogica> getAllActividadesByCurso(int id_curso) throws Exception;
+	
+	List<ActividadPedagogica> getAllActividadesByUsuario(int id_usuario) throws Exception;
 }

@@ -47,4 +47,10 @@ public class ActividadPedagogicaServiceImpl implements ActividadPedagogicaServic
 		return objActividadDao.getAllActividadesByCurso(id_curso);
 	}
 
+	@Override
+	public List<ActividadPedagogica> getRecordatorioByUsuario(int id_usuario) throws Exception {
+		// TODO Auto-generated method stub
+		return objActividadDao.getAllActividadesByUsuario(id_usuario);
+	}
+
 }

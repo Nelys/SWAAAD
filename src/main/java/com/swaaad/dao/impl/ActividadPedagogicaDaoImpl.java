@@ -1,5 +1,8 @@
 package com.swaaad.dao.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -114,6 +117,29 @@ public class ActividadPedagogicaDaoImpl implements ActividadPedagogicaDao {
 		    String query_string = "SELECT ap FROM ActividadPedagogica ap JOIN ap.curso c WHERE c.idCurso = :id";
 			Query query = sSesion.createQuery(query_string);
 			query.setInteger("id", id_curso);
+			lista = (List<ActividadPedagogica>) query.list();
+		} catch (Exception e) {
+//		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);
+		} finally {
+			sSesion.flush();
+			sSesion.close();
+		}
+		return lista;
+	}
+
+	@Override
+	public List<ActividadPedagogica> getAllActividadesByUsuario(int id_usuario) throws Exception {
+		sSesion = sessionFactory.openSession();
+		List<ActividadPedagogica> lista =null;
+		try {
+			Date date = new Date();
+			DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			DateFormat fechaFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+			String query_string = "SELECT ap FROM ActividadPedagogica ap WHERE ap.curso.docente.usuario.idUsuario='"+id_usuario+"'  and ap.fecha>'"+hourdateFormat.format(date)+"'  AND ap.fecha LIKE ('"+fechaFormat.format(date)+"%')";
+			System.out.println(query_string);
+			Query query = sSesion.createQuery(query_string);
+//			query.setInteger("id", id_usuario);
 			lista = (List<ActividadPedagogica>) query.list();
 		} catch (Exception e) {
 //		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);

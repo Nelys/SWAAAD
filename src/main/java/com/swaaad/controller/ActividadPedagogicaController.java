@@ -170,9 +170,16 @@ public class ActividadPedagogicaController {
 	public ResponseDTO getRecordatorio(@PathVariable("docente") int idDocente) throws Exception {
 		ResponseDTO responseDTO = new ResponseDTO();
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+
 		
 		//obtener las actividades pendientes para el dia
-		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getAllActividad();
+		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getRecordatorioByUsuario(usuario.getIdUsuario());
 
 		List<RecordatorioDTO> lista = new ArrayList<RecordatorioDTO>();
 
