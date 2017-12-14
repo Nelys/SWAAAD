@@ -170,24 +170,31 @@ public class ActividadPedagogicaController {
 
 		ResponseDTO responseDTO = new ResponseDTO();
 
-
 		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getAllActividadByCurso(idCurso);
 
+		List<ActividadPedagogicaDTO> lista = new ArrayList<ActividadPedagogicaDTO>();
 
-		List<ActividadPedagogicaDTO> lista=new ArrayList<ActividadPedagogicaDTO>() ;
-
-		
 		for (ActividadPedagogica actividad : listActidades) {
-			ActividadPedagogicaDTO actividadPedagogicaDTO= new ActividadPedagogicaDTO();
-			
+			ActividadPedagogicaDTO actividadPedagogicaDTO = new ActividadPedagogicaDTO();
+
 			actividadPedagogicaDTO.setId(actividad.getIdActividad());
-			actividadPedagogicaDTO.setFecha(actividad.getFecha().toString());
-			actividadPedagogicaDTO.setDescripcion(actividad.getDescripcion());
-			
+
+			 actividadPedagogicaDTO.setStart(actividad.getFecha().toString().replace(" ", "T"));
+
+			// actividad.getFecha().get
+
+//			String fecha = actividad.getFecha().getYear() + "-" + actividad.getFecha().getMonth() + "-"
+//					+ actividad.getFecha().getDate() + "T" + actividad.getFecha().getHours() + ":"
+//					+ actividad.getFecha().getMinutes() + ":00";
+
+//			System.out.println(fecha);
+//			actividadPedagogicaDTO.setStart(fecha);
+
+			actividadPedagogicaDTO.setTitle(actividad.getDescripcion());
+
 			lista.add(actividadPedagogicaDTO);
 		}
-		
-		
+
 		responseDTO.setMessage("se trajo las actividades pedagogicas de el curso" + idCurso);
 		responseDTO.setResponse(true);
 
@@ -196,7 +203,6 @@ public class ActividadPedagogicaController {
 		map.put("actividades", idCurso);
 		map.put("actividades2", lista);
 		responseDTO.setData(map);
-		
 
 		return responseDTO;
 

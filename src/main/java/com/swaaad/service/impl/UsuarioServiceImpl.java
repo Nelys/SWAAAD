@@ -124,12 +124,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 					+ "								<span>\r\n"
 					+ "									<a style=\"border:none;color:#0084b4;text-decoration:none;color:#ffffff;font-size:13px;font-weight:bold;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif\" href=\""
 					+ ruta_confirmacion + "\" target=\"_blank\" data-saferedirecturl=\"" + ruta_confirmacion
-					+ "&amp;source=gmail&amp;ust=1510067115589000&amp;usg=AFQjCNGgMBnZqhCdSxdFu3LLnaeJH6syvw\">Confirma tu <span class=\"il\">cuenta</span> ahora\r\n"
+					+ "&amp;source=gmail&amp;ust=1510067115589000&amp;usg=AFQjCNGgMBnZqhCdSxdFu3LLnaeJH6syvw\">Restablece tu <span class=\"il\">cuenta</span> ahora\r\n"
 					+ "									</a>\r\n" + "								</span>\r\n"
 					+ "							</div>\r\n" + "						</div>\r\n"
 					+ "					</div>\r\n"
 					+ "					<div style=\"font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#333333;padding-bottom:15px;padding-top:15px;padding-right:30px;text-align:justify;font-size:13px;line-height:20px\">\r\n"
-					+ "						Si haces clic en el boton y parece que no funciona, cópialo y pégalo en una nueva ventana de tu navegador el siguiente enlace:<br> <a style=\"word-wrap:break-word;border:none;color:#129856;text-decoration:none;font-size:14px\" href=\""
+					+ "						Si haces clic en el boton y parece que no funciona, copia y pega en una nueva ventana de tu navegador el siguiente enlace:<br> <a style=\"word-wrap:break-word;border:none;color:#129856;text-decoration:none;font-size:14px\" href=\""
 					+ ruta_confirmacion
 					+ "\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?hl=es-419&amp;q="
 					+ ruta_confirmacion

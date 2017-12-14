@@ -3,16 +3,16 @@ package com.swaaad.dto;
 public class ActividadPedagogicaDTO {
 
 	int id;
-	String fecha;
-	String descripcion;
+	String start;
+	String title;
 	public ActividadPedagogicaDTO() {
 		super();
 	}
-	public ActividadPedagogicaDTO(int id, String fecha, String descripcion) {
+	public ActividadPedagogicaDTO(int id, String start, String title) {
 		super();
 		this.id = id;
-		this.fecha = fecha;
-		this.descripcion = descripcion;
+		this.start = start;
+		this.title = title;
 	}
 	public int getId() {
 		return id;
@@ -20,22 +20,23 @@ public class ActividadPedagogicaDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFecha() {
-		return fecha;
+	public String getStart() {
+		return start;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setStart(String start) {
+		this.start = start;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public String getTitle() {
+		return title;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	@Override
 	public String toString() {
-		return "ActividadPedagogicaDTO [id=" + id + ", fecha=" + fecha + ", descripcion=" + descripcion + "]";
+		return "ActividadPedagogicaDTO [id=" + id + ", start=" + start + ", title=" + title + "]";
 	}
+	
 	
 	
 	
