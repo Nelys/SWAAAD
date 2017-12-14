@@ -1,8 +1,11 @@
 package com.swaaad.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +18,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.ActividadPedagogicaDTO;
+import com.swaaad.dto.ResponseDTO;
 import com.swaaad.model.ActividadPedagogica;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
@@ -44,7 +51,7 @@ public class ActividadPedagogicaController {
 		sess = request.getSession(false);
 		int a = (Integer) sess.getAttribute("idCurso");
 		logger.info("actividadPedagogicaPage");
-		
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -54,8 +61,7 @@ public class ActividadPedagogicaController {
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
-		
-		
+
 		System.out.println(a + " desde actividad academica");
 		List<ActividadPedagogica> ListarActividadPedagogica = null;
 		ListarActividadPedagogica = objActividadPedagogicaService.getAllActividad();
@@ -135,7 +141,7 @@ public class ActividadPedagogicaController {
 	@RequestMapping(value = "/calendarioActividadPedagogica", method = RequestMethod.GET)
 	public ModelAndView calendarioActividadPedagogica(ModelAndView model) throws Exception {
 		logger.info("actividadPedagogicaPage");
-		
+
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = null;
 		if (principal instanceof UserDetails) {
@@ -145,10 +151,54 @@ public class ActividadPedagogicaController {
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
-		
+
 		ActividadPedagogica actividadPedagogica = new ActividadPedagogica();
 		model.addObject("actividadPedagogica", actividadPedagogica);
+
+		List<ActividadPedagogica> ListarActividadPedagogica = null;
+		ListarActividadPedagogica = objActividadPedagogicaService.getAllActividad();
+		model.addObject("listActividadPedagogica", ListarActividadPedagogica);
+		model.addObject("hola", "mensajito");
+
 		model.setViewName("actividades-pedagogicas-calendario");
 		return model;
+	}
+
+	@RequestMapping(value = "/getActividades/{id_acurso}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getActividades(@PathVariable("id_acurso") int idCurso) throws Exception {
+
+		ResponseDTO responseDTO = new ResponseDTO();
+
+
+		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getAllActividadByCurso(idCurso);
+
+
+		List<ActividadPedagogicaDTO> lista=new ArrayList<ActividadPedagogicaDTO>() ;
+
+		
+		for (ActividadPedagogica actividad : listActidades) {
+			ActividadPedagogicaDTO actividadPedagogicaDTO= new ActividadPedagogicaDTO();
+			
+			actividadPedagogicaDTO.setId(actividad.getIdActividad());
+			actividadPedagogicaDTO.setFecha(actividad.getFecha().toString());
+			actividadPedagogicaDTO.setDescripcion(actividad.getDescripcion());
+			
+			lista.add(actividadPedagogicaDTO);
+		}
+		
+		
+		responseDTO.setMessage("se trajo las actividades pedagogicas de el curso" + idCurso);
+		responseDTO.setResponse(true);
+
+		Map<String, Object> map = new HashMap<>();
+
+		map.put("actividades", idCurso);
+		map.put("actividades2", lista);
+		responseDTO.setData(map);
+		
+
+		return responseDTO;
+
 	}
 }

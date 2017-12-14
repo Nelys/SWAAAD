@@ -17,6 +17,7 @@ public interface ActividadPedagogicaService {
 	void updateActividad(ActividadPedagogica actividad) throws Exception;
 
 	void deleteActividad(int idActividad) throws Exception;
+	List<ActividadPedagogica> getAllActividadByCurso(int id_curso) throws Exception;
 
 	
 }

@@ -1,3 +1,4 @@
+<%@page import="com.swaaad.model.ActividadPedagogica"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -22,6 +23,7 @@
 
 </div>
 <br>
+
 <div class='row'>
 	<div id="calendarBox" class="col-md-12">
 		<div id='calendar'></div>
@@ -44,11 +46,13 @@
 			center : 'title',
 			right : 'month,basicWeek,basicDay'
 		},
-		defaultDate : '2017-10-12',
+		defaultDate : '2017-12-12',
 		navLinks : true, // can click day/week names to navigate views
 		editable : true,
 		eventLimit : true, // allow "more" link when too many events
-		events : [ {
+		events : [ 
+	  
+		{
 			title : 'Combate de Angamos',
 			start : '2017-10-08',
 		// 			        className : 'danger-bg',

@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 
 import com.swaaad.dao.ActividadPedagogicaDao;
 import com.swaaad.model.ActividadPedagogica;
+import com.swaaad.model.Alumno;
 
 public class ActividadPedagogicaDaoImpl implements ActividadPedagogicaDao {
 	
@@ -102,6 +103,25 @@ public class ActividadPedagogicaDaoImpl implements ActividadPedagogicaDao {
 		List<ActividadPedagogica> listaActividades = sSesion.createCriteria(ActividadPedagogica.class).list();
 		sSesion.close();
 		return listaActividades;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ActividadPedagogica> getAllActividadesByCurso(int id_curso) throws Exception {
+		sSesion = sessionFactory.openSession();
+		List<ActividadPedagogica> lista =null;
+		try {
+		    String query_string = "SELECT ap FROM ActividadPedagogica ap JOIN ap.curso c WHERE c.idCurso = :id";
+			Query query = sSesion.createQuery(query_string);
+			query.setInteger("id", id_curso);
+			lista = (List<ActividadPedagogica>) query.list();
+		} catch (Exception e) {
+//		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);
+		} finally {
+			sSesion.flush();
+			sSesion.close();
+		}
+		return lista;
 	}
 
 }
