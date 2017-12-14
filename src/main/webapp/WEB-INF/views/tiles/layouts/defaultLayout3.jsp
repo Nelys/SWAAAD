@@ -47,7 +47,7 @@
 <script
 	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
-
+<script src="<c:url value='/resources/js/toastr.min.js' />"></script>
 </head>
 
 <body>

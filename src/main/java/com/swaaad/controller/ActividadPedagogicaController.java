@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.ActividadPedagogicaDTO;
+import com.swaaad.dto.RecordatorioDTO;
 import com.swaaad.dto.ResponseDTO;
 import com.swaaad.model.ActividadPedagogica;
 import com.swaaad.model.Docente;
@@ -163,6 +164,37 @@ public class ActividadPedagogicaController {
 		model.setViewName("actividades-pedagogicas-calendario");
 		return model;
 	}
+	
+	@RequestMapping(value = "/getRecordatorio/{docente}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getRecordatorio(@PathVariable("docente") int idDocente) throws Exception {
+		ResponseDTO responseDTO = new ResponseDTO();
+
+		
+		//obtener las actividades pendientes para el dia
+		List<ActividadPedagogica> listActidades = objActividadPedagogicaService.getAllActividad();
+
+		List<RecordatorioDTO> lista = new ArrayList<RecordatorioDTO>();
+
+		for (ActividadPedagogica actividad : listActidades) {
+			RecordatorioDTO recordatorioDTO = new RecordatorioDTO();
+
+			recordatorioDTO.setCurso(actividad.getCurso().getNombreCurso());
+			recordatorioDTO.setHora(actividad.getFecha().toString());
+			recordatorioDTO.setTitulo(actividad.getDescripcion());
+			
+
+			lista.add(recordatorioDTO);
+		}
+
+		responseDTO.setMessage("se trajo las actividades pedagogicas de el curso" );
+		responseDTO.setResponse(true);
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("recordatorios", lista);
+		responseDTO.setData(map);
+		return responseDTO;
+	}
 
 	@RequestMapping(value = "/getActividades/{id_acurso}", method = RequestMethod.GET)
 	@ResponseBody
@@ -181,14 +213,6 @@ public class ActividadPedagogicaController {
 
 			 actividadPedagogicaDTO.setStart(actividad.getFecha().toString().replace(" ", "T"));
 
-			// actividad.getFecha().get
-
-//			String fecha = actividad.getFecha().getYear() + "-" + actividad.getFecha().getMonth() + "-"
-//					+ actividad.getFecha().getDate() + "T" + actividad.getFecha().getHours() + ":"
-//					+ actividad.getFecha().getMinutes() + ":00";
-
-//			System.out.println(fecha);
-//			actividadPedagogicaDTO.setStart(fecha);
 
 			actividadPedagogicaDTO.setTitle(actividad.getDescripcion());
 
@@ -199,12 +223,9 @@ public class ActividadPedagogicaController {
 		responseDTO.setResponse(true);
 
 		Map<String, Object> map = new HashMap<>();
-
 		map.put("actividades", idCurso);
 		map.put("actividades2", lista);
 		responseDTO.setData(map);
-
 		return responseDTO;
-
 	}
 }

@@ -32,7 +32,7 @@
 <link href="<c:url value='/resources/template/css/datatables/buttons.bs.css' />" rel="stylesheet" />
 <link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" />
 
-
+<link href="<c:url value='/resources/css/toastr.css' />" rel="stylesheet" type="text/css">
 
 
 
@@ -80,34 +80,34 @@
 
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>
-<script
-	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
+<script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
+<script src="<c:url value='/resources/js/toastr.min.js' />"></script>
 </head>
 <style>
-body {background-color: white;}
+body {
+	background-color: white;
+}
 </style>
 <body>
 
 	<!-- Header Start -->
 	<header>
 		<div class="logo">
-			<a href="#"> 
-				<img src="<c:url value='/resources/template/img/logo.png' />" alt="logo">
-				<span class="menu-toggle hidden-xs"> <i class="fa fa-bars"></i> </span>
+			<a href="#"> <img src="<c:url value='/resources/template/img/logo.png' />" alt="logo"> <span class="menu-toggle hidden-xs"> <i
+					class="fa fa-bars"></i>
+			</span>
 			</a>
 		</div>
 		<!-- Logo ends -->
 
 		<!-- Custom Search Starts -->
 		<div class="navbar-header">
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/cursos">
-				<i class="fa fa-desktop"></i> Cursos
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/cursos"> <i class="fa fa-desktop"></i> Cursos
 			</a>
 		</div>
-			<div class="navbar-header">
-			<a class="btn btn-primary" href="${pageContext.request.contextPath}/horario">
-				<i class="fa fa-clock-o"></i> Horario
+		<div class="navbar-header">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/horario"> <i class="fa fa-clock-o"></i> Horario
 			</a>
 		</div>
 		<!-- Custom Search Ends -->
@@ -115,34 +115,33 @@ body {background-color: white;}
 		<!-- Mini right nav starts -->
 		<div class="navbar-header pull-right vcenter">
 			<ul id="mini-nav" class="clearfix">
-				<li class="list-box user-profile hidden-xs">
-					<a id="drop4" href="#" class="user-avtar animated rubberBanddropdown-toggle" data-toggle="dropdown" style="margin-top: 24px;">  
-						<span class="user-name">${usuario} <i class="fa fa-angle-down"></i></span>
-					</a>
+				<li class="list-box user-profile hidden-xs"><a id="drop4" href="#" class="user-avtar animated rubberBanddropdown-toggle"
+					data-toggle="dropdown" style="margin-top: 24px;"> <span class="user-name">${usuario} <i class="fa fa-angle-down"></i></span>
+				</a>
 					<ul class="dropdown-menu sm user-settings">
 						<li><a href="perfil"><i class="fa fa-meh-o"></i> Perfil</a></li>
 						<hr class="less-margin">
-						<li><a href="<c:url value="/logout" />"> <i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>
-					</ul>
-				</li>
+						<li><a href="<c:url value="/logout" />"> <i class="fa fa-sign-out"></i> Cerrar Sesion
+						</a></li>
+					</ul></li>
 			</ul>
 		</div>
 	</header>
 
 
-		<div class="main-container">
+	<div class="main-container">
 
-			<!-- Container fluid Starts -->
-			<div class="container-fluid">
+		<!-- Container fluid Starts -->
+		<div class="container-fluid">
 
-				<!-- Spacer starts -->
-				<div class="spacer">
-					<tiles:insertAttribute name="body" />
-				</div>
-
+			<!-- Spacer starts -->
+			<div class="spacer">
+				<tiles:insertAttribute name="body" />
 			</div>
 
 		</div>
+
+	</div>
 
 	<!-- Footer starts -->
 	<footer> Copyright SWAAAD 2017. </footer>

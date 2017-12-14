@@ -45,7 +45,7 @@
 
 
 <link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" />
-
+<link href="<c:url value='/resources/css/toastr.css' />" rel="stylesheet" type="text/css">
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <%-- <script src="<c:url value='/resources/template/js/jquery.js' />"></script> --%>
@@ -112,7 +112,7 @@
 <script
 	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
-
+<script src="<c:url value='/resources/js/toastr.min.js' />"></script>
 <style>
 	.vcenter {
 	    display: inline-block;
