@@ -36,7 +36,7 @@ public class LoginController {
 	private UsuarioServiceImpl objUsuarioServiceImpl;
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {

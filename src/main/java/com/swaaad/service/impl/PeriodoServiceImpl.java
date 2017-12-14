@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.swaaad.dao.CursoDao;
 import com.swaaad.dao.PeriodoDao;
 import com.swaaad.model.Periodo;
 import com.swaaad.service.PeriodoService;
@@ -13,11 +14,37 @@ import com.swaaad.service.PeriodoService;
 public class PeriodoServiceImpl implements PeriodoService {
 
 	@Autowired
+	private CursoDao objCursoDao;
+	
+	@Autowired
 	private PeriodoDao objPeriodoDao;
 
 	@Override
-	public void addPeriodo(Periodo Periodo) throws Exception {
-		objPeriodoDao.addPeriodo(Periodo);
+	public void gestionarPeriodos(int idCurso, String descripcion, int numero) throws Exception {
+		int numPeriodos=numero-objPeriodoDao.getAllPeriodoByIdCurso(idCurso).size();
+		
+		Periodo periodo = new Periodo();
+		
+		for (int i = 1; i < numPeriodos; i++) {
+			periodo = objPeriodoDao.getPeriodoByNumeroByIdCurso(numero, idCurso);
+			periodo.setDescripcion(descripcion);
+			periodo.setNumeroPeriodos(numero);
+			periodo.setCurso(objCursoDao.getCursoById(idCurso));
+			objPeriodoDao.updatePeriodo(periodo);
+		}
+		
+		for (int i = numPeriodos+1; i < numero; i++) {
+			periodo = new Periodo();
+			periodo.setDescripcion(descripcion);
+			periodo.setNumeroPeriodos(numero);
+			periodo.setCurso(objCursoDao.getCursoById(idCurso));
+			objPeriodoDao.addPeriodo(periodo);
+		}
+	}
+	
+	@Override
+	public void addPeriodo(Periodo periodo) throws Exception {
+		objPeriodoDao.addPeriodo(periodo);
 	}
 
 	@Override
@@ -36,8 +63,8 @@ public class PeriodoServiceImpl implements PeriodoService {
 	}
 
 	@Override
-	public void updatePeriodo(Periodo Periodo) throws Exception {
-		objPeriodoDao.updatePeriodo(Periodo);
+	public void updatePeriodo(Periodo periodo) throws Exception {
+		objPeriodoDao.updatePeriodo(periodo);
 
 	}
 

@@ -38,7 +38,7 @@ public class AulaDinamicaController {
 	private AulaDinamicaService objAulaDinamicaService;
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@Autowired
 	private CursoAlumnoService objCursoAlumnoService;

@@ -55,21 +55,22 @@ public class AsistenciaController {
 	private static final Logger logger = LoggerFactory.getLogger(AsistenciaController.class);
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@Autowired
-	AsistenciaService objAsistenciaService;
+	private AsistenciaService objAsistenciaService;
+	
 	@Autowired
-	AlumnosService objAlumnoService;
+	private AlumnosService objAlumnoService;
 
 	@Autowired
-	CursoAlumnoService objCursoAlumnoService;
+	private CursoAlumnoService objCursoAlumnoService;
 
 	@Autowired
-	CursoService objCursoService;
+	private CursoService objCursoService;
 
 	@Autowired
-	ServletContext context;
+	private ServletContext context;
 
 	// VISTA principal
 	@RequestMapping("")

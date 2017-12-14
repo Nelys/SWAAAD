@@ -24,9 +24,9 @@ import com.swaaad.service.UsuarioService;
 public class CursoAlumnoController {
 	private static final Logger logger = LoggerFactory.getLogger(CursoAlumnoController.class);
 	@Autowired
-	CursoAlumnoService objCursoAlumnoService;
+	private CursoAlumnoService objCursoAlumnoService;
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/asistencias", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {

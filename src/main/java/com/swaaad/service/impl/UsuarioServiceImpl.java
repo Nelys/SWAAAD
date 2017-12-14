@@ -23,9 +23,9 @@ import com.swaaad.service.UsuarioService;
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
-	UsuarioDaoImpl objUsuarioDao;
+	private UsuarioDaoImpl objUsuarioDao;
 	@Autowired
-	DocenteServiceImpl objDocenteServiceImpl;
+	private DocenteServiceImpl objDocenteServiceImpl;
 
 	@Override
 	public Boolean correoRecuperacion(Usuario usuario) throws Exception {

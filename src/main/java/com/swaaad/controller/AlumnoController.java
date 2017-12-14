@@ -52,9 +52,9 @@ import net.sf.jasperreports.view.JasperViewer;
 public class AlumnoController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
-	AlumnosService objAlumnoService;
+	private AlumnosService objAlumnoService;
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 //	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
 	@RequestMapping("")
 	public ModelAndView alumnosPage(ModelAndView model, HttpServletRequest request) throws Exception {

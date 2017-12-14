@@ -71,4 +71,15 @@ public interface PeriodoDao {
 	 */
 	List<Periodo> listPeriodoByCurso(int idCurso) throws Exception;
 	
+
+	/**
+	 * Recupera un Periodo de la base de datos
+	 * 
+	 * @param idPeriodo
+	 *            : id que identifica al periodo
+	 * @return : Un Periodo
+	 * @throws Exception
+	 */
+	Periodo getPeriodoByNumeroByIdCurso(int numero, int idCurso) throws Exception;
+	
 }

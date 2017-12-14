@@ -176,4 +176,26 @@ public class PeriodoDaoImpl implements PeriodoDao {
 		}
 		return listarPeriodo;
 	}
+	
+	@Override
+	public Periodo getPeriodoByNumeroByIdCurso(int numero, int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+		Periodo Periodo = null;
+		try {
+			String queryPeriodo = "From Periodo Where ID_Periodo= :idCurso AND NUMERO_PERIODOS=:numero";
+			Query query = sSession.createQuery(queryPeriodo);
+			query.setInteger("idCurso", idCurso);
+			query.setInteger("numero", numero);
+			Periodo = (Periodo) query.uniqueResult();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+
+		return Periodo;
+	}
 }

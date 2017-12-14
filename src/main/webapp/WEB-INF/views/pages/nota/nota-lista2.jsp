@@ -28,7 +28,7 @@
 					<select class="form-control" id="cbxPeriodo"  onchange="ChangecatList()" >
 						<option value="0" disabled selected>Seleccionar Periodo</option>
 						<c:forEach var="listaPeriodo" items="${listPeriodos}">
-							<option value="${listaPeriodo.idPeriodo}" >${listaPeriodo.idPeriodo}</option>
+							<option value="${listaPeriodo.idPeriodo}" >${listaPeriodo.descripcion} ${listaPeriodo.numeroPeriodos}</option>
 						</c:forEach>
 					</select>
 					<a class="input-group-addon btn btn-warning" data-toggle="modal" data-target=".bs-periodo-modal-sm"><i class="fa fa-pencil-square-o"></i> Editar</a>
@@ -61,7 +61,7 @@
 										<label class="control-label col-sm-3" for="id">Descripción:</label>
 										<div class="col-sm-9">
 <%-- 											<form:input cssClass="form-control"  path="descripcion" /> --%>
-											<input class="form-control"  type="text"/>
+											<input id="descripcion" class="form-control"  type="text"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -75,7 +75,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default pull-left"
 										data-dismiss="modal">Cancelar</button>
-									<button id="buttonNota" type="submit" class="btn btn-success"
+									<button id="buttonPeriodo" type="submit" class="btn btn-success"
 										data-dismiss="modal">Aceptar</button>
 								</div>
 							</form>
@@ -435,7 +435,28 @@
 				});
 			});
 			
-			
+			/**
+			 * Funcion click (Periodo)
+			 */
+			$('#buttonPeriodo').click(function() {
+				
+				$.ajax({
+					url : '${pageContext.request.contextPath}/savePeriodo',
+					data: { descripcion:  $( '#descripcion' ).val(), 
+							numero:  $( '#numPeriodo' ).val()
+							},
+					
+					success: function(result){
+						//$( '#result2' ).html(result);
+						location.reload();
+					},
+					error: function(x,e){	
+						toastr.error('Debe ingresar una nota', 'Error');
+// 					    alert("error occur");
+					} 
+				});
+	
+			});
 			
 			if('${idPeriodo}'!=0){
 				$('#cbxPeriodo').val('${idPeriodo}');

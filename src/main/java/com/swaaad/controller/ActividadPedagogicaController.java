@@ -38,13 +38,13 @@ import com.swaaad.service.UsuarioService;
 public class ActividadPedagogicaController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
-	ActividadPedagogicaService objActividadPedagogicaService;
+	private ActividadPedagogicaService objActividadPedagogicaService;
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@Autowired
-	CursoService objCursoService;
+	private CursoService objCursoService;
 
 	@RequestMapping(value = { "actividades-pedagogicas" }, method = RequestMethod.GET)
 	public ModelAndView listActividadPedagogica(ModelAndView model, HttpServletRequest request) throws Exception {

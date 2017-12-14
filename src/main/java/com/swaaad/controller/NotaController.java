@@ -200,14 +200,5 @@ public class NotaController {
 		return new ModelAndView("redirect:/notas");
 	}
 	
-
-	@RequestMapping(value = "/selectPeriodo", method = RequestMethod.GET)
-	public void selectPeriodo(HttpServletRequest request, HttpSession session, @RequestParam("idPeriodo") int idPeriodo)
-			throws Exception {
-
-		logger.info("selectPeriodo");
-		
-		session = request.getSession();
-		session.setAttribute("idPeriodo", idPeriodo);
-	}
+	
 }

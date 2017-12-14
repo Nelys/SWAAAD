@@ -25,10 +25,10 @@ public class DocenteController {
 	private static final Logger logger = LoggerFactory.getLogger(DocenteController.class);
 
 	@Autowired
-	DocenteService objDocenteService;
+	private DocenteService objDocenteService;
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@RequestMapping(value = { "perfil" }, method = RequestMethod.GET)
 	public ModelAndView datosDocente(ModelAndView model) throws Exception {

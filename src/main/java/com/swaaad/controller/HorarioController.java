@@ -35,13 +35,13 @@ import com.swaaad.service.UsuarioService;
 public class HorarioController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
 	@Autowired
-	HorarioService objHorarioService;
+	private HorarioService objHorarioService;
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@Autowired
-	CursoService objCursoService;
+	private CursoService objCursoService;
 
 	@RequestMapping(value = { "horario" }, method = RequestMethod.GET)
 	public ModelAndView listActividadPedagogica(ModelAndView model, HttpServletRequest request) throws Exception {

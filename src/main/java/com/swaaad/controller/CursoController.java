@@ -30,13 +30,13 @@ import com.swaaad.service.UsuarioService;
 public class CursoController {
 	private static final Logger logger = LoggerFactory.getLogger(CursoController.class);
 	@Autowired
-	CursoService objCursoService;
+	private CursoService objCursoService;
 
 	@Autowired
-	UsuarioService objUsuarioService;
+	private UsuarioService objUsuarioService;
 
 	@Autowired
-	DocenteService objDocenteService;
+	private DocenteService objDocenteService;
 
 	@RequestMapping(value = { "cursos" }, method = RequestMethod.GET)
 	public ModelAndView cursosPage(ModelAndView model) throws Exception {
