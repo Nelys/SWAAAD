@@ -152,6 +152,7 @@ public class CursoController {
 		session = request.getSession();
 		session.setAttribute("idDocente", 1);
 		session.setAttribute("idCurso", idCurso);
+		session.setAttribute("idPeriodo", 0);
 
 		return new ModelAndView("redirect:/alumnos");
 	}

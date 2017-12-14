@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.model.Curso;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Evaluacion;
 import com.swaaad.model.Nota;
+import com.swaaad.model.Periodo;
 import com.swaaad.model.Usuario;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.EvaluacionService;
@@ -58,6 +60,8 @@ public class NotaController {
         	idPeriodo = (Integer) session.getAttribute("idPeriodo");
         }
         
+        System.out.println(idPeriodo);
+        
 		logger.info("notasPage");
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,7 +90,15 @@ public class NotaController {
 		
 		Evaluacion evaluacion = new Evaluacion();
 		
+		Periodo periodo = new Periodo();
+		
+		Curso curso = new Curso();
+		
 		model.addObject("nota", nota);
+		
+		model.addObject("periodo", periodo);
+		
+		model.addObject("curso", curso);
 		
 		model.addObject("idPeriodo", idPeriodo);
 		

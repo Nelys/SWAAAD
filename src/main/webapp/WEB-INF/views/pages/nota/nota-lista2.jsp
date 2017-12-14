@@ -22,20 +22,68 @@
 </style>
 <!-- 	<div class="container"> -->
 		<div class='row'>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<div class="input-group">
 					<span class="input-group-addon">Periodo</span>
 					<select class="form-control" id="cbxPeriodo"  onchange="ChangecatList()" >
-						<option value="0">Seleccionar Periodo</option>
+						<option value="0" disabled selected>Seleccionar Periodo</option>
 						<c:forEach var="listaPeriodo" items="${listPeriodos}">
 							<option value="${listaPeriodo.idPeriodo}" >${listaPeriodo.idPeriodo}</option>
 						</c:forEach>
 					</select>
+					<a class="input-group-addon btn btn-warning" data-toggle="modal" data-target=".bs-periodo-modal-sm"><i class="fa fa-pencil-square-o"></i> Editar</a>
 				</div>
 			</div>
 		</div>
 <!-- 	</div> -->
 		<br />
+		
+		
+				<!-- Contenido Periodo Modal -->
+				<div class="modal fade bs-periodo-modal-sm" tabindex="-1"
+					role="dialog" aria-labelledby="mySmallModalLabel">
+					<div class="modal-dialog modal-sm" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Periodo</h4>
+							</div>
+<%-- 							<form:form action="savePeriodo" method="GET" modelAttribute="periodo" cssClass="form-horizontal"> --%>
+							<form action="" class="form-horizontal">
+								<div class="modal-body">
+								
+<!-- 									<div> -->
+<%-- 										<form:hidden path="idPeriodo" /> --%>
+										
+<%-- 										<form:hidden path="curso.idCurso" />  --%>
+<!-- 									</div> -->
+									<div class="form-group">
+										<label class="control-label col-sm-3" for="id">Descripción:</label>
+										<div class="col-sm-9">
+<%-- 											<form:input cssClass="form-control"  path="descripcion" /> --%>
+											<input class="form-control"  type="text"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-3" for="id">Numero:</label>
+										<div class="col-sm-9">
+											<input id="numPeriodo" name="notaEvaluativa" class="form-control required" type="number" value="1" min="0" max="20" />
+										</div>
+									</div>
+									
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default pull-left"
+										data-dismiss="modal">Cancelar</button>
+									<button id="buttonNota" type="submit" class="btn btn-success"
+										data-dismiss="modal">Aceptar</button>
+								</div>
+							</form>
+<%-- 							</form:form> --%>
+						</div>
+					</div>
+				</div>
+				<!-- / Contenido Modal -->
 
 		<!-- Resgistros de la tabla -->
 		<div id="divNotas" class="row">
@@ -56,9 +104,11 @@
 								<c:set var="primero" value="${1}" />
 								<c:forEach var="lista" items="${listEvaluaciones}">
 
-									<th id="${lista.idEvaluacion}" class="tdEvaluacion"
-										style="background-color:${lista.colorFondo};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;"><div
-										>${lista.nombre}</div></th>
+									<th id="${lista.idEvaluacion}" class="tdEvaluacion" style="background-color:${lista.colorFondo};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;">
+										<div style="text-align: center;">${lista.nombre}  
+											<a class="btn btn-xs btn-warning" href="editEvaluacion?id=${lista.idEvaluacion}"><i class="fa fa-pencil-square-o"></i></a>
+										</div>
+									</th>
 								</c:forEach>
 							</tr>
 							</thead>
@@ -66,8 +116,7 @@
 
 							<c:forEach var="listaAlumno" items="${listAlumnos}">
 								<tr id="${listaAlumno.idAlumno}">
-									<td style="text-align: left;">${listaAlumno.nombres},
-										${listaAlumno.apellidos}</td>
+									<td style="text-align: left;">${listaAlumno.nombres}, ${listaAlumno.apellidos}</td>
 									<c:forEach var="listaEvaluacion" items="${listEvaluaciones}">
 										<td
 											id="idAlumno_${listaAlumno.idAlumno}-idEvaluacion_${listaEvaluacion.idEvaluacion}"
@@ -127,6 +176,7 @@
 				<!-- / Contenido Modal -->
 
 
+
 				<fieldset>
 					<input type="button" value="Demo 1" id="buttonDemo1"
 						style="display: none;"><br> <input type="button"
@@ -147,6 +197,12 @@
 				upClass: 'success',
 				downClass: 'danger'
 			});
+			
+			$('#numPeriodo').bootstrapNumber({
+				upClass: 'success',
+				downClass: 'danger'
+			});
+			
 		});
 		
 		function ChangecatList() {
@@ -162,12 +218,16 @@
 					toastr.error('Debe ingresar una nota', 'Error');
 				} 
 			});
-	
-			if($('#cbxPeriodo').val()==0){
-				$("#divNotas").hide();
-			} else {
+			
+			if($('#cbxPeriodo').val()!=0){
 				$("#divNotas").show();
 			}
+	
+// 			if($('#cbxPeriodo').val()==''){
+// 				$("#divNotas").hide();
+// 			} else {
+// 				$("#divNotas").show();
+// 			}
 		}
 		/**
 		 * Funciones de la pagina cargada
@@ -375,8 +435,15 @@
 				});
 			});
 			
-			$('#cbxPeriodo').val(${idPeriodo});
-			ChangecatList();
+			
+			
+			if('${idPeriodo}'!=0){
+				$('#cbxPeriodo').val('${idPeriodo}');
+				ChangecatList();
+			} else{
+				$("#divNotas").hide();
+			}
+			
 		});
 
     </script>
