@@ -109,6 +109,9 @@
 
 <!-- Custom Index -->
 <script src="<c:url value='/resources/template/js/custom.js' />"></script>
+<script
+	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
+<script src="<c:url value='/resources/js/validate-forms.js' />"></script>
 
 <style>
 	.vcenter {

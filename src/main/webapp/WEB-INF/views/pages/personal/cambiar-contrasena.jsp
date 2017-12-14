@@ -3,9 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
 
-<script
-	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
-<script src="<c:url value='/resources/js/validate-forms.js' />"></script>
+
 
 <style>
 .im-centered {

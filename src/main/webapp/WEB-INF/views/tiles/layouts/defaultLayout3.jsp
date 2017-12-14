@@ -44,6 +44,10 @@
 <%--     <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script> --%>
 <script src="<c:url value='/resources/js/jquery-3.2.1.js' />"></script>
 <script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
+<script
+	src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
+<script src="<c:url value='/resources/js/validate-forms.js' />"></script>
+
 </head>
 
 <body>
