@@ -123,24 +123,10 @@
 		<!-- /.row -->
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$.get("getHorarios", {}, function (result) {
-					$('#calendar').fullCalendar({
-						header: {
-							left: '',
-							center: '',
-							right: ''
-						},
-						defaultDate: '1990-01-01',
-						defaultView: 'agendaWeek',
-						locale: 'es',
-						editable: false,
-						events: result.data.horarios
-					});
-					
-				}, 'json');
+
 				
 
-
+				cargarHorario();
 				$('#timepicker1').timepicker({
 					minuteStep: 5,
 					showMeridian: false
@@ -174,16 +160,30 @@
 
 
 					$.post($form.attr('action'), $form.serialize(), function (result) {
-
-						console.log(result);
-						alert(result.message);
-						if (result.response) {
-							location.href = "logout";
-						}
+						$('#calendar').fullCalendar( 'destroy' ); 
+						cargarHorario();
 					}, 'json');
 				});
 
 			});
+			function cargarHorario(){
+				$.get("getHorarios", {}, function (datas) {
+					console.log('uactualizar');
+					$('#calendar').fullCalendar({
+						header: {
+							left: '',
+							center: '',
+							right: ''
+						},
+						defaultDate: '1990-01-01',
+						defaultView: 'agendaWeek',
+						locale: 'es',
+						editable: false,
+						events: datas.data.horarios
+					});
+
+				}, 'json');
+			}
 		</script>
 	</div>
 	<!-- /.container-fluid -->
