@@ -39,7 +39,14 @@ public class PeriodoController {
 		HttpSession session = request.getSession(false);
         int idCurso = (Integer) session.getAttribute("idCurso");
         
-		return new PeriodoDTO(objPeriodoService.getAllPeriodoByIdCurso(idCurso).get(1).getDescripcion(),objPeriodoService.getAllPeriodoByIdCurso(idCurso).size());
+        PeriodoDTO periodo;
+        
+        if (objPeriodoService.getAllPeriodoByIdCurso(idCurso).size()!=0){
+        	periodo = new PeriodoDTO(objPeriodoService.getAllPeriodoByIdCurso(idCurso).get(0).getDescripcion(),objPeriodoService.getAllPeriodoByIdCurso(idCurso).size());
+        }else{
+        	periodo = new PeriodoDTO("",1);
+        }
+		return periodo;
 	}
 
 	@RequestMapping(value = "/savePeriodo", method = RequestMethod.GET)
@@ -87,6 +94,7 @@ class PeriodoDTO {
 		this.descripcion = descripcion;
 		this.numero = numero;
 	}
+	public PeriodoDTO(){}
 	public String getDescripcion() {
 		return descripcion;
 	}

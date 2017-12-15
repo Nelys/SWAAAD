@@ -213,10 +213,7 @@
 				
 				success: function(result){
 					location.reload();
-				},
-				error: function(x,e){
-					toastr.error('Debe ingresar una nota', 'Error');
-				} 
+				}
 			});
 			
 			if($('#cbxPeriodo').val()!=0){
@@ -447,12 +444,10 @@
 							},
 					
 					success: function(result){
-						//$( '#result2' ).html(result);
 						location.reload();
 					},
 					error: function(x,e){	
 						toastr.error('Debe ingresar una nota', 'Error');
-// 					    alert("error occur");
 					} 
 				});
 	
