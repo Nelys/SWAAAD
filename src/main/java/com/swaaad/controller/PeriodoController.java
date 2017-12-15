@@ -12,9 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.model.Curso;
@@ -32,6 +34,14 @@ public class PeriodoController {
 	@Autowired
 	private PeriodoService objPeriodoService;
 
+	@RequestMapping(value="/editPeriodo",method=RequestMethod.POST)
+	public @ResponseBody PeriodoDTO getSearchUserProfiles( HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession(false);
+        int idCurso = (Integer) session.getAttribute("idCurso");
+        
+		return new PeriodoDTO(objPeriodoService.getAllPeriodoByIdCurso(idCurso).get(1).getDescripcion(),objPeriodoService.getAllPeriodoByIdCurso(idCurso).size());
+	}
+
 	@RequestMapping(value = "/savePeriodo", method = RequestMethod.GET)
 	public ModelAndView savePeriodo(HttpServletRequest request, @RequestParam("descripcion") String descripcion, @RequestParam("numero") int numero) throws Exception {
 
@@ -42,15 +52,8 @@ public class PeriodoController {
 
 		try {
 			objPeriodoService.gestionarPeriodos(idCurso, descripcion, numero);
-//			if (nota.getIdNota() == 0) {
-//				objPeriodoService.addPeriodo(Periodo);
-//			} else {
-//				objPeriodoService.updatePeriodo(Periodo);
-//			}
-
 		} catch (Exception e) {
-//			e.getStackTrace();
-//			System.out.println(e);
+			e.getStackTrace();
 		}
 		return new ModelAndView("redirect:/listNota");
 	}
@@ -65,24 +68,6 @@ public class PeriodoController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/editPeriodo", method = RequestMethod.GET)
-	public ModelAndView editPeriodo(HttpServletRequest request) throws Exception {
-		ModelAndView model = new ModelAndView("form-nota");
-
-		int notaId = Integer.parseInt(request.getParameter("id"));
-		logger.info("editNota "+notaId);
-		Nota nota = null;
-		try {
-//			nota = objNotaService.getNotaById(notaId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	
-		model.addObject("nota", nota);
-
-		return model;
-	}
-	
 	@RequestMapping(value = "/selectPeriodo", method = RequestMethod.GET)
 	public void selectPeriodo(HttpServletRequest request, HttpSession session, @RequestParam("idPeriodo") int idPeriodo)
 			throws Exception {
@@ -92,4 +77,28 @@ public class PeriodoController {
 		session = request.getSession();
 		session.setAttribute("idPeriodo", idPeriodo);
 	}
+}
+
+class PeriodoDTO {
+    private String descripcion;
+    private int numero;
+	public PeriodoDTO(String descripcion, int numero) {
+		super();
+		this.descripcion = descripcion;
+		this.numero = numero;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	
+
 }

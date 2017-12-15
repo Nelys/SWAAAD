@@ -31,7 +31,7 @@
 							<option value="${listaPeriodo.idPeriodo}" >${listaPeriodo.descripcion} ${listaPeriodo.numeroPeriodos}</option>
 						</c:forEach>
 					</select>
-					<a class="input-group-addon btn btn-warning" data-toggle="modal" data-target=".bs-periodo-modal-sm"><i class="fa fa-pencil-square-o"></i> Editar</a>
+					<a id="aPeriodo" class="input-group-addon btn btn-warning" data-toggle="modal" data-target=".bs-periodo-modal-sm"><i class="fa fa-pencil-square-o"></i> Editar</a>
 				</div>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 									<div class="form-group">
 										<label class="control-label col-sm-3" for="id">Numero:</label>
 										<div class="col-sm-9">
-											<input id="numPeriodo" name="notaEvaluativa" class="form-control required" type="number" value="1" min="0" max="20" />
+											<input id="numPeriodo" name="notaEvaluativa" class="form-control required" type="number" value="1" min="1" max="20" />
 										</div>
 									</div>
 									
@@ -456,6 +456,24 @@
 					} 
 				});
 	
+			});
+			
+			/**
+			 * Funcion click (Obtener datos Periodo)
+			 */
+			$('#aPeriodo').click(function() {
+				$.ajax({
+					type : "POST",
+					url: "${pageContext.request.contextPath}/editPeriodo",
+					success :function(search) {
+						$("#descripcion").val(search['descripcion']);
+						$("#numPeriodo").val(search['numero']);
+						$("#numPeriodo").attr( "min" , search['numero'] );
+			  		},
+					error: function(x,e){	
+						toastr.error('Debe ingresar una nota', 'Error');
+					} 
+				});
 			});
 			
 			if('${idPeriodo}'!=0){
