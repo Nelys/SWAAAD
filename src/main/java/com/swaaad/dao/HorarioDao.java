@@ -1,5 +1,7 @@
 package com.swaaad.dao;
 
+import java.util.List;
+
 import com.swaaad.model.Horario;
 
 /**
@@ -40,4 +42,6 @@ public interface HorarioDao {
 	 * @throws Exception
 	 */
 	void deleteHorario(int idHorario) throws Exception;
+	
+	List<Horario> getHorarios(int idDocente)throws Exception;;
 }

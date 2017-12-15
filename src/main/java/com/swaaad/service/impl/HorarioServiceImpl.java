@@ -1,5 +1,7 @@
 package com.swaaad.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,11 @@ public class HorarioServiceImpl implements HorarioService {
 	public void deleteHorario(int idHorario) throws Exception {
 		objHorarioDao.deleteHorario(idHorario);
 
+	}
+
+	@Override
+	public List<Horario> getHorarioByDocente(int idUsuario) throws Exception {
+		return objHorarioDao.getHorarios(idUsuario);
 	}
 
 }

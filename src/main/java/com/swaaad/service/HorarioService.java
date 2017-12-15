@@ -1,5 +1,7 @@
 package com.swaaad.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.swaaad.model.Horario;
@@ -14,4 +16,6 @@ public interface HorarioService {
 	void updateHorario(Horario horario) throws Exception;
 
 	void deleteHorario(int idHorario) throws Exception;
+	
+	List<Horario> getHorarioByDocente(int idUsuario) throws Exception;
 }

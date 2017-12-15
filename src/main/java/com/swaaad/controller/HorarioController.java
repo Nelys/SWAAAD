@@ -2,8 +2,11 @@ package com.swaaad.controller;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,8 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.ActividadPedagogicaDTO;
 import com.swaaad.dto.HorarioDTO;
+import com.swaaad.dto.HorarioVistaDTO;
 import com.swaaad.dto.ResponseDTO;
+import com.swaaad.model.ActividadPedagogica;
 import com.swaaad.model.Curso;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Horario;
@@ -87,69 +93,68 @@ public class HorarioController {
 		@SuppressWarnings("deprecation")
 		Time dtEnd = new Time(horarioDTO.getHour()[1], horarioDTO.getMinute()[1], 00);
 		Curso curso = objCursoService.getCursoById(horarioDTO.getCbxCursos());
-		
 
 		if (horarioDTO.getCheckbox1() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("1");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 		}
-		
+
 		if (horarioDTO.getCheckbox2() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("2");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 
 		}
 		if (horarioDTO.getCheckbox3() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("3");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 
 		}
 		if (horarioDTO.getCheckbox4() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("4");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 
 		}
 		if (horarioDTO.getCheckbox5() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("5");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 
 		}
 		if (horarioDTO.getCheckbox6() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("6");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 
 		}
 		if (horarioDTO.getCheckbox7() != null) {
-			Horario horario=new Horario();
+			Horario horario = new Horario();
 			horario.setDia("7");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			 objHorarioService.addHorario(horario);
+			objHorarioService.addHorario(horario);
 
 		}
 		// try {
@@ -172,9 +177,9 @@ public class HorarioController {
 		// e.getStackTrace();
 		// }
 
-//		System.out.println(horario);
+		// System.out.println(horario);
 		ResponseDTO response = new ResponseDTO();
-//		response.setMessage("s" + horario.getCbxCursos());
+		// response.setMessage("s" + horario.getCbxCursos());
 
 		return response;
 	}
@@ -196,6 +201,125 @@ public class HorarioController {
 
 		model.setViewName("form-horario");
 		return model;
+	}
+
+	@RequestMapping(value = "/getHorarios", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO getHorario() throws Exception {
+		ResponseDTO responseDTO = new ResponseDTO();
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+
+		List<Horario> listaHorarios = objHorarioService.getHorarioByDocente(usuario.getIdUsuario());
+
+		List<HorarioVistaDTO> lista = new ArrayList<HorarioVistaDTO>();
+
+		// traer la lista de cursos para poner el color que le corresponde
+		
+		
+		List<Integer> lista_id=new ArrayList<Integer>();
+		
+		    
+
+		for (Horario horario : listaHorarios) {
+			HorarioVistaDTO horarioDto = new HorarioVistaDTO();
+
+			int valor = 0;
+			
+			int opcion=1;
+			int contador=1;
+			System.out.println("%% "+horario.getCurso().getIdCurso());
+			for (Integer text : lista_id) {
+				System.out.println(text+" - "+horario.getCurso().getIdCurso());
+				if(text==horario.getCurso().getIdCurso()) {
+					System.out.println("opcion if "+contador);
+					opcion=contador;
+					valor=1;
+				}
+				
+				contador++;
+			}
+			
+			if(valor==0) {
+				System.out.println("Agregara "+horario.getCurso().getIdCurso());
+				lista_id.add(horario.getCurso().getIdCurso());
+				opcion=contador;
+			}
+			
+			System.out.println("opcion "+opcion);
+			switch (opcion) {
+			case 1:
+				horarioDto.setClassName("danger-bg");
+				break;
+			case 2:
+				horarioDto.setClassName("success-bg");
+				break;
+			case 3:
+				horarioDto.setClassName("info-bg");
+				break;
+			case 4:
+				horarioDto.setClassName("brown-bg");
+				break;
+			case 5:
+				horarioDto.setClassName("linkedin-bg");
+				break;
+			case 6:
+				horarioDto.setClassName("twitter-bg");
+				break;
+			case 7:
+				horarioDto.setClassName("text-fb");
+				break;
+			}
+
+			horarioDto.setTitle(horario.getCurso().getNombreCurso().toUpperCase());
+			horarioDto.setId(horario.getIdHorario());
+//			horarioDto.setClassName("danger-bg");
+			switch (horario.getDia()) {
+			case "1":
+				horarioDto.setStart("1990-01-01T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-01T" + horario.getHoraFin().toString());
+				break;
+			case "2":
+				horarioDto.setStart("1990-01-02T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-02T" + horario.getHoraFin().toString());
+				break;
+			case "3":
+				horarioDto.setStart("1990-01-03T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-03T" + horario.getHoraFin().toString());
+				break;
+			case "4":
+				horarioDto.setStart("1990-01-04T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-04T" + horario.getHoraFin().toString());
+				break;
+			case "5":
+				horarioDto.setStart("1990-01-05T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-05T" + horario.getHoraFin().toString());
+				break;
+			case "6":
+				horarioDto.setStart("1990-01-06T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-06T" + horario.getHoraFin().toString());
+				break;
+			case "7":
+				horarioDto.setStart("1990-01-07T" + horario.getHoraInicio().toString());
+				horarioDto.setEnd("1990-01-07T" + horario.getHoraFin().toString());
+				break;
+			}
+
+			lista.add(horarioDto);
+		}
+
+		responseDTO.setMessage("Trajo los horarois");
+		responseDTO.setResponse(true);
+		Map<String, Object> map = new HashMap<>();
+		map.put("horarios", lista);
+		responseDTO.setData(map);
+
+		return responseDTO;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.swaaad.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -119,6 +121,25 @@ public class HorarioDaoImpl implements HorarioDao {
 			sSession.close();// ciera la sesion
 		}
 
+	}
+
+	@Override
+	public List<Horario> getHorarios(int idDocente) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Horario> listHorario =null;
+		try {
+		    String queryAlumno = "SELECT h FROM Horario h WHERE h.curso.docente.usuario.idUsuario =:id and h.curso.estado='1' ";
+			Query query = sSession.createQuery(queryAlumno);
+			query.setInteger("id", idDocente);
+			
+			listHorario = (List<Horario>) query.list();
+		} catch (Exception e) {
+//		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		return listHorario;
 	}
 
 }
