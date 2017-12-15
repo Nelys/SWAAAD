@@ -21,22 +21,19 @@ public class PeriodoServiceImpl implements PeriodoService {
 
 	@Override
 	public void gestionarPeriodos(int idCurso, String descripcion, int numero) throws Exception {
-		int numPeriodos=numero-objPeriodoDao.getAllPeriodoByIdCurso(idCurso).size();
 		
 		Periodo periodo = new Periodo();
-		
-		for (int i = 1; i < numPeriodos; i++) {
-			periodo = objPeriodoDao.getPeriodoByNumeroByIdCurso(numero, idCurso);
+		for (int i = 1; i <= objPeriodoDao.getAllPeriodoByIdCurso(idCurso).size(); i++) {
+			periodo = objPeriodoDao.getPeriodoByNumeroByIdCurso(i, idCurso);
 			periodo.setDescripcion(descripcion);
-			periodo.setNumeroPeriodos(numero);
+			periodo.setNumeroPeriodos(i);
 			periodo.setCurso(objCursoDao.getCursoById(idCurso));
 			objPeriodoDao.updatePeriodo(periodo);
 		}
-		
-		for (int i = numPeriodos+1; i < numero; i++) {
+		for (int i = objPeriodoDao.getAllPeriodoByIdCurso(idCurso).size()+1; i <= numero; i++) {
 			periodo = new Periodo();
 			periodo.setDescripcion(descripcion);
-			periodo.setNumeroPeriodos(numero);
+			periodo.setNumeroPeriodos(i);
 			periodo.setCurso(objCursoDao.getCursoById(idCurso));
 			objPeriodoDao.addPeriodo(periodo);
 		}

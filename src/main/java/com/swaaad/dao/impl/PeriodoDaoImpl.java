@@ -182,7 +182,7 @@ public class PeriodoDaoImpl implements PeriodoDao {
 		sSession = sessionFactory.openSession();
 		Periodo Periodo = null;
 		try {
-			String queryPeriodo = "From Periodo Where ID_Periodo= :idCurso AND NUMERO_PERIODOS=:numero";
+			String queryPeriodo = "SELECT p FROM Periodo p Where p.curso.idCurso = :idCurso AND p.numeroPeriodos = :numero";
 			Query query = sSession.createQuery(queryPeriodo);
 			query.setInteger("idCurso", idCurso);
 			query.setInteger("numero", numero);

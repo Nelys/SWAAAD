@@ -32,7 +32,7 @@ public class PeriodoController {
 	@Autowired
 	private PeriodoService objPeriodoService;
 
-	@RequestMapping(value = "/savePeriodo", method = RequestMethod.POST)
+	@RequestMapping(value = "/savePeriodo", method = RequestMethod.GET)
 	public ModelAndView savePeriodo(HttpServletRequest request, @RequestParam("descripcion") String descripcion, @RequestParam("numero") int numero) throws Exception {
 
 		logger.info("saveNota");
@@ -49,9 +49,10 @@ public class PeriodoController {
 //			}
 
 		} catch (Exception e) {
-			e.getStackTrace();
+//			e.getStackTrace();
+//			System.out.println(e);
 		}
-		return new ModelAndView("redirect:/notas");
+		return new ModelAndView("redirect:/listNota");
 	}
 
 	@RequestMapping(value = "/newPeriodo", method = RequestMethod.GET)
