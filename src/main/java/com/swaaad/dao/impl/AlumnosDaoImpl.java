@@ -160,17 +160,17 @@ public class AlumnosDaoImpl implements AlumnosDao {
 														// para hacer
 			// una transaccion en este
 			// casoeliminar
-			Alumno alumno = (Alumno) sSession.load(Alumno.class, Integer.valueOf(idAlumno));// obtiene
-																						// al
-																						// alumno
+			Alumno alumno = (Alumno) sSession.load(Alumno.class, Integer.valueOf(idAlumno));// obtiene alumno
 			sSession.delete(alumno);// elimina al alumno
-			tTransaction.commit();// confirma la transacionc
+			tTransaction.commit();// confirma la transacion
 
 		} catch (RuntimeException e) {
 			// si ocurrio un problema
 			if (tTransaction != null) {// verifica hubosi un cambio en caso
 				tTransaction.rollback();// desase e
+				System.out.println("No se pudo eliminar al alumno");
 			}
+			e.printStackTrace();
 			logger.info("AlumnosDaoimpl deleteAlumno: ", e);
 		} finally {
 			sSession.flush();

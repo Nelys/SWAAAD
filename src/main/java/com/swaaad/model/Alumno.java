@@ -36,11 +36,6 @@ public class Alumno implements Serializable {
 	@Column(name="NOMBRES_APODERADO")
 	private String nombresApoderado;
 
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ID_USUARIO")
-	private Usuario usuario;
-
 	//bi-directional many-to-one association to CursoAlumno
 	@OneToMany(mappedBy="alumno")
 	private List<CursoAlumno> cursoAlumnos;
@@ -114,14 +109,6 @@ public class Alumno implements Serializable {
 
 	public void setNombresApoderado(String nombresApoderado) {
 		this.nombresApoderado = nombresApoderado;
-	}
-
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public List<CursoAlumno> getCursoAlumnos() {

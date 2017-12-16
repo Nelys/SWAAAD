@@ -40,12 +40,19 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="genero">Genero:</label>
 						<div class="col-sm-10">
-							<label class="radio-inline"> <input type="radio"
-								name="myField" value="normal" /> Masculino
-							</label> <label class="radio-inline"> <input type="radio"
-								name="myField" value="high" /> Femenino
-							</label>
+						
+							<label class="radio-inline"> <input type="radio" name="myField" value="normal" /> Masculino	</label> 
+							<label class="radio-inline"> <input type="radio" name="myField" value="high" /> Femenino </label>
+							
 						</div>
+					</div>
+					
+					<div class="form-group ">
+						<fieldset>
+							<legend>Genero</legend>
+							<label class="radio-inline"> <input type="radio" name="optradio" value="F" checked="checked">Femenino
+							</label> <label class="radio-inline"> <input type="radio" name="optradio" value="M">Masculino</label>
+						</fieldset>
 					</div>
 
 
@@ -57,7 +64,8 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="nombresApoderado">Nombres Apoderado:</label>
+						<label class="control-label col-sm-2" for="nombresApoderado">Nombres
+							Apoderado:</label>
 						<div class="col-sm-10">
 
 							<form:input path="nombresApoderado" cssClass="form-control" />
@@ -65,7 +73,8 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="apellidosApoderado">Apellidos Apoderado:</label>
+						<label class="control-label col-sm-2" for="apellidosApoderado">Apellidos
+							Apoderado:</label>
 						<div class="col-sm-10">
 
 							<form:input path="apellidosApoderado" cssClass="form-control" />
@@ -73,7 +82,8 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="emailApoderado">Email Apoderado:</label>
+						<label class="control-label col-sm-2" for="emailApoderado">Email
+							Apoderado:</label>
 						<div class="col-sm-10">
 
 							<form:input path="emailApoderado" cssClass="form-control" />
