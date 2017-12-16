@@ -12,6 +12,7 @@ import com.swaaad.model.AulaDinamica;
 
 public interface AulaDinamicaDao {
 
+	
 	/**
 	 * Crea un aula en base de datos, recibe como parametro un
 	 * aula

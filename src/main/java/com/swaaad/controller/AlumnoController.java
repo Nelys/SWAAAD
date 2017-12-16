@@ -193,7 +193,7 @@ public class AlumnoController {
             String reportName ="/resources/reports/AlumnoReport.jasper";
             InputStream st = getClass().getResourceAsStream(reportName);
             JasperReport jr= (JasperReport) JRLoader.loadObject(st); 
-            Map parameters = new HashMap();
+            Map<String, Object> parameters = new HashMap<String, Object>();
             JasperPrint jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource((ResultSet) objAlumnoService.getAllAlumnosByIdCurso(idCurso)));
             
             JasperExportManager.exportReportToPdf(jp);     

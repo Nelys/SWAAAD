@@ -6,7 +6,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.swaaad.controller.AlumnoController;
 import com.swaaad.dao.AulaDinamicaDao;
 import com.swaaad.model.AulaDinamica;
 
@@ -18,7 +21,7 @@ import com.swaaad.model.AulaDinamica;
  * 
  */
 public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
-	
+	private static final Logger logger = LoggerFactory.getLogger(AulaDinamicaDaoImpl.class);
 	/* implementa la interface AulaDinamicaDao */
 
 	/**
@@ -46,24 +49,54 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 
 	@Override
 	public void addAulaDinamica(AulaDinamica aulaDinamica) throws Exception {
+		logger.info("addAulaDinamica");
 		
 		sSession = this.sessionFactory.openSession();
-		tTransaction = sSession.beginTransaction();
-		sSession.persist(aulaDinamica);
-		tTransaction.commit();
-		sSession.close();
+
+		try {
+			String queryAulaDinamica = "From AulaDinamica a Where ID_AULA_DINAMICA= :idAulaDinamica";
+			tTransaction = sSession.beginTransaction();
+			sSession.persist(aulaDinamica);
+			tTransaction.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			
+			// TODO: handle exception
+		} finally {
+			sSession.flush();
+			sSession.close();
+			logger.info("Cerro Session");
+		}
+
 	}
-	
+
 	/**
 	 * @see AulaDinamicaDao#getAllAulasDinamicas()
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AulaDinamica> getAllAulasDinamicas() throws Exception {
+		logger.info("getAllAulasDinamicas");
+
 		sSession = sessionFactory.openSession();
-		List<AulaDinamica> listarAulaDinamica = sSession.createCriteria(AulaDinamica.class).list();
-		sSession.close();
+		List<AulaDinamica> listarAulaDinamica = null;
+
+		try {
+			listarAulaDinamica = sSession.createCriteria(AulaDinamica.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+
+		} finally {
+
+			sSession.close();
+			logger.info("Cerro Session");
+	
+		}
 		return listarAulaDinamica;
+
 	}
 
 	/**
@@ -71,6 +104,8 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 	 */
 	@Override
 	public AulaDinamica getAulaDinamicaById(int idAulaDinamica) throws Exception {
+		logger.info("getAulaDinamicaById");
+	
 		sSession = sessionFactory.openSession();
 		AulaDinamica aulaDinamica = null;
 		try {
@@ -81,11 +116,12 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO: handle exception
+			logger.error(e.getMessage());
+		
 		} finally {
-			sSession.flush();
 			sSession.close();
-
+			logger.info("Cerro Session");
+		
 		}
 
 		return aulaDinamica;
@@ -96,25 +132,28 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 	 */
 	@Override
 	public void updateAulaDinamica(AulaDinamica aulaDinamica) throws Exception {
-
+		logger.info("updateAulaDinamica");
+	
 		sSession = sessionFactory.openSession();
 		try {
 			tTransaction = sSession.beginTransaction();
 			sSession.update(aulaDinamica);
 			tTransaction.commit();
-			System.out.println("se actualizo");
 		} catch (RuntimeException e) {
 
 			if (tTransaction != null) {// verifica hubosi un cambio en caso
 				tTransaction.rollback();// desase e
-
 			}
 			e.printStackTrace();
+			logger.error(e.getMessage());
+		
 		} finally {
 			sSession.flush();
 			sSession.close();
-		}
+			logger.info("Cerro Session");
 		
+		}
+
 	}
 
 	/**
@@ -122,34 +161,30 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 	 */
 	@Override
 	public void deleteAulaDinamica(int idAulaDinamica) throws Exception {
-
-
-		sSession = sessionFactory.openSession();// crea sesion con la base de
-		// datos
+		logger.info("deleteAulaDinamica");
+	
+		sSession = sessionFactory.openSession();// crea sesion con la base de datos
 
 		try {
 			tTransaction = sSession.beginTransaction();// habilita a la session
-							// para hacer
-			// una transaccion en este
-			// casoeliminar
 			AulaDinamica aulaDinamica = (AulaDinamica) sSession.load(AulaDinamica.class, new Integer(idAulaDinamica));// obtiene
-															// al
-															// AulaDinamica
 			sSession.delete(aulaDinamica);// elimina al AulaDinamica
 			tTransaction.commit();// confirma la transacionc
-		
+
 		} catch (RuntimeException e) {
 			// si ocurrio un problema
 			if (tTransaction != null) {// verifica hubosi un cambio en caso
-			tTransaction.rollback();// desase e
+				tTransaction.rollback();// desase e
 			}
 			e.printStackTrace();
+			logger.error(e.getMessage());
+		
 		} finally {
 			sSession.flush();
 			sSession.close();// ciera la sesion
+			logger.info("Cerro Session");
+	
 		}
 	}
-
-	
 
 }

@@ -60,11 +60,6 @@ public class AulaDinamicaController {
 		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
 		model.addObject("user", userName);
 		
-		
-		
-		//
-
-		// aulas dinamicas por curso
 		List<AulaDinamica> ListarAulaDinamica = null;
 
 		ListarAulaDinamica = objAulaDinamicaService.getAllAulasDinamicas();
@@ -90,43 +85,40 @@ public class AulaDinamicaController {
 	@ResponseBody
 	public AlumnoDTO saveAulaDinamica2(@ModelAttribute AulaDinamicaDTO aulaDinamica, HttpServletRequest request)
 			throws Exception {
-
-		logger.info("saveAulaDinamica " + aulaDinamica.getIdAulaDinamica());
-		System.out.println("sdsdasd  " + aulaDinamica.getIdAulaDinamica());
+		logger.info("saveAulaDinamica2 " + aulaDinamica);
+		
 		AlumnoDTO alumnoDTO=new AlumnoDTO();
 		try {
 			if (aulaDinamica.getIdAulaDinamica() == 0) {
-				System.out.println("saveAulaDinamica");
+				System.out.println("nuevo");
 				AulaDinamica aDinamica2 = new AulaDinamica();
 				CursoAlumno cursoAlumno = objCursoAlumnoService.getCursoAlumnoById(aulaDinamica.getCursoAlumno());
-				System.out.println("esta es el ID " + cursoAlumno.getIdCursoAlumno());
+
 				aDinamica2.setCoordX(aulaDinamica.getCoordX());
 				aDinamica2.setCoordY(aulaDinamica.getCoordY());
 				aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
 				aDinamica2.setColorTexto(aulaDinamica.getColorTexto());
 				aDinamica2.setCursoAlumno(cursoAlumno);
 
-				System.out.println("saveAulaDinamica");
-				System.out.println("addAulaDinamica");
 
 				objAulaDinamicaService.addAulaDinamica(aDinamica2);
-				
-				System.out.println("agregado "+aDinamica2.getIdAulaDinamica());
+
 				alumnoDTO.setIdAlumno(aDinamica2.getIdAulaDinamica());
 			} else {
-				System.out.println("updateAlaDinamica");
+				System.out.println("update");
 				AulaDinamica aDinamica2 = objAulaDinamicaService.getAulaDinamicaById(aulaDinamica.getIdAulaDinamica());
 
 				aDinamica2.setCoordX(aulaDinamica.getCoordX());
 				aDinamica2.setCoordY(aulaDinamica.getCoordY());
-				System.out.println("updateAulaDinamica");
+
 				objAulaDinamicaService.updateAulaDinamica(aDinamica2);
-				System.out.println("actualizado "+aulaDinamica.getIdAulaDinamica());
+
 				alumnoDTO.setIdAlumno(aulaDinamica.getIdAulaDinamica());
 				
 			}
 
 		} catch (Exception e) {
+			System.out.println("ocurrio un problema en saveAulaDinamica2");
 			e.getStackTrace();
 		}
 		return alumnoDTO;
@@ -136,8 +128,7 @@ public class AulaDinamicaController {
 	public ModelAndView saveAulaDinamica(@ModelAttribute AulaDinamicaDTO aulaDinamica, HttpServletRequest request)
 			throws Exception {
 
-		logger.info("saveAulaDinamica " + aulaDinamica.getIdAulaDinamica());
-		System.out.println("sdsdasd  " + aulaDinamica.getIdAulaDinamica());
+		logger.info("saveAulaDinamica " + aulaDinamica);
 
 		AulaDinamica aDinamica2 = objAulaDinamicaService.getAulaDinamicaById(aulaDinamica.getIdAulaDinamica());
 
@@ -146,14 +137,12 @@ public class AulaDinamicaController {
 		aDinamica2.setColorFondo(aulaDinamica.getColorFondo());
 		aDinamica2.setColorTexto(aulaDinamica.getColorTexto());
 
-		System.out.println("saveAulaDinamica");
+
 		try {
 			if (aulaDinamica.getIdAulaDinamica() == 0) {
-				System.out.println("addAulaDinamica");
-
 				objAulaDinamicaService.addAulaDinamica(aDinamica2);
 			} else {
-				System.out.println("updateAulaDinamica");
+
 				objAulaDinamicaService.updateAulaDinamica(aDinamica2);
 			}
 
@@ -176,7 +165,7 @@ public class AulaDinamicaController {
 	public ModelAndView editContact(HttpServletRequest request) throws Exception {
 
 		int aulaDinamicaId = Integer.parseInt(request.getParameter("id"));
-		logger.info("editAulaDinamica " + aulaDinamicaId);
+		logger.info("editContact " + aulaDinamicaId);
 		AulaDinamica aulaDinamica = null;
 		try {
 			aulaDinamica = objAulaDinamicaService.getAulaDinamicaById(aulaDinamicaId);
@@ -206,7 +195,7 @@ public class AulaDinamicaController {
 	public ResponseDTO eliminarAulaDinamica(@PathVariable("id") int idAula) throws Exception {
 			
 		ResponseDTO responseDTO=new ResponseDTO();
-		logger.info("deleteAulaDinamica " + idAula);
+		logger.info("eliminarAulaDinamica " + idAula);
 		try {
 			objAulaDinamicaService.deleteAulaDinamica(idAula);
 			responseDTO.setResponse(true);

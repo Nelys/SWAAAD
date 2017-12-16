@@ -1,13 +1,12 @@
 package com.swaaad.controller;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -51,6 +50,7 @@ public class ActividadPedagogicaController {
 		HttpSession sess;
 		sess = request.getSession(false);
 		int a = (Integer) sess.getAttribute("idCurso");
+		
 		logger.info("actividadPedagogicaPage");
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

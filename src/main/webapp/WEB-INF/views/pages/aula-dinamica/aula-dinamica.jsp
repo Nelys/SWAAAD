@@ -141,7 +141,7 @@ modelAttribute="aulaDinamica">
 
 
 	function inicializar(){
-		console.log('inicializara elementos');
+		
 		$('#divColorFondo').colorpicker({
 			color: '#2f2f30',
 			format: "hex",
@@ -194,7 +194,6 @@ modelAttribute="aulaDinamica">
 
 		agregarMetodos();
 		$('#btnImprimir').click(function() {
-			console.log('#btnImprimir click');
 			var myStyle = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /> ';
 			var myStyle2 = "<style>.xicon {  margin-top: 0px; position: absolute;  margin-left: 0px; font: 15px bold; color: #FFF; font: message-box; text-decoration: none; } </style>"
 			var w=window.open(null, 'Print_Page', 'scrollbars=yes');        
@@ -205,24 +204,13 @@ modelAttribute="aulaDinamica">
 
 		/* Funcion click del boton Aceptar de la pagina modal para guardar nota*/
 		$('#divEvaluaciones button').click(function() {
-			console.log('#divEvaluaciones button');
+			
 			var idAlumno = $(this).attr('id');
 			var iColor =  $('#' + idAlumno ).css('background-color');
-
-
 			$('#' + idAlumno ).toggle("slide");
-
 			idAlumno = idAlumno.replace('btnIdAlumno_', '');
-			console.log(idAlumno);
-
-
 			var colorTexto= hexc($('#divColorTexto i' ).css('background-color'));
 			var colorFondo= hexc($('#divColorFondo i').css('background-color'));
-			console.log(colorTexto);
-			console.log(colorFondo);
-
-
-			
 				
 		/*$( '#aula' ).html($('#aula' ).html());
 			/* Estableciendo propiedades*/
@@ -247,46 +235,33 @@ modelAttribute="aulaDinamica">
 			var formulario = $("#aulaDinamica").serialize();
 
 			id = null;
+			console.log("saveAulaDinamica2 divEvaluaciones button");
 			$.post("saveAulaDinamica2",datos, function(data) {
-				console.log("recepcion");
-
-				/*var texto=$( '#aula' ).html() + "<div " + "id='alumno_" +  data.idAlumno + "' class='principal ui-draggable ui-draggable-handle' " +	"style='left:5px; top:5px; width:60px; height:85px; background:#" + colorFondo + "; color:#"+colorTexto+"; position: absolute; border-radius: 4px 4px 4px 4px' >" +"<a style='left: 50px; top: -1px' href='#' class='xicon' title='Quitar'>&times;</a><div style='color: #"+colorTexto+"; text-align: center; font-size: 12px;'>" + data.idAlumno + "</div>" + 
-				"<div style='color:#"+colorTexto+"; text-align: center; font-size: 12px;'>"+nombre+"</div>" +
-				"</div>";*/
+				console.log("saveAulaDinamica2 divEvaluaciones button ------");
 				var texto="<div " + "id='alumno_" +  data.idAlumno + "' class='principal ui-draggable ui-draggable-handle' " +	"style='left:5px; top:5px; width:60px; height:85px; background:#" + colorFondo + "; color:#"+colorTexto+"; position: absolute; border-radius: 4px 4px 4px 4px' >" +"<a style='left: 50px; top: -1px' onclick='eliminarAlumno("+  data.idAlumno +")' class='xicon' title='Quitar'>&times;</a><div style='color: #"+colorTexto+"; text-align: center; font-size: 12px;'>" + data.idAlumno + "</div>" + 
 				"<div style='color:#"+colorTexto+"; text-align: center; font-size: 12px;'>"+nombre+"</div>" +
 				"</div>";
-				console.log(texto);
+
 				$('#aula').append(texto);
-				//$( '#aula' ).html(texto);
-				agregarMetodos();
+				//agregarMetodos();
 			});
 
 		});
 
-
-		
-
-
-		
-
 	});
 	function eliminarAlumno(id){
-		//alert("elimino");
-
+		console.log("eliminarAulaDinamica");
 		$.get("eliminarAulaDinamica/"+id,{}, function(data) {
-			console.log("eliminarAlumno");
+			console.log("eliminarAulaDinamica------");
 			$("#alumno_"+id).remove();
 		});
 	}
 	function agregarMetodos(){
-		console.log("agregarMetodos");
 		$("#aula div.principal").draggable({
 			stack : "#aula div",
 			containment : "#aula"
 		});
 		$('div.principal').mousedown(function() {
-			console.log('div.principal mousedown');
 			id = $(this).attr('id');
 
 			$('#idAulaDinamica').val(
@@ -297,11 +272,10 @@ modelAttribute="aulaDinamica">
 
 			$('#colorFondo').val(color);
 			$('#cursoAlumno.idCursoAlumno').val($('#idAula').text());
-			console.log($( '#idAula' ).text());
+
 		});
 
 		$('#aula').mousemove(function(event) {
-			console.log("movio mousemove");
 			if (id != null) {
 				var p = $('#' + id);
 				var position = p.position();
@@ -312,12 +286,14 @@ modelAttribute="aulaDinamica">
 			}
 		});
 		$('div.principal').mouseup(function() {
-			console.log("div.principal mouseup");
+
 			var formulario = $("#aulaDinamica").serialize();
 
 			id = null;
+			console.log("saveAulaDinamica2 div.principal");
 			$.post("saveAulaDinamica2",formulario, function(data) {
-				console.log("recepcion");
+				console.log("saveAulaDinamica2 div.principal--------");
+
 
 			});
 
