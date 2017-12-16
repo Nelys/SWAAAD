@@ -27,10 +27,6 @@ public class Usuario implements Serializable {
 
 	private String username;
 
-	//bi-directional many-to-one association to Alumno
-	@OneToMany(mappedBy="usuario")
-	private List<Alumno> alumnos;
-
 	//bi-directional many-to-one association to Docente
 	@OneToMany(mappedBy="usuario")
 	private List<Docente> docentes;
@@ -76,28 +72,6 @@ public class Usuario implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public List<Alumno> getAlumnos() {
-		return this.alumnos;
-	}
-
-	public void setAlumnos(List<Alumno> alumnos) {
-		this.alumnos = alumnos;
-	}
-
-	public Alumno addAlumno(Alumno alumno) {
-		getAlumnos().add(alumno);
-		alumno.setUsuario(this);
-
-		return alumno;
-	}
-
-	public Alumno removeAlumno(Alumno alumno) {
-		getAlumnos().remove(alumno);
-		alumno.setUsuario(null);
-
-		return alumno;
 	}
 
 	public List<Docente> getDocentes() {
