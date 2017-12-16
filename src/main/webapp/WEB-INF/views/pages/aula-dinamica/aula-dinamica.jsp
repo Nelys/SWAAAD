@@ -272,8 +272,12 @@ modelAttribute="aulaDinamica">
 
 	});
 	function eliminarAlumno(id){
-		alert("elimino");
-		$("#alumno_"+id).remove();
+		//alert("elimino");
+
+		$.get("eliminarAulaDinamica/"+id,{}, function(data) {
+			console.log("eliminarAlumno");
+			$("#alumno_"+id).remove();
+		});
 	}
 	function agregarMetodos(){
 		console.log("agregarMetodos");

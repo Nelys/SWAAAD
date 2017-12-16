@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.AlumnoDTO;
 import com.swaaad.dto.AulaDinamicaDTO;
+import com.swaaad.dto.ResponseDTO;
 import com.swaaad.model.AulaDinamica;
 import com.swaaad.model.CursoAlumno;
 import com.swaaad.model.Docente;
@@ -199,4 +201,24 @@ public class AulaDinamicaController {
 
 		return new ModelAndView("redirect:/aulaDinamicas");
 	}
+	@RequestMapping(value = "/eliminarAulaDinamica/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO eliminarAulaDinamica(@PathVariable("id") int idAula) throws Exception {
+			
+		ResponseDTO responseDTO=new ResponseDTO();
+		logger.info("deleteAulaDinamica " + idAula);
+		try {
+			objAulaDinamicaService.deleteAulaDinamica(idAula);
+			responseDTO.setResponse(true);
+			responseDTO.setMessage("Elimino Correctamente");
+		} catch (Exception e) {
+			responseDTO.setResponse(false);
+			responseDTO.setMessage("Problemas al Eliminar");
+			e.printStackTrace();
+		}
+				
+		
+		return responseDTO;
+	}
+	
 }
