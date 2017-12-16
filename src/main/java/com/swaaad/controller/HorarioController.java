@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.ActividadPedagogicaDTO;
+import com.swaaad.dto.HorarioCruceDTO;
 import com.swaaad.dto.HorarioDTO;
 import com.swaaad.dto.HorarioVistaDTO;
 import com.swaaad.dto.ResponseDTO;
@@ -94,13 +95,25 @@ public class HorarioController {
 		Time dtEnd = new Time(horarioDTO.getHour()[1], horarioDTO.getMinute()[1], 00);
 		Curso curso = objCursoService.getCursoById(horarioDTO.getCbxCursos());
 
+		List<HorarioCruceDTO> listaHorario=new ArrayList<HorarioCruceDTO>() ;
+		
 		if (horarioDTO.getCheckbox1() != null) {
 			Horario horario = new Horario();
 			horario.setDia("1");
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
+			
+//			System.out.println(dtInit.toString());
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(), 1,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+			}else {
+				System.out.println("no agrego 1");
+				
+				listaHorario.add(new HorarioCruceDTO(1,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Lunes"));
+				
+			}
+//			objHorarioService.addHorario(horario);
 		}
 
 		if (horarioDTO.getCheckbox2() != null) {
@@ -109,8 +122,14 @@ public class HorarioController {
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
-
+			
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(), 2,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+				
+			}else {
+				System.out.println("no agrego 2");
+				listaHorario.add(new HorarioCruceDTO(2,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Martes"));
+			}
 		}
 		if (horarioDTO.getCheckbox3() != null) {
 			Horario horario = new Horario();
@@ -118,7 +137,13 @@ public class HorarioController {
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
+			
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(), 3,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+			}else {
+				System.out.println("no agrego 3");
+				listaHorario.add(new HorarioCruceDTO(3,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Miercoles"));
+			}
 
 		}
 		if (horarioDTO.getCheckbox4() != null) {
@@ -127,7 +152,13 @@ public class HorarioController {
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
+			
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(),4,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+			}else {
+				System.out.println("no agrego 4");
+				listaHorario.add(new HorarioCruceDTO(4,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Jueves"));
+			}
 
 		}
 		if (horarioDTO.getCheckbox5() != null) {
@@ -136,7 +167,13 @@ public class HorarioController {
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
+			
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(), 5,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+			}else {
+				System.out.println("no agrego 5");
+				listaHorario.add(new HorarioCruceDTO(5,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Viernes"));
+			}
 
 		}
 		if (horarioDTO.getCheckbox6() != null) {
@@ -145,7 +182,12 @@ public class HorarioController {
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(), 6,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+			}else {
+				System.out.println("no agrego 6");
+				listaHorario.add(new HorarioCruceDTO(6,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Sabado"));
+			}
 
 		}
 		if (horarioDTO.getCheckbox7() != null) {
@@ -154,32 +196,23 @@ public class HorarioController {
 			horario.setHoraInicio(dtInit);
 			horario.setHoraFin(dtEnd);
 			horario.setCurso(curso);
-			objHorarioService.addHorario(horario);
+			if(objHorarioService.verificarDisponibilidad( usuario.getIdUsuario(),7 ,  dtInit.toString(),  dtEnd.toString())) {
+				objHorarioService.addHorario(horario);
+			}else {
+				System.out.println("no agrego 7");
+				listaHorario.add(new HorarioCruceDTO(7,dtInit.toString(),dtEnd.toString(),curso.getNombreCurso(),"Domingo"));
+			}
 
 		}
-		// try {
-		// if (horario.getIdHorario() == 0) {
-		// // horario.setDia("Lunes");
-		// // horario.setHoraInicio(dtInit);
-		// // horario.setHoraFin(dtEnd);
-		// // horario.setCurso(curso);
-		// objHorarioService.addHorario(horario);
-		// System.out.println("El registro fue exitoso");
-		//
-		// } else {
-		// objHorarioService.updateHorario(horario);
-		// System.out.println("El actualizacion fue exitoso");
-		// }
-		//
-		// } catch (
-		//
-		// Exception e) {
-		// e.getStackTrace();
-		// }
 
-		// System.out.println(horario);
 		ResponseDTO response = new ResponseDTO();
-		// response.setMessage("s" + horario.getCbxCursos());
+
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("horarios", listaHorario);
+		response.setResponse(true);
+		response.setMessage("Guardo");
+		response.setData(map);
 
 		return response;
 	}

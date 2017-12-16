@@ -18,4 +18,6 @@ public interface HorarioService {
 	void deleteHorario(int idHorario) throws Exception;
 	
 	List<Horario> getHorarioByDocente(int idUsuario) throws Exception;
+	
+	Boolean verificarDisponibilidad(int idUsuario,int dia,String inicio,String fin) throws Exception;
 }

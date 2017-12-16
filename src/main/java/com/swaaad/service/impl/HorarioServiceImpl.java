@@ -43,4 +43,17 @@ public class HorarioServiceImpl implements HorarioService {
 		return objHorarioDao.getHorarios(idUsuario);
 	}
 
+	@Override
+	public Boolean verificarDisponibilidad(int idUsuario,int dia, String inicio, String fin) throws Exception {
+		// TODO Auto-generated method stub
+		
+		List<Horario> listaHorarios=objHorarioDao.getHorarioByTiempo(idUsuario,dia, inicio, fin);
+		if (listaHorarios.size() ==0) {
+			return true;
+		} else {
+			return false;
+		}
+	
+	}
+
 }

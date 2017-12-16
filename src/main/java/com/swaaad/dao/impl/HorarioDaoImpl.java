@@ -142,4 +142,28 @@ public class HorarioDaoImpl implements HorarioDao {
 		return listHorario;
 	}
 
+	@Override
+	public List<Horario> getHorarioByTiempo(int idUsuario,int Dia, String inicio, String fin) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Horario> listHorario =null;
+		try {
+			
+		    String queryAlumno = "SELECT h FROM Horario h WHERE " + "(((h.horaInicio<='" + inicio + "' AND h.horaFin>='"
+					+ inicio + "')  OR (h.horaInicio<='" + fin + "' AND h.horaFin>='" + fin + "') ) OR " + "(('" + inicio
+					+ "'<=h.horaInicio AND '" + fin + "'>=h.horaInicio)  OR ('" + inicio + "'<=h.horaFin AND '" + fin
+					+ "'>=h.horaFin))) AND h.dia=:dia AND h.curso.docente.usuario.idUsuario = :id and h.curso.estado='1' ";
+			Query query = sSession.createQuery(queryAlumno);
+			query.setInteger("id", idUsuario);
+			query.setInteger("dia", Dia);
+			
+			listHorario = (List<Horario>) query.list();
+		} catch (Exception e) {
+//		    logger.info("AlumnosDaoimpl getAllAlumnosByIdCurso: ", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		return listHorario;
+	}
+
 }

@@ -43,5 +43,7 @@ public interface HorarioDao {
 	 */
 	void deleteHorario(int idHorario) throws Exception;
 	
-	List<Horario> getHorarios(int idDocente)throws Exception;;
+	List<Horario> getHorarios(int idDocente)throws Exception;
+	
+	List<Horario> getHorarioByTiempo(int idUsuario,int Dia, String inicio,String fin)throws Exception;
 }

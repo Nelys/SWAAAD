@@ -109,6 +109,22 @@
 							</div>
 						</div>
 					</div>	
+					<div class="row ">
+						<br>
+						<h4>Problemas de cruce de horario</h4>
+						<div class="col-sm-12">
+							<table id="table_errores" class="table table-border">
+								<tbody>
+									<tr>
+										<td>Curso</td>
+										<td>Dia</td>
+										<td>Hora Inicio</td>
+										<td>Hora Fin</td>
+								    </tr>
+								</tbody>
+							</table>
+						</div>						
+					</div>	
 					
 				</form>
 			</div>
@@ -162,6 +178,18 @@
 					$.post($form.attr('action'), $form.serialize(), function (result) {
 						$('#calendar').fullCalendar( 'destroy' ); 
 						cargarHorario();
+						var time=1;
+						
+						for (var item in result.data.horarios) {
+							console.log("agregar error");
+							var fila = '<tr><td>'+result.data.horarios[item].curso+'</td><td>'+result.data.horarios[item].dia+'</td><td>'+result.data.horarios[item].inicio+'</td><td>'+result.data.horarios[item].fin+'</td></tr>';
+							console.log(item+" - "+fila);
+							setTimeout((function (texto) {		
+								console.log(" & "+texto);
+								$('#table_errores tbody').append(texto);
+							})(fila), (time * 800), "JavaScript");
+							time++;
+						}
 					}, 'json');
 				});
 
