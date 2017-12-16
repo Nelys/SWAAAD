@@ -73,6 +73,9 @@ public class AulaDinamicaController {
 		int idCurso = 1;
 		AulaDinamica aulaDinamica = new AulaDinamica();
 
+		
+		
+		//obtener los alumnos que no estan en au
 		model.addObject("aulaDinamica", aulaDinamica);
 		model.addObject("listAulaDinamica", ListarAulaDinamica);
 		model.addObject("listAlumnos", objCursoAlumnoService.getAllAlumnosByCurso(iIdCurso));
@@ -88,6 +91,7 @@ public class AulaDinamicaController {
 
 		logger.info("saveAulaDinamica " + aulaDinamica.getIdAulaDinamica());
 		System.out.println("sdsdasd  " + aulaDinamica.getIdAulaDinamica());
+		AlumnoDTO alumnoDTO=new AlumnoDTO();
 		try {
 			if (aulaDinamica.getIdAulaDinamica() == 0) {
 				System.out.println("saveAulaDinamica");
@@ -104,6 +108,9 @@ public class AulaDinamicaController {
 				System.out.println("addAulaDinamica");
 
 				objAulaDinamicaService.addAulaDinamica(aDinamica2);
+				
+				System.out.println("agregado "+aDinamica2.getIdAulaDinamica());
+				alumnoDTO.setIdAlumno(aDinamica2.getIdAulaDinamica());
 			} else {
 				System.out.println("updateAlaDinamica");
 				AulaDinamica aDinamica2 = objAulaDinamicaService.getAulaDinamicaById(aulaDinamica.getIdAulaDinamica());
@@ -112,12 +119,15 @@ public class AulaDinamicaController {
 				aDinamica2.setCoordY(aulaDinamica.getCoordY());
 				System.out.println("updateAulaDinamica");
 				objAulaDinamicaService.updateAulaDinamica(aDinamica2);
+				System.out.println("actualizado "+aulaDinamica.getIdAulaDinamica());
+				alumnoDTO.setIdAlumno(aulaDinamica.getIdAulaDinamica());
+				
 			}
 
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		return new AlumnoDTO();
+		return alumnoDTO;
 	}
 
 	@RequestMapping(value = "/saveAulaDinamica", method = RequestMethod.POST)
