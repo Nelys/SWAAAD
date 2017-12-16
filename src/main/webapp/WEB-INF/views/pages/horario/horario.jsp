@@ -138,9 +138,7 @@
 
 		<!-- /.row -->
 		<script type="text/javascript">
-			$(document).ready(function() {
-
-				
+			$(document).ready(function() {			
 
 				cargarHorario();
 				$('#timepicker1').timepicker({
@@ -152,8 +150,6 @@
 					minuteStep: 5,
 					showMeridian: false
 				});
-
-
 
 				$('#horariosForm').bootstrapValidator({
 					message: 'no esta validando',
@@ -194,6 +190,9 @@
 				});
 
 			});
+			function eliminarHorario(){
+
+			}
 			function cargarHorario(){
 				$.get("getHorarios", {}, function (datas) {
 					console.log('uactualizar');

@@ -125,7 +125,7 @@ modelAttribute="aulaDinamica">
 	<div id="aula" class="col-lg-12" style="border: 1px black solid; height: 400px; position: relative;">
 		<c:forEach var="lista" items="${listAulaDinamica}">
 		<div id="alumno_${lista.idAulaDinamica}" class="principal"	style="left:${lista.coordX}px; top:${lista.coordY}px; width:60px; height:85px; background:#${lista.colorFondo}; position: absolute; border-radius: 4px 4px 4px 4px">
-			<a style="left: 50px; top: -1px; color: ${lista.idAulaDinamica};" href='#' class='xicon' title='Quitar'>&times;</a>
+			<a style="left: 50px; top: -1px; color: ${lista.idAulaDinamica};" onclick="eliminarAlumno(${lista.idAulaDinamica})" class='xicon' title='Quitar'>&times;</a>
 			<div id="${lista.idAulaDinamica}" style='color:#${lista.colorTexto}; text-align: center; font-size: 12px;'>
 				${lista.idAulaDinamica}
 			</div>
@@ -250,11 +250,15 @@ modelAttribute="aulaDinamica">
 			$.post("saveAulaDinamica2",datos, function(data) {
 				console.log("recepcion");
 
-				var texto=$( '#aula' ).html() + "<div " + "id='alumno_" +  data.idAlumno + "' class='principal ui-draggable ui-draggable-handle' " +	"style='left:5px; top:5px; width:60px; height:85px; background:#" + colorFondo + "; color:#"+colorTexto+"; position: absolute; border-radius: 4px 4px 4px 4px' >" +"<a style='left: 50px; top: -1px' href='#' class='xicon' title='Quitar'>&times;</a><div style='color: #"+colorTexto+"; text-align: center; font-size: 12px;'>" + data.idAlumno + "</div>" + 
+				/*var texto=$( '#aula' ).html() + "<div " + "id='alumno_" +  data.idAlumno + "' class='principal ui-draggable ui-draggable-handle' " +	"style='left:5px; top:5px; width:60px; height:85px; background:#" + colorFondo + "; color:#"+colorTexto+"; position: absolute; border-radius: 4px 4px 4px 4px' >" +"<a style='left: 50px; top: -1px' href='#' class='xicon' title='Quitar'>&times;</a><div style='color: #"+colorTexto+"; text-align: center; font-size: 12px;'>" + data.idAlumno + "</div>" + 
+				"<div style='color:#"+colorTexto+"; text-align: center; font-size: 12px;'>"+nombre+"</div>" +
+				"</div>";*/
+				var texto="<div " + "id='alumno_" +  data.idAlumno + "' class='principal ui-draggable ui-draggable-handle' " +	"style='left:5px; top:5px; width:60px; height:85px; background:#" + colorFondo + "; color:#"+colorTexto+"; position: absolute; border-radius: 4px 4px 4px 4px' >" +"<a style='left: 50px; top: -1px' onclick='eliminarAlumno("+  data.idAlumno +")' class='xicon' title='Quitar'>&times;</a><div style='color: #"+colorTexto+"; text-align: center; font-size: 12px;'>" + data.idAlumno + "</div>" + 
 				"<div style='color:#"+colorTexto+"; text-align: center; font-size: 12px;'>"+nombre+"</div>" +
 				"</div>";
 				console.log(texto);
-				$( '#aula' ).html(texto);
+				$('#aula').append(texto);
+				//$( '#aula' ).html(texto);
 				agregarMetodos();
 			});
 
@@ -267,6 +271,10 @@ modelAttribute="aulaDinamica">
 		
 
 	});
+	function eliminarAlumno(id){
+		alert("elimino");
+		$("#alumno_"+id).remove();
+	}
 	function agregarMetodos(){
 		console.log("agregarMetodos");
 		$("#aula div.principal").draggable({
