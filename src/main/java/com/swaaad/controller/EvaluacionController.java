@@ -68,16 +68,14 @@ public class EvaluacionController {
         logger.info("saveEvaluacion");
 
         HttpSession session = request.getSession(false);
-        int idCurso = (Integer) session.getAttribute("idCurso");
         int idPeriodo = (Integer) session.getAttribute("idPeriodo");
-        
         evaluacion.setPeriodo(objPeriodoService.getPeriodoById(idPeriodo));
         
         try {
             if (evaluacion.getIdEvaluacion() == 0) {
-                objEvaluacionService.addEvaluacion(evaluacion, idCurso);
+                objEvaluacionService.addEvaluacion(evaluacion);
             } else {
-                objEvaluacionService.updateEvaluacion(evaluacion, idCurso);
+                objEvaluacionService.updateEvaluacion(evaluacion);
             }
 
         } catch (Exception e) {

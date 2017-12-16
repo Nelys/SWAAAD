@@ -24,7 +24,7 @@ public interface EvaluacionService {
      * 
      * @throws Exception
      */
-    void addEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception;
+    void addEvaluacion(Evaluacion evaluacion) throws Exception;
 
     /**
      * Utiliza el metodo getAllEvaluaciones() de la EvaluacionesDao
@@ -59,7 +59,7 @@ public interface EvaluacionService {
      *            : evaluacion a actualizar con nuevos valores
      * @throws Exception
      */
-    void updateEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception;
+    void updateEvaluacion(Evaluacion evaluacion) throws Exception;
 
     /**
      * Implementa el metodo deleteEvaluacion(Evaluacion evaluacion) de la clase EvaluacionDao

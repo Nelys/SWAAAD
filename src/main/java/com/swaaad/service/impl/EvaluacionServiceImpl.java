@@ -44,14 +44,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     private PeriodoDao objPeriodo;
     
     @Override
-    public void addEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception {
+    public void addEvaluacion(Evaluacion evaluacion) throws Exception {
 
-        
-        Curso curso=objCurso.getCursoById(idCurso);
-//        evaluacion.setCurso(curso); 
-        
-//      evaluacion.setCurso(new Curso((Integer) session.getAttribute("idCurso")));
-        
         objEvaluacionDao.addEvaluacion(evaluacion);
         
         this.obtenerFormula(evaluacion);
@@ -75,13 +69,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public void updateEvaluacion(Evaluacion evaluacion, int idCurso) throws Exception {
-        Curso curso=objCurso.getCursoById(idCurso);
-//        evaluacion.setCurso(curso);
-        Periodo periodo = new Periodo();
-		periodo.setCurso(curso);
-		evaluacion.setPeriodo(periodo);
-        
+    public void updateEvaluacion(Evaluacion evaluacion) throws Exception {
+
         objEvaluacionDao.updateEvaluacion(evaluacion);
         
         this.obtenerFormula(evaluacion);
