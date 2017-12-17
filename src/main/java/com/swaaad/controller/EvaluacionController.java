@@ -42,8 +42,6 @@ public class EvaluacionController {
 	@RequestMapping(value="/validarFormula",method=RequestMethod.POST)
 	public @ResponseBody String validarFormula(@RequestParam("formula") String formula) throws Exception {
 		 
-		System.out.println("Formula: "+formula);
-		
         EvaDTO eva= null;
         String mensaje="";
         try {
@@ -59,7 +57,6 @@ public class EvaluacionController {
 	@RequestMapping(value="/generarFormula/{idEvaluacion}",method=RequestMethod.POST)
 	public @ResponseBody EvaDTO generarFormula(@PathVariable("idEvaluacion") int idEvaluacion) throws Exception {
 		 
-		System.out.println("IdEvaluacion: "+idEvaluacion);
 		
         Evaluacion evaluacion = null;
         EvaDTO eva= null;

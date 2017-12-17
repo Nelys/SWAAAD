@@ -409,9 +409,11 @@ h2 {
 							console.log(search.substring(0, 4));
 							if (search.substring(0, 4) == 'Corr'){
 								toastr.success('Formula correcta!', 'Correcto');
-								modalSistema
+								$( '#formula' ).val(sTextFormula);
 								$('#modalSistema').modal('hide');
-							} else {
+							} else if(search.substring(0, 4) == 'Porc'){
+								toastr.warning('Formula incompleta, le falta ' + search.split(":")[1], 'Error');;
+							} else{
 								toastr.error('Formula no aceptada!', 'Error');
 							}
 							
@@ -420,7 +422,7 @@ h2 {
 							
 						} 
 					});
-				$( '#formula' ).val(sTextFormula);
+				
 			});
 			
 			/**

@@ -105,11 +105,46 @@ public class EvaluacionServiceImpl implements EvaluacionService {
                 } else {
                     sNumero = sTexto.substring(0, contador-1);
                     intListIdEvaluciones.add(Integer.parseInt( sNumero ));
-                    System.out.println("Id Evaluacion: " + Integer.parseInt( sNumero ));
                     bNumero=false;
                 }
             }
         }
+        
+        sTexto = formula + " ";
+        sTextoBuscado = ".";
+        contador = 0;
+        bNumero= true;
+        sNumero="";
+        List<Double> dListPorcentaje = new ArrayList<Double>();
+        while (sTexto.indexOf(sTextoBuscado) > -1) {
+            sTexto = sTexto.substring(sTexto.indexOf(sTextoBuscado)+sTextoBuscado.length(),sTexto.length());
+            contador = 1;
+            bNumero= true;
+            while (bNumero == true){
+                 
+                sNumero = sTexto.substring(0, contador);
+                
+                // Comprobando si es numero
+                if (sNumero.matches("[0-9]+") == true) {
+                    contador++;
+                } else {
+                    sNumero = sTexto.substring(0, contador-1);
+                    dListPorcentaje.add(Double.parseDouble( "0." + sNumero ));
+                    bNumero=false;
+                }
+            }
+        }
+        Double porcentaje=0.0;
+        
+        for (Double integer : dListPorcentaje) {
+        	porcentaje += integer;
+		}
+    	
+        if (porcentaje!= 1.0){
+        	porcentaje = 1.0 - porcentaje;
+        	return "Porcentaje:" + porcentaje + "  del porcentaje en la formula";
+        }
+        
         
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
