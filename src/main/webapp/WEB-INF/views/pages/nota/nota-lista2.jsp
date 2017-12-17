@@ -114,6 +114,31 @@
 							</thead>
 							<tbody>
 
+<%-- 							<c:forEach var="listaAlumno" items="${listAlumnos}"> --%>
+<%-- 								<tr id="${listaAlumno.idAlumno}"> --%>
+<%-- 									<td style="text-align: left;">${listaAlumno.nombres}, ${listaAlumno.apellidos}</td> --%>
+<%-- 									<c:forEach var="listaEvaluacion" items="${listEvaluaciones}"> --%>
+<%-- 										<c:forEach var="listaNotas" items="${listNotas}"> --%>
+<%-- 											<c:choose> --%>
+<%-- 											    <c:when test="${listaAlumno.idAlumno==listaNotas.alumno.idAlumno}"> --%>
+<%-- 											    	<c:choose> --%>
+<%-- 													    <c:when test="${listaNotas.evaluacion.idEvaluacion==listaEvaluacion.idEvaluacion}"> --%>
+<%-- 													    	<td style="background-color:${listaEvaluacion.colorFondo};color:${listaEvaluacion.colorTexto};" >${listaNotas.notaEvaluativa}</td> --%>
+<%-- 													    </c:when>     --%>
+<%-- 													    <c:otherwise> --%>
+<%-- 													    	<td style="background-color:${listaEvaluacion.colorFondo};color:${listaEvaluacion.colorTexto};" >00</td> --%>
+<%-- 													    </c:otherwise> --%>
+<%-- 													</c:choose> --%>
+<%-- 											    </c:when>     --%>
+<%-- 											    <c:otherwise> --%>
+<%-- 											    	<td style="background-color:${listaEvaluacion.colorFondo};color:${listaEvaluacion.colorTexto};" >00</td> --%>
+<%-- 											    </c:otherwise> --%>
+<%-- 											</c:choose> --%>
+<%-- 										</c:forEach> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</tr> -->
+<%-- 							</c:forEach> --%>
+							
 							<c:forEach var="listaAlumno" items="${listAlumnos}">
 								<tr id="${listaAlumno.idAlumno}">
 									<td style="text-align: left;">${listaAlumno.nombres}, ${listaAlumno.apellidos}</td>

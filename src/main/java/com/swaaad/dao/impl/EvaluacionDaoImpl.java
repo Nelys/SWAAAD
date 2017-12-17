@@ -137,7 +137,7 @@ public class EvaluacionDaoImpl implements EvaluacionDao {
         sSession = sessionFactory.openSession();
         Evaluacion evaluacion = null;
         try {
-            String queryEvaluacion = "From Evaluacion Where ID_EVALUACION= :idEvaluacion";
+            String queryEvaluacion = "SELECT e FROM Evaluacion e Where e.idEvaluacion= :idEvaluacion";
             Query query = sSession.createQuery(queryEvaluacion);
             query.setInteger("idEvaluacion", idEvaluacion);
             evaluacion = (Evaluacion) query.uniqueResult();

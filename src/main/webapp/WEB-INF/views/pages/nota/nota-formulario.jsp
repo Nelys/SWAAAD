@@ -227,14 +227,16 @@ h2 {
 													style="height: 180px; overflow-y: scroll;">
 													<c:forEach var="listaEvaluacion"
 														items="${listEvaluaciones}">
-														<button
-															id="btnIdEvaluacion_${listaEvaluacion.idEvaluacion}"
-															class="btn btn-default"
-															style="background-color:${listaEvaluacion.colorFondo}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;">
-															<b>${listaEvaluacion.nombre}</b><span
-																style="font-size: 12px;">:
-																${listaEvaluacion.descripcion}</span>
-														</button>
+														<c:if test="${listaEvaluacion.idEvaluacion!=evaluacion.idEvaluacion}">
+															<button
+																id="btnIdEvaluacion_${listaEvaluacion.idEvaluacion}"
+																class="btn btn-default"
+																style="background-color:${listaEvaluacion.colorFondo}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;">
+																<b>${listaEvaluacion.nombre}</b><span
+																	style="font-size: 12px;">:
+																	${listaEvaluacion.descripcion}</span>
+															</button>
+														</c:if>
 													</c:forEach>
 												</div>
 											</div>
@@ -406,6 +408,59 @@ h2 {
 				
 			});
 			
+			/**
+			 * Funcion click (Obtener Formula)
+			 */
+			$('#btnFormula').click(function() {
+				var divFormula = $("#formula").val();
+				var divFormulaFija = $("#formula").val();
+// 				console.log(divFormula);
+// 				console.log(divFormula.indexOf("idEvaluacion_"));
+				
+				var a = 0;
+				var idEvaluacion='';
+				var id=0;
+				
+				while(divFormula.indexOf("idEvaluacion_")!=-1){
+					a = divFormula.indexOf("idEvaluacion_")+13;
+					
+					for (i = a; i <= divFormula.length-1; i++) { 
+// 						console.log(divFormula.substring(i, i+1));
+// 						console.log(Number.isInteger(parseInt(divFormula.substring(i, i+1))));
+						id = parseInt(divFormula.substring(i, i+1));
+						if(Number.isInteger(parseInt(divFormula.substring(i, i+1)))){
+							idEvaluacion= divFormula.substring(divFormula.indexOf("idEvaluacion_"), i+1);							
+// 							console.log(idEvaluacion);	
+							break;
+						} 
+					}
+					
+					divFormula = divFormula.substring(a, divFormula.lenght);
+					$.ajax({
+						type : "POST",
+						url: "${pageContext.request.contextPath}/generarFormula/" +id,
+						success :function(search) {
+							
+							$('#btnIdEvaluacion_' + id ).toggle("slide");
+							$('#btnIdEvaluacion_' + id ).toggle("slide");
+							
+							divFormulaFija = divFormulaFija.replace(idEvaluacion, 
+									"<div " + "id='idEvaluacion_" +  id + "' " +
+										"style='border: 1px solid #e0e0e0;display: inline-block;white-space: nowrap; border-radius: 4px 4px 4px 4px; padding-right: 6px; padding-left: 6px; margin-top: 7px; margin-right: 1px; margin-left: 1px;" +
+										"background-color:" +  search['colorFondo'] +
+										"; color:" +  search['colorTexto'] + 
+									";'>" + 
+									search['nombre'] +
+									"</div>");
+							console.log(divFormulaFija);
+							$( '#divFormula' ).html(divFormulaFija);
+				  		},async: false,
+						error: function(x,e){	
+							toastr.error('Formula mal obtenida: ' + e + x, 'Error');
+						} 
+					});
+				}
+			});
 		});
 	</script>
 	</div>

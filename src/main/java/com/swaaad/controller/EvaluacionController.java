@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.EvaluacionDTO;
 import com.swaaad.model.Alumno;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Evaluacion;
@@ -37,6 +39,26 @@ public class EvaluacionController {
 	@Autowired
 	private PeriodoService objPeriodoService;
 	
+	@RequestMapping(value="/generarFormula/{idEvaluacion}",method=RequestMethod.POST)
+	public @ResponseBody EvaDTO generarFormula(@PathVariable("idEvaluacion") int idEvaluacion) throws Exception {
+		 
+		System.out.println("IdEvaluacion: "+idEvaluacion);
+		
+        Evaluacion evaluacion = null;
+        EvaDTO eva= null;
+        try {
+        	evaluacion = objEvaluacionService.getEvaluacionById(idEvaluacion);
+        	System.out.println("ColorFondo: "+evaluacion.getColorFondo());
+        	System.out.println("ColorTezto: "+evaluacion.getColorTexto());
+        	System.out.println("Nombre: "+evaluacion.getNombre());
+
+        	eva = new EvaDTO(evaluacion.getColorFondo(), evaluacion.getColorTexto(), evaluacion.getNombre());
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return eva;
+	}
+	
     @RequestMapping(value = "/newEvaluacion", method = RequestMethod.GET)
     public ModelAndView newEvaluacion(ModelAndView model, HttpServletRequest request) throws Exception {
     	
@@ -56,6 +78,8 @@ public class EvaluacionController {
 		model.addObject("user", userName);
         
         Evaluacion evaluacion = new Evaluacion();
+        evaluacion.setColorFondo("#ffffff");
+        evaluacion.setColorTexto("#000000");
         model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
         model.addObject("evaluacion", evaluacion);
         model.setViewName("form-evaluacion");
@@ -117,4 +141,37 @@ public class EvaluacionController {
 
         return model;
     }
+}
+
+class EvaDTO {
+    private String colorFondo;
+    private String colorTexto;
+    private String nombre;
+	public EvaDTO(String colorFondo, String colorTexto, String nombre) {
+		super();
+		this.colorFondo = colorFondo;
+		this.colorTexto = colorTexto;
+		this.nombre = nombre;
+	}
+	public String getColorFondo() {
+		return colorFondo;
+	}
+	public void setColorFondo(String colorFondo) {
+		this.colorFondo = colorFondo;
+	}
+	public String getColorTexto() {
+		return colorTexto;
+	}
+	public void setColorTexto(String colorTexto) {
+		this.colorTexto = colorTexto;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	
+
 }
