@@ -4,15 +4,15 @@
 <%@ page session="false"%>
 
 <style>
-	.xicon {
-		margin-top: 0px;
-		position: absolute;
-		margin-left: 0px;
-		font: 15px bold;
-		color: #FFF;
-		font: message-box;
-		text-decoration: none;
-	}
+.xicon {
+	margin-top: 0px;
+	position: absolute;
+	margin-left: 0px;
+	font: 15px bold;
+	color: #FFF;
+	font: message-box;
+	text-decoration: none;
+}
 
 </style>
 <div id="page-wrapper">
@@ -22,85 +22,86 @@
 		<div class='row'>
 			<div class="col-sm-12">
 				<button id="btnFormula" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm" type="button" ><i class="fa fa-plus"></i> Agregar Alumnos</button>
-
+				<button id="btnEliminar" class="btn btn-warning"  type="button" ><i class="fa fa-trash"></i> <span>Eliminar</span></button>
 				<a id="btnImprimir" class="btn btn-default pull-right" href="#"><i class="fa fa-print"></i> Imprimir</a>
 			</div>
-			<div class="col-sm-1 pull-right" >
 
-			</div>
-		</div>
-		<br>
-		<!-- Contenido Aula Modal -->
-		<div id="modalSistema" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Agregar Alumnos</h4>
-					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div id="divEvaluaciones" class="col-sm-7">
-								<div class="panel panel-default">
-									<div class="panel-heading">Lista de Alumnos</div>
-									<div class="panel-body">
-										<div id="external-events" style="height: 180px; overflow-y: scroll;">
-											<c:forEach var="listaAlumnos" items="${listAlumnos}">
-											<button id="btnIdAlumno_${listaAlumnos.idCursoAlumno}" class="btn btn-default" style="text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;" style="background-color:${listaEvaluacion.color}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%;margin-bottom: 1px;margin-top: 1px;"> ${listaAlumnos.alumno.apellidos}, ${listaAlumnos.alumno.nombres}</button>
-										</c:forEach>
-									</div>
+		<!-- 	<div class="col-sm-1 pull-right" >
+
+		</div> -->
+	</div>
+	<br>
+	<!-- Contenido Aula Modal -->
+	<div id="modalSistema" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Agregar Alumnos</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div id="divEvaluaciones" class="col-sm-7">
+							<div class="panel panel-default">
+								<div class="panel-heading">Lista de Alumnos</div>
+								<div class="panel-body">
+									<div id="external-events" style="height: 180px; overflow-y: scroll;">
+										<c:forEach var="listaAlumnos" items="${listAlumnos}">
+										<button id="btnIdAlumno_${listaAlumnos.idCursoAlumno}" class="btn btn-default" style="text-align: left;width: 100%; margin-bottom: 1px;margin-top: 1px;" style="background-color:${listaEvaluacion.color}; color:${listaEvaluacion.colorTexto};text-align: left;width: 100%;margin-bottom: 1px;margin-top: 1px;"> ${listaAlumnos.alumno.apellidos}, ${listaAlumnos.alumno.nombres}</button>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<div class="col-sm-5">
-							<div class="form-horizontal">
-								<div class="form-group">
-									<label class="control-label col-sm-2" for="pwd">Alumno:</label>
-									<div class="col-sm-12">
-										<div id="divFormula" class="form-control"
-										style="border-radius: 4px 4px 4px 4px; height: 40px; border: 1px solid #9c9c9c; width: 100%; overflow-x: auto; white-space: nowrap; resize: none; font-size: 26px;">
-									</div>
+					<div class="col-sm-5">
+						<div class="form-horizontal">
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="pwd">Alumno:</label>
+								<div class="col-sm-12">
+									<div id="divFormula" class="form-control"
+									style="border-radius: 4px 4px 4px 4px; height: 40px; border: 1px solid #9c9c9c; width: 100%; overflow-x: auto; white-space: nowrap; resize: none; font-size: 26px;">
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label col-sm-4" for="pwd">Color de Fondo:</label>
-								<div class="col-sm-8">
-									<div id="divColorFondo" class="input-group colorpicker-component">
-										<input id="color" name="color" class="form-control"
-										value='<c:out value="${evaluacion.color}"></c:out>'
-										readonly="readonly" required> <span
-										class="input-group-addon"><i></i></span>
-									</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="pwd">Color de Fondo:</label>
+							<div class="col-sm-8">
+								<div id="divColorFondo" class="input-group colorpicker-component">
+									<input id="color" name="color" class="form-control"
+									value='<c:out value="${evaluacion.color}"></c:out>'
+									readonly="readonly" required> <span
+									class="input-group-addon"><i></i></span>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label col-sm-4" for="pwd">Color de Letra:</label>
-								<div class="col-sm-8">
-									<div id="divColorTexto" class="input-group colorpicker-component">
-										<input id="colorTexto" name="colorTexto" class="form-control"
-										value='<c:out value="${evaluacion.colorTexto}"></c:out>'
-										readonly="readonly"> <span class="input-group-addon"><i></i></span>
-									</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="pwd">Color de Letra:</label>
+							<div class="col-sm-8">
+								<div id="divColorTexto" class="input-group colorpicker-component">
+									<input id="colorTexto" name="colorTexto" class="form-control"
+									value='<c:out value="${evaluacion.colorTexto}"></c:out>'
+									readonly="readonly"> <span class="input-group-addon"><i></i></span>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="col-sm-4 col-sm-offset-4">
-									<button id="btnNota" class="btn btn-success" style="float: none; margin: 0 auto;" >Agregar</button>
-								</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4 col-sm-offset-4">
+								<button id="btnNota" class="btn btn-success" style="float: none; margin: 0 auto;" >Agregar</button>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<div class="modal-footer">
 
-				<button id="btnNota" class="btn btn-default pull-left"
-				data-dismiss="modal">Salir</button>
-			</div>
+		</div>
+		<div class="modal-footer">
+
+			<button id="btnNota" class="btn btn-default pull-left"
+			data-dismiss="modal">Salir</button>
 		</div>
 	</div>
+</div>
 </div>
 <!-- / Contenido Modal -->
 
@@ -141,7 +142,14 @@ modelAttribute="aulaDinamica">
 
 
 	function inicializar(){
-		
+		$('#btnImprimir').click(function() {
+			var myStyle = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /> ';
+			var myStyle2 = "<style>.xicon {  margin-top: 0px; position: absolute;  margin-left: 0px; font: 15px bold; color: #FFF; font: message-box; text-decoration: none; } </style>"
+			var w=window.open(null, 'Print_Page', 'scrollbars=yes');        
+			w.document.write(myStyle + myStyle2 + $('#aulaBox').html());
+			w.document.close();
+			w.print();
+		});
 		$('#divColorFondo').colorpicker({
 			color: '#2f2f30',
 			format: "hex",
@@ -158,6 +166,18 @@ modelAttribute="aulaDinamica">
 			}
 		});
 
+		$('#btnEliminar').click(function (){
+			if(opcion==0){
+				opcion=1;
+				$('#btnEliminar span').html("Cancelar Eliminar");
+				$('#btnFormula').css("display","none");
+				
+			}else{
+				opcion=0;
+				$('#btnEliminar span').html("Eliminar");
+				$('#btnFormula').css("display","inline");
+			}
+		});
 		$('#divColorTexto').colorpicker({
 			color: '#ffffff',
 			format: "hex",
@@ -171,6 +191,16 @@ modelAttribute="aulaDinamica">
 				'info': '#5bc0de',
 				'warning': '#f0ad4e',
 				'danger': '#d9534f'
+			}
+		});
+		$('#aula').mousemove(function(event) {
+			if (id != null) {
+				var p = $('#' + id);
+				var position = p.position();
+				$('#coordX').val(position.left);
+				$('#coordY').val(position.top);
+
+				$('#coordenadas').text("left: " + position.left+ ", top: "+ position.top);
 			}
 		});
 		
@@ -190,17 +220,8 @@ modelAttribute="aulaDinamica">
 	var id;
 	$(document).ready(function() {
 		inicializar();
-		
-
 		agregarMetodos();
-		$('#btnImprimir').click(function() {
-			var myStyle = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /> ';
-			var myStyle2 = "<style>.xicon {  margin-top: 0px; position: absolute;  margin-left: 0px; font: 15px bold; color: #FFF; font: message-box; text-decoration: none; } </style>"
-			var w=window.open(null, 'Print_Page', 'scrollbars=yes');        
-			w.document.write(myStyle + myStyle2 + $('#aulaBox').html());
-			w.document.close();
-			w.print();
-		});
+
 
 		/* Funcion click del boton Aceptar de la pagina modal para guardar nota*/
 		$('#divEvaluaciones button').click(function() {
@@ -211,9 +232,8 @@ modelAttribute="aulaDinamica">
 			idAlumno = idAlumno.replace('btnIdAlumno_', '');
 			var colorTexto= hexc($('#divColorTexto i' ).css('background-color'));
 			var colorFondo= hexc($('#divColorFondo i').css('background-color'));
-				
-		/*$( '#aula' ).html($('#aula' ).html());
-			/* Estableciendo propiedades*/
+
+
 
 			$('#idAulaDinamica').val(0);
 			$('#cursoAlumno.idCursoAlumno').val(idAlumno);
@@ -243,12 +263,12 @@ modelAttribute="aulaDinamica">
 				"</div>";
 
 				$('#aula').append(texto);
-				//agregarMetodos();
+
+				agregarMetodoAlumno(data.idAlumno);
 			});
-
 		});
-
 	});
+	var opcion=0;
 	function eliminarAlumno(id){
 		console.log("eliminarAulaDinamica");
 		$.get("eliminarAulaDinamica/"+id,{}, function(data) {
@@ -256,88 +276,131 @@ modelAttribute="aulaDinamica">
 			$("#alumno_"+id).remove();
 		});
 	}
+	function agregarMetodoAlumno(id){
+		console.log("el id "+ id)
+		$("#alumno_"+id).draggable({
+			stack : "#aula div",
+			containment : "#aula"
+		});
+		$("#alumno_"+id).mousedown(function() {
+
+			var id_alumno = $(this).attr('id').replace('alumno_', '');
+
+
+			if(opcion==0){
+
+				id = $(this).attr('id');
+
+				$('#idAulaDinamica').val(id.replace('alumno_', ''));
+				$('#identificador').text(id);
+
+				color = hexc($('#' + id).css("backgroundColor"));
+
+				$('#colorFondo').val(color);
+				$('#cursoAlumno.idCursoAlumno').val($('#idAula').text());
+			}
+
+		});
+		$("#alumno_"+id).mouseup(function() {
+			var id_alumno = $(this).attr('id').replace('alumno_', '');
+			console.log(id_alumno);
+			if(opcion==0){
+				var formulario = $("#aulaDinamica").serialize();
+				id = null;
+				console.log("saveAulaDinamica2 div.principal");
+				$.post("saveAulaDinamica2",formulario, function(data) {
+					console.log("saveAulaDinamica2 div.principal--------");
+
+
+				});
+			}
+			else{
+				// alert("eliminara");
+				eliminarAlumno(id_alumno);
+			}
+
+		});
+	}
+
+
 	function agregarMetodos(){
 		$("#aula div.principal").draggable({
 			stack : "#aula div",
 			containment : "#aula"
 		});
 		$('div.principal').mousedown(function() {
-			id = $(this).attr('id');
+			if(opcion==0){
+				id = $(this).attr('id');
 
-			$('#idAulaDinamica').val(
-				id.replace('alumno_', ''));
-			$('#identificador').text(id);
+				$('#idAulaDinamica').val(
+					id.replace('alumno_', ''));
+				$('#identificador').text(id);
 
-			color = hexc($('#' + id).css("backgroundColor"));
+				color = hexc($('#' + id).css("backgroundColor"));
 
-			$('#colorFondo').val(color);
-			$('#cursoAlumno.idCursoAlumno').val($('#idAula').text());
-
-		});
-
-		$('#aula').mousemove(function(event) {
-			if (id != null) {
-				var p = $('#' + id);
-				var position = p.position();
-				$('#coordX').val(position.left);
-				$('#coordY').val(position.top);
-
-				$('#coordenadas').text("left: " + position.left+ ", top: "+ position.top);
+				$('#colorFondo').val(color);
+				$('#cursoAlumno.idCursoAlumno').val($('#idAula').text());
 			}
 		});
-		$('div.principal').mouseup(function() {
-
-			var formulario = $("#aulaDinamica").serialize();
-
-			id = null;
-			console.log("saveAulaDinamica2 div.principal");
-			$.post("saveAulaDinamica2",formulario, function(data) {
-				console.log("saveAulaDinamica2 div.principal--------");
 
 
-			});
+		$('#aula div.principal').mouseup(function() {
 
+			var id_alumno = $(this).attr('id').replace('alumno_', '');
+			console.log(id_alumno);
+			if(opcion==0){
+				var formulario = $("#aulaDinamica").serialize();
+
+				id = null;
+				console.log("saveAulaDinamica2 div.principal");
+				$.post("saveAulaDinamica2",formulario, function(data) {
+					console.log("saveAulaDinamica2 div.principal--------");
+				});
+			}else{
+				// alert("eliminara");
+				eliminarAlumno(id_alumno)
+			}
 		});
 	}
 </script>
-<p></p>
+
 <!-- Resgistros de la tabla -->
 <div class="row" style="display: none;">
 	<!-- 		<div class="row"> -->
-	<div class="col-lg-12">
+		<div class="col-lg-12">
 
-		<div class="table-responsive">
-			<c:if test="${!empty listAulaDinamica}">
-			<table class="table table-bordered table-hover table-striped">
-				<tr>
-					<th>ID</th>
-					<!-- 								<th>Curso</th> -->
-					<th>Fila</th>
-					<th>Columna</th>
-					<th>Color</th>
-					<th>ACCION</th>
-				</tr>
-				<c:forEach var="lista" items="${listAulaDinamica}">
-				<tr>
-					<td>${lista.idAulaDinamica}</td>
-					<%-- 									<td>${lista.curso}</td> --%>
-					<td>${lista.coordX}</td>
-					<td>${lista.coordY}</td>
-					<td>${lista.colorFondo}</td>
-					<td style="text-align: center" width="100px"><a
-						class="btn btn-sm btn-warning btn-sm"
-						href="editAlumno?id=${lista.idAulaDinamica}"><i
-						class="fa fa-pencil-square-o"></i></a> <a
-						class="btn btn-sm btn-danger btn-sm"
-						href="deleteAlumno?id=${lista.idAulaDinamica}"><i
-						class="fa fa-trash-o"></i></a></td>
+			<div class="table-responsive">
+				<c:if test="${!empty listAulaDinamica}">
+				<table class="table table-bordered table-hover table-striped">
+					<tr>
+						<th>ID</th>
+						<!-- 								<th>Curso</th> -->
+						<th>Fila</th>
+						<th>Columna</th>
+						<th>Color</th>
+						<th>ACCION</th>
 					</tr>
-				</c:forEach>
-			</table>
-		</c:if>
-	</div>
+					<c:forEach var="lista" items="${listAulaDinamica}">
+					<tr>
+						<td>${lista.idAulaDinamica}</td>
+						<%-- 									<td>${lista.curso}</td> --%>
+						<td>${lista.coordX}</td>
+						<td>${lista.coordY}</td>
+						<td>${lista.colorFondo}</td>
+						<td style="text-align: center" width="100px"><a
+							class="btn btn-sm btn-warning btn-sm"
+							href="editAlumno?id=${lista.idAulaDinamica}"><i
+							class="fa fa-pencil-square-o"></i></a> <a
+							class="btn btn-sm btn-danger btn-sm"
+							href="deleteAlumno?id=${lista.idAulaDinamica}"><i
+							class="fa fa-trash-o"></i></a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
+		</div>
 
-</div>
+	</div>
 </div>
 <!-- /.row -->
 
