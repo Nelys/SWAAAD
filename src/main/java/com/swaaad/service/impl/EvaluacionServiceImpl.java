@@ -83,6 +83,50 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
     }
     
+    @Override
+    public String validarFormula(String formula) throws Exception {
+    	String sTexto = formula + " ";
+        String sTextoBuscado = "idEvaluacion_";
+        int contador = 0;
+        Boolean bNumero= true;
+        String sNumero="";
+        List<Integer> intListIdEvaluciones = new ArrayList<Integer>();
+        while (sTexto.indexOf(sTextoBuscado) > -1) {
+            sTexto = sTexto.substring(sTexto.indexOf(sTextoBuscado)+sTextoBuscado.length(),sTexto.length());
+            contador = 1;
+            bNumero= true;
+            while (bNumero == true){
+                 
+                sNumero = sTexto.substring(0, contador);
+                
+                // Comprobando si es numero
+                if (sNumero.matches("[0-9]+") == true) {
+                    contador++;
+                } else {
+                    sNumero = sTexto.substring(0, contador-1);
+                    intListIdEvaluciones.add(Integer.parseInt( sNumero ));
+                    System.out.println("Id Evaluacion: " + Integer.parseInt( sNumero ));
+                    bNumero=false;
+                }
+            }
+        }
+        
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("js");
+        try {
+	        for (Integer integer : intListIdEvaluciones) {
+	            engine.put("idEvaluacion_" + integer, 1);
+	        }
+	        
+	        Double operation2 = (Double) engine.eval(formula);
+	        System.out.println("Resultado: " + operation2);
+	        return (operation2.isNaN() || operation2.isInfinite()) ? operation2.toString() : "Correcto"; 
+        } catch (Exception e) {
+        	e.getStackTrace();
+    		return "Error: " + e ;
+		}
+    }
+    
     public void obtenerFormula(Evaluacion evaluacion) throws ScriptException, Exception{
         // Obtener los idEvalucion de la formula
         String sTexto = evaluacion.getFormula() + " ";

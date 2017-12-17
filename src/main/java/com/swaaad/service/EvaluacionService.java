@@ -69,5 +69,14 @@ public interface EvaluacionService {
      * @throws Exception
      */
     void deleteEvaluacion(int idEvaluacion) throws Exception;
+    
+    /**
+     * Implementa el metodo validarFormula(String formula) de la clase EvaluacionDao
+     * 
+     * @param formula
+     *            : formula a validar
+     * @throws Exception
+     */
+    String validarFormula(String formula) throws Exception;
 
 }

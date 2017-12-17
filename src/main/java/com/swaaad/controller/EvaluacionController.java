@@ -39,6 +39,23 @@ public class EvaluacionController {
 	@Autowired
 	private PeriodoService objPeriodoService;
 	
+	@RequestMapping(value="/validarFormula",method=RequestMethod.POST)
+	public @ResponseBody String validarFormula(@RequestParam("formula") String formula) throws Exception {
+		 
+		System.out.println("Formula: "+formula);
+		
+        EvaDTO eva= null;
+        String mensaje="";
+        try {
+        	mensaje = objEvaluacionService.validarFormula(formula);
+
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+        
+        return mensaje;
+	}
+	
 	@RequestMapping(value="/generarFormula/{idEvaluacion}",method=RequestMethod.POST)
 	public @ResponseBody EvaDTO generarFormula(@PathVariable("idEvaluacion") int idEvaluacion) throws Exception {
 		 
@@ -48,10 +65,6 @@ public class EvaluacionController {
         EvaDTO eva= null;
         try {
         	evaluacion = objEvaluacionService.getEvaluacionById(idEvaluacion);
-        	System.out.println("ColorFondo: "+evaluacion.getColorFondo());
-        	System.out.println("ColorTezto: "+evaluacion.getColorTexto());
-        	System.out.println("Nombre: "+evaluacion.getNombre());
-
         	eva = new EvaDTO(evaluacion.getColorFondo(), evaluacion.getColorTexto(), evaluacion.getNombre());
 		} catch (Exception e) {
 			e.getStackTrace();

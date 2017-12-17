@@ -249,7 +249,7 @@ h2 {
 								<button type="button" class="btn btn-default pull-left"
 									data-dismiss="modal">Cancelar</button>
 								<button id="btnNota" class="btn btn-success"
-									data-dismiss="modal">Aceptar</button>
+									>Aceptar</button>
 							</div>
 						</div>
 					</div>
@@ -398,14 +398,29 @@ h2 {
 				    sTextFormula = sTextFormula.replace($(this).text(), $(this).attr('id'));
 				});
 // 				console.log(sTextFormula);
+// 				var formula = sTextFormula.replace('idEvaluacion_', '');;
+
+				$.ajax({
+						type : "POST",
+						url: "${pageContext.request.contextPath}/validarFormula/",
+						data: { formula: sTextFormula },
+// 						url: "${pageContext.request.contextPath}/validarFormula/" + sTextFormula,
+						success :function(search) {
+							console.log(search.substring(0, 4));
+							if (search.substring(0, 4) == 'Corr'){
+								toastr.success('Formula correcta!', 'Correcto');
+								modalSistema
+								$('#modalSistema').modal('hide');
+							} else {
+								toastr.error('Formula no aceptada!', 'Error');
+							}
+							
+						},async: false,
+						error: function(x,e){	
+							
+						} 
+					});
 				$( '#formula' ).val(sTextFormula);
-				
-				// show when page load
-			    toastr.info('Page Loaded!', 'sdfds');
-
-			    toastr.error('Click Button');
-
-				
 			});
 			
 			/**
