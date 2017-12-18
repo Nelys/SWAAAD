@@ -87,11 +87,11 @@ CREATE TABLE `aula_dinamica` (
   PRIMARY KEY (`ID_AULA_DINAMICA`),
   KEY `fk_AULA_DINAMICA_CURSOALUMNO` (`ID_CURSO_ALUMNO`),
   CONSTRAINT `fk_AULA_DINAMICA_CURSOALUMNO` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `aula_dinamica` */
 
-insert  into `aula_dinamica`(`ID_AULA_DINAMICA`,`COORD_X`,`COORD_Y`,`COLOR_TEXTO`,`COLOR_FONDO`,`ESTADO`,`ID_CURSO_ALUMNO`) values (41,178,62,'ffffff','2f2f30','\0',4),(42,397,48,'ffffff','2f2f30','\0',6),(43,283,45,'ffffff','2f2f30','\0',7),(44,480,25,'ffffff','2f2f30','\0',8);
+insert  into `aula_dinamica`(`ID_AULA_DINAMICA`,`COORD_X`,`COORD_Y`,`COLOR_TEXTO`,`COLOR_FONDO`,`ESTADO`,`ID_CURSO_ALUMNO`) values (71,5,5,'ffffff','2f2f30','\0',4),(72,5,5,'ffffff','2f2f30','\0',5),(73,5,5,'ffffff','2f2f30','\0',6),(74,5,5,'ffffff','2f2f30','\0',7),(75,5,5,'ffffff','2f2f30','\0',8),(76,5,5,'ffffff','2f2f30','\0',9),(77,78,5,'ffffff','2f2f30','\0',10);
 
 /*Table structure for table `curso` */
 
@@ -171,11 +171,11 @@ CREATE TABLE `evaluacion` (
   PRIMARY KEY (`ID_EVALUACION`),
   KEY `fk_EVALUACION_PERIODO` (`ID_PERIODO`),
   CONSTRAINT `fk_EVALUACION_PERIODO` FOREIGN KEY (`ID_PERIODO`) REFERENCES `periodo` (`ID_PERIODO`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `evaluacion` */
 
-insert  into `evaluacion`(`ID_EVALUACION`,`ID_EVALUACION_DEPENDENCIA`,`ID_PERIODO`,`NOMBRE`,`DESCRIPCION`,`COLOR_FONDO`,`COLOR_TEXTO`,`FORMULA`,`ES_FORMULA`) values (1,3,2,'Tarea 1','','#ffffff','#000000','','\0'),(2,0,2,'Practica calificada','','#ff0000','#ffffff','','\0'),(3,0,2,'Promedio 1','','#337ab7','#ffffff','idEvaluacion_1*0.3*idEvaluacion_20.4','');
+insert  into `evaluacion`(`ID_EVALUACION`,`ID_EVALUACION_DEPENDENCIA`,`ID_PERIODO`,`NOMBRE`,`DESCRIPCION`,`COLOR_FONDO`,`COLOR_TEXTO`,`FORMULA`,`ES_FORMULA`) values (5,0,1,'Tarea 1','','#ffffff','#000000','','\0'),(6,0,1,'Tarea 2','','#ffffff','#000000','','\0'),(7,0,2,'Tarea 1','','#ffffff','#000000','','\0');
 
 /*Table structure for table `horario` */
 
@@ -210,11 +210,9 @@ CREATE TABLE `nota` (
   KEY `FK_EVALUACION_NOTA` (`ID_EVALUACION`),
   CONSTRAINT `FK_ALUMNO_NOTA` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `FK_EVALUACION_NOTA` FOREIGN KEY (`ID_EVALUACION`) REFERENCES `evaluacion` (`ID_EVALUACION`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `nota` */
-
-insert  into `nota`(`ID_NOTA`,`ID_ALUMNO`,`ID_EVALUACION`,`NOTA_EVALUATIVA`) values (1,23,1,20),(2,5,1,6),(3,23,2,19);
 
 /*Table structure for table `periodo` */
 
