@@ -10,10 +10,18 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/swaaad" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="url" value="jdbc:mysql://us-cdbr-iron-east-05.cleardb.net:3306/heroku_629585dfab0db2d" />
+		<property name="username" value="b91f795d75ef01" />
+		<property name="password" value="abd0e186" />
 	</bean>
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/swaaad" /> -->
+<!-- 		<property name="username" value="root" /> -->
+<!-- 		<property name="password" value="" /> -->
+<!-- 	</bean> -->
 
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
