@@ -62,6 +62,6 @@ public interface CursoDao {
 	 * @throws Exception
 	 */
 	List<Curso> listCursoByDocente(int idDocente) throws Exception;
-	
+	List<Curso> listCursoByEstado(int idDocente) throws Exception;
 }
  

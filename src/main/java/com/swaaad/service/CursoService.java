@@ -22,7 +22,9 @@ public interface CursoService {
 	void updateCurso(Curso curso) throws Exception;
 
 	void deleteCurso(int idCurso) throws Exception;
-	
+
 	List<Curso> listCursoByDocente(int idDocente) throws Exception;
+
+	List<Curso> listCursoByEstado(int idDocente) throws Exception;
 
 }

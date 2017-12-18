@@ -151,4 +151,23 @@ public class CursoDaoImpl implements CursoDao {
 		return listarcurso;
 	}
 
+	@Override
+	public List<Curso> listCursoByEstado(int idDocente) throws Exception {
+		
+		sSession = sessionFactory.openSession();
+		List<Curso> listarcurso = null;
+		try {
+			String queryCurso = "SELECT c FROM Curso c WHERE c.docente.idDocente=:idDocente and c.estado=1";
+			Query query = sSession.createQuery(queryCurso);
+			query.setInteger("idDocente", idDocente);
+			listarcurso=(List<Curso>) query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		return listarcurso;
+	}
+
 }

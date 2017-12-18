@@ -22,7 +22,9 @@
 								<label class="col-sm-2 control-label">Curso:</label>
 								<div class="col-sm-9">
 									<select class="form-control" name="cbxCursos" id="cbxCursos">
-										<c:forEach var="lista" items="${listaCursos}"><option value="${lista.idCurso}">${lista.nombreCurso}</option></c:forEach>
+										<c:forEach var="lista" items="${listaCursos}">
+										<option value="${lista.idCurso}">${lista.nombreCurso} - ${lista.grado} - ${lista.seccion} - ${lista.institucion}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>

@@ -48,4 +48,10 @@ public class CursoServiceImpl implements CursoService {
 		return objCursoDao.listCursoByDocente(idDocente);
 	}
 
+	@Override
+	public List<Curso> listCursoByEstado(int idDocente) throws Exception {
+		// TODO Auto-generated method stub
+		return objCursoDao.listCursoByEstado(idDocente);
+	}
+
 }
