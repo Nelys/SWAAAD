@@ -41,6 +41,14 @@ public interface EvaluacionService {
      * @throws Exception
      */
     List<Evaluacion> getAllEvaluacionesByIdCurso(int idCurso) throws  Exception;
+
+    /**
+     * Utiliza el metodo getAllEvaluacionesByIdPeriodo() de la EvaluacionesDao
+     * 
+     * @return : Lista de Evaluaciones por periodo
+     * @throws Exception
+     */
+    List<Evaluacion> getAllEvaluacionesByIdPeriodo(int idPeriodo) throws  Exception;
     
     /**
      * Utiliza el metodo getEvaluacionById(int idEvaluacion) de la clase EvaluacionesDao

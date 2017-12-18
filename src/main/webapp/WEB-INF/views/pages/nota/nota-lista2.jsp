@@ -28,7 +28,7 @@
 					<select class="form-control" id="cbxPeriodo"  onchange="ChangecatList()" >
 						<option value="0" disabled selected>Seleccionar Periodo</option>
 						<c:forEach var="listaPeriodo" items="${listPeriodos}">
-							<option value="${listaPeriodo.idPeriodo}" >${listaPeriodo.descripcion} ${listaPeriodo.numeroPeriodos}</option>
+							<option value="${listaPeriodo.idPeriodo}" ${idPeriodo==listaPeriodo.idPeriodo?'selected="selected"':''} >${listaPeriodo.descripcion} ${listaPeriodo.numeroPeriodos}</option>
 						</c:forEach>
 					</select>
 					<a id="aPeriodo" class="input-group-addon btn btn-warning" data-toggle="modal" data-target=".bs-periodo-modal-sm"><i class="fa fa-pencil-square-o"></i> Editar</a>
@@ -232,24 +232,19 @@
 		
 		function ChangecatList() {
 			$.ajax({
+				type : "POST",
 				url : '${pageContext.request.contextPath}/selectPeriodo',
 				data: { idPeriodo:  $( '#cbxPeriodo' ).val()
 						},
 				
 				success: function(result){
 					location.reload();
-				}
+					
+				}, async: false,
+				error: function(x,e){	
+					toastr.error('Ocurrio un error: ' + e + x, 'Error');
+				} 
 			});
-			
-			if($('#cbxPeriodo').val()!=0){
-				$("#divNotas").show();
-			}
-	
-// 			if($('#cbxPeriodo').val()==''){
-// 				$("#divNotas").hide();
-// 			} else {
-// 				$("#divNotas").show();
-// 			}
 		}
 		/**
 		 * Funciones de la pagina cargada
@@ -497,8 +492,7 @@
 			});
 			
 			if('${idPeriodo}'!=0){
-				$('#cbxPeriodo').val('${idPeriodo}');
-				ChangecatList();
+				$("#divNotas").show();
 			} else{
 				$("#divNotas").hide();
 			}

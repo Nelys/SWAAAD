@@ -75,14 +75,18 @@ public class PeriodoController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/selectPeriodo", method = RequestMethod.GET)
-	public void selectPeriodo(HttpServletRequest request, HttpSession session, @RequestParam("idPeriodo") int idPeriodo)
+	@RequestMapping(value = "/selectPeriodo", method = RequestMethod.POST)
+	public ModelAndView selectPeriodo(HttpServletRequest request, HttpSession session, @RequestParam("idPeriodo") int idPeriodo)
 			throws Exception {
 
-		logger.info("selectPeriodo");
-		
-		session = request.getSession();
-		session.setAttribute("idPeriodo", idPeriodo);
+		logger.info("selectPeriodo " + idPeriodo);
+		try {
+			session = request.getSession();
+			session.setAttribute("idPeriodo", idPeriodo);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return new ModelAndView("redirect:/listNota");
 	}
 }
 

@@ -74,6 +74,7 @@ public class EvaluacionController {
     	
     	HttpSession session = request.getSession(false);
         int idCurso = (Integer) session.getAttribute("idCurso");
+        int idPeriodo = (Integer) session.getAttribute("idPeriodo");
     	
         logger.info("newEvaluacion");
         
@@ -88,6 +89,7 @@ public class EvaluacionController {
 		model.addObject("user", userName);
         
         Evaluacion evaluacion = new Evaluacion();
+        evaluacion.setPeriodo(objPeriodoService.getPeriodoById(idPeriodo));
         evaluacion.setColorFondo("#ffffff");
         evaluacion.setColorTexto("#000000");
         model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));

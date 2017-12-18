@@ -106,7 +106,9 @@ public class NotaController {
 
 		model.addObject("listNotas", objNotaService.getAllNotasByIdCurso(idCurso));
 		
-		model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
+//		model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdCurso(idCurso));
+		
+		model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluacionesByIdPeriodo(idPeriodo));
 		
 		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByIdCurso(idCurso));
 		

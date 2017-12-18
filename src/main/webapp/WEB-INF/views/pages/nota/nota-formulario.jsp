@@ -227,7 +227,7 @@ h2 {
 													style="height: 180px; overflow-y: scroll;">
 													<c:forEach var="listaEvaluacion"
 														items="${listEvaluaciones}">
-														<c:if test="${listaEvaluacion.idEvaluacion!=evaluacion.idEvaluacion}">
+														<c:if test="${listaEvaluacion.idEvaluacion!=evaluacion.idEvaluacion &&  evaluacion.periodo.idPeriodo==listaEvaluacion.periodo.idPeriodo}">
 															<button
 																id="btnIdEvaluacion_${listaEvaluacion.idEvaluacion}"
 																class="btn btn-default"

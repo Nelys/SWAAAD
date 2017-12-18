@@ -61,6 +61,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
         return objEvaluacionDao.getAllEvaluacionesByIdCurso(idCurso);
     }
+    
+    @Override
+    public List<Evaluacion> getAllEvaluacionesByIdPeriodo(int idPeriodo) throws Exception {
+
+        return objEvaluacionDao.getAllEvaluacionesByIdPeriodo(idPeriodo);
+    }
 
     @Override
     public Evaluacion getEvaluacionById(int idEvaluacion) throws Exception {
@@ -135,14 +141,15 @@ public class EvaluacionServiceImpl implements EvaluacionService {
             }
         }
         Double porcentaje=0.0;
-        
-        for (Double integer : dListPorcentaje) {
-        	porcentaje += integer;
-		}
-    	
-        if (porcentaje!= 1.0){
-        	porcentaje = 1.0 - porcentaje;
-        	return "Porcentaje:" + porcentaje + "  del porcentaje en la formula";
+        if(formula.indexOf(".") != -1){
+	        for (Double integer : dListPorcentaje) {
+	        	porcentaje += integer;
+			}
+	    	
+	        if (porcentaje!= 1.0){
+	        	porcentaje = 1.0 - porcentaje;
+	        	return "Porcentaje:" + porcentaje + "  del porcentaje en la formula";
+	        }
         }
         
         
