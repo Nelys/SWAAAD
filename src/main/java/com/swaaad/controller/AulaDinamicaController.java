@@ -64,13 +64,13 @@ public class AulaDinamicaController {
 
 		ListarAulaDinamica = objAulaDinamicaService.getAllAulasDinamicas();
 		HttpSession session = request.getSession(false);
-
+ 
 		int iIdCurso = (Integer) session.getAttribute("idCurso");
 
 		int idCurso = 1;
 		AulaDinamica aulaDinamica = new AulaDinamica();
-
 		
+
 		
 		//obtener los alumnos que no estan en au
 		model.addObject("aulaDinamica", aulaDinamica);
@@ -206,8 +206,23 @@ public class AulaDinamicaController {
 			e.printStackTrace();
 		}
 				
-		
 		return responseDTO;
 	}
 	
+	
+	@RequestMapping(value = "/prueba", method = RequestMethod.GET)
+	public ModelAndView prueba(ModelAndView model) throws Exception {
+		logger.info("prueba");
+//		AulaDinamica aulaDinamica = new AulaDinamica();
+//		model.addObject("aulaDinamica", aulaDinamica);
+//		model.setViewName("form-aulaDinamica");
+		
+		List<CursoAlumno> ListarAlumnosPorEstado=null;
+		ListarAlumnosPorEstado= objAulaDinamicaService.getAllAlumnosByCursoByEstado(1);
+		for (CursoAlumno cursoAlumno : ListarAlumnosPorEstado) {
+			System.out.println(cursoAlumno); 
+		}
+		
+		return null  ;
+	}
 }

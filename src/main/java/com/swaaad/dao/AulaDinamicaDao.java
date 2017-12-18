@@ -3,6 +3,7 @@ package com.swaaad.dao;
 import java.util.List;
 
 import com.swaaad.model.AulaDinamica;
+import com.swaaad.model.CursoAlumno;
 
 /**
  * @author Christian
@@ -12,10 +13,8 @@ import com.swaaad.model.AulaDinamica;
 
 public interface AulaDinamicaDao {
 
-	
 	/**
-	 * Crea un aula en base de datos, recibe como parametro un
-	 * aula
+	 * Crea un aula en base de datos, recibe como parametro un aula
 	 * 
 	 * @throws Exception
 	 */
@@ -30,6 +29,7 @@ public interface AulaDinamicaDao {
 	 * @throws Exception
 	 */
 	AulaDinamica getAulaDinamicaById(int idAulaDinamica) throws Exception;
+
 	/**
 	 * Actualiza los datos de un aula
 	 * 
@@ -47,6 +47,7 @@ public interface AulaDinamicaDao {
 	 * @throws Exception
 	 */
 	void deleteAulaDinamica(int idAulaDinamica) throws Exception;
+
 	/**
 	 * Recupera una lista de aulas de la base de datos
 	 * 
@@ -54,4 +55,7 @@ public interface AulaDinamicaDao {
 	 * @throws Exception
 	 */
 	List<AulaDinamica> getAllAulasDinamicas() throws Exception;
+
+	List<CursoAlumno> getAllAlumnosByCursoByEstado(int idCurso) throws Exception;
+	List<AulaDinamica> getAllAlumnosByCursoByEs(int idCurso) throws Exception;
 }

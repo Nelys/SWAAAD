@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.swaaad.model.AulaDinamica;
+import com.swaaad.model.CursoAlumno;
 
 /**
  * 
@@ -60,5 +61,6 @@ public interface AulaDinamicaService {
 	 * @throws Exception
 	 */
 	void deleteAulaDinamica(int idAulaDinamica) throws Exception;
+	List<CursoAlumno> getAllAlumnosByCursoByEstado(int idCurso) throws Exception;
 
 }

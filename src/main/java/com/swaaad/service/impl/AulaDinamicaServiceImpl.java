@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.swaaad.controller.AulaDinamicaController;
 import com.swaaad.dao.AulaDinamicaDao;
 import com.swaaad.model.AulaDinamica;
+import com.swaaad.model.CursoAlumno;
 import com.swaaad.service.AulaDinamicaService;
 
 @Service
@@ -46,6 +47,12 @@ public class AulaDinamicaServiceImpl implements AulaDinamicaService{
 	public void deleteAulaDinamica(int idAulaDinamica) throws Exception {
 		logger.info("deleteAulaDinamica");
 		objAulaDinamicaDao.deleteAulaDinamica(idAulaDinamica);
+	}
+
+	@Override
+	public List<CursoAlumno> getAllAlumnosByCursoByEstado(int idCurso) throws Exception {
+		// TODO Auto-generated method stub
+		return objAulaDinamicaDao.getAllAlumnosByCursoByEstado(idCurso);
 	}
 
 }
