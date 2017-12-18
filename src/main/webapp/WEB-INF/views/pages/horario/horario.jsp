@@ -104,6 +104,7 @@
 					<div class="row text-right">
 						<div class="form-group">
 							<div class="col-sm-11">
+								
 								<a class="btn btn-default" href="alumnos">Cancelar</a>
 								<button id="btnGuardar" class="btn btn-success" type="submit">Guardar</button>
 							</div>
@@ -120,7 +121,7 @@
 										<td>Dia</td>
 										<td>Hora Inicio</td>
 										<td>Hora Fin</td>
-								    </tr>
+									</tr>
 								</tbody>
 							</table>
 						</div>						
@@ -129,7 +130,7 @@
 				</form>
 			</div>
 			<div class="col-lg-8">
-				<h2>Horario de Cursos</h2>
+				<h2>Horario de Cursos</h2> <button id="btnEliminar" class="btn btn-danger" type="button"><i class="fa fa-trash"></i> Eliminar</button>
 				<div id='calendar'></div>
 			</div>
 
@@ -138,6 +139,9 @@
 
 		<!-- /.row -->
 		<script type="text/javascript">
+			var id=0;
+			var opcion=0;
+			var border="1px solid #3a87ad";
 			$(document).ready(function() {			
 
 				cargarHorario();
@@ -145,7 +149,20 @@
 					minuteStep: 5,
 					showMeridian: false
 				});
+				$('#btnEliminar').click(function (){
+					// if(opcion==0){
+					// 	opcion=1;
+					// 	$('#btnEliminar span').html("Cancelar Eliminar");
+					// 	$('#btnGuardar').css("display","none");
 
+					// }else{
+					// 	opcion=0;
+					// 	$('#btnEliminar span').html("Eliminar");
+					// 	$('#btnGuardar').css("display","inline");
+					// 	eliminarHorario();
+					// }
+					eliminarHorario();
+				});
 				$('#timepicker2').timepicker({
 					minuteStep: 5,
 					showMeridian: false
@@ -190,7 +207,24 @@
 				});
 
 			});
+
 			function eliminarHorario(){
+				// console.log("Eliminar "+id);
+
+				if(id!=0){
+					// alert("Eliminara "+id);
+					$.get("eliminarHorario/"+id, {}, function (result) {
+						if(result.response){
+							alert(result.message);
+							$('#calendar').fullCalendar('removeEvents', id);
+						}else{
+							alert(result.message);
+						}
+					}, 'json');
+				}else{
+					alert("No selecciono horario");
+				}
+
 
 			}
 			function cargarHorario(){
@@ -206,7 +240,29 @@
 						defaultView: 'agendaWeek',
 						locale: 'es',
 						editable: false,
-						events: datas.data.horarios
+						events: datas.data.horarios,
+						eventClick: function(calEvent, jsEvent, view) {
+
+							console.log('Event: ' + calEvent.title);
+							console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+							console.log('View: ' + view.name);
+
+							console.log('Event: ' + calEvent.id);
+							/* change the border color just for fun*/
+							// $(".fc-event").css('border-color', border);
+							
+							$(".fc-event").css('border-color', ' #3a87ad');
+							$(".fc-event").css('border-width', '1px');
+
+							$(this).css('border-color', '#c9302c');
+							$(this).css('border-width', '3px');
+
+							id=calEvent.id;
+							// eliminarHorario();
+
+
+							// fc-event
+						}
 					});
 
 				}, 'json');
@@ -219,4 +275,5 @@
 
 
 
-				<!-- /#page-wrapper -->
+<!-- /#page-wrapper -->
+
