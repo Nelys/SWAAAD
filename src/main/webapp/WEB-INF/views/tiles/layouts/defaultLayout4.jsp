@@ -31,6 +31,7 @@
 	<link href="<c:url value='/resources/template/css/datatables/fixedHeader.bs.css' />" rel="stylesheet" />
 	<link href="<c:url value='/resources/template/css/datatables/buttons.bs.css' />" rel="stylesheet" />
 	<link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" />
+	<link href="<c:url value='/resources/css/datetimepicker.css' />" rel="stylesheet" />
 	<link href="<c:url value='/resources/template/css/calendar/fullcalendar.css' />" rel="stylesheet" />
 	<link href="<c:url value='/resources/css/toastr.css' />" rel="stylesheet" type="text/css">
 
@@ -73,9 +74,11 @@
 	<script src="<c:url value='/resources/template/js/datatables/buttons.colVis.min.js' />"></script>
 
 
+	<script src="<c:url value='/resources/template/js/calendar/moment.min.js' />"></script>
 	<!-- jquery datepicker JS -->
 	<script src="<c:url value='/resources/js/datapicker/bootstrap-datepicker.js' />"></script>
 	<script src="<c:url value='/resources/js/datapicker/es.js' />"></script>
+	<script src="<c:url value='/resources/js/datetimepicker.js' />"></script>
 	<script src="<c:url value='/resources/js/bootstrap-timepicker.min.js' />"></script>
 
 	<!-- Custom Index -->
@@ -83,7 +86,7 @@
 	<script src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
 	<script src="<c:url value='/resources/js/validate-forms.js' />"></script>
 	<script src="<c:url value='/resources/js/toastr.min.js' />"></script>
-	<script src="<c:url value='/resources/template/js/calendar/moment.min.js' />"></script>
+	
 	<script src="<c:url value='/resources/template/js/calendar/fullcalendar.min.js' />"></script>
 	<script src="<c:url value='/resources/template/js/calendar/locale-all.js' />"></script>
 </head>

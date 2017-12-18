@@ -24,9 +24,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd">Fecha:</label>
+						<label class="control-label col-sm-2" for="fecha">Fecha:</label>
 						<div class="col-sm-10">
-							<div class="input-group date" data-provide="datepicker">
+							<div class="input-group date" >
 								<form:input path="fecha" cssClass="form-control" />
 								<div class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span>
@@ -34,16 +34,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd">Hora:</label>
-
-						<div class="col-sm-10">
-							<div class="input-group bootstrap-timepicker timepicker">
-								<input id="timepicker1" type="text" class="form-control input-small" readonly> <span class="input-group-addon"><i
-									class="glyphicon glyphicon-time"></i></span>
-							</div>
-						</div>
-					</div>
+				
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<a class="btn btn-default" href="calendarioActividadPedagogica">Cancelar</a>
@@ -61,11 +52,12 @@
 	<!-- /.container-fluid -->
 	<script type="text/javascript">
 	$(document).ready(function() {
-	    $('#fecha').datepicker();
-	    $('#timepicker1').timepicker({
-		minuteStep : 5,
-		showMeridian : false
-	    });
+		// $('#fecha').datepicker();
+
+		$('#fecha').datetimepicker({
+			format: 'YYYY/MM/DD HH:mm'
+		});
+		
 
 	});
     </script>

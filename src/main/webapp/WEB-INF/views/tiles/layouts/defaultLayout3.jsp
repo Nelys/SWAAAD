@@ -30,7 +30,7 @@
 	<link href="<c:url value='/resources/css/bootstrap-timepicker.min.css' />" rel="stylesheet" type="text/css">
 
 	<link href="<c:url value='/resources/css/bootstrap-colorpicker.min.css' />" rel="stylesheet" type="text/css">
-
+	<link href="<c:url value='/resources/css/datetimepicker.css' />" rel="stylesheet" type="text/css">
 	<link href="<c:url value='/resources/css/toastr.css' />" rel="stylesheet" type="text/css">
 	<link href="<c:url value='/resources/template/css/calendar/fullcalendar.css' />" rel="stylesheet" />
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,13 +44,15 @@
     <%--     <script src="<c:url value='/resources/js/jquery.min-2.1.1.js' />"></script> --%>
     <script src="<c:url value='/resources/js/jquery-3.2.1.js' />"></script>
     <script src="<c:url value='/resources/js/jquery-ui.js' />"></script>
+    <script src="<c:url value='/resources/template/js/calendar/moment.min.js' />"></script>
     <script
     src="<c:url value='/resources/js/bsvalidator/bootstrapValidator.js'/>"></script>
     <script src="<c:url value='/resources/js/validate-forms.js' />"></script>
     <script src="<c:url value='/resources/js/toastr.min.js' />"></script>
 
-    <script src="<c:url value='/resources/template/js/calendar/moment.min.js' />"></script>
+    
     <script src="<c:url value='/resources/template/js/calendar/fullcalendar.min.js' />"></script>
+    <script src="<c:url value='/resources/js/datetimepicker.js' />"></script>
     <script src="<c:url value='/resources/template/js/calendar/locale-all.js' />"></script>
 </head>
 
