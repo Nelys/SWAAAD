@@ -15,7 +15,7 @@
 		<div class='row'>
 			<div class="col-sm-4 im-centered">
 				<div class="input-group">
-					<span class="input-group-addon">Ingrese el Correo Electronico</span>
+					<span class="input-group-addon btn-primary">Ingrese el Correo Electronico</span>
 					<input id="txtCorreo" type="text" class="form-control" value="${correo}" />
 <!-- 					<div class="form-control"></div> -->
 				</div>
@@ -39,12 +39,89 @@
 				</div>
 			</div>
 			<br/>
-<%-- 			<th id="${lista.idEvaluacion}" class="tdEvaluacion" style="background-color:${lista.colorFondo};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;"> --%>
+			<c:forEach var="listaCursoAlumnos" items="${listCursoAlumnos}">
+				<c:forEach var="listaCursos" items="${listCursos}">
+					<c:if test="${listaCursos.idCurso==listaCursoAlumnos.curso.idCurso}"> 
+						<div class='row'>
+							<div class="col-sm-4 im-centered">
+								<div class="input-group">
+									<span class="input-group-addon">Curso</span>
+									<div class="form-control">${listaCursos.nombreCurso}</div>
+								</div>
+							</div>
+						</div>
+						<br/>
+						<c:forEach var="listaPeriodos" items="${listPeriodos}">
+							<c:if test="${listaPeriodos.curso.idCurso==listaCursoAlumnos.curso.idCurso}">
+								<div class='row'>
+									<div class="col-sm-4 im-centered">
+										<div class="input-group">
+											<span class="input-group-addon">Periodo</span>
+											<div class="form-control">${listaPeriodos.descripcion} ${listaPeriodos.numeroPeriodos}</div>
+										</div>
+									</div>
+								</div>
+								<br/> 
+								
+<!-- 										<table id="fixTable" class="stripe row-border order-column" cellspacing="0" width="100%"> -->
+										<table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+											
+											<thead>
+											<tr>
+												<c:forEach var="listaEvaluaciones" items="${listEvaluaciones}">
+													<c:if test="${listaPeriodos.idPeriodo==listaEvaluaciones.periodo.idPeriodo}">
+														<th id="${listaEvaluaciones.idEvaluacion}" class="tdEvaluacion" style="background-color:${listaEvaluaciones.colorFondo};color:${listaEvaluaciones.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;">
+															<div style="text-align: center;">${listaEvaluaciones.nombre}</div>
+														</th>
+													</c:if>
+												</c:forEach>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<c:forEach var="listaEvaluaciones" items="${listEvaluaciones}">
+													<c:if test="${listaPeriodos.idPeriodo==listaEvaluaciones.periodo.idPeriodo}">
+														<c:forEach var="listaNotas" items="${listNotas}">
+<%-- 															<c:if test="${listaNotas.evaluacion.idEvaluacion==listaEvaluaciones.idEvaluacion && listaNotas.alumno.idAlumno==listaAlumnos.idAlumno }"> --%>
+<!-- 																<td -->
+<%-- 																	style="background-color:${listaEvaluaciones.colorFondo};color:${listaEvaluaciones.colorTexto};" --%>
+<!-- 																	class="tdNota" data-toggle="modal" -->
+<%-- 																	data-target=".bs-example-modal-sm">${listaNotas.notaEvaluativa}</td> --%>
+<%-- 															</c:if> --%>
+															<c:choose>
+																<c:when test="${listaNotas.evaluacion.idEvaluacion==listaEvaluaciones.idEvaluacion && listaNotas.alumno.idAlumno==listaAlumnos.idAlumno}">
+															    	<td
+																	style="background-color:${listaEvaluaciones.colorFondo};color:${listaEvaluaciones.colorTexto};"
+																	class="tdNota" data-toggle="modal"
+																	data-target=".bs-example-modal-sm">${listaNotas.notaEvaluativa}</td>
+															    </c:when>    
+															    <c:otherwise>
+															    	<td
+																	style="background-color:${listaEvaluaciones.colorFondo};color:${listaEvaluaciones.colorTexto};"
+																	class="tdNota" data-toggle="modal"
+																	data-target=".bs-example-modal-sm">00</td>
+															    </c:otherwise>
+														    </c:choose>
+														</c:forEach>
+													</c:if>
+												</c:forEach>
+											</tr>
+											</tbody>
+										</table>
+									
+							</c:if>
+						</c:forEach>
+					</c:if>
+				</c:forEach>
+			</c:forEach>
+		</c:forEach>
+		
+		<%-- 			<th id="${lista.idEvaluacion}" class="tdEvaluacion" style="background-color:${lista.colorFondo};color:${lista.colorTexto};font-weight: bold;padding-top: 0px; padding-left: 17px; padding-right: 17px; padding-bottom: 0px;"> --%>
 <%-- 				<div style="text-align: center;">${lista.nombre}   --%>
 <%-- 					<a class="btn btn-xs btn-warning" href="editEvaluacion?id=${lista.idEvaluacion}"><i class="fa fa-pencil-square-o"></i></a> --%>
 <!-- 				</div> -->
 <!-- 			</th> -->
-		</c:forEach>
+		
 		
 <!-- 		<div id="divNotas" class="row"> -->
 <!-- 			<div class="col-lg-12"> -->

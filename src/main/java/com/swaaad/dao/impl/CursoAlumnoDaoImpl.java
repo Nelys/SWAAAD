@@ -108,4 +108,25 @@ public class CursoAlumnoDaoImpl implements CursoAlumnoDao {
 		return cursoAlumnos;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CursoAlumno> getAllCursosByAlumno(int idAlumno) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<CursoAlumno> cursoAlumnos = null;
+		System.out.println("idALumno"+ idAlumno);
+		try {
+			String queryCursoAlumno = "SELECT ca FROM CursoAlumno ca JOIN ca.alumno a WHERE a.idAlumno = :idAlumno ";
+			Query query = sSession.createQuery(queryCursoAlumno);
+			query.setInteger("idAlumno", idAlumno);
+			cursoAlumnos = (List<CursoAlumno>) query.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+		return cursoAlumnos;
+	}
 }

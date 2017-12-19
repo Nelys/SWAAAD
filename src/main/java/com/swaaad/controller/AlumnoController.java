@@ -33,11 +33,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.swaaad.dto.AlumnoDTO;
 import com.swaaad.model.Alumno;
+import com.swaaad.model.CursoAlumno;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
 import com.swaaad.reports.AlumnoReport;
 import com.swaaad.service.AlumnosService;
 import com.swaaad.service.CursoAlumnoService;
+import com.swaaad.service.CursoService;
+import com.swaaad.service.EvaluacionService;
+import com.swaaad.service.NotaService;
+import com.swaaad.service.PeriodoService;
 import com.swaaad.service.UsuarioService;
 
 import net.sf.jasperreports.engine.JRException;
@@ -62,6 +67,18 @@ public class AlumnoController {
 
 	@Autowired
 	private CursoAlumnoService objCursoAlumnoService;
+	
+	@Autowired
+	private CursoService objCursoService;
+
+	@Autowired
+	private PeriodoService objPeriodoService;
+	
+	@Autowired
+	private EvaluacionService objEvaluacionService;
+
+	@Autowired
+	private NotaService objNotaService;
 	
 //	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
 	@RequestMapping("")
@@ -300,9 +317,22 @@ public class AlumnoController {
 		}
 		
 		model.addObject("correo", correo);
-//		objCursoAlumnoService.get
-		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByCorreo(correo));
-		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByCorreo(correo));
+		
+		if(objAlumnoService.getAllAlumnosByCorreo(correo).size()>0){
+			model.addObject("listCursoAlumnos", objCursoAlumnoService.getAllCursosByAlumno( objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno()));
+			System.out.println("CursoAlumno: " +objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno());
+			System.out.println("Tamaño: " + objCursoAlumnoService.getAllCursosByAlumno( objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno()).size());
+			for (CursoAlumno cursoAlumno : objCursoAlumnoService.getAllCursosByAlumno( objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno())) {
+				System.out.println("CursoAlumno:" + cursoAlumno.getCurso().getIdCurso());
+				System.out.println("CursoAlumno:" + cursoAlumno.getCurso().getNombreCurso());
+	//			System.out.println("CursoAlumno:" + cursoAlumno.getAlumno().getApellidos());
+			}
+			model.addObject("listCursos", objCursoService.getAllCurso());
+			model.addObject("listPeriodos", objPeriodoService.getAllPeriodo());
+			model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluaciones());
+			model.addObject("listNotas", objNotaService.getAllNotas());
+			model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByCorreo(correo));
+		}
 		model.setViewName("page-alumno-nota");
 		return model;
 	}

@@ -37,4 +37,10 @@ public class CursoAlumnoServiceImpl implements CursoAlumnoService {
 		return objCursoAlumnoDao.getAllAlumnosByCurso(idCurso);
 	}
 
+	@Override
+	public List<CursoAlumno> getAllCursosByAlumno(int idAlumno) throws Exception {
+		
+		return objCursoAlumnoDao.getAllCursosByAlumno(idAlumno);
+	}
+
 }
