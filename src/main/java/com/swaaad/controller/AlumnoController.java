@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -320,13 +321,6 @@ public class AlumnoController {
 		
 		if(objAlumnoService.getAllAlumnosByCorreo(correo).size()>0){
 			model.addObject("listCursoAlumnos", objCursoAlumnoService.getAllCursosByAlumno( objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno()));
-			System.out.println("CursoAlumno: " +objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno());
-			System.out.println("Tamaño: " + objCursoAlumnoService.getAllCursosByAlumno( objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno()).size());
-			for (CursoAlumno cursoAlumno : objCursoAlumnoService.getAllCursosByAlumno( objAlumnoService.getAllAlumnosByCorreo(correo).get(0).getIdAlumno())) {
-				System.out.println("CursoAlumno:" + cursoAlumno.getCurso().getIdCurso());
-				System.out.println("CursoAlumno:" + cursoAlumno.getCurso().getNombreCurso());
-	//			System.out.println("CursoAlumno:" + cursoAlumno.getAlumno().getApellidos());
-			}
 			model.addObject("listCursos", objCursoService.getAllCurso());
 			model.addObject("listPeriodos", objPeriodoService.getAllPeriodo());
 			model.addObject("listEvaluaciones", objEvaluacionService.getAllEvaluaciones());
@@ -335,6 +329,13 @@ public class AlumnoController {
 		}
 		model.setViewName("page-alumno-nota");
 		return model;
+	}
+	
+	@RequestMapping(value = "/obtenerNota", method = RequestMethod.POST)
+	public @ResponseBody int alumnoNota(@RequestParam("idAlumno") int idAlumno, @RequestParam("idEvaluacion") int idEvaluacion) throws Exception {
+		logger.info("alumnoNota");
+		
+		return objNotaService.getNotaById(objNotaService.getIdNotaByIdAlumnoIdEvaluacion(idAlumno, idEvaluacion)).getNotaEvaluativa();
 	}
 	
 }

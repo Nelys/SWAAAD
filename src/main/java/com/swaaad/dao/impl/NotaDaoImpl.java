@@ -149,11 +149,16 @@ public class NotaDaoImpl implements NotaDao {
 		sSession = sessionFactory.openSession();
 		Nota nota = null;
 		try {
-			String queryNota = "From Nota Where ID_NOTA= :idNota";
+//			String queryNota = "From Nota Where ID_NOTA= :idNota";
+			String queryNota = "SELECT n FROM Nota n Where n.idNota = :idNota";
 			Query query = sSession.createQuery(queryNota);
 			query.setInteger("idNota", idNota);
 			nota = (Nota) query.uniqueResult();
 
+            if(nota==null){
+                return new Nota();
+            }
+            
 		} catch (Exception e) {
 		    logger.info("Metodo getNotaById: ", e);
 		} finally {
@@ -173,7 +178,8 @@ public class NotaDaoImpl implements NotaDao {
         sSession = sessionFactory.openSession();
         Nota nota = null;
         try {
-            String queryNota = "From Nota Where ID_ALUMNO= :idAlumno AND ID_EVALUACION= :idEvaluacion";
+//            String queryNota = "From Nota Where ID_ALUMNO= :idAlumno AND ID_EVALUACION= :idEvaluacion";
+            String queryNota = "SELECT n FROM Nota n Where n.alumno.idAlumno = :idAlumno AND n.evaluacion.idEvaluacion= :idEvaluacion";
             Query query = sSession.createQuery(queryNota);
             query.setInteger("idAlumno", idAlumno);
             query.setInteger("idEvaluacion", idEvaluacion);
