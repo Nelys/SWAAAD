@@ -56,6 +56,9 @@ public interface AulaDinamicaDao {
 	 */
 	List<AulaDinamica> getAllAulasDinamicas() throws Exception;
 
+	List<AulaDinamica> getAllAulasDinamicasByCurso(int idCurso) throws Exception;
+	
+	
 	List<CursoAlumno> getAllAlumnosByCursoByEstado(int idCurso) throws Exception;
 	List<AulaDinamica> getAllAlumnosByCursoByEs(int idCurso) throws Exception;
 }

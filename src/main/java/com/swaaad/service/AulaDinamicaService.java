@@ -33,7 +33,7 @@ public interface AulaDinamicaService {
 	 * @throws Exception
 	 */
 	List<AulaDinamica> getAllAulasDinamicas() throws Exception;
-
+	List<AulaDinamica> getAllAulasDinamicasByCurso(int idCurso) throws Exception;
 	/**
 	 * Utiliza el metodo getAulaDinamicaById(int idAulaDinamica) de la clase AulaDinamicaDao
 	 * 

@@ -209,7 +209,25 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 
 	@Override
 	public List<AulaDinamica> getAllAlumnosByCursoByEs(int idCurso) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<AulaDinamica> lista =null;
+		try {
+		    String queryCursoAlumno = "SELECT ad FROM AulaDinamica ad WHERE ad.cursoAlumno.curso.idCurso= :idCurso ";
+			Query query = sSession.createQuery(queryCursoAlumno);
+			query.setInteger("idCurso", idCurso);
+			lista = (List<AulaDinamica>) query.list();
+		} catch (Exception e) {
+		    logger.info("getAllAlumnosByCursoByEs", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+		}
+		return lista;
+	}
 
+	@Override
+	public List<AulaDinamica> getAllAulasDinamicasByCurso(int idCurso) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

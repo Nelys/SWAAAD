@@ -55,4 +55,10 @@ public class AulaDinamicaServiceImpl implements AulaDinamicaService{
 		return objAulaDinamicaDao.getAllAlumnosByCursoByEstado(idCurso);
 	}
 
+	@Override
+	public List<AulaDinamica> getAllAulasDinamicasByCurso(int idCurso) throws Exception {
+		logger.info("getAllAulasDinamicasByCurso");
+		return objAulaDinamicaDao.getAllAlumnosByCursoByEs(idCurso);
+	}
+
 }

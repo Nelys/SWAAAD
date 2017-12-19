@@ -183,13 +183,16 @@ modelAttribute="aulaDinamica">
 			}
 		});
 		$('#aula').mousemove(function(event) {
+			console.log(".mousemove(function "+id);
 			if (id != null) {
+				console.log("$('#aula').mousemove(function entro "+id);
 				var p = $('#' + id);
 				var position = p.position();
 				$('#coordX').val(position.left);
 				$('#coordY').val(position.top);
-
 				$('#coordenadas').text("left: " + position.left+ ", top: "+ position.top);
+			}else{
+				// console.log("$('#aula').mousemove(function entro"+id);
 			}
 		});
 		
@@ -258,28 +261,27 @@ modelAttribute="aulaDinamica">
 		});
 	});
 	var opcion=0;
-	function eliminarAlumno(id){
+	function eliminarAlumno(iden){
 		console.log("eliminarAulaDinamica");
-		$.get("eliminarAulaDinamica/"+id,{}, function(data) {
+		$.get("eliminarAulaDinamica/"+iden,{}, function(data) {
 			console.log("eliminarAulaDinamica------");
-			$("#alumno_"+id).remove();
+			$("#alumno_"+iden).remove();
 		});
 	}
-	function agregarMetodoAlumno(id){
-		console.log("el id "+ id)
-		$("#alumno_"+id).draggable({
+	function agregarMetodoAlumno(iden){
+		console.log("el id "+ iden)
+		$("#alumno_"+iden).draggable({
 			stack : "#aula div",
 			containment : "#aula"
 		});
-		$("#alumno_"+id).mousedown(function() {
+		$("#alumno_"+iden).mousedown(function() {
 
 			var id_alumno = $(this).attr('id').replace('alumno_', '');
-
+			
 
 			if(opcion==0){
-
 				id = $(this).attr('id');
-
+				// console.log(id);
 				$('#idAulaDinamica').val(id.replace('alumno_', ''));
 				$('#identificador').text(id);
 
@@ -290,7 +292,7 @@ modelAttribute="aulaDinamica">
 			}
 
 		});
-		$("#alumno_"+id).mouseup(function() {
+		$("#alumno_"+iden).mouseup(function() {
 			var id_alumno = $(this).attr('id').replace('alumno_', '');
 			console.log(id_alumno);
 			if(opcion==0){
@@ -299,8 +301,6 @@ modelAttribute="aulaDinamica">
 				console.log("saveAulaDinamica2 div.principal");
 				$.post("saveAulaDinamica2",formulario, function(data) {
 					console.log("saveAulaDinamica2 div.principal--------");
-
-
 				});
 			}
 			else{
@@ -321,8 +321,7 @@ modelAttribute="aulaDinamica">
 			if(opcion==0){
 				id = $(this).attr('id');
 
-				$('#idAulaDinamica').val(
-					id.replace('alumno_', ''));
+				$('#idAulaDinamica').val(id.replace('alumno_', ''));
 				$('#identificador').text(id);
 
 				color = hexc($('#' + id).css("backgroundColor"));
