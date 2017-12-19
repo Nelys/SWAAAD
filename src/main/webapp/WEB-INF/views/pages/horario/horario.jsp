@@ -146,6 +146,8 @@
 			var border="1px solid #3a87ad";
 			$(document).ready(function() {			
 
+		
+				
 				cargarHorario();
 				$('#timepicker1').timepicker({
 					minuteStep: 5,
@@ -168,6 +170,13 @@
 				$('#timepicker2').timepicker({
 					minuteStep: 5,
 					showMeridian: false
+				});
+				$('#btnGuardar').click(function(e){
+					
+				    if ($('input[type=checkbox]:checked').length == 0) {
+				        e.preventDefault();
+				        alert('Debe seleccionar al menos un valor');
+				    }
 				});
 
 				$('#horariosForm').bootstrapValidator({
@@ -197,7 +206,7 @@
 						
 						for (var item in result.data.horarios) {
 							console.log("agregar error");
-							var fila = '<tr><td>'+result.data.horarios[item].curso+'</td><td>'+result.data.horarios[item].dia+'</td><td>'+result.data.horarios[item].inicio+'</td><td>'+result.data.horarios[item].fin+'</td></tr>';
+							var fila = '<tr><td>'+result.data.horarios[item].curso.nombreCurso+'</td><td>'+result.data.horarios[item].dia+'</td><td>'+result.data.horarios[item].inicio+'</td><td>'+result.data.horarios[item].fin+'</td></tr>';
 							console.log(item+" - "+fila);
 							setTimeout((function (texto) {		
 								console.log(" & "+texto);
@@ -209,6 +218,8 @@
 				});
 
 			});
+			
+		
 
 			function eliminarHorario(){
 				// console.log("Eliminar "+id);

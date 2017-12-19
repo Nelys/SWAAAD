@@ -39,13 +39,15 @@
 								
 								<c:if test="${lista.estado=='0'}">
 								<td style="text-align: center" width="100px">
-								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button>
+<!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
+								<input name="activar" id="activar" type="button" value="Activar" onclick="desactivar(${lista.idCurso})" />
 								</td>
 								</c:if>
 																		
 								<c:if test="${lista.estado =='1'}">
 								<td style="text-align: center" width="100px">
-								<button id="Desactivar" class="btn btn-sm btn-primary btn-sm"> Desactivar</button>
+<!-- 								<button id="Desactivar" class="btn btn-sm btn-primary btn-sm"> Desactivar</button> -->
+								<input name="desactivar" id="desactivar" type="button" value="Desactivar" onclick="desactivar(${lista.idCurso})" />
 								</td>
 								</c:if>
 
@@ -53,10 +55,7 @@
 <%-- 										<input name="boton1" id="boton1" type="button" value="Boton 1" onclick="desactivar(${lista.idCurso})" /> --%>
 								
 <!-- 										</td> -->
-
-										
-								
-								
+																							
 								<td style="text-align: center" width="100px"><a class="btn btn-sm btn-primary btn-sm" href="selectCurso?id=${lista.idCurso}"><i
 									class="fa fa-eye"></i> Seleccionar</a></td>
 

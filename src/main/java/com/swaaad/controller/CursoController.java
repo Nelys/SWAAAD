@@ -62,8 +62,8 @@ public class CursoController {
 		return model;
 	}
 
-	@RequestMapping(value = "/saveCurso/{estado}", method = RequestMethod.POST)
-	public ModelAndView saveCurso(@ModelAttribute Curso curso, @PathVariable("estado") byte estado) throws Exception {
+	@RequestMapping(value = "/saveCurso", method = RequestMethod.POST)
+	public ModelAndView saveCurso(@ModelAttribute Curso curso) throws Exception {
 		logger.info("saveCurso");
 
 		
@@ -78,7 +78,7 @@ public class CursoController {
 //		model.addObject("user", userName);
 		
 		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
-		curso.setEstado(estado);
+//		curso.setEstado((byte) '1');
 		
 		try {
 			if (curso.getIdCurso() == 0) {
@@ -157,29 +157,29 @@ public class CursoController {
 
 		return new ModelAndView("redirect:/alumnos");
 	}
-	
-	@RequestMapping(value = "/EstadoCurso/{estado}", method = RequestMethod.POST)
-	public ModelAndView EstadoCurso(@PathVariable("estado") byte estado) throws Exception {
-		logger.info("saveCurso");
-
-		
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = null;
-		if (principal instanceof UserDetails) {
-			userDetails = (UserDetails) principal;
-		}
-		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
-		Docente docente = usuario.getDocentes().get(0);
-		String userName = docente.getApellidos() + " ," + docente.getNombre();
-//		model.addObject("user", userName);
-		
-//		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
-//		curso.setEstado(estado);
-//					
-//		objCursoService.updateCurso(curso);
-			
-	
-		return new ModelAndView("redirect:/cursos");
-	}
+//	
+//	@RequestMapping(value = "/EstadoCurso/{estado}", method = RequestMethod.POST)
+//	public ModelAndView EstadoCurso(@PathVariable("estado") byte estado) throws Exception {
+//		logger.info("saveCurso");
+//
+//		
+//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		UserDetails userDetails = null;
+//		if (principal instanceof UserDetails) {
+//			userDetails = (UserDetails) principal;
+//		}
+//		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+//		Docente docente = usuario.getDocentes().get(0);
+//		String userName = docente.getApellidos() + " ," + docente.getNombre();
+////		model.addObject("user", userName);
+//		
+////		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
+////		curso.setEstado(estado);
+////					
+////		objCursoService.updateCurso(curso);
+//			
+//	
+//		return new ModelAndView("redirect:/cursos");
+//	}
 
 }
