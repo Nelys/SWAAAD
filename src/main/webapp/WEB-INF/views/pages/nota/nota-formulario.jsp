@@ -316,6 +316,7 @@ h2 {
 			 * Evento click de los botones de calculo
 			 */
 			$(document).on("click", "#divCalculo button", function(e) {
+				console.log("##divCalculo button---------------------------------------------------");
 				
 				// Obteniendo el id del elemento td
 				var id = $(this).attr('id');
@@ -329,7 +330,7 @@ h2 {
 			 */
 			$(document).on("click", "#divEvaluaciones button", function(e) {
 				
-				
+				console.log("#divEvaluaciones button---------------------------------------------------");
 				// Obteniendo el id del elemento td
 				var id = $(this).attr('id');
 				
@@ -358,7 +359,7 @@ h2 {
 			 * Funcion para borrar el ultimo caracter
 			 */
 			$('#btnBorrar').click(function() {
-				
+				console.log("$('#btnBorrar').click(function()--------------------------------------");
 				// Obtener el contenido de div formula
 				var txtContenido = $('#divFormula').html();
 				
@@ -390,7 +391,7 @@ h2 {
 			 * Funcion formula
 			 */
 			$('#btnNota').click(function() {
-				
+				console.log("$('#btnNota').click(function()--------------------------------------");
 				var sTextFormula = $('#divFormula').text();
 				
 				$('#divFormula > div').each(function () {
@@ -429,29 +430,53 @@ h2 {
 			 * Funcion click (Obtener Formula)
 			 */
 			$('#btnFormula').click(function() {
+				console.log("000000000-");
+				cadena = "0.15*idEvaluacion_13+0.7*idEvaluacion_14+0.15*idEvaluacion_15";
+				expresion = /([a-zA-Z])\w+/g;
+				var lista_evaluaciones = cadena.match(expresion);
+				// console.log(lista_evaluaciones);
+
+
+				// console.log("1:  $('#btnFormula').click(function()----------------------------------");
 				var divFormula = $("#formula").val();
+				// console.log("2:  "+divFormula);
 				var divFormulaFija = $("#formula").val();
-// 				console.log(divFormula);
-// 				console.log(divFormula.indexOf("idEvaluacion_"));
+				// console.log("3:  "+divFormulaFija);
+				// console.log("4:  "+divFormula.indexOf("idEvaluacion_"));
 				
 				var a = 0;
 				var idEvaluacion='';
 				var id=0;
+
+				var contador_evaluaciones=0;
 				
 				while(divFormula.indexOf("idEvaluacion_")!=-1){
+					console.log("****************************************************************************************");
+					console.log("5:  "+divFormula);
+					//posicion del numero
+
+
+
 					a = divFormula.indexOf("idEvaluacion_")+13;
-					
+
+
+
+					console.log("6:  "+a);
+
+
 					for (i = a; i <= divFormula.length-1; i++) { 
-// 						console.log(divFormula.substring(i, i+1));
-// 						console.log(Number.isInteger(parseInt(divFormula.substring(i, i+1))));
+						console.log("7:  "+divFormula.substring(i, i+1));
+						console.log("8:  "+Number.isInteger(parseInt(divFormula.substring(i, i+1))));
 						id = parseInt(divFormula.substring(i, i+1));
 						if(Number.isInteger(parseInt(divFormula.substring(i, i+1)))){
 							idEvaluacion= divFormula.substring(divFormula.indexOf("idEvaluacion_"), i+1);							
-// 							console.log(idEvaluacion);	
+							console.log("9:  "+idEvaluacion);	
 							break;
 						} 
 					}
-					
+					// id.replace('btnIdEvaluacion_', '');
+					id=lista_evaluaciones[contador_evaluaciones].replace('idEvaluacion_', '');
+
 					divFormula = divFormula.substring(a, divFormula.lenght);
 					$.ajax({
 						type : "POST",
@@ -461,6 +486,11 @@ h2 {
 							$('#btnIdEvaluacion_' + id ).toggle("slide");
 							$('#btnIdEvaluacion_' + id ).toggle("slide");
 							
+							console.log("10: "+divFormulaFija);
+							console.log("11: "+idEvaluacion);
+							console.log("12: "+id);
+							idEvaluacion="idEvaluacion_"+id;
+
 							divFormulaFija = divFormulaFija.replace(idEvaluacion, 
 									"<div " + "id='idEvaluacion_" +  id + "' " +
 										"style='border: 1px solid #e0e0e0;display: inline-block;white-space: nowrap; border-radius: 4px 4px 4px 4px; padding-right: 6px; padding-left: 6px; margin-top: 7px; margin-right: 1px; margin-left: 1px;" +
@@ -469,13 +499,14 @@ h2 {
 									";'>" + 
 									search['nombre'] +
 									"</div>");
-							console.log(divFormulaFija);
+							console.log("13: "+divFormulaFija);
 							$( '#divFormula' ).html(divFormulaFija);
 				  		},async: false,
 						error: function(x,e){	
 							toastr.error('Formula mal obtenida: ' + e + x, 'Error');
 						} 
 					});
+					contador_evaluaciones++;
 				}
 			});
 		});
