@@ -46,7 +46,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		// System.out.println("?no=" + nombre + "&pa=" + pass + "&em="
 		// +emmap+"&i="+newUsuario.getIdUsuario());
 
-		// String ruta_servidor="https://salty-escarpment-54865.herokuapp.com/";
+//		String ruta_servidor="https://tranquil-tor-39541.herokuapp.com/";
 		String ruta_servidor = "http://localhost:8080/swaaad/";
 		String ruta_recuperacion = ruta_servidor + "#";
 		String ruta_confirmacion = ruta_servidor + "recuperarCuenta?no=" + nombre + "&pa=" + pass + "&em=" + emmap
@@ -188,6 +188,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			// +emmap+"&i="+newUsuario.getIdUsuario());
 
 			// String ruta_servidor="https://salty-escarpment-54865.herokuapp.com/";
+//			String ruta_servidor="https://tranquil-tor-39541.herokuapp.com/";
 			String ruta_servidor = "http://localhost:8080/swaaad/";
 			String ruta_recuperacion = ruta_servidor + "#";
 			String ruta_confirmacion = ruta_servidor + "confirmarRegistro?no=" + nombre + "&pa=" + pass + "&em=" + emmap
