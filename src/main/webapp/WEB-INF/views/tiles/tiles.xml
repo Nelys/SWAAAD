@@ -28,6 +28,15 @@
 		<put-attribute name="usuario" value="" />
 		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" /> -->
 	</definition>
+	
+	<definition name="base-definition4" template="/WEB-INF/views/tiles/layouts/defaultLayout5.jsp">
+		<put-attribute name="title" value="" />
+<!-- 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/header.jsp" /> -->
+
+		<put-attribute name="body" value="" />
+		<put-attribute name="usuario" value="" />
+		<!-- <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" /> -->
+	</definition>
 
 
 	<!-- Pagina Inicial -->
@@ -185,6 +194,12 @@
 	<definition name="horarios" extends="base-definition3">
 		<put-attribute name="title" value="Horarios" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/horario/horario.jsp" />
+		<put-attribute name="current" value="reporte" />
+		<put-attribute name="usuario" expression="${user}" />
+	</definition>
+	<definition name="page-alumno-nota" extends="base-definition4">
+		<put-attribute name="title" value="Notas del ALumno" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/alumno/alumno-nota.jsp" />
 		<put-attribute name="current" value="reporte" />
 		<put-attribute name="usuario" expression="${user}" />
 	</definition>

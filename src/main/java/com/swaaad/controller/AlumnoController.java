@@ -268,4 +268,14 @@ public class AlumnoController {
 //        int idCurso = (Integer) session.getAttribute("idCurso");
 //        return objAlumnoService.getAllAlumnosByIdCurso(idCurso);
 //    }
+	
+	@RequestMapping(value = "/alumnoNota", method = RequestMethod.GET)
+	public ModelAndView alumnoNota(ModelAndView model) throws Exception {
+		logger.info("alumnoNota");
+		
+		model.addObject("listaAlumnos", "hola desde el controlador");
+		model.setViewName("page-alumno-nota");
+		return model;
+	}
+	
 }
