@@ -40,9 +40,8 @@
 										<td>${lista.anio}</td>
 
 										<td style="text-align: center" width="100px">
-											<!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
-											<input name="activar" id="activar" type="button"
-											value="Activar" onclick="desactivar(${lista.idCurso})" />
+											<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button>
+
 
 										</td>
 
@@ -56,112 +55,113 @@
 		</div>
 		<!-- /.row -->
 		<script type="text/javascript">
-			
-			
-			
-				$(document).ready(function() {
-					toastr.options = {
-						"closeButton": true,
-						"debug": false,
-						"progressBar": true,
-						"preventDuplicates": false,
-						"positionClass": "toast-top-right",
-						"onclick": null,
-						"showDuration": "400",
-						"hideDuration": "1000",
-						"timeOut": "7000",
-						"extendedTimeOut": "1000",
-						"showEasing": "swing",
-						"hideEasing": "linear",
-						"showMethod": "fadeIn",
-						"hideMethod": "fadeOut"
-					};
-					
+			$(document)
+					.ready(
+							function() {
+								toastr.options = {
+									"closeButton" : true,
+									"debug" : false,
+									"progressBar" : true,
+									"preventDuplicates" : false,
+									"positionClass" : "toast-top-right",
+									"onclick" : null,
+									"showDuration" : "400",
+									"hideDuration" : "1000",
+									"timeOut" : "7000",
+									"extendedTimeOut" : "1000",
+									"showEasing" : "swing",
+									"hideEasing" : "linear",
+									"showMethod" : "fadeIn",
+									"hideMethod" : "fadeOut"
+								};
 
-					$.get("getRecordatorio/1",{},function (result) {
+								$
+										.get(
+												"getRecordatorio/1",
+												{},
+												function(result) {
 
-						var actividad=result.data.recordatorios;
+													var actividad = result.data.recordatorios;
 
-						for (m in actividad) {
-							var titulo = actividad[m].titulo;
-							var curso=actividad[m].curso;
-							var hora=actividad[m].hora;
+													for (m in actividad) {
+														var titulo = actividad[m].titulo;
+														var curso = actividad[m].curso;
+														var hora = actividad[m].hora;
 
-							var mensaje = "Curso : "+curso+"<br>Hora : "+hora;
+														var mensaje = "Curso : "
+																+ curso
+																+ "<br>Hora : "
+																+ hora;
 
-							var $toast = toastr['success'](mensaje, titulo);
-							// setTimeout(function () { location.href = 'login'; }, 2000);
-						}
+														var $toast = toastr['success']
+																(mensaje,
+																		titulo);
+														// setTimeout(function () { location.href = 'login'; }, 2000);
+													}
 
-					}, 'json');
+												}, 'json');
 
+								//obtener las notificaciones
 
-					//obtener las notificaciones
+								var table = $('#miTable')
+										.DataTable(
+												{
 
+													"language" : {
+														"emplyTable" : "No hay datos disponible en la tabla.",
+														"lengthMenu" : "Mostrar _MENU_ registros",
+														"info" : "Pagina _PAGE_ de _PAGES_",
+														"infoEmpty" : "No hay registros disponibles.",
+														"infoFiltered" : "(Busqueda de _MAX_ Registros)",
+														"loadingRecords" : "Cargando...",
+														"processing" : "Prosesando...",
+														"search" : "Buscar:",
+														"zeroRecords" : "No hay registros de busqueda.",
+														"paginate" : {
+															"previous" : "Anterior",
+															"next" : "Siguiente"
+														}
+													},
+													dom : 'Bfrtip',
+													buttons : [
+															{
+																text : '<i class="fa fa-plus"></i> Regresar',
+																action : function(
+																		e, dt,
+																		node,
+																		config) {
+																	window.location.href = 'cursos';
+																}
+															},
 
-					var table = $('#miTable').DataTable(
-					{
+													]
+												});
 
-						"language" : {
-							"emplyTable" : "No hay datos disponible en la tabla.",
-							"lengthMenu" : "Mostrar _MENU_ registros",
-							"info" : "Pagina _PAGE_ de _PAGES_",
-							"infoEmpty" : "No hay registros disponibles.",
-							"infoFiltered" : "(Busqueda de _MAX_ Registros)",
-							"loadingRecords" : "Cargando...",
-							"processing" : "Prosesando...",
-							"search" : "Buscar:",
-							"zeroRecords" : "No hay registros de busqueda.",
-							"paginate" : {
-								"previous" : "Anterior",
-								"next" : "Siguiente"
-							}
-						},
-						dom : 'Bfrtip',
-						buttons : [{
-							text : '<i class="fa fa-plus"></i> Regresar',
-							action : function(
-								e, dt,
-								node,
-								config) {
-								window.location.href = 'cursos';
-							}
-						},
+								$('#miTable_wrapper a:eq(0)').removeClass(
+										"btn-default").addClass("btn-success");
+								$('#miTable_wrapper a:eq(1)').removeClass(
+										"btn-default").addClass("btn-primary");
+								$('#miTable_wrapper a:eq(2)').removeClass(
+										"btn-default").addClass("btn-primary");
 
-                         ]
-					});
+								$("#miTable_wrapper a:eq(0)").css({
+									"margin-right" : "4px"
+								});
+								$("#miTable_wrapper a:eq(1)").css({
+									"margin-right" : "4px"
+								});
+								$("#miTable_wrapper a:eq(2)").css({
+									"margin-right" : "4px"
+								});
+								$("#miTable_wrapper a:eq(3)").css({
+									"margin-right" : "4px"
+								});
+							})
 
-					$('#miTable_wrapper a:eq(0)').removeClass(
-						"btn-default").addClass("btn-success");
-					$('#miTable_wrapper a:eq(1)').removeClass(
-						"btn-default").addClass("btn-primary");
-					$('#miTable_wrapper a:eq(2)').removeClass(
-						"btn-default").addClass("btn-primary");
-
-					$("#miTable_wrapper a:eq(0)").css({
-						"margin-right" : "4px"
-					});
-					$("#miTable_wrapper a:eq(1)").css({
-						"margin-right" : "4px"
-					});
-					$("#miTable_wrapper a:eq(2)").css({
-						"margin-right" : "4px"
-					});
-					$("#miTable_wrapper a:eq(3)").css({
-						"margin-right" : "4px"
-					});
-				})
-				
-				 $("#Activar").click(function(){
-					 alert("Desea Habilitar el curso"); 
-					 $.post
-				 })
-				
-
-			
-
-			
-		
-			</script>
+			$("#Activar").click(function() {
+				alert("Desea Habilitar el curso");
+				$.post
+			})
+		</script>
 	</div>
 </div>
