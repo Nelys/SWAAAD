@@ -220,7 +220,7 @@ public class AulaDinamicaController {
 		List<CursoAlumno> ListarAlumnosPorEstado=null;
 		ListarAlumnosPorEstado= objAulaDinamicaService.getAllAlumnosByCursoByEstado(1);
 		for (CursoAlumno cursoAlumno : ListarAlumnosPorEstado) {
-			System.out.println(cursoAlumno); 
+			System.out.println(cursoAlumno.getAlumno().getApellidos()); 
 		}
 		
 		return null  ;

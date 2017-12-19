@@ -194,10 +194,9 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 		sSession = sessionFactory.openSession();
 		List<CursoAlumno> listarCursoAlumno =null;
 		try {
-		    String queryCursoAlumno = "SELECT ca FROM CursoAlumno ca WHERE ca.idCurso= :idCurso";
-//		    		+ "+ "(SELECT ca.idCursoAlumno FROM AulaDinamica JOIN ca WHERE ca.idCursoAlumno = ca.idCursoAlumno and WHERE ca.idCurso= 1)
+		    String queryCursoAlumno = "SELECT ca FROM CursoAlumno ca WHERE ca.curso.idCurso= :idCurso AND ca.idCursoAlumno NOT IN (SELECT ad.cursoAlumno.idCursoAlumno FROM AulaDinamica ad  WHERE  ad.cursoAlumno.curso.idCurso= :idCurso)";
 			Query query = sSession.createQuery(queryCursoAlumno);
-			query.setInteger("id", idCurso);
+			query.setInteger("idCurso", idCurso);
 			listarCursoAlumno = (List<CursoAlumno>) query.list();
 		} catch (Exception e) {
 		    logger.info("Auladinámica Daoimpl getAllAlumnosByCursoByEstado: ", e);
@@ -210,23 +209,8 @@ public class AulaDinamicaDaoImpl implements AulaDinamicaDao {
 
 	@Override
 	public List<AulaDinamica> getAllAlumnosByCursoByEs(int idCurso) throws Exception {
-		sSession = sessionFactory.openSession();
-		List<AulaDinamica> listarAulaDinamica=null;
-		try {
-//		    String queryCursoAlumno = "SELECT ca FROM CursoAlumno ca WHERE ca.idCurso= 1 AND ca.idCursoAlumno NOT IN "
-//		    		+ "(SELECT ca.idCursoAlumno FROM AulaDinamica JOIN ca WHERE ca.idCursoAlumno = ca.idCursoAlumno and WHERE ca.idCurso= 1)";
-			
-			String queryCursoAlumno = "SELECT ca FROM AulaDinamica ca WHERE ca.idCurso= 1 AND ca.idCursoAlumno NOT IN SELECT ca.idCursoAlumno FROM AulaDinamica JOIN ca WHERE ca.idCursoAlumno = ca.idCursoAlumno and WHERE ca.idCurso= 1)";
-			Query query = sSession.createQuery(queryCursoAlumno);
-			query.setInteger("id", idCurso);
-			listarAulaDinamica = (List<AulaDinamica>) query.list();
-		} catch (Exception e) {
-		    logger.info("Auladinámica Daoimpl getAllAlumnosByCursoByEstado: ", e);
-		} finally {
-			sSession.flush();
-			sSession.close();
-		}
-		return listarAulaDinamica;
+
+		return null;
 	}
 
 	

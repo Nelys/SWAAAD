@@ -19,6 +19,7 @@
 								<th>Grado</th>
 								<th>Seccion</th>
 								<th>Año</th>
+								<th>Estado</th>
 								<th>Seleccion</th>
 								<th>ACCION</th>
 							</tr>
@@ -33,6 +34,29 @@
 								<td>${lista.grado}</td>
 								<td>${lista.seccion}</td>
 								<td>${lista.anio}</td>
+									
+									
+								
+								<c:if test="${lista.estado=='0'}">
+								<td style="text-align: center" width="100px">
+								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button>
+								</td>
+								</c:if>
+																		
+								<c:if test="${lista.estado =='1'}">
+								<td style="text-align: center" width="100px">
+								<button id="Desactivar" class="btn btn-sm btn-primary btn-sm"> Desactivar</button>
+								</td>
+								</c:if>
+
+<!-- 										<td style="text-align: center" width="100px"> -->
+<%-- 										<input name="boton1" id="boton1" type="button" value="Boton 1" onclick="desactivar(${lista.idCurso})" /> --%>
+								
+<!-- 										</td> -->
+
+										
+								
+								
 								<td style="text-align: center" width="100px"><a class="btn btn-sm btn-primary btn-sm" href="selectCurso?id=${lista.idCurso}"><i
 									class="fa fa-eye"></i> Seleccionar</a></td>
 
@@ -185,10 +209,17 @@
 					$("#miTable_wrapper a:eq(3)").css({
 						"margin-right" : "4px"
 					});
-				});
+				})
+				
+				 $("#Activar").click(function(){
+					 alert("Desea Habilitar el curso"); 
+					 $.post
+				 })
+				
+				
+
+			
+		
 			</script>
 		</div>
-		<!-- /.container-fluid -->
-
 	</div>
-<!-- /#page-wrapper -->
