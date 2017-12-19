@@ -69,20 +69,20 @@
 					</div>
 
 
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="pwd">Periodo:</label>
-				        <div class="col-sm-10" id="fields">
-				        	<input type="hidden" name="count" value="1" />
-			            	<div id="periodo"></div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label col-sm-2" for="pwd">Periodo:</label> -->
+<!-- 				        <div class="col-sm-10" id="fields"> -->
+<!-- 				        	<input type="hidden" name="count" value="1" /> -->
+<!-- 			            	<div id="periodo"></div> -->
 			            	
-			            	<div class="input-group" id="field">
-			            		<input autocomplete="off" class="input form-control" id="field1" name="prof1" type="text" placeholder="Nombre del Periodo" data-items="8"/>
-			            		<span class="input-group-btn"> 
-			            			<button id="btn" class="btn btn-primary add-more" type="button"><i class="glyphicon glyphicon-plus"></i></button>
-			            		</span>
-			            	</div> 
-				        </div>
-					</div>
+<!-- 			            	<div class="input-group" id="field"> -->
+<!-- 			            		<input autocomplete="off" class="input form-control" id="field1" name="prof1" type="text" placeholder="Nombre del Periodo" data-items="8"/> -->
+<!-- 			            		<span class="input-group-btn">  -->
+<!-- 			            			<button id="btn" class="btn btn-primary add-more" type="button"><i class="glyphicon glyphicon-plus"></i></button> -->
+<!-- 			            		</span> -->
+<!-- 			            	</div>  -->
+<!-- 				        </div> -->
+<!-- 					</div> -->
 					
 
 					<div class="form-group">
@@ -91,7 +91,6 @@
 							<button class="btn btn-success" type="submit">Guardar</button>
 						</div>
 					</div>
-
 				</form:form>
 			</div>
 		</div>
@@ -99,37 +98,37 @@
 		<!-- /.row -->
 	
 		<script type="text/javascript">
-		$(document).ready(function() {
-			var idPeriodo = 0;
-			$("#btn").click(function(e){
-				idPeriodo++;
+// 		$(document).ready(function() {
+// 			var idPeriodo = 0;
+// 			$("#btn").click(function(e){
+// 				idPeriodo++;
 				
-				var btn = $('<button/>', {
-	                text: '-',
-	                id: 'b'+idPeriodo,
-	                class: 'btn btn-danger remove-me',
-	                click: function () { 
-						$('#'+$(this).attr('id').replace('b', 'periodo')).remove();
-						$('#'+$(this).attr('id').replace('b', 'br')).remove();
-	                }
-	            });
+// 				var btn = $('<button/>', {
+// 	                text: '-',
+// 	                id: 'b'+idPeriodo,
+// 	                class: 'btn btn-danger remove-me',
+// 	                click: function () { 
+// 						$('#'+$(this).attr('id').replace('b', 'periodo')).remove();
+// 						$('#'+$(this).attr('id').replace('b', 'br')).remove();
+// 	                }
+// 	            });
 				
-				var ped = 	'<div class="input-group" id="periodo'+ idPeriodo +'">' +
-								'<span class="input-group-addon" id="basic-addon1">'+ idPeriodo +'</span>' +
-				    			'<input autocomplete="off" class="input form-control" id="field1" name="prof1" type="text" placeholder="Nombre del Periodo" />' +
-				        		'<span id="span'+ idPeriodo +'" class="input-group-btn">'+
-				        			'<div id="btn'+ idPeriodo +'"></div>'+
-				        		'</span>'+
-				        	'</div><br id="br'+ idPeriodo +'">';
+// 				var ped = 	'<div class="input-group" id="periodo'+ idPeriodo +'">' +
+// 								'<span class="input-group-addon" id="basic-addon1">'+ idPeriodo +'</span>' +
+// 				    			'<input autocomplete="off" class="input form-control" id="field1" name="prof1" type="text" placeholder="Nombre del Periodo" />' +
+// 				        		'<span id="span'+ idPeriodo +'" class="input-group-btn">'+
+// 				        			'<div id="btn'+ idPeriodo +'"></div>'+
+// 				        		'</span>'+
+// 				        	'</div><br id="br'+ idPeriodo +'">';
 	        	
-	        	var a = $('#periodo').before($('#periodo').html()+ ped);
+// 	        	var a = $('#periodo').before($('#periodo').html()+ ped);
 				
-	        	$('#btn' + idPeriodo).before(btn);
+// 	        	$('#btn' + idPeriodo).before(btn);
 	        	
-	        	$( '#b' + idPeriodo ).html( "<i class='glyphicon glyphicon-minus'></i>" );
+// 	        	$( '#b' + idPeriodo ).html( "<i class='glyphicon glyphicon-minus'></i>" );
 	        	
-			});
-		});
+// 			});
+// 		});
 		</script>
 			
 	</div>

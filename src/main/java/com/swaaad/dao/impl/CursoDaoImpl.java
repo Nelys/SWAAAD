@@ -138,7 +138,7 @@ public class CursoDaoImpl implements CursoDao {
 		sSession = sessionFactory.openSession();
 		List<Curso> listarcurso = null;
 		try {
-			String queryCurso = "SELECT c FROM Curso c WHERE c.docente.idDocente=:idDocente";
+			String queryCurso = "SELECT c FROM Curso c WHERE c.docente.idDocente=:idDocente and c.estado=1";
 			Query query = sSession.createQuery(queryCurso);
 			query.setInteger("idDocente", idDocente);
 			listarcurso=(List<Curso>) query.list();
@@ -157,7 +157,7 @@ public class CursoDaoImpl implements CursoDao {
 		sSession = sessionFactory.openSession();
 		List<Curso> listarcurso = null;
 		try {
-			String queryCurso = "SELECT c FROM Curso c WHERE c.docente.idDocente=:idDocente and c.estado=1";
+			String queryCurso = "SELECT c FROM Curso c WHERE c.docente.idDocente=:idDocente and c.estado=0";
 			Query query = sSession.createQuery(queryCurso);
 			query.setInteger("idDocente", idDocente);
 			listarcurso=(List<Curso>) query.list();

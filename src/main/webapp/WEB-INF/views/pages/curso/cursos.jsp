@@ -7,6 +7,7 @@
 		<!-- Opcion de la tabla -->
 		<br> <br>
 		<!-- Resgistros de la tabla -->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="table-responsive">
@@ -37,25 +38,14 @@
 									
 									
 								
-								<c:if test="${lista.estado=='0'}">
+						
 								<td style="text-align: center" width="100px">
 <!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
-								<input name="activar" id="activar" type="button" value="Activar" onclick="desactivar(${lista.idCurso})" />
-								</td>
-								</c:if>
-																		
-								<c:if test="${lista.estado =='1'}">
-								<td style="text-align: center" width="100px">
-<!-- 								<button id="Desactivar" class="btn btn-sm btn-primary btn-sm"> Desactivar</button> -->
-								<input name="desactivar" id="desactivar" type="button" value="Desactivar" onclick="desactivar(${lista.idCurso})" />
-								</td>
-								</c:if>
-
-<!-- 										<td style="text-align: center" width="100px"> -->
-<%-- 										<input name="boton1" id="boton1" type="button" value="Boton 1" onclick="desactivar(${lista.idCurso})" /> --%>
+								<input name="activar" id="desactivar" type="button" value="Desactivar" onclick="desactivar(${lista.idCurso})" />
 								
-<!-- 										</td> -->
-																							
+								</td>
+					
+													
 								<td style="text-align: center" width="100px"><a class="btn btn-sm btn-primary btn-sm" href="selectCurso?id=${lista.idCurso}"><i
 									class="fa fa-eye"></i> Seleccionar</a></td>
 
@@ -90,6 +80,7 @@
 						"hideMethod": "fadeOut"
 					};
 					
+	
 
 					$.get("getRecordatorio/1",{},function (result) {
 
@@ -130,6 +121,8 @@
 								"next" : "Siguiente"
 							}
 						},
+						
+// 						btn btn-sm btn-primary btn-sm
 						dom : 'Bfrtip',
 						buttons : [{
 							text : '<i class="fa fa-plus"></i> Nuevo',
@@ -178,16 +171,18 @@
 								4,
 								5 ]
 							}
+						},
+						
+						{
+							text : '<i class="fa fa-plus"></i> Desactivados',
+							action : function(
+								e, dt,
+								node,
+								config) {
+								window.location.href = 'cursoDesactivados';
+							}
 						}
-// 						{
-// 							text : '<i class="fa fa-print"></i> Imprimir',
-// 							action : function(
-// 								e, dt,
-// 								node,
-// 								config) {
-// 								window.location.href = '#';
-// 							}
-// 						} 
+
                          ]
 					});
 
@@ -212,13 +207,21 @@
 					});
 				})
 				
-				 $("#Activar").click(function(){
-					 alert("Desea Habilitar el curso"); 
-					 $.post
-				 })
-				
-				
 
+
+
+// 				function enviarEstado(obj, estado) {
+// 					var id_Curso = $(obj).val();
+// 					var EstadoD = estado;
+
+// 					$.post( '${pageContext.request.contextPath}/cursoDesactivados',{ 
+// 						 idCurso : id_Curso,
+// 						 est : EstadoD,
+// 						 fecha:'${fecha}'},function( data ) {	
+// 							// alert(data.message)		 
+// 						});
+
+// 				}
 			
 		
 			</script>

@@ -203,4 +203,12 @@
 		<put-attribute name="current" value="reporte" />
 		<put-attribute name="usuario" expression="${user}" />
 	</definition>
+	
+		<!-- Curso desactivado -->
+	<definition name="cursoDesactivados" extends="base-definition3">
+		<put-attribute name="title" value="Curso Formulario" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/curso/curso-desactivado.jsp" />
+		<put-attribute name="current" value="curso-desactivado" />
+		<put-attribute name="usuario" expression="${user}" />
+	</definition>
 </tiles-definitions>

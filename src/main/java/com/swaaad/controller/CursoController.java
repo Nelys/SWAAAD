@@ -50,6 +50,7 @@ public class CursoController {
 		Docente docente = usuario.getDocentes().get(0);
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
+		
 		List<Curso> ListarCurso = null;
 		ListarCurso = objCursoService.listCursoByDocente(docente.getIdDocente());
 
@@ -157,29 +158,39 @@ public class CursoController {
 
 		return new ModelAndView("redirect:/alumnos");
 	}
-//	
-//	@RequestMapping(value = "/EstadoCurso/{estado}", method = RequestMethod.POST)
-//	public ModelAndView EstadoCurso(@PathVariable("estado") byte estado) throws Exception {
-//		logger.info("saveCurso");
-//
-//		
-//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		UserDetails userDetails = null;
-//		if (principal instanceof UserDetails) {
-//			userDetails = (UserDetails) principal;
-//		}
-//		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
-//		Docente docente = usuario.getDocentes().get(0);
-//		String userName = docente.getApellidos() + " ," + docente.getNombre();
-////		model.addObject("user", userName);
-//		
-////		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
-////		curso.setEstado(estado);
-////					
-////		objCursoService.updateCurso(curso);
-//			
-//	
-//		return new ModelAndView("redirect:/cursos");
-//	}
+	
+	@RequestMapping(value = "/cursoDesactivados", method = RequestMethod.GET)
+	public ModelAndView EstadoCurso(ModelAndView model) throws Exception {
+		logger.info("EstadoCurso");
+
+//		{estado} @PathVariable("estado") byte estado
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = null;
+		if (principal instanceof UserDetails) {
+			userDetails = (UserDetails) principal;
+		}
+		Usuario usuario = objUsuarioService.getUsuarioById(Integer.valueOf(userDetails.getUsername()));
+		Docente docente = usuario.getDocentes().get(0);
+		String userName = docente.getApellidos() + " ," + docente.getNombre();
+		model.addObject("user", userName);
+		
+		
+		List<Curso> ListarCurso = null;
+		ListarCurso = objCursoService.listCursoByEstado(docente.getIdDocente());
+
+	
+//		curso.setEstado((byte) 1);
+		
+//		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
+//		curso.setEstado(estado);
+//					
+//		objCursoService.updateCurso(curso);
+		
+		model.addObject("idDocente", docente.getIdDocente());
+		model.addObject("listCursos", ListarCurso);
+		model.setViewName("cursoDesactivados");
+	
+		return model;
+	}
 
 }
