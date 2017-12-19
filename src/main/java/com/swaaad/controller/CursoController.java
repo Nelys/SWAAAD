@@ -78,7 +78,7 @@ public class CursoController {
 //		model.addObject("user", userName);
 		
 		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
-//		curso.setEstado((byte) '1');
+		curso.setEstado((byte) 1);
 		
 		try {
 			if (curso.getIdCurso() == 0) {

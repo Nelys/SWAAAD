@@ -322,7 +322,7 @@ public class HorarioController {
 				break;
 			}
 
-			horarioDto.setTitle(horario.getCurso().getNombreCurso().toUpperCase());
+			horarioDto.setTitle(horario.getCurso().getNombreCurso().toUpperCase()+horario.getCurso().getGrado()+" - "+horario.getCurso().getSeccion()+" - "+ horario.getCurso().getInstitucion());
 			horarioDto.setId(horario.getIdHorario());
 //			horarioDto.setClassName("danger-bg");
 			switch (horario.getDia()) {
