@@ -28,11 +28,11 @@ CREATE TABLE `actividad_pedagogica` (
   PRIMARY KEY (`ID_ACTIVIDAD`),
   KEY `FK_CURSO_ACTIVIDADPEDAGOGICA` (`ID_CURSO`),
   CONSTRAINT `FK_CURSO_ACTIVIDADPEDAGOGICA` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `actividad_pedagogica` */
 
-insert  into `actividad_pedagogica`(`ID_ACTIVIDAD`,`FECHA`,`DESCRIPCION`,`ID_CURSO`) values (1,'2017-12-14 18:10:00','Revisión de tarea',1),(2,'2017-12-16 00:00:00','Revision de trabajo Final',1),(3,'2017-12-18 00:00:00','Examen Final',1);
+insert  into `actividad_pedagogica`(`ID_ACTIVIDAD`,`FECHA`,`DESCRIPCION`,`ID_CURSO`) values (1,'2017-12-14 18:10:00','Revisión de tarea',1),(2,'2017-12-16 00:00:00','Revision de trabajo Final',1),(3,'2017-12-18 00:00:00','Examen Final',1),(4,'2017-10-31 00:00:00','dfvf',1),(5,'2017-12-21 09:30:00','Fiesta Navidad',1),(6,'2017-12-18 20:18:00','Exposición',1);
 
 /*Table structure for table `alumno` */
 
@@ -48,11 +48,11 @@ CREATE TABLE `alumno` (
   `APELLIDOS_APODERADO` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `EMAIL_APODERADO` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ID_ALUMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `alumno` */
 
-insert  into `alumno`(`ID_ALUMNO`,`NOMBRES`,`APELLIDOS`,`GENERO`,`EMAIL`,`NOMBRES_APODERADO`,`APELLIDOS_APODERADO`,`EMAIL_APODERADO`) values (3,'Luis','Condori',NULL,'luis@hotmail.com',NULL,NULL,NULL),(4,'nelys','mollocondo','','','','',''),(5,'Motta Rondón','Milagros A.','F','milagros .motta @gmail.com','','Motta ','Motta @hotmail.com'),(6,'Núñez Chávez','Diana Margior','F','diana .núñez @gmail.com','','Núñez ','Núñez @hotmail.com'),(7,'Ortiz Delgado','Shirley Patric','F','shirley .ortiz @gmail.com','','Ortiz ','Ortiz @hotmail.com'),(8,'Osorio Vargas','Ana Paula',NULL,'ana.osorio@gmail.com','','Osorio ','Osorio@hotmail.com'),(9,'Peña Villafuerte','Lizeth Diana','F','lizeth .peña @gmail.com','','Peña ','Peña @hotmail.com'),(10,'Pillco Ramos','Luz Clara','F','luz .pillco @gmail.com','','Pillco ','Pillco @hotmail.com'),(11,'Pineda Fernández','Alanys Virginia','F','alanys .pineda @gmail.com','','Pineda ','Pineda @hotmail.com'),(12,'Quiroz Condori','Carla Daniela','F','carla .quiroz @gmail.com','','Quiroz ','Quiroz @hotmail.com'),(13,'Rios Salas','Yakelyn Pao','F','yakelyn .rios @gmail.com','','Rios ','Rios @hotmail.com'),(14,'Rodríguez Delelis','Virginia del Carme','F','virginia .rodríguez @gmail.com','','Rodríguez ','Rodríguez @hotmail.com'),(15,'Rondón De La Cruz','Carola Andrea Alex','F','carola .rondón @gmail.com','','Rondón ','Rondón @hotmail.com'),(16,'Salas Rodriguez','Stephanie Alexan','F','stephanie .salas @gmail.com','','Salas ','Salas @hotmail.com'),(17,'Smith Postigo','Luciana Anthua','F','luciana .smith @gmail.com','','Smith ','Smith @hotmail.com'),(18,'Tejada Mamani','Jose Manuel','M','jose .tejada @gmail.com','','Tejada ','Tejada @hotmail.com'),(19,'Valdivia Cisneros','Andrea Del Carmen','F','andrea .valdivia @gmail.com','','Valdivia ','Valdivia @hotmail.com'),(20,'Valdivia Paredes','Rosse Mary','F','rosse .valdivia @gmail.com','','Valdivia ','Valdivia @hotmail.com'),(21,'Valdivia Tinajeros','Clara Giannella','F','clara .valdivia @gmail.com','','Valdivia ','Valdivia @hotmail.com'),(22,'Valencia Neyra','Fabiola Cristin','F','fabiola .valencia @gmail.com','','Valencia ','Valencia @hotmail.com'),(23,'Hanco Mamani','Richard  A.','M','richard .hanco @gmail.com','','Hanco ','Hanco @hotmail.com'),(24,'Zevallos Barriga','Denise Antonella','F','denise .zevallos @gmail.com','','Zevallos ','Zevallos @hotmail.com'),(25,'Carlos','Gutierrez',NULL,'carlog@gmail.com','','','');
+insert  into `alumno`(`ID_ALUMNO`,`NOMBRES`,`APELLIDOS`,`GENERO`,`EMAIL`,`NOMBRES_APODERADO`,`APELLIDOS_APODERADO`,`EMAIL_APODERADO`) values (3,'Luis','Condori','M','luis@hotmail.com',NULL,NULL,NULL),(4,'nelys','mollocondo','F','','','',''),(5,'Motta Rondón','Milagros A.','F','milagros.motta@gmail.com','','Motta ','Motta@hotmail.com'),(6,'Núñez Chávez','Diana Margior','F','diana.núñez@gmail.com','','Núñez ','Núñez@hotmail.com'),(7,'Ortiz Delgado','Shirley Patric','F','shirley.ortiz@gmail.com','','Ortiz ','Ortiz@hotmail.com'),(8,'Osorio Vargas','Ana Paula','F','ana.osorio@gmail.com','','Osorio ','Osorio@hotmail.com'),(9,'Peña Villafuerte','Lizeth Diana','F','lizeth.peña@gmail.com','','Peña ','Peña@hotmail.com'),(10,'Pillco Ramos','Luz Clara','F','luz.pillco@gmail.com','','Pillco ','Pillco@hotmail.com'),(11,'Pineda Fernández','Alanys Virginia','F','alanys.pineda@gmail.com','','Pineda ','Pineda@hotmail.com'),(12,'Quiroz Condori','Carla Daniela','F','carla.quiroz@gmail.com','','Quiroz ','Quiroz@hotmail.com'),(13,'Rios Salas','Yakelyn Pao','F','yakelyn.rios@gmail.com','','Rios ','Rios@hotmail.com'),(14,'Rodríguez Delelis','Virginia del Carme','F','virginiarodríguez@gmail.com','','Rodríguez ','Rodrígue@hotmail.com'),(15,'Rondón De La Cruz','Carola Andrea Alex','F','carola.rondón@gmail.com','','Rondón ','Rondón@hotmail.com'),(16,'Salas Rodriguez','Stephanie Alexan','F','stephanie.salas@gmail.com','','Salas ','Salas@hotmail.com'),(17,'Smith Postigo','Luciana Anthua','F','luciana.smith@gmail.com','','Smith ','Smith@hotmail.com'),(18,'Tejada Mamani','Jose Manuel','M','jose.tejada@gmail.com','','Tejada ','Tejada@hotmail.com'),(19,'Valdivia Cisneros','Andrea Del Carmen','F','andrea.valdivia@gmail.com','','Valdivia ','Valdivia@hotmail.com'),(20,'Valdivia Paredes','Rosse Mary','F','rosse.valdivia@gmail.com','','Valdivia ','Valdivia@hotmail.com'),(21,'Valdivia Tinajeros','Clara Giannella','F','clara.valdivia@gmail.com','','Valdivia ','Valdivia@hotmail.com'),(22,'Valencia Neyra','Fabiola Cristin','F','fabiola.valencia@gmail.com','','Valencia ','Valencia@hotmail.com'),(23,'Hanco Mamani','Richard  A.','M','richard.hanco@gmail.com','','Hanco ','Hanco@hotmail.com'),(24,'Zevallos Barriga','Denise Antonella','F','denise.zevallos@gmail.com','','Zevallos ','Zevallos@hotmail.com'),(25,'Carlos','Gutierrez','M','carlog@gmail.com','','',''),(26,'Motta Rondón','Milagros A.','F','milagros.motta@gmail.com','','Motta ','Motta @hotmail.com'),(27,'Núñez Chávez','Diana Margior','F','diana.nunez@gmail.com','','Núñez ','Núñez @hotmail.com'),(28,'Ortiz Delgado','Shirley Patric','F','shirley.ortiz@gmail.com','','Ortiz ','Ortiz @hotmail.com'),(29,'Osorio Vargas','Ana Paula','F','ana.osorio@gmail.com','','Osorio ','Osorio @hotmail.com'),(30,'Peña Villafuerte','Lizeth Diana','F','lizeth.p@gmail.com','','Peña ','Peña @hotmail.com'),(31,'Pillco Ramos','Luz Clara','F','luz.pillco@gmail.com','','Pillco ','Pillco @hotmail.com'),(32,'Pineda Fernández','Alanys Virginia','F','alanys.pineda@gmail.com','','Pineda ','Pineda @hotmail.com'),(33,'Quiroz Condori','Carla Daniela','F','carla.quiroz@gmail.com','','Quiroz ','Quiroz @hotmail.com'),(34,'Rios Salas','Yakelyn Pao','F','yakelyn.rios@gmail.com','','Rios ','Rios @hotmail.com'),(35,'Rodríguez Delelis','Virginia del Carme','F','virginia.rodriguez@gmail.com','','Rodríguez ','Rodríguez @hotmail.com'),(36,'Rondón De La Cruz','Carola Andrea Alex','F','carola.rondon@gmail.com','','Rondón ','Rondón @hotmail.com'),(37,'Salas Rodriguez','Stephanie Alexan','F','stephanie.salas@gmail.com','','Salas ','Salas @hotmail.com'),(38,'Smith Postigo','Luciana Anthua','F','luciana.smith@gmail.com','','Smith ','Smith @hotmail.com'),(39,'Tejada Mamani','Jose Manuel','M','jose.tejada@gmail.com','','Tejada ','Tejada @hotmail.com'),(40,'Valdivia Cisneros','Andrea Del Carmen','F','andrea.valdivia@gmail.com','','Valdivia ','Valdivia @hotmail.com'),(41,'Valdivia Paredes','Rosse Mary','F','rosse.valdivia@gmail.com','','Valdivia ','Valdivia @hotmail.com'),(42,'Valdivia Tinajeros','Clara Giannella','F','clara.valdivia@gmail.com','','Valdivia ','Valdivia @hotmail.com'),(43,'Valencia Neyra','Fabiola Cristin','F','fabiola.valencia@gmail.com','','Valencia ','Valencia @hotmail.com'),(44,'Hanco Mamani','Richard  A.','M','richard.hanco@gmail.com','','Hanco ','Hanco @hotmail.com'),(45,'Zevallos Barriga','Denise Antonella','F','denise.zevallos@gmail.com','','Zevallos ','Zevallos @hotmail.com');
 
 /*Table structure for table `asistencia` */
 
@@ -87,11 +87,9 @@ CREATE TABLE `aula_dinamica` (
   PRIMARY KEY (`ID_AULA_DINAMICA`),
   KEY `fk_AULA_DINAMICA_CURSOALUMNO` (`ID_CURSO_ALUMNO`),
   CONSTRAINT `fk_AULA_DINAMICA_CURSOALUMNO` FOREIGN KEY (`ID_CURSO_ALUMNO`) REFERENCES `curso_alumno` (`ID_CURSO_ALUMNO`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `aula_dinamica` */
-
-insert  into `aula_dinamica`(`ID_AULA_DINAMICA`,`COORD_X`,`COORD_Y`,`COLOR_TEXTO`,`COLOR_FONDO`,`ESTADO`,`ID_CURSO_ALUMNO`) values (71,5,5,'ffffff','2f2f30','\0',4),(72,5,5,'ffffff','2f2f30','\0',5),(73,5,5,'ffffff','2f2f30','\0',6),(74,5,5,'ffffff','2f2f30','\0',7),(75,5,5,'ffffff','2f2f30','\0',8),(76,5,5,'ffffff','2f2f30','\0',9),(77,78,5,'ffffff','2f2f30','\0',10);
 
 /*Table structure for table `curso` */
 
@@ -109,11 +107,11 @@ CREATE TABLE `curso` (
   PRIMARY KEY (`ID_CURSO`),
   KEY `fk_CURSO_DOCENTE1` (`ID_DOCENTE`),
   CONSTRAINT `fk_CURSO_DOCENTE1` FOREIGN KEY (`ID_DOCENTE`) REFERENCES `docente` (`ID_DOCENTE`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `curso` */
 
-insert  into `curso`(`ID_CURSO`,`NOMBRE_CURSO`,`INSTITUCION`,`GRADO`,`SECCION`,`ANIO`,`ID_DOCENTE`,`ESTADO`) values (1,'Matematica','Arequipa',5,'E',2015,1,''),(2,'Aritmetica','Mendel',3,'A',2016,1,''),(3,'Seguridad informática','San Martin',4,'F',2016,1,''),(5,'Matematica','Arequipa',2,'A',2017,1,''),(6,'Metematica','Arequipa',2,'B',2017,1,''),(7,'Matematica','Arequipa',2,'C',2017,1,''),(8,'Matematica','Arequipa',2,'D',2017,1,''),(9,'Matematica','Arequipa',3,'A',2017,1,''),(10,'Matematica','Arequipa',3,'B',2017,1,''),(11,'Matematica','Arequipa',3,'C',2017,1,'');
+insert  into `curso`(`ID_CURSO`,`NOMBRE_CURSO`,`INSTITUCION`,`GRADO`,`SECCION`,`ANIO`,`ID_DOCENTE`,`ESTADO`) values (1,'Matematica','Arequipa',5,'E',2017,1,''),(2,'Aritmetica','Mendel',3,'A',2016,1,'\0'),(3,'Seguridad informática','San Martin',4,'F',2016,1,'\0'),(5,'Matematica','Arequipa',2,'A',2017,1,''),(6,'Matematica','Arequipa',2,'B',2017,1,'\0'),(7,'Matematica','Arequipa',2,'C',2017,1,''),(8,'Matematica','Arequipa',2,'D',2017,1,''),(9,'Matematica','Arequipa',3,'A',2017,1,''),(10,'Matematica','Arequipa',3,'B',2017,1,''),(11,'Matematica','Arequipa',3,'C',2017,1,''),(12,'Educación por el arte','Magisterial',2,'A',2017,3,''),(13,'Educacion por el Arte','Magisterial',2,'B',2017,3,''),(14,'Educacion por el arte','Magisterial',2,'C',2017,3,''),(15,'Educacion para el trabajo','Magisterial',4,'A',2017,3,''),(16,'Educaion para el trabajo','Magisterial',4,'C',2017,3,'');
 
 /*Table structure for table `curso_alumno` */
 
@@ -128,11 +126,11 @@ CREATE TABLE `curso_alumno` (
   KEY `fk_CURSO_ALUMNO_CURSO` (`ID_CURSO`),
   CONSTRAINT `fk_CURSO_ALUMNO_ALUMNO1` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `fk_CURSO_ALUMNO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `curso_alumno` */
 
-insert  into `curso_alumno`(`ID_CURSO_ALUMNO`,`ID_CURSO`,`ID_ALUMNO`) values (3,2,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,1,20),(21,1,21),(22,1,22),(23,1,23),(24,1,24),(25,2,25);
+insert  into `curso_alumno`(`ID_CURSO_ALUMNO`,`ID_CURSO`,`ID_ALUMNO`) values (3,2,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,1,20),(21,1,21),(22,1,22),(23,1,23),(24,1,24),(25,2,25),(26,12,26),(27,12,27),(28,12,28),(29,12,29),(30,12,30),(31,12,31),(32,12,32),(33,12,33),(34,12,34),(35,12,35),(36,12,36),(37,12,37),(38,12,38),(39,12,39),(40,12,40),(41,12,41),(42,12,42),(43,12,43),(44,12,44),(45,12,45);
 
 /*Table structure for table `docente` */
 
@@ -148,11 +146,11 @@ CREATE TABLE `docente` (
   PRIMARY KEY (`ID_DOCENTE`),
   KEY `fk_docente_usuario` (`ID_USUARIO`),
   CONSTRAINT `fk_docente_usuario` FOREIGN KEY (`ID_USUARIO`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `docente` */
 
-insert  into `docente`(`ID_DOCENTE`,`NOMBRE`,`APELLIDOS`,`GENERO`,`EMAIL`,`ID_USUARIO`) values (1,'Nelys','Mollocondo Pari','F','nelys.mp@gmail.com',1),(2,'Christian','vilca quinonez','M','christian.vilcaq@gmail.com',2);
+insert  into `docente`(`ID_DOCENTE`,`NOMBRE`,`APELLIDOS`,`GENERO`,`EMAIL`,`ID_USUARIO`) values (1,'Nelys','Mollocondo Pari','F','nelys.mp@gmail.com',1),(2,'Christian','vilca quinonez','M','christian.vilcaq@gmail.com',2),(3,'Lizbeth','Mollocondo Pari','F','liz.mollocondo@gmail.com',3);
 
 /*Table structure for table `evaluacion` */
 
@@ -171,11 +169,11 @@ CREATE TABLE `evaluacion` (
   PRIMARY KEY (`ID_EVALUACION`),
   KEY `fk_EVALUACION_PERIODO` (`ID_PERIODO`),
   CONSTRAINT `fk_EVALUACION_PERIODO` FOREIGN KEY (`ID_PERIODO`) REFERENCES `periodo` (`ID_PERIODO`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `evaluacion` */
 
-insert  into `evaluacion`(`ID_EVALUACION`,`ID_EVALUACION_DEPENDENCIA`,`ID_PERIODO`,`NOMBRE`,`DESCRIPCION`,`COLOR_FONDO`,`COLOR_TEXTO`,`FORMULA`,`ES_FORMULA`) values (5,0,1,'Tarea 1','','#ffffff','#000000','','\0'),(6,0,1,'Tarea 2','','#ffffff','#000000','','\0'),(7,0,2,'Tarea 1','','#ffffff','#000000','','\0');
+insert  into `evaluacion`(`ID_EVALUACION`,`ID_EVALUACION_DEPENDENCIA`,`ID_PERIODO`,`NOMBRE`,`DESCRIPCION`,`COLOR_FONDO`,`COLOR_TEXTO`,`FORMULA`,`ES_FORMULA`) values (13,16,10,'Exp','exposicion','#ffffff','#000000','','\0'),(14,16,10,'EE','Examen de evaluación','#ffffff','#000000','','\0'),(15,16,10,'Asig Tar','Asignacion y tareas','#ffffff','#000000','','\0'),(16,0,10,'Promedio C1','','#337ab7','#ffffff','0.15*idEvaluacion_13+0.7*idEvaluacion_14+0.15*idEvaluacion_15','');
 
 /*Table structure for table `horario` */
 
@@ -190,11 +188,9 @@ CREATE TABLE `horario` (
   PRIMARY KEY (`ID_HORARIO`),
   KEY `fk_HORARIO_CURSO` (`ID_CURSO`),
   CONSTRAINT `fk_HORARIO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `horario` */
-
-insert  into `horario`(`ID_HORARIO`,`DIA`,`HORA_INICIO`,`HORA_FIN`,`ID_CURSO`) values (20,'1','06:20:00','08:20:00',1),(21,'3','06:20:00','08:20:00',1),(22,'2','06:25:00','08:25:00',1),(23,'1','08:30:00','10:30:00',2),(24,'2','14:30:00','16:30:00',9);
 
 /*Table structure for table `nota` */
 
@@ -210,9 +206,11 @@ CREATE TABLE `nota` (
   KEY `FK_EVALUACION_NOTA` (`ID_EVALUACION`),
   CONSTRAINT `FK_ALUMNO_NOTA` FOREIGN KEY (`ID_ALUMNO`) REFERENCES `alumno` (`ID_ALUMNO`),
   CONSTRAINT `FK_EVALUACION_NOTA` FOREIGN KEY (`ID_EVALUACION`) REFERENCES `evaluacion` (`ID_EVALUACION`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `nota` */
+
+insert  into `nota`(`ID_NOTA`,`ID_ALUMNO`,`ID_EVALUACION`,`NOTA_EVALUATIVA`) values (23,44,13,4),(24,44,14,7),(25,44,15,17);
 
 /*Table structure for table `periodo` */
 
@@ -226,11 +224,11 @@ CREATE TABLE `periodo` (
   PRIMARY KEY (`ID_PERIODO`),
   KEY `fk_PERIODO_CURSO` (`ID_CURSO`),
   CONSTRAINT `fk_PERIODO_CURSO` FOREIGN KEY (`ID_CURSO`) REFERENCES `curso` (`ID_CURSO`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `periodo` */
 
-insert  into `periodo`(`ID_PERIODO`,`NUMERO_PERIODOS`,`DESCRIPCION`,`ID_CURSO`) values (1,1,'ciclo',1),(2,2,'ciclo',1),(3,3,'ciclo',1),(4,4,'ciclo',1),(5,5,'ciclo',1),(6,6,'ciclo',1),(7,1,'Trimestre',2),(8,2,'Trimestre',2),(9,3,'Trimestre',2);
+insert  into `periodo`(`ID_PERIODO`,`NUMERO_PERIODOS`,`DESCRIPCION`,`ID_CURSO`) values (1,1,'ciclo',1),(2,2,'ciclo',1),(3,3,'ciclo',1),(4,4,'ciclo',1),(5,5,'ciclo',1),(6,6,'ciclo',1),(7,1,'Trimestre',2),(8,2,'Trimestre',2),(9,3,'Trimestre',2),(10,1,'Trimestre',12),(11,2,'Trimestre',12),(12,3,'Trimestre',12);
 
 /*Table structure for table `usuario` */
 
@@ -243,11 +241,11 @@ CREATE TABLE `usuario` (
   `enabled` tinyint(4) DEFAULT NULL,
   `role` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`id_usuario`,`username`,`password`,`enabled`,`role`) values (1,'nelys.mp@gmail.com','$2a$10$Qat9D7Zn5r83gTG7zu7dVOv0azSvbzVc4N8rHNbs2Ewp8ya1i62XO',1,'ROLE_ADMIN'),(2,'christian.vilcaq@gmail.com','$2a$10$RFRiE6D8WnX0YhnKHkDyqe0yNjXuymXqm2oMk4gAuh7nLHT5X4tW2',0,'ROLE_ADMIN');
+insert  into `usuario`(`id_usuario`,`username`,`password`,`enabled`,`role`) values (1,'nelys.mp@gmail.com','$2a$10$Qat9D7Zn5r83gTG7zu7dVOv0azSvbzVc4N8rHNbs2Ewp8ya1i62XO',1,'ROLE_ADMIN'),(2,'christian.vilcaq@gmail.com','$2a$10$RFRiE6D8WnX0YhnKHkDyqe0yNjXuymXqm2oMk4gAuh7nLHT5X4tW2',0,'ROLE_ADMIN'),(3,'liz.mollocondo@gmail.com','$2a$10$SPEo1UEpSAyvK6RMFYaqTOiW..qqE1ap5x9aJG8zlBBXnQ899s4qq',1,'ROLE_ADMIN');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
