@@ -60,17 +60,17 @@ public class AulaDinamicaController {
 		String userName = docente2.getApellidos() + " ," + docente2.getNombre();
 		model.addObject("user", userName);
 		
-		List<AulaDinamica> ListarAulaDinamica = null;
-
-		ListarAulaDinamica = objAulaDinamicaService.getAllAulasDinamicas();
+		
 		HttpSession session = request.getSession(false);
  
 		int iIdCurso = (Integer) session.getAttribute("idCurso");
 
-		int idCurso = 1;
+//		int idCurso = 1;
 		AulaDinamica aulaDinamica = new AulaDinamica();
 		
+		List<AulaDinamica> ListarAulaDinamica = null;
 
+		ListarAulaDinamica = objAulaDinamicaService.getAllAulasDinamicasByCurso(iIdCurso);
 		
 		//obtener los alumnos que no estan en au
 		model.addObject("aulaDinamica", aulaDinamica);
@@ -86,7 +86,7 @@ public class AulaDinamicaController {
 	@ResponseBody
 	public AlumnoDTO saveAulaDinamica2(@ModelAttribute AulaDinamicaDTO aulaDinamica, HttpServletRequest request)
 			throws Exception {
-		logger.info("saveAulaDinamica2 " + aulaDinamica);
+		logger.info("saveAulaDinamica2 " + aulaDinamica.getIdAulaDinamica());
 		
 		AlumnoDTO alumnoDTO=new AlumnoDTO();
 		try {
