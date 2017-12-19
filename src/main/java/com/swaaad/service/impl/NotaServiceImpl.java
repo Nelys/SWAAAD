@@ -121,6 +121,8 @@ public class NotaServiceImpl implements NotaService{
 //            }
 //            objEvaluacionDao.updateEvaluacion(evaluacionDependencia);
         }
+        
+        System.out.println("Sis ok");
         int iRedondeo=0;
         
         // Obtener nota evaluativa de la formula
@@ -132,10 +134,12 @@ public class NotaServiceImpl implements NotaService{
             // Generar Nota segun formula
             Double operation2 = (Double) engine.eval(evaluacionPadre.getFormula());
             
-            System.out.println(operation2);
+            System.out.println("Promedio: " + operation2);
             iRedondeo= (int) Math.round(operation2);
             // Establecer nota evaluativa
-            if (notaEvaluativa == null) {
+            System.out.println("notaEvaluativa: " + notaEvaluativa.getIdNota());
+            if (notaEvaluativa.getIdNota() == 0) {
+            	System.out.println("Ingreso de guardar" );
                 Nota notaPromedio = new Nota();
                 notaPromedio.setAlumno(nota.getAlumno());
 //                notaPromedio.setIdAlumno(nota.getIdAlumno());
@@ -143,6 +147,7 @@ public class NotaServiceImpl implements NotaService{
                 notaPromedio.setNotaEvaluativa(iRedondeo);
                 objNotaDao.addNota(notaPromedio);
             } else {
+            	System.out.println("Ingreso de Actualizar" );
                 notaEvaluativa.setNotaEvaluativa(iRedondeo);
                 objNotaDao.updateNota(notaEvaluativa);
                 

@@ -230,22 +230,27 @@ public class EvaluacionServiceImpl implements EvaluacionService {
             
             // Obtener nota evaluativa de la formula
             Nota nota = objNotaDao.getNotaById(objNotaDao.getIdNotaByIdAlumnoIdEvaluacion(alumno.getIdAlumno(), evaluacion.getIdEvaluacion()));
-            
+            System.out.println("desde el servicio: " + nota.getIdNota());
             if(evaluacion.getEsFormula()==1){
                 // Generar Nota segun formula
                 Double operation2 = (Double) engine.eval(evaluacion.getFormula());
                 iRedondeo= (int) Math.round(operation2);
                 
                 // Establecer nota evaluativa
-                if (nota == null) {
+                if (nota.getIdNota() == 0) {
+                	System.out.println("ingreso a Guardar");
                     Nota notaPromedio = new Nota();
                     
 //                    notaPromedio.setIdAlumno(alumno.getIdAlumno());
                     notaPromedio.setAlumno(alumno);
+                    System.out.println(alumno.getIdAlumno());
                     notaPromedio.setEvaluacion(evaluacion);
+                    System.out.println(evaluacion.getIdEvaluacion());
                     notaPromedio.setNotaEvaluativa(iRedondeo);
+                    System.out.println(iRedondeo);
                     objNotaDao.addNota(notaPromedio);
                 } else {
+                	System.out.println("ingreso a actualizar");
                     nota.setNotaEvaluativa(iRedondeo);
                     objNotaDao.updateNota(nota);
                 }
