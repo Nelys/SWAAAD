@@ -44,6 +44,14 @@ public interface AlumnosDao {
 	Alumno getAlumnoById(int idAlumno) throws Exception;
 
 	/**
+	 * Recupera una lista de alumnos de la base de datos
+	 * 
+	 * @return : Lista de Alumnos
+	 * @throws Exception
+	 */
+	List<Alumno> getAllAlumnosByCorreo(String correo) throws Exception;
+
+	/**
 	 * Actualiza los datos de un alumno
 	 * 
 	 * @param alumno

@@ -44,6 +44,7 @@ public interface AlumnosService {
 	 * @throws IOException, ServletException,Exception
 	 */
 	List<Alumno> getAllAlumnosByIdCurso(int idCurso) throws Exception;
+	
 	/**
 	 * Utiliza el metodo getAlumnoById(int idAlumno) de la clase AlumnosDao
 	 * 
@@ -53,6 +54,16 @@ public interface AlumnosService {
 	 * @throws Exception
 	 */
 	Alumno getAlumnoById(int idAlumno) throws Exception;
+
+	/**
+	 * Utiliza el metodo getAllAlumnosByIdCurso(String correo) de la clase AlumnosDao
+	 * 
+	 * @param correo
+	 *            : correo que identifica al alumno
+	 * @return : Lista de Alumnos por correo
+	 * @throws Exception
+	 */
+	List<Alumno> getAllAlumnosByCorreo(String correo) throws Exception;
 
 	/**
 	 * Utiliza el metodo updateAlumno(Alumno alumno) de la clase AlumnoDao

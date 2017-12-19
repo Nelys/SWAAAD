@@ -79,6 +79,12 @@ public class AlumnosServiceImpl implements AlumnosService {
 	}
 
 	@Override
+	public List<Alumno> getAllAlumnosByCorreo(String correo) throws Exception {
+
+		return objAlumnoDao.getAllAlumnosByCorreo(correo);
+	}
+	
+	@Override
 	public void updateAlumno(Alumno alumno) throws Exception {
 		objAlumnoDao.updateAlumno(alumno);
 	}

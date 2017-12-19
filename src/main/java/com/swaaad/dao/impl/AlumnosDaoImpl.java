@@ -97,6 +97,7 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		}
 		return listarAlumnos;
 	}
+	
 	/**
 	 * @see AlumnosDao#getAlumnoById(int)
 	 */
@@ -119,6 +120,29 @@ public class AlumnosDaoImpl implements AlumnosDao {
 		}
 
 		return alumno;
+	}
+
+	/**
+	 * @see AlumnosDao#getAlumnoByCorreo(String)
+	 */
+	@Override
+	public List<Alumno> getAllAlumnosByCorreo(String correo) throws Exception {
+		sSession = sessionFactory.openSession();
+		List<Alumno> listarAlumnos =null;
+		try {
+			String queryAlumno = "SELECT a FROM Alumno a WHERE a.email = :correo";
+			Query query = sSession.createQuery(queryAlumno);
+			query.setString("correo", correo);
+			listarAlumnos = (List<Alumno>) query.list();
+		} catch (Exception e) {
+		    logger.info("AlumnosDaoimpl getAlumnoById: ", e);
+		} finally {
+			sSession.flush();
+			sSession.close();
+
+		}
+
+		return listarAlumnos;
 	}
 
 	/**

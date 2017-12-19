@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,7 @@ import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
 import com.swaaad.reports.AlumnoReport;
 import com.swaaad.service.AlumnosService;
+import com.swaaad.service.CursoAlumnoService;
 import com.swaaad.service.UsuarioService;
 
 import net.sf.jasperreports.engine.JRException;
@@ -51,10 +53,16 @@ import net.sf.jasperreports.view.JasperViewer;
 @RequestMapping("alumnos")
 public class AlumnoController {
 	private static final Logger logger = LoggerFactory.getLogger(AlumnoController.class);
+	
 	@Autowired
 	private AlumnosService objAlumnoService;
+	
 	@Autowired
 	private UsuarioService objUsuarioService;
+
+	@Autowired
+	private CursoAlumnoService objCursoAlumnoService;
+	
 //	@RequestMapping(value = { "alumnos" }, method = RequestMethod.GET)
 	@RequestMapping("")
 	public ModelAndView alumnosPage(ModelAndView model, HttpServletRequest request) throws Exception {
@@ -274,6 +282,27 @@ public class AlumnoController {
 		logger.info("alumnoNota");
 		
 		model.addObject("listaAlumnos", "hola desde el controlador");
+		model.setViewName("page-alumno-nota");
+		return model;
+	}
+	
+	
+	@RequestMapping(value = "/alumnoNota/{correo}", method = RequestMethod.GET)
+	public ModelAndView alumnoNota(ModelAndView model, @PathVariable("correo") String correo) throws Exception {
+		logger.info("alumnoNota");
+		
+		correo += ".com";
+		
+		System.out.println("Correo: " + correo );
+		
+		for (Alumno alumno : objAlumnoService.getAllAlumnosByCorreo(correo)) {
+			System.out.println("Alumno:" + alumno.getApellidos());
+		}
+		
+		model.addObject("correo", correo);
+//		objCursoAlumnoService.get
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByCorreo(correo));
+		model.addObject("listAlumnos", objAlumnoService.getAllAlumnosByCorreo(correo));
 		model.setViewName("page-alumno-nota");
 		return model;
 	}
