@@ -68,34 +68,6 @@
 						</div>
 					</div>
 
-<!-- 					<div class="form-group"> -->
-<!-- 						<label class="control-label col-sm-2" for="pwd">Horario:</label> -->
-<!-- 						<div class="col-sm-10"> -->
-<!-- 							<div class="input-group"> -->
-<!-- 								<input type="text" class="form-control" placeholder="Horario" -->
-<!-- 									value="L-V (9:00am - 11:00 am)"> <span -->
-<!-- 									class="input-group-btn"> -->
-<!-- 									<button class="btn btn-danger" type="button"> -->
-<!-- 										<i class="glyphicon glyphicon-minus"></i> -->
-<!-- 									</button> -->
-<!-- 								</span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-<!-- 					<div class="form-group"> -->
-<!-- 						<label class="control-label col-sm-2" for="pwd"></label> -->
-<!-- 						<div class="col-sm-10"> -->
-<!-- 							<div class="input-group"> -->
-<!-- 								<input type="text" class="form-control"> -->
-<!-- 								<span class="input-group-btn">  -->
-<!-- 									<a href="newHorario" class="btn btn-primary" type="button"> -->
-<!-- 										<i class="glyphicon glyphicon-plus"></i> -->
-<!-- 									</a> -->
-<!-- 								</span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
 
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="pwd">Periodo:</label>

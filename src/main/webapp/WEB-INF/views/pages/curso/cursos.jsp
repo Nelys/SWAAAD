@@ -179,15 +179,17 @@
 								4,
 								5 ]
 							}
-						},{
-							text : '<i class="fa fa-print"></i> Imprimir',
-							action : function(
-								e, dt,
-								node,
-								config) {
-								window.location.href = '#';
-							}
-						} ]
+						}
+// 						{
+// 							text : '<i class="fa fa-print"></i> Imprimir',
+// 							action : function(
+// 								e, dt,
+// 								node,
+// 								config) {
+// 								window.location.href = '#';
+// 							}
+// 						} 
+                         ]
 					});
 
 					$('#miTable_wrapper a:eq(0)').removeClass(

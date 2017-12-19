@@ -75,7 +75,8 @@ public class AulaDinamicaController {
 		//obtener los alumnos que no estan en au
 		model.addObject("aulaDinamica", aulaDinamica);
 		model.addObject("listAulaDinamica", ListarAulaDinamica);
-		model.addObject("listAlumnos", objCursoAlumnoService.getAllAlumnosByCurso(iIdCurso));
+//		ListarAlumnosPorEstado= objAulaDinamicaService.getAllAlumnosByCursoByEstado(1);
+		model.addObject("listAlumnos", objAulaDinamicaService.getAllAlumnosByCursoByEstado(iIdCurso));
 		model.setViewName("aula-dinamica");
 
 		return model;

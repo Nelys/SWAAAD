@@ -56,14 +56,7 @@
 
 					<div class="col-sm-5">
 						<div class="form-horizontal">
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="pwd">Alumno:</label>
-								<div class="col-sm-12">
-									<div id="divFormula" class="form-control"
-									style="border-radius: 4px 4px 4px 4px; height: 40px; border: 1px solid #9c9c9c; width: 100%; overflow-x: auto; white-space: nowrap; resize: none; font-size: 26px;">
-								</div>
-							</div>
-						</div>
+
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="pwd">Color de Fondo:</label>
 							<div class="col-sm-8">
@@ -85,11 +78,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="col-sm-4 col-sm-offset-4">
-								<button id="btnNota" class="btn btn-success" style="float: none; margin: 0 auto;" >Agregar</button>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
