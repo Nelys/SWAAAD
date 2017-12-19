@@ -431,18 +431,21 @@ h2 {
 			 */
 			$('#btnFormula').click(function() {
 				console.log("000000000-");
-				cadena = "0.15*idEvaluacion_13+0.7*idEvaluacion_14+0.15*idEvaluacion_15";
-				expresion = /([a-zA-Z])\w+/g;
-				var lista_evaluaciones = cadena.match(expresion);
+				
 				// console.log(lista_evaluaciones);
 
 
 				// console.log("1:  $('#btnFormula').click(function()----------------------------------");
 				var divFormula = $("#formula").val();
-				// console.log("2:  "+divFormula);
+				console.log("2:  "+divFormula);
 				var divFormulaFija = $("#formula").val();
-				// console.log("3:  "+divFormulaFija);
+				console.log("3:  "+divFormulaFija);
 				// console.log("4:  "+divFormula.indexOf("idEvaluacion_"));
+				
+				cadena = divFormula;
+				expresion = /([a-zA-Z])\w+/g;
+				var lista_evaluaciones = cadena.match(expresion);
+
 				
 				var a = 0;
 				var idEvaluacion='';
