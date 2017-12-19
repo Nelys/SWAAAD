@@ -1,6 +1,6 @@
 <%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" --%>
 <%--     pageEncoding="ISO-8859-1"%> --%>
-    
+
 <!--     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -14,7 +14,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="table-responsive">
-					<table id="miTable" class="table table-bordered table-hover table-striped">
+					<table id="miTable"
+						class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
 								<th>ID</th>
@@ -24,39 +25,37 @@
 								<th>Seccion</th>
 								<th>Año</th>
 								<th>Estado</th>
-								<th>ACCION</th>
+
 							</tr>
 						</thead>
 						<c:if test="${!empty listCursos}">
-						<tbody>
-							<c:forEach var="lista" items="${listCursos}">
-							<tr>
-								<td>${lista.idCurso}</td>
-								<td>${lista.nombreCurso}</td>
-								<td>${lista.institucion}</td>
-								<td>${lista.grado}</td>
-								<td>${lista.seccion}</td>
-								<td>${lista.anio}</td>
-																			
-								<td style="text-align: center" width="100px">
-<!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
-								<input name="activar" id="activar" type="button" value="Activar" onclick="desactivar(${lista.idCurso})" />
-								</td>
+							<tbody>
+								<c:forEach var="lista" items="${listCursos}">
+									<tr>
+										<td>${lista.idCurso}</td>
+										<td>${lista.nombreCurso}</td>
+										<td>${lista.institucion}</td>
+										<td>${lista.grado}</td>
+										<td>${lista.seccion}</td>
+										<td>${lista.anio}</td>
 
+										<td style="text-align: center" width="100px">
+											<!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
+											<input name="activar" id="activar" type="button"
+											value="Activar" onclick="desactivar(${lista.idCurso})" />
 
-									<td style="text-align: center" width="100px"><i
-										class="fa fa-pencil-square-o"></i></a> <a class="btn btn-sm btn-danger btn-sm" href="deleteCurso?id=${lista.idCurso}"><i
-											class="fa fa-trash-o"></i></a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</c:if>
-						</table>
-					</div>
+										</td>
+
+									</tr>
+								</c:forEach>
+							</tbody>
+						</c:if>
+					</table>
 				</div>
 			</div>
-			<!-- /.row -->
-			<script type="text/javascript">
+		</div>
+		<!-- /.row -->
+		<script type="text/javascript">
 			
 			
 			
@@ -158,10 +157,11 @@
 					 $.post
 				 })
 				
-				
+
+			
 
 			
 		
 			</script>
-		</div>
 	</div>
+</div>

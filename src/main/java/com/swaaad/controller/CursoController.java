@@ -159,8 +159,8 @@ public class CursoController {
 		return new ModelAndView("redirect:/alumnos");
 	}
 	
-	@RequestMapping(value = "/cursoDesactivados", method = RequestMethod.GET)
-	public ModelAndView EstadoCurso(ModelAndView model) throws Exception {
+	@RequestMapping(value = "/cursoDesactivados/{estado}", method = RequestMethod.GET)
+	public ModelAndView EstadoCurso(ModelAndView model, HttpServletRequest request) throws Exception {
 		logger.info("EstadoCurso");
 
 //		{estado} @PathVariable("estado") byte estado
@@ -174,6 +174,7 @@ public class CursoController {
 		String userName = docente.getApellidos() + " ," + docente.getNombre();
 		model.addObject("user", userName);
 		
+		int cursoId = Integer.parseInt(request.getParameter("id"));
 		
 		List<Curso> ListarCurso = null;
 		ListarCurso = objCursoService.listCursoByEstado(docente.getIdDocente());
@@ -183,6 +184,7 @@ public class CursoController {
 		
 //		curso.setDocente(objDocenteService.getDocenteById(docente.getIdDocente()));
 //		curso.setEstado(estado);
+		
 //					
 //		objCursoService.updateCurso(curso);
 		

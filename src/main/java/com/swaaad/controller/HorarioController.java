@@ -67,7 +67,7 @@ public class HorarioController {
 		model.addObject("user", userName);
 
 		// obtiene la lista de cursos por docente
-		List<Curso> listaCursos = objCursoService.listCursoByEstado(docente.getIdDocente());
+		List<Curso> listaCursos =  objCursoService.listCursoByDocente(docente.getIdDocente());
 		// Guarda la lista de cursos enla variable listaCursos
 		model.addObject("listaCursos", listaCursos);
 		// se envia a la vista

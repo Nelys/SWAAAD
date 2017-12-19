@@ -47,13 +47,13 @@
 						</div>
 					</div>
 					
-					<div class="form-group ">
-						<fieldset>
-							<legend>Genero</legend>
-							<label class="radio-inline"> <input type="radio" name="optradio" value="F" checked="checked">Femenino
-							</label> <label class="radio-inline"> <input type="radio" name="optradio" value="M">Masculino</label>
-						</fieldset>
-					</div>
+<!-- 					<div class="form-group "> -->
+<!-- 						<fieldset> -->
+<!-- 							<legend>Genero</legend> -->
+<!-- 							<label class="radio-inline"> <input type="radio" name="optradio" value="F" checked="checked">Femenino -->
+<!-- 							</label> <label class="radio-inline"> <input type="radio" name="optradio" value="M">Masculino</label> -->
+<!-- 						</fieldset> -->
+<!-- 					</div> -->
 
 
 					<div class="form-group">
