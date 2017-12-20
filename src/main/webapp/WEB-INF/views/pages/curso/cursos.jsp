@@ -35,17 +35,12 @@
 								<td>${lista.grado}</td>
 								<td>${lista.seccion}</td>
 								<td>${lista.anio}</td>
-									
-									
-								
-						
 								<td style="text-align: center" width="100px">
-<!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
-								<input name="activar" id="desactivar" type="button" value="Desactivar" onclick="desactivar(${lista.idCurso})" />
-								
+									<!-- 								<button id="Activar" class="btn btn-sm btn-primary btn-sm"> Activar</button> -->
+									<input name="activar" id="desactivar" type="button" value="Desactivar" onclick="desactivar(${lista.idCurso})" />
 								</td>
-					
-													
+
+
 								<td style="text-align: center" width="100px"><a class="btn btn-sm btn-primary btn-sm" href="selectCurso?id=${lista.idCurso}"><i
 									class="fa fa-eye"></i> Seleccionar</a></td>
 
@@ -80,7 +75,7 @@
 						"hideMethod": "fadeOut"
 					};
 					
-	
+
 
 					$.get("getRecordatorio/1",{},function (result) {
 
@@ -122,7 +117,7 @@
 							}
 						},
 						
-// 						btn btn-sm btn-primary btn-sm
+						/* 						btn btn-sm btn-primary btn-sm*/
 						dom : 'Bfrtip',
 						buttons : [{
 							text : '<i class="fa fa-plus"></i> Nuevo',
@@ -172,7 +167,7 @@
 								5 ]
 							}
 						},
-						
+
 						{
 							text : '<i class="fa fa-plus"></i> Desactivados',
 							action : function(
@@ -183,7 +178,7 @@
 							}
 						}
 
-                         ]
+						]
 					});
 
 					$('#miTable_wrapper a:eq(0)').removeClass(
@@ -209,21 +204,23 @@
 				
 
 
+				function desactivar(idCurso){
+					$.get("desactivarCurso/"+idCurso, {}, function (result) {
+							if(result.response){
+								alert("Desactivo Curso");
+								location.reload();
+								
+							}else
+							{
+								alert("No pudo desactivar Curso");
+							}
 
-// 				function enviarEstado(obj, estado) {
-// 					var id_Curso = $(obj).val();
-// 					var EstadoD = estado;
+					}, 'json');
 
-// 					$.post( '${pageContext.request.contextPath}/cursoDesactivados',{ 
-// 						 idCurso : id_Curso,
-// 						 est : EstadoD,
-// 						 fecha:'${fecha}'},function( data ) {	
-// 							// alert(data.message)		 
-// 						});
+				}
 
-// 				}
-			
-		
-			</script>
-		</div>
-	</div>
+
+
+</script>
+</div>
+</div>

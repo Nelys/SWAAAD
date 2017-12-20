@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.swaaad.dto.ResponseDTO;
 import com.swaaad.model.Curso;
 import com.swaaad.model.Docente;
 import com.swaaad.model.Usuario;
@@ -189,6 +191,37 @@ public class CursoController {
 		model.setViewName("cursoDesactivados");
 	
 		return model;
+	}
+	
+	@RequestMapping(value = "/activarCurso/{idCurso}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO activarCurso(@PathVariable("idCurso") int idCurso) throws Exception {
+		ResponseDTO responseDTO= new ResponseDTO();
+		
+		//activar curso
+		Curso curso= objCursoService.getCursoById(idCurso);
+		curso.setEstado((byte) 1 );
+		
+		objCursoService.updateCurso(curso);
+		
+		
+		responseDTO.setResponse(true);
+		return responseDTO;
+	}
+	@RequestMapping(value = "/desactivarCurso/{idCurso}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseDTO desactivarCurso(@PathVariable("idCurso") int idCurso) throws Exception {
+		ResponseDTO responseDTO= new ResponseDTO();
+		
+		//activar curso
+		Curso curso= objCursoService.getCursoById(idCurso);
+		curso.setEstado((byte) 0 );
+		
+		objCursoService.updateCurso(curso);
+		
+		
+		responseDTO.setResponse(true);
+		return responseDTO;
 	}
 
 }
